@@ -2,6 +2,7 @@
     <wb-module deploy-name="semiproject">
         <wb-resource deploy-path="/" source-path="/web" tag="defaultRootSource"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/resources"/>
         <property name="context-root" value="semiproject"/>
         <property name="java-output-path" value="/semiproject/web/WEB-INF/classes"/>
     </wb-module>
