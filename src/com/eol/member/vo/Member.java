@@ -1,4 +1,4 @@
-package com.semi.member.vo;
+package com.eol.member.vo;
 
 public class Member {
 	private String name;
