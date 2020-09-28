@@ -1,0 +1,29 @@
+@charset "UTF-8";
+section{
+    border: 2px red solid;
+    height: 550px;
+}
+section>div{
+    /* inline-blok설정을 해서 열 정리 */
+    display: inline-block;
+}
+section>div.joinText{
+    border: 4px yellow solid;
+    float: left;
+    width: 30%;
+    height: 550px;
+    margin: auto;
+    text-align: center;
+}
+section>div.joinText>p{
+    font-size: 40px;
+    font-weight: bolder;
+}
+section>div.join1{
+    float: right;
+    border: 4px green solid;
+    width: 50%;
+    height: 550px;
+    text-align: center;
+
+}
