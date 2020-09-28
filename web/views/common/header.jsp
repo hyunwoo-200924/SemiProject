@@ -33,6 +33,6 @@ href="<%=request.getContextPath() %>/css/hayong.css">
                     <li><a href="#">이벤트</a></li>
                     <li><a href="<%=request.getContextPath()%>/mypageMain.do">마이페이지</a></li>
                 </ul>
-                <img id="headerB" src="<%=request.getContextPath() %>/images/mainImages/shopping-cart-solid.svg" alt="" width="30px" height="30px" herf=""><!-- 장바구니 -->
+                <a href="<%=request.getContextPath() %>/cartList.do"><img id="headerB" src="<%=request.getContextPath() %>/images/mainImages/shopping-cart-solid.svg" alt="" width="30px" height="30px"></a><!-- 장바구니 -->
             </nav>
         </header>
