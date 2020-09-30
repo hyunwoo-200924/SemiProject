@@ -11,13 +11,13 @@ import javax.servlet.http.HttpServletResponse;
  * Servlet implementation class memberEnrollCheckedViewServlet
  */
 @WebServlet("/memberEnrollCheckedView.do")
-public class memberEnrollCheckedViewServlet extends HttpServlet {
+public class MemberEnrollCheckedViewServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public memberEnrollCheckedViewServlet() {
+    public MemberEnrollCheckedViewServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
