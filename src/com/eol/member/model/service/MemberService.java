@@ -14,6 +14,12 @@ public class MemberService {
 
 	MemberDao mDao = new MemberDao();
 	
+	public Member selectMember(String userId, String password) {
+		Connection conn = getConnection();
+		Member m = mDao.selectMember(conn,userId,password);
+		return m;
+	}
+	
 	public int insertMember(Member m) {
 		Connection conn = getConnection();
 		System.out.println("2");

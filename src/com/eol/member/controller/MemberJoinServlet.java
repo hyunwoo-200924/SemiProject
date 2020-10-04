@@ -50,8 +50,7 @@ public class MemberJoinServlet extends HttpServlet {
 	   int result = new MemberService().insertMember(m);
 		
 	   //response.sendRedirect(어디로보내지~~);
-	
-	
+
 	}
 
 	/**
