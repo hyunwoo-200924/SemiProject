@@ -36,7 +36,7 @@ public class MemberJoinServlet extends HttpServlet {
 		m.setmId(request.getParameter("id"));
 		m.setmPw(request.getParameter("pw"));
 		m.setmName(request.getParameter("name"));
-//		m.setmBirth(request.getParameter("birth"));
+		m.setmBirth(request.getParameter("birth"));
 		m.setmEmail(request.getParameter("email"));
 		m.setmPhone(request.getParameter("phone"));
 		String address1 = request.getParameter("address1"); //주소
@@ -49,7 +49,7 @@ public class MemberJoinServlet extends HttpServlet {
 		
 	   int result = new MemberService().insertMember(m);
 		
-		
+	   //response.sendRedirect(어디로보내지~~);
 	
 	
 	}

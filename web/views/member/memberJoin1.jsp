@@ -25,46 +25,47 @@
 					<div class="user_update_form">
 						<div class="form_box col3">
 							<p>아이디</p>
-							<input type="text" name="id" id="id" required>
+							<input type="text" name="id" id="id" maxlength="20" autocomplete="off" required>
 							<input type="button" value="중복확인" onclick="idCk();">
 							<div id="idCkMSg" style="display:none;  grid-column-start: 2;">
-								<span id="1" style="display: block;color:red;">6자이상</span>
-								<span id="2" style="display: block;color:red;">대문자</span>
-								<span id="3" style="display: block;color:red;">111</span>
+								<span id="id1" style="display: block;color:black;">6자 이상의 영문과 숫자를 조합</span>
+								<span id="id2" style="display: block;color:black;">아이디 중복확인</span>
 							</div>
 						</div>
 						<div class="form_box">
 							<p>비밀번호</p>
-							<input type="password" name="pw" id="pw" required>
+							<input type="password" name="pw" id="pw" maxlength="20" required>
+							<div id="pwMsg" style="display:none;  grid-column-start: 2;">
+								<span id="pw1" style="display: block;color:red;">최소 10자 이상 입력</span>
+								<span id="pw2" style="display: block;color:red;">영문/숫자/특수문자(공백제외)만 허용하며, 2개 이상 조합</span>
+							</div>
 						</div>
 						<div class="form_box">
 							<p>비밀번호 확인</p>
-							<input type="password" id="pwck" required>
-							<div id="k" style="display:none;  grid-column-start: 2;">
-								<span id="1" style="display: block;color:red;">6자이상</span>
-								<span id="2" style="display: block;color:red;">대문자</span>
-								<span id="3" style="display: block;color:red;">111</span>
+							<input type="password" id="pwck" maxlength="20" required>
+							<div id="pwCkMsg" style="display:none;  grid-column-start: 2;">
+								<span id="pw3" style="display: block;color:red;">동일한 비밀번호를 입력해주세요.</span>
 							</div>
 						</div>
 						<div class="form_box">
 							<p>이름</p>
-							<input type="text" name="name" required>
+							<input type="text" id="name" name="name" required>
 						</div>
 						<div class="form_box col3">
 							<p>이메일</p>
-							<input type="email"  name="email" required>
+							<input type="email"  id="email" name="email" required>
 							<input type="button" value="중복확인" onclick="emailCk();" >
 						</div>
 						<div class="form_box">
 							<p>휴대폰</p>
-							<input type="text" name="phone" required>
+							<input type="text" id="phone" name="phone" required>
 						</div>
 						<div class="form_box">
 							<p>주소</p>
 							<input type="button" id="addressButton" onclick="fn_address();" value="주소검색">
 							<input type="text" id="address" name="address1" style="display: none; grid-column-start: 2;" readonly  >
 							<input type="button" id="addressAgain" style="display:none;" onclick="fn_address();" value="주소재검색">
-							<input type="text" id="addressDetail" name="address2" style="display: none; grid-column-start: 2;" placeholder="상세주소를 입력해주세요." >
+							<input type="text" id="addressDetail" name="address2" style="display: none; grid-column-start: 2; margin-top: 5px;" placeholder="상세주소를 입력해주세요." >
 							<!-- <span class="searchImg">주소검색</span> -->
 						</div>
 						<div class="form_box">
@@ -83,7 +84,7 @@
 						</div>
 						<div class="form_box">
 							<p>생년월일</p>
-							<input type="date" name="birth">
+							<input type="date" id="birth" name="birth">
 						</div>
 						<div class="form_box">
 							<p>선택약관동의</p>
@@ -107,6 +108,75 @@
 		</section>
 		
 		<script>
+		$(function(){
+			//아이디 조건 체크
+			$("#id").click(function(){
+				$("#idCkMSg").css('display', 'block');
+				/* $("#k").show(); */
+			})
+			$("#id").focus(function(){
+				$("#idCkMSg").css('display', 'block');
+				/* $("#k").show(); */
+			})
+			$("#id").keyup(function(){
+				var id = $('#id').val().trim();
+				var reg = /^(?=.*?[a-z])(?=.*?[0-9]).{6,}$/;
+				if(reg.test(id)){ 
+					//6자 이상이면서 영문과 숫자를 조합 ok(reg.test(id))
+					$('#id1').css("color", "green");
+					idFlag = true;
+				} else {
+					$('#id1').css("color", "red");
+					idFlag = false;
+				}
+				$('#id2').css("color", "red");
+				idDuplicateFlag = false;
+				
+			})
+			
+			//pw 조건 체크
+			$("#pw").click(function(){
+				$("#pwMsg").css('display', 'block');
+				/* $("#k").show(); */
+			})
+			$("#pw").focus(function(){
+				$("#pwMsg").css('display', 'block');
+				/* $("#k").show(); */
+			})
+			$("#pw").keyup(function(){
+				var pw = $('#pw').val().trim();
+				var check1 = /^(?=.*[a-zA-Z])(?=.*[0-9]).{10,20}$/.test(pw);//영문,숫자 조합(10~20)
+				var check2 = /^(?=.*[a-zA-Z])(?=.*[^a-zA-Z0-9]).{10,20}$/.test(pw);//영문,특수문자 조합(10~20)
+				var check3 = /^(?=.*[0-9])(?=.*[^a-zA-Z0-9]).{10,20}$/.test(pw);//숫자,특수문자 조합(10~20)
+				if(pw.length > 9){
+					$('#pw1').css("color", "green");
+				} else {
+					$('#pw1').css("color", "red");
+				}
+				if(check1 || check2 || check3) {
+					$('#pw2').css("color", "green");
+				} else {
+					$('#pw2').css("color", "red");
+				}
+			})
+			
+			//비밀번호확인 체크
+			$("#pwck").click(function(){
+				$("#pwCkMsg").css("display","block");
+			})
+			$("#pwck").focus(function(){
+				$("#pwCkMsg").css("display","block");
+			})
+			$("#pwck").keyup(function(){
+				if($("#pwck").val().trim() == $('#pw').val().trim()){
+					$('#pw3').css("color", "green");
+				}else{
+					$('#pw3').css("color", "red");
+				} 
+			})
+		})
+		
+		//주소 api창 띄우기
 		function fn_address(){
 			new daum.Postcode({
 				oncomplete: function(data) {
@@ -128,79 +198,111 @@
 			}).open();
 		}
 		
-		
-		//중복확인 버튼 유효성
+		//아이디 유효성체크 확인 변수
 		var idFlag = false;
-		var emailFlag = false;
+		//중복확인 버튼 유효성 확인변수
+		var idDuplicateFlag = false;
+		var emailDuplicateFlag = false;
+		
+		//아이디 중복체크
 		function idCk(){
-			idFlag = true;
-		}
-		function emailCk(){
-			emailFlag = true;
-		}
-		//아이디 비밀번호 조건 체크
-		$(function(){
-			$("#id").click(function(){
-				$("#idCkMSg").css('display', 'block');
-				
-				/* $("#k").show(); */
-				
-			})
-			$("#id").keyup(function(){
-				var id = $('#id').val().trim();
-				var reg = /(?=.*[A-Z])/
-				if(id.length > 5){
-					$('#1').css("color", "green");
-				} else {
-					$('#1').css("color", "red");
-				}
-				if(!reg.test(id)) {
-					$('#2').css("color", "red");
-				} else {
-					$('#2').css("color", "green");
-				}
-			})
-			
-			$("#pw").click(function(){
-				$("#k").css('display', 'block');
-				
-				/* $("#k").show(); */
-				
-			})
-			$("#pw").keyup(function(){
-				var pw = $('#pw').val().trim();
-				var reg = /(?=.*[A-Z])/
-				if(pw.length > 5){
-					$('#1').css("color", "green");
-				} else {
-					$('#1').css("color", "red");
-				}
-				if(!reg.test(pw)) {
-					$('#2').css("color", "red");
-				} else {
-					$('#2').css("color", "green");
-				}
-			})
-		})
-			function fn_updateMember(){
-				
-				let pw = $("#pw").val();
-				let pwck = $("#pwck").val();
-				console.log(pw);
-				if(pw != pwck){
-					alert("비밀번호다름");
-				} 
-				<%-- $("memberFrm").attr("action","<%=request.getContextPath()%>/updateMember").submit(); --%>
+			//아이디 빈칸일 때
+			if($("#id").val().trim() == "") {
+				alert("아이디를 입력해주세요.");
+				return;
 			}
+			//아이디 조건확인
+			if(!idFlag) {
+				alert('6자 이상의 영문과 숫자를 조합해주세요.');
+				return;
+			}
+			//
+			$.ajax({
+				url: "<%= request.getContextPath() %>/MemberIdDuplicate",
+				type: "post",
+				data: {id:$("#id").val().trim()},
+				success: function(data){
+					if(data == 0) {
+						alert('사용가능한 아이디입니다.');
+						$('#id2').css("color", "green");
+						idDuplicateFlag = true;
+					} else {
+						alert('이미 등록된 아이디입니다.');	
+						$('#id2').css("color", "red");
+						idDuplicateFlag = false;
+						$("#id").focus();
+					}
+				}
+			})
+		}
+		
+		//이메일 중복체크
+		function emailCk(){
+			//이메일 빈칸일 때
+			if($("#email").val().trim() == "") {
+				alert("이메일을 입력해주세요.");
+				return;
+			}
+			$.ajax({
+				url: "<%= request.getContextPath() %>/MemberEmailDuplicate",
+				type: "post",
+				data: {email: $('#email').val().trim()},
+				success: function(data){
+					if(data == 0){
+						alert('사용이 가능합니다.');
+						emailDuplicateFlag = true;
+					} else {
+						alert('이미 등록된 이메일입니다. 다시 작성해 주십시요!');
+						emailDuplicateFlag = false;
+					}
+				}
+			})
+		}
 		
 		//가입확인 버튼 클릭 시 이벤트
 		function check(){
-			if(!idFlag){
+			if($('#id').val()==='') {
+				alert('아이디를 입력해주세요.')
+				return false;
+			}
+			if(!idDuplicateFlag){
 				alert("아이디 중복확인을 해주세요.");
 				return false;
 			}
-			if(!emailFlag){
+			if($('#pw').val()==='') {
+				alert('비밀번호를 입력해주세요.')
+				return false;
+			}
+			if($('#pwck').val()==='') {
+				alert('비밀번호 확인을 입력해주세요.')
+				return false;
+			}
+			if($('#name').val()==='') {
+				alert('이름을 입력해주세요.')
+				return false;
+			}
+			if($('#email').val()==='') {
+				alert('이메일을 입력해주세요.')
+				return false;
+			}
+			if(!emailDuplicateFlag){
 				alert("이메일 중복확인을 해주세요.");
+				return false;
+			}
+			if($('#phone').val()==='') {
+				alert('휴대폰번호를 입력해주세요.')
+				return false;
+			}
+			if($('#address').val()==='') {
+				alert('주소를 입력해주세요.')
+				return false;
+			}
+			if($('input[name="gender"]').is(':checked')==false) {
+				alert('성별을 체크해주세요.')
+				return false;
+			}
+			if($('#birth').val()==='') {
+				alert('생년월일을 입력해주세요.')
 				return false;
 			}
 		}
