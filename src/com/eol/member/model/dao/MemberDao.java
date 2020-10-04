@@ -4,6 +4,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Properties;
 
@@ -32,11 +33,11 @@ public class MemberDao {
 			pstmt.setString(1, m.getmId());;
 			pstmt.setString(2, m.getmPw());
 			pstmt.setString(3, m.getmName());
-//			pstmt.setDate(4, m.getmBirth());
-			pstmt.setString(4, m.getmEmail());
-			pstmt.setString(5, m.getmPhone());
-			pstmt.setString(6, m.getmAddress());
-			pstmt.setString(7, m.getmGender());
+			pstmt.setString(4, m.getmBirth());
+			pstmt.setString(5, m.getmEmail());
+			pstmt.setString(6, m.getmPhone());
+			pstmt.setString(7, m.getmAddress());
+			pstmt.setString(8, m.getmGender());
 			
 			System.out.println("3");
 			result = pstmt.executeUpdate();
@@ -46,6 +47,103 @@ public class MemberDao {
 		}finally {
 			close(pstmt);
 		}
+		return result;
+	}
+	
+	//아이디 중복체크
+	public int selectMemberId(Connection conn, String id) {
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		int result = 0;
+		
+		try {
+			pstmt = conn.prepareStatement(prop.getProperty("selectMemberId"));
+			pstmt.setString(1, id);
+			
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				result = rs.getInt(1);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rs);
+			close(pstmt);
+		}
+		
+		return result;
+	}
+
+	//이메일 중복체크
+	public int selectMemberEmail(Connection conn, String email) {
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		int result = 0;
+		
+		try {
+			pstmt = conn.prepareStatement(prop.getProperty("selectEmailId"));
+			pstmt.setString(1, email);
+			
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				result = rs.getInt(1);
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rs);
+			close(pstmt);
+		}
+		
+		return result;
+	}
+
+	//비밀번호 체크
+	public String selectMemberPw(Connection conn, String id) {
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String dbpw = "";
+		
+		try {
+			pstmt = conn.prepareStatement(prop.getProperty("selectMemberPw"));
+			pstmt.setString(1, id);
+			
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				dbpw = rs.getString(1);//디비 비밀번호가 담긴다.
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rs);
+			close(pstmt);
+		}
+		
+		return dbpw;
+
+	}
+	
+	//회원탈퇴
+	public int deleteMember(Connection conn, String id) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		System.out.println(id);
+		
+		try {
+			pstmt = conn.prepareStatement(prop.getProperty("deleteMember"));
+			pstmt.setString(1, id);
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		System.out.println(result);
 		return result;
 	}
 
