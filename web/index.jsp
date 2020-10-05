@@ -13,7 +13,6 @@
 			<img src="<%=request.getContextPath() %>/images/mainImages/gogi.jpg" style="width: 100%">
 			<div class="text">
 				삼겹살<br>23,000원
-				되냐?
 			</div>
 			<a type="input" class="cart"><img src="<%=request.getContextPath() %>/images/mainImages/shopping-cart-solid.svg"></a>
 			<!--장바구니에 현재 광고 상품 담기-->
