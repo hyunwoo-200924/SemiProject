@@ -49,16 +49,19 @@
 						</div>
 						<div class="form_box">
 							<p>이름</p>
-							<input type="text" id="name" name="name" required>
+							<input type="text" id="name" name="name" autocomplete="off" required>
 						</div>
 						<div class="form_box col3">
 							<p>이메일</p>
-							<input type="email"  id="email" name="email" required>
+							<input type="email"  id="email" name="email" autocomplete="off" required>
 							<input type="button" value="중복확인" onclick="emailCk();" >
+							<div id="emailCkMsg" style="display:none;  grid-column-start: 2;">
+								<span id="email1" style="display: block;color:red;">이메일 중복확인</span>
+							</div>
 						</div>
 						<div class="form_box">
 							<p>휴대폰</p>
-							<input type="text" id="phone" name="phone" required>
+							<input type="text" id="phone" name="phone" autocomplete="off" required>
 						</div>
 						<div class="form_box">
 							<p>주소</p>
@@ -108,6 +111,36 @@
 		</section>
 		
 		<script>
+		//주소 api창 띄우기
+		function fn_address(){
+			new daum.Postcode({
+				oncomplete: function(data) {
+					let address = data.address;
+					$("#addressButton").css("display","none");
+					$("#address").css("display","block").val(address);
+					$(".form_box").addClass("col3");
+					$("#addressAgain").css("display","block")
+					$("#addressDetail").css("display","block");
+	                /* alert(data.userSelectedType) // (J : 지번 , R : 도로명)
+	                alert(data.jibunAddress)     // (지번 풀주소 반환)
+	                alert(data.sido);            // 시반환(서울특별시)
+	                alert(data.sigungu);         // 구반환(은평구) 
+	                alert(data.bname);           // 동반환(갈현동)
+	                alert(data.postcode);        // 우편번호 반환(6자리)
+	                alert(data.zonecode);        // 우편번호 반환(5자리) */
+	            }
+	
+			}).open();
+		}
+		
+		//아이디 비밀번호 유효성체크 확인 변수
+		let idFlag = false;
+		let pwFlag = false;
+		let pwCkFlag = false;
+		//중복확인 버튼 유효성 확인변수
+		let idDuplicateFlag = false;
+		let emailDuplicateFlag = false;
+		
 		$(function(){
 			//아이디 조건 체크
 			$("#id").click(function(){
@@ -120,7 +153,7 @@
 			})
 			$("#id").keyup(function(){
 				var id = $('#id').val().trim();
-				var reg = /^(?=.*?[a-z])(?=.*?[0-9]).{6,}$/;
+				var reg = /^(?=.*?[a-zA-Z])(?=.*?[0-9]).{6,}$/;
 				if(reg.test(id)){ 
 					//6자 이상이면서 영문과 숫자를 조합 ok(reg.test(id))
 					$('#id1').css("color", "green");
@@ -150,13 +183,17 @@
 				var check3 = /^(?=.*[0-9])(?=.*[^a-zA-Z0-9]).{10,20}$/.test(pw);//숫자,특수문자 조합(10~20)
 				if(pw.length > 9){
 					$('#pw1').css("color", "green");
+					pwFlag = true;
 				} else {
 					$('#pw1').css("color", "red");
+					pwFlag = false;
 				}
 				if(check1 || check2 || check3) {
 					$('#pw2').css("color", "green");
+					pwFlag = true;
 				} else {
 					$('#pw2').css("color", "red");
+					pwFlag = false;
 				}
 			})
 			
@@ -170,39 +207,21 @@
 			$("#pwck").keyup(function(){
 				if($("#pwck").val().trim() == $('#pw').val().trim()){
 					$('#pw3').css("color", "green");
+					pwCkFlag = true;
 				}else{
 					$('#pw3').css("color", "red");
+					pwCkFlag = false;
 				} 
 			})
+			
+			//이메일 조건 체크
+			$('#email').focus(function(){
+				$("#emailCkMsg").css('display', 'block');
+			})
+			$('#email').keyup(function(){
+				$("#email1").css('color', 'red');
+			})
 		})
-		
-		//주소 api창 띄우기
-		function fn_address(){
-			new daum.Postcode({
-				oncomplete: function(data) {
-					let address = data.address;
-					$("#addressButton").css("display","none");
-					$("#address").css("display","block").val(address);
-					$(".form_box").addClass("col3");
-					$("#addressAgain").css("display","block")
-					$("#addressDetail").css("display","block");
-	                /* alert(data.userSelectedType) // (J : 지번 , R : 도로명)
-	                alert(data.jibunAddress)     // (지번 풀주소 반환)
-	                alert(data.sido);            // 시반환(서울특별시)
-	                alert(data.sigungu);         // 구반환(은평구) 
-	                alert(data.bname);           // 동반환(갈현동)
-	                alert(data.postcode);        // 우편번호 반환(6자리)
-	                alert(data.zonecode);        // 우편번호 반환(5자리) */
-	            }
-	
-			}).open();
-		}
-		
-		//아이디 유효성체크 확인 변수
-		var idFlag = false;
-		//중복확인 버튼 유효성 확인변수
-		var idDuplicateFlag = false;
-		var emailDuplicateFlag = false;
 		
 		//아이디 중복체크
 		function idCk(){
@@ -250,9 +269,11 @@
 				success: function(data){
 					if(data == 0){
 						alert('사용이 가능합니다.');
+						$('#email1').css("color", "green");
 						emailDuplicateFlag = true;
 					} else {
 						alert('이미 등록된 이메일입니다. 다시 작성해 주십시요!');
+						$('#email1').css("color", "red");
 						emailDuplicateFlag = false;
 					}
 				}
@@ -273,8 +294,16 @@
 				alert('비밀번호를 입력해주세요.')
 				return false;
 			}
+			if(!pwFlag){
+				alert('비밀번호를 조건에 맞게 입력해 주세요.')
+				return false;
+			}
 			if($('#pwck').val()==='') {
 				alert('비밀번호 확인을 입력해주세요.')
+				return false;
+			}
+			if(!pwCkFlag){
+				alert('동일한 비밀번호를 입력해 주세요.')
 				return false;
 			}
 			if($('#name').val()==='') {
@@ -297,10 +326,10 @@
 				alert('주소를 입력해주세요.')
 				return false;
 			}
-			if($('input[name="gender"]').is(':checked')==false) {
+			/* if($('input[name="gender"]').is(':checked')==false) {
 				alert('성별을 체크해주세요.')
 				return false;
-			}
+			} */
 			if($('#birth').val()==='') {
 				alert('생년월일을 입력해주세요.')
 				return false;

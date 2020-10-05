@@ -44,11 +44,16 @@ public class MemberJoinServlet extends HttpServlet {
 		System.out.println(address2);
 		String address = address1 + ", " + address2;
 		m.setmAddress(address);
-		m.setmGender(request.getParameter("gender"));
+		if(request.getParameter("gender") != null) {
+			m.setmGender(request.getParameter("gender"));
+		}else {
+			m.setmGender("N");
+		}
 		System.out.println("111");
 		
 	   int result = new MemberService().insertMember(m);
 		
+	   //if(result != null)
 	   //response.sendRedirect(어디로보내지~~);
 
 	}

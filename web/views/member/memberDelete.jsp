@@ -49,7 +49,7 @@
 						</div>
 					</div>
 					<div class="form_box_delete">
-						<textarea cols="30" rows="10">진심어린 충고 부탁드립니다.</textarea>
+						<textarea cols="30" rows="10"></textarea>
 					</div>
 					<div class="button col2">
 							<input type="button" value="취소">

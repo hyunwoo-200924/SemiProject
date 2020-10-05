@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"  import="com.eol.member.model.vo.Member" %>
 
 <%
-	Member m1 = new Member("lhy92312a");//이거 확인용 로직
+	Member m1 = new Member("ASDFASDF5");//이거 확인용 로직
 	//session1.setMaxInactiveInterval(2);
 	request.getSession().setAttribute("loginMember", m1);//이거 확인용 로직
 	Member m = (Member)request.getSession().getAttribute("loginMember");
@@ -59,7 +59,7 @@
 						</div>
 						<div class="form_box">
 							<p>비밀번호<span class="filsu">*</span></p>
-								<input type="password" id="pwck" name="pwck">
+							<input type="password" id="pwck" name="pwck">
 						</div>
 					</div>
 					<div class="button">

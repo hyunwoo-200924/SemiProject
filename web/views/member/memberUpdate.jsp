@@ -3,6 +3,15 @@
 
 <%
 	Member m = (Member)request.getSession().getAttribute("loginMember");
+	String genderCk = (String)m.getmGender();
+	String[] gender = new String[3];
+	if(genderCk != null){
+		switch(genderCk){
+			case "M": gender[0] = "checked"; break;
+			case "F": gender[1] = "checked"; break;
+			case "N": gender[2] = "checked"; break;
+		}
+	}
 %>
 
 <%@ include file="/views/common/header.jsp"%>
@@ -33,11 +42,11 @@
 				<div class="title">
 					<h1>회원 정보 수정</h1>
 				</div>
-				<form id="memberFrm" method="post">
+				<form id="memberFrm" action="<%= request.getContextPath() %>/MemberUpdate" method="post">
 					<div class="user_update_form">
 						<div class="form_box">
 							<p>아이디</p>
-							<input type="text" value=<%= m.getmId() %> disabled>
+							<input type="text" name="id" value=<%= m.getmId() %> disabled>
 						</div>
 						<!-- <div class="form_box">
 							<p>현재 비밀번호</p>
@@ -61,34 +70,34 @@
 						</div>
 						<div class="form_box">
 							<p>이름</p>
-							<input type="text" value="<%= m.getmName() %>" disabled>
+							<input type="text" value="<%= m.getmName() %>">
 						</div>
 						<div class="form_box col3">
 							<p>이메일</p>
-							<input type="text">
+							<input type="text" value="<%= m.getmEmail() %>">
 							<input type="button" value="중복확인">
 						</div>
 						<div class="form_box">
 							<p>휴대폰</p>
-							<input type="text">
+							<input type="text" value="<%= m.getmPhone() %>">
 						</div>
 						<div class="form_box">
 							<p>성별</p>
 							<div class="form_radio">
 								<label>
-									<input type="radio" name="gender" value="남자">남자
+									<input type="radio" name="gender" value="M" <%= gender[0] %>>남자
 								</label>
 								<label>
-									<input type="radio" name="gender" value="여자">여자
+									<input type="radio" name="gender" value="F" <%= gender[1] %>>여자
 								</label>
 								<label>
-									<input type="radio" name="gender" value="선택안함">선택안함
+									<input type="radio" name="gender" value="N" <%= gender[2] %>>선택안함
 								</label>
 							</div>
 						</div>
 						<div class="form_box">
 							<p>생년월일</p>
-							<input type="text" placeholder="  YYYY/MM/DD">
+							<input type="date" id="birth" name="birth" value="<%= m.getmBirth() %>">
 						</div>
 						<div class="form_box">
 							<p>선택약관동의</p>
@@ -113,6 +122,9 @@
 		</section>
 		
 		<script>
+		let pwMsg = false;
+		let pwMsg2 = false;
+		let pwCkMsg = false;
 		$(function(){
 			//새비밀번호 조건 체크
 			$("#new_pw").click(function(){
@@ -128,13 +140,17 @@
 				var check3 = /^(?=.*[0-9])(?=.*[^a-zA-Z0-9]).{10,20}$/.test(pw);//숫자,특수문자 조합(10~20)
 				if(pw.length > 9){
 					$('#pw1').css("color", "green");
+					pwMsg1 = true;
 				} else {
 					$('#pw1').css("color", "red");
+					pwMsg1 = false;
 				}
 				if(check1 || check2 || check3) {
 					$('#pw2').css("color", "green");
+					pwMsg1 = true;
 				} else {
 					$('#pw2').css("color", "red");
+					pwMsg1 = false;
 				}
 				$.ajax({
 					url: "<%= request.getContextPath() %>/MemberUpdatePwCkAjax",
@@ -142,8 +158,10 @@
 					success: function(data){
 						if($("#new_pw").val().trim() != data && $("#new_pw").val().trim() != ""){
 							$('#pw0').css("color", "green");
+							pwMsg2 = true;
 						} else {
 							$('#pw0').css("color", "red");
+							pwMsg2 = false;
 						}
 					}
 				})
@@ -160,22 +178,26 @@
 				$("#pwck").keyup(function(){
 					if($("#pwck").val().trim() == $('#new_pw').val().trim()){
 						$('#pw3').css("color", "green");
+						pwCkMsg = true;
 					}else{
 						$('#pw3').css("color", "red");
-					} 
+						pwCkMsg = false;
+					}
 				})
 			})
 		})
 		
 		
 			function fn_updateMember(){
-				
-				let pw = $("#pw").val();
-				let pwck = $("#pwck").val();
-				console.log(pw);
-				if(pw != pwck){
-					alert("비밀번호다름");
-				} 
+				if()
+				if(!pwMsg1 || !pwMsg2){
+					alert('비밀번호를 조건에 맞게 입력해 주세요.')
+					return;
+				}
+				if(!pwCkMsg){
+					alert('동일한 비밀번호를 입력해 주세요.')
+					return;
+				}
 				<%-- $("memberFrm").attr("action","<%=request.getContextPath()%>/updateMember").submit(); --%>
 			}
 			
