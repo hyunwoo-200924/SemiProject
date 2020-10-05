@@ -1,5 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ page import="com.eol.member.model.vo.Member" %>
+<%
+	//로그인 된 상태이면 loginMember에 값이 있다.
+	//로그인 안된 상태이면 loginMEmber가 null값이 된다.
+	Member loginMember = (Member)request.getSession().getAttribute("loginMember");
+	
+// 	Member m = new Member("lhy92312a");
+// 	request.getSession().setAttribute("loginMember", m);
+	
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -16,6 +26,7 @@ href="<%=request.getContextPath() %>/css/hayong.css">
 <body>
 <div id="container">
         <header>
+        <% if(loginMember == null){ %>
             <!-- 검은top -->
             <div id="blacktop">
                 <ul>
@@ -24,6 +35,17 @@ href="<%=request.getContextPath() %>/css/hayong.css">
                     <li style="padding: 0px 20px 0px 0px;"><a href="#" >고객센터</a></li>
                 </ul>
             </div>
+            <%}else{ %>
+             <!-- 검은top -->
+            <div id="blacktop">
+                <ul>
+                    <li><a href="#"><%=loginMember.getmName() %></a></li>
+                    <li><a href="#">로그아웃</a></li>
+                    <li style="padding: 0px 20px 0px 0px;"><a href="#" >고객센터</a></li>
+                </ul>
+            </div>
+            	
+            <%} %>
             <!-- 메인메뉴 -->
             <nav id="menu">
                 <a href="<%=request.getContextPath() %>/mainview.do"><img id="headerlogo" src="<%=request.getContextPath()%>/images/mainImages/logo.png" alt="" width="150px" height="45px" herf=""></a><!--로고-->

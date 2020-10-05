@@ -35,20 +35,20 @@ public class MemberDao {
 			rs = pstmt.executeQuery();
 			if(rs.next()) {
 				m = new Member();
-					m.setmNo(rs.getInt("m_No"));
-		            m.setmId(rs.getString("m_Id"));
-		            m.setmPw(rs.getString("m_Pw"));
-		            m.setmPw(rs.getString("m_Name"));
-		            m.setmBirth(rs.getString("m_Birth"));
-		            m.setmEmail(rs.getString("m_Email"));
-		            m.setmPhone(rs.getString("m_Phone"));
-		            m.setmAddress(rs.getString("m_Address"));
-		            m.setmGender(rs.getString("m_Gender"));
-		            m.setmLevel(rs.getInt("m_Level"));
-		            m.setmBuy(rs.getInt("m_Buy"));
-		            m.setmDrop(rs.getInt("m_Drop"));
-		            m.setmEdate(rs.getDate("m_Edate"));
-		            m.setmPonint(rs.getInt("m_Point"));
+				m.setmNo(rs.getInt("m_No"));
+				m.setmId(rs.getString("m_Id"));
+				m.setmPw(rs.getString("m_Pw"));
+				m.setmPw(rs.getString("m_Name"));
+				m.setmBirth(rs.getString("m_Birth"));
+				m.setmEmail(rs.getString("m_Email"));
+				m.setmPhone(rs.getString("m_Phone"));
+				m.setmAddress(rs.getString("m_Address"));
+				m.setmGender(rs.getString("m_Gender"));
+				m.setmLevel(rs.getInt("m_Level"));
+				m.setmBuy(rs.getInt("m_Buy"));
+				m.setmDrop(rs.getInt("m_Drop"));
+				m.setmEdate(rs.getDate("m_Edate"));
+				m.setmPonint(rs.getInt("m_Point"));
 			}
 		}catch(SQLException e) {
 			e.printStackTrace();
