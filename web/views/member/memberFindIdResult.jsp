@@ -4,13 +4,13 @@
 <%@ page import="com.eol.member.model.vo.Member" %>
 <%
 
-	Member searchMemberId =(Member) request.getAttribute("searchMemberId");
+	String searchMemberId =(String) request.getAttribute("searchMemberId");
 
 %>
 <link rel="stylesheet" type="text/css" 
 href="<%=request.getContextPath() %>/css//member/memberFindId.css">
 <section>
-       <%if(searchMemberId == null){ %>
+       <%if(searchMemberId == ""){ %>
 			<section>
              	<div class="findIdText">
                  	<h1>아이디 찾기</h1>
@@ -22,7 +22,7 @@ href="<%=request.getContextPath() %>/css//member/memberFindId.css">
         	<div class="findIdText">
     			<h2>아이디 찾기</h2>
     			<div>고객님의 아이디 찾기가 완료 되었습니다.! </div>
-            	아이디 : <%=searchMemberId.getmId()%><br><br>
+            	아이디 : <input style="border:none;" type="text" id="searchMemberId" value="<%=searchMemberId%>"><br><br>
             	<input type="button" name="check" id="check" value="로그인화면으로 돌아가기" onclick="location.replace('<%=request.getContextPath()%>/login.do')">
     		</div>
     </form>
