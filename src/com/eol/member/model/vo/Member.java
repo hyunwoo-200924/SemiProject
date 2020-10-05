@@ -8,7 +8,7 @@ public class Member {
 	private String mId;
 	private String mPw;
 	private String mName;
-	private Date mBirth;
+	private String mBirth;
 	private String mEmail;
 	private String mPhone;
 	private String mAddress;
@@ -23,7 +23,7 @@ public class Member {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Member(int mNo, String mId, String mPw, String mName, Date mBirth, String mEmail, String mPhone,
+	public Member(int mNo, String mId, String mPw, String mName, String mBirth, String mEmail, String mPhone,
 			String mAddress, String mGender, int mLevel, int mBuy, int mDrop, Date mEdate, int mPonint) {
 		super();
 		this.mNo = mNo;
@@ -41,10 +41,12 @@ public class Member {
 		this.mEdate = mEdate;
 		this.mPonint = mPonint;
 	}
+	
 
 	public int getmNo() {
 		return mNo;
 	}
+
 
 	public void setmNo(int mNo) {
 		this.mNo = mNo;
@@ -74,11 +76,11 @@ public class Member {
 		this.mName = mName;
 	}
 
-	public Date getmBirth() {
+	public String getmBirth() {
 		return mBirth;
 	}
 
-	public void setmBirth(Date mBirth) {
+	public void setmBirth(String mBirth) {
 		this.mBirth = mBirth;
 	}
 
