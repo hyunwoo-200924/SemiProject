@@ -52,7 +52,7 @@
 						<textarea cols="30" rows="10"></textarea>
 					</div>
 					<div class="button col2">
-							<input type="button" value="취소">
+							<input type="button" value="취소" onclick="history.go(-1);">
 							<input type="button" value="탈퇴" onclick="memberDelete()">
 					</div>
 				</div>
