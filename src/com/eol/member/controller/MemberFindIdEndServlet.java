@@ -39,13 +39,18 @@ public class MemberFindIdEndServlet extends HttpServlet {
 		
 		// 받아온 id, email이 DB의 Member테이블에 있는지 확인
 		Member m = new MemberService().searchMemberId(findName,findEmail);
-		
+		String resutlId="";
 		//객체 m 값이 null이면  -> 찾는 아이디가 없음
 		//객체 m 값이 null이 아니면 -> 아이디 페이지를 보여줌
 		System.out.println(m);
 		if(m != null) {
 			//아이디 찾기 성공
-			request.setAttribute("searchMemberId", m);
+			 resutlId = m.getmId();
+			int length = resutlId.length()-2;
+			String afterId = resutlId.substring(0,length);
+			afterId= afterId+"**";
+			resutlId = afterId;
+			request.setAttribute("searchMemberId", resutlId);
 			request.getRequestDispatcher("/views/member/memberFindIdResult.jsp").forward(request, response);
 		
 		}else{
