@@ -31,4 +31,10 @@ public class MemberService {
 		
 	}
 	
+	public Member searchMemberId(String findName, String findEmail) {
+		Connection conn = getConnection();
+		Member m = mDao.searchMemberId(conn,findName,findEmail);
+		close(conn);
+		return m;
+	}
 }
