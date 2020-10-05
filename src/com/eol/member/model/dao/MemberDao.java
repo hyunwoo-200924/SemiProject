@@ -24,7 +24,26 @@ public class MemberDao {
 			e.printStackTrace();
 		}
 	}
-	
+	public Member searchMemberId(Connection conn, String findName, String findEmail) {
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		Member m = null;
+		try {
+			pstmt = conn.prepareStatement(prop.getProperty("searcMemberId"));
+			pstmt.setString(1,findName);
+			pstmt.setString(2,findEmail);
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				m = new Member();
+				m.setmId(rs.getString("m_Id"));
+			}
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rs);
+			close(pstmt);
+		}return m;
+	}
 	public Member selectMember(Connection conn, String userId, String password) {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
