@@ -205,7 +205,7 @@
 				$("#pwCkMsg").css("display","block");
 			})
 			$("#pwck").keyup(function(){
-				if($("#pwck").val().trim() == $('#pw').val().trim()){
+				if($("#pwck").val().trim() != "" && $("#pwck").val().trim() == $('#pw').val().trim()){
 					$('#pw3').css("color", "green");
 					pwCkFlag = true;
 				}else{

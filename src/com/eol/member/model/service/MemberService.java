@@ -78,4 +78,18 @@ public class MemberService {
 
 		return result;
 	}
+
+	//회원정보 수정
+	public int updateMember(Member m) {
+		Connection conn = getConnection();
+		
+		int result = mDao.updateMember(conn, m);
+				
+		if(result > 0) commit(conn);
+		else rollback(conn);
+		
+		close(conn);
+		
+		return result;
+	}
 }
