@@ -48,9 +48,9 @@ href="<%=request.getContextPath() %>/css/member/memberLogin.css">
        <%} %>
         <div class="noUserLoginContainer">
             <h1>비회원 주문조회</h1>
-           	 주문번호 &nbsp <input type="oderNum" name="oderNum" id="oderNum"><br><br>
+           	 주문번호 &nbsp <input type="text" name="orderNum" id="orderNum" placeholder="주문번호를 입력하세요"><br><br>
           	 비밀번호 &nbsp <input type="password" name="pw" id="pw"><br><br><br><br><br>
-            <input type="submit" name="" id="" value="주문/배송조회" onclick="location.replace('<%=request.getContextPath()%>/oderDilevery.do')">
+            <input type="submit" name="noMemorderNumview" id="" value="주문/배송조회" onclick="location.replace('<%=request.getContextPath()%>/noMemorderNumview.do')">
         </div>
     </div>
     <div class="loginImgContainer">

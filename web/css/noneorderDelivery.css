@@ -1,0 +1,128 @@
+@charset "UTF-8";
+
+section{
+        position: relative;
+        min-width: 100%;
+        min-height: 2000px;
+        top:130px;
+
+    }
+ /*비회원 주문조회 aside 왼쪽정렬*/
+    section div.aside{
+        border: 1px red solid;
+        width: 200px;
+        height: 1000px;
+
+    }
+    section div.content{
+        position: absolute;
+        top:0px;
+        left: 200px;
+        width: 800px;
+        padding: 20px;
+    }
+    section div.content1{
+        position: absolute;
+        top: 10px;
+        left: 10px;
+        padding: 10px;
+    }
+    div.content1 table{
+        border: 1px black solid;
+
+    }
+    div.content1 table tr td{
+        text-align: center;
+        width: 300px;
+        border: 1px black solid;
+    }
+    div.content2{
+        position: absolute;
+        left: 10px;
+        top: 150px;
+        padding: 10px;
+    }
+
+    div.content3{
+        position: absolute;
+        left: 10px;
+        top: 250px;
+        padding: 10px;
+    }
+
+    div.content4{
+        position:absolute;
+        top:400px;
+        left:10px;
+       border: black 1px solid;
+       width : 700px;
+       height: 210px;
+       padding: 10px;
+   }
+   .orderNumber{
+       padding: 10px;
+       font-size: 12px;
+   }
+   
+   .productView{
+       float: left;
+       width:70%;
+   }
+   .orderproduct{
+       height: 140px;
+   }
+   .order_pro_img{
+       padding : 15px;
+       float: left;
+   }
+   .order_pro_name{
+       display: inline;
+       padding: 15px;
+   }
+   .orderButton{
+       display: inline;
+  
+   }
+   div.ordernotice p{
+       font-size: 14px;
+   }
+   .arriveDate{
+       text-align: center;
+   }
+   .arriveDate p{
+       font-size: 10px;
+   }
+   .Button button{
+       display: block;
+       align-items: center;
+   }
+   .orderButton button a{
+       text-decoration: none;
+       font-size: 12px;
+       
+   }
+   Button{
+     margin: auto;
+   }
+   .Button li{
+       list-style-type: none;
+   }
+
+    div.content5{
+        position: absolute;
+        left:10px;
+        top: 650px;
+    }
+
+    .cont_title{
+        width: 500px;
+        border: black 1px solid;
+    }
+
+    .cont_content{
+        width: 500px;
+        border: 1px black solid;
+    }
+    .orderDate{
+        background-color: lightgray;
+    }
