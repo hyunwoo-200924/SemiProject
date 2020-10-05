@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"  import="com.eol.member.model.vo.Member" %>
 
 <%
-	Member m1 = new Member("ASDFASDF5");//이거 확인용 로직
+	Member m1 = new Member("asdf");//이거 확인용 로직
 	//session1.setMaxInactiveInterval(2);
 	request.getSession().setAttribute("loginMember", m1);//이거 확인용 로직
 	Member m = (Member)request.getSession().getAttribute("loginMember");

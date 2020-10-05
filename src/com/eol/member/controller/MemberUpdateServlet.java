@@ -1,11 +1,15 @@
 package com.eol.member.controller;
 
 import java.io.IOException;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import com.eol.member.model.service.MemberService;
+import com.eol.member.model.vo.Member;
 
 /**
  * Servlet implementation class MemberUpdateServlet
@@ -26,6 +30,25 @@ public class MemberUpdateServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		Member m = new Member();
+		m.setmId(request.getParameter("id"));
+		m.setmPw(request.getParameter("new_pw"));
+		System.out.println(m.getmPw());
+		m.setmName(request.getParameter("name"));
+		m.setmBirth(request.getParameter("birth"));
+		m.setmEmail(request.getParameter("email"));
+		m.setmGender(request.getParameter("gender"));
+		m.setmPhone(request.getParameter("phone"));
+		
+		int result = new MemberService().updateMember(m);
+		System.out.println(result);
+		
+		if(result > 0) {
+			response.sendRedirect(request.getContextPath() + "/views/member/memberUpdate.jsp");
+		}else {
+			
+		}
+		
 		
 		
 	}

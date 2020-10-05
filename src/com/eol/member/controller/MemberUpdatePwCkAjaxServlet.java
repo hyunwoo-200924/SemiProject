@@ -29,6 +29,8 @@ public class MemberUpdatePwCkAjaxServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		//Member m = new Member("asdf");
+		//request.getSession().setAttribute("loginMember", m);
 		String id = ((Member)request.getSession().getAttribute("loginMember")).getmId();
 		System.out.println(id);
 		String dbpw = new MemberService().selectMemberPw(id);

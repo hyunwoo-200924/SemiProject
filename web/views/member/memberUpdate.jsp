@@ -46,7 +46,7 @@
 					<div class="user_update_form">
 						<div class="form_box">
 							<p>아이디</p>
-							<input type="text" name="id" value=<%= m.getmId() %> disabled>
+							<input type="text" name="id" value=<%= m.getmId() %> readonly>
 						</div>
 						<!-- <div class="form_box">
 							<p>현재 비밀번호</p>
@@ -70,16 +70,15 @@
 						</div>
 						<div class="form_box">
 							<p>이름</p>
-							<input type="text" value="<%= m.getmName() %>">
+							<input type="text" name="name" value="<%= m.getmName() %>">
 						</div>
-						<div class="form_box col3">
+						<div class="form_box">
 							<p>이메일</p>
-							<input type="text" value="<%= m.getmEmail() %>">
-							<input type="button" value="중복확인">
+							<input type="text" name="email" value="<%= m.getmEmail() %>" readonly>
 						</div>
 						<div class="form_box">
 							<p>휴대폰</p>
-							<input type="text" value="<%= m.getmPhone() %>">
+							<input type="text" name="phone" value="<%= m.getmPhone() %>">
 						</div>
 						<div class="form_box">
 							<p>성별</p>
@@ -113,8 +112,8 @@
 						</div>
 						
 						<div class="button col2">
-							<input type="button" value="탈퇴하기">
-							<input type="button" onclick="fn_updateMember();" value="회원정보 수정">
+							<input type="button" value="탈퇴하기" onclick="fn_delete();">
+							<input type="submit" onclick="fn_updateMember();" value="회원정보 수정">
 						</div>
 					</div>
 				</form>
@@ -122,6 +121,10 @@
 		</section>
 		
 		<script>
+		function fn_delete(){
+			location.href = '<%= request.getContextPath()%>/MemberDeleteView';
+		}
+		
 		let pwMsg = false;
 		let pwMsg2 = false;
 		let pwCkMsg = false;
@@ -176,7 +179,7 @@
 					$("#pwCkMsg").css('display', 'block');
 				})
 				$("#pwck").keyup(function(){
-					if($("#pwck").val().trim() == $('#new_pw').val().trim()){
+					if($("#pwck").val().trim() != "" && $("#pwck").val().trim() == $('#new_pw').val().trim()){
 						$('#pw3').css("color", "green");
 						pwCkMsg = true;
 					}else{
@@ -187,20 +190,19 @@
 			})
 		})
 		
-		
-			function fn_updateMember(){
-				if()
-				if(!pwMsg1 || !pwMsg2){
-					alert('비밀번호를 조건에 맞게 입력해 주세요.')
-					return;
-				}
-				if(!pwCkMsg){
-					alert('동일한 비밀번호를 입력해 주세요.')
-					return;
-				}
-				<%-- $("memberFrm").attr("action","<%=request.getContextPath()%>/updateMember").submit(); --%>
+	 	function fn_updateMember(){
+			if(    )
+			if(!pwMsg1 || !pwMsg2){
+				alert('비밀번호를 조건에 맞게 입력해 주세요.')
+				return;
+			}
+			if(!pwCkMsg){
+				alert('동일한 비밀번호를 입력해 주세요.')
+				return;
 			}
 			
+			$("memberFrm").attr("action","<%=request.getContextPath()%>/updateMember").submit();
+		} 
 			
 		</script>
 		

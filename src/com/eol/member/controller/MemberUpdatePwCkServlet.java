@@ -32,7 +32,6 @@ public class MemberUpdatePwCkServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String pw = request.getParameter("pwck");
 		String id = ((Member)request.getSession().getAttribute("loginMember")).getmId();
-		String gender = ((Member)request.getSession().getAttribute("loginMember")).getmGender();
 		
 		String dbpw = new MemberService().selectMemberPw(id);
 		
