@@ -19,7 +19,7 @@ href="<%=request.getContextPath() %>/css/hayong.css">
             <!-- 검은top -->
             <div id="blacktop">
                 <ul>
-                    <li><a href="<%=request.getContextPath()%>/memberEnrollCheck.do">회원가입</a></li>
+                    <li><a href="<%=request.getContextPath()%>/memberEnrollCheckedView.do">회원가입</a></li>
                     <li><a href="<%=request.getContextPath()%>/loginpage.do">로그인</a></li>
                     <li style="padding: 0px 20px 0px 0px;"><a href="#" >고객센터</a></li>
                 </ul>
