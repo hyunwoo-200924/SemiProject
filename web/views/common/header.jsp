@@ -40,7 +40,7 @@ href="<%=request.getContextPath() %>/css/hayong.css">
             <div id="blacktop">
                 <ul>
                     <li><a href="#"><%=loginMember.getmName() %></a></li>
-                    <li><a href="#">로그아웃</a></li>
+                    <li><a href="<%=request.getContextPath()%>/logOut.do">로그아웃</a></li>
                     <li style="padding: 0px 20px 0px 0px;"><a href="#" >고객센터</a></li>
                 </ul>
             </div>
