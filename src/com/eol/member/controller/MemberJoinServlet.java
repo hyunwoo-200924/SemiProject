@@ -49,7 +49,8 @@ public class MemberJoinServlet extends HttpServlet {
 		
 	   int result = new MemberService().insertMember(m);
 		
-		
+	   
+	   request.getRequestDispatcher("/views/member/memberJoin1.jsp").forward(request, response);
 	
 	
 	}
