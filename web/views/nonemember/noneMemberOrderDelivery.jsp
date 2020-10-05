@@ -33,8 +33,6 @@ href="<%=request.getContextPath() %>/css/noneoderDelivery.css">
               </nav>
             <div class="content">
             
-            	
-            
                 <div class="content1">
                     <h1 class="cont_title">주문 / 배송조회</h1>
                     <div class=cont_content>
