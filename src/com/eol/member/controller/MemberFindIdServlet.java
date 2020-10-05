@@ -8,16 +8,16 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Servlet implementation class memberEnrollCheckedViewServlet
+ * Servlet implementation class MemberFindIdServlet
  */
-@WebServlet("/memberEnrollCheckedView.do")
-public class MemberEnrollCheckedViewServlet extends HttpServlet {
+@WebServlet("/findId.do")
+public class MemberFindIdServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public MemberEnrollCheckedViewServlet() {
+    public MemberFindIdServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -26,8 +26,8 @@ public class MemberEnrollCheckedViewServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		//메인 페이지에서 회원 가입 버튼을 눌렀을 떄 가입여부 확인 페이지 보여주는 기능
-		request.getRequestDispatcher("/views/member/memberEnrollCheckedView.jsp").forward(request, response);
+		//아이디 찾기 페이지로 변환
+		request.getRequestDispatcher("/views/member/memberFindId.jsp").forward(request,response);
 	}
 
 	/**
