@@ -1,8 +1,8 @@
 package com.eol.member.model.service;
 
-import static com.eol.common.JDBCTemplate.getConnection;
 import static com.eol.common.JDBCTemplate.close;
 import static com.eol.common.JDBCTemplate.commit;
+import static com.eol.common.JDBCTemplate.getConnection;
 import static com.eol.common.JDBCTemplate.rollback;
 
 import java.sql.Connection;
@@ -14,6 +14,12 @@ public class MemberService {
 
 	MemberDao mDao = new MemberDao();
 	
+	public Member selectMember(String userId, String password) {
+		Connection conn = getConnection();
+		Member m = mDao.selectMember(conn,userId,password);
+		return m;
+	}
+	
 	public int insertMember(Member m) {
 		Connection conn = getConnection();
 		System.out.println("2");
@@ -24,4 +30,5 @@ public class MemberService {
 		return result;
 		
 	}
+	
 }
