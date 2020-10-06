@@ -3,7 +3,7 @@
 <%@ include file="/views/common/header.jsp"%>
 <link rel="stylesheet" type="text/css" 
 href="<%=request.getContextPath() %>/css/review.css">
-<section id="reviews-container">
+<form id="reviews-container" method="post" action="<%=request.getContextPath()%>" enctype="multipart/form-data">
 	<div id="reviews-section-group">
 		<div class="reviews-content-group">
 			<h2 class="reviews-h1">마이페이지</h2>
@@ -153,5 +153,5 @@ href="<%=request.getContextPath() %>/css/review.css">
 
 		</div>
 	</div>
-</section>
+</form>
 <%@ include file="/views/common/footer.jsp"%>
