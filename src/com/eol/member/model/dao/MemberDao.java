@@ -1,15 +1,17 @@
 package com.eol.member.model.dao;
 
+import static com.eol.common.JDBCTemplate.close;
+
 import java.io.FileReader;
 import java.io.IOException;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Properties;
 
 import com.eol.member.model.vo.Member;
-import static com.eol.common.JDBCTemplate.close;
 
 public class MemberDao {
 	
@@ -258,6 +260,29 @@ public class MemberDao {
 		System.out.println(m.getmPw());
 		System.out.println(m.getmId());
 		return result;
+	}
+	
+	//회원가입 여부 확인
+	public Member checkedMemberEnroll(Connection conn, String joinName,String joinPhone) {
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		Member m = null;
+		try {
+			pstmt = conn.prepareStatement(prop.getProperty("checkedMemberEnroll"));
+			pstmt.setString(1,joinName);
+			pstmt.setString(2, joinPhone);
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				m = new Member();
+				m.setmId(rs.getString("m_Id"));//회원 가입된 아이디만 담기
+				
+			}
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rs);
+			close(pstmt);
+		}return m;
 	}
 
 }

@@ -1,11 +1,12 @@
 package com.eol.member.model.service;
 
-import static com.eol.common.JDBCTemplate.getConnection;
 import static com.eol.common.JDBCTemplate.close;
 import static com.eol.common.JDBCTemplate.commit;
+import static com.eol.common.JDBCTemplate.getConnection;
 import static com.eol.common.JDBCTemplate.rollback;
 
 import java.sql.Connection;
+import java.sql.Date;
 
 import com.eol.member.model.dao.MemberDao;
 import com.eol.member.model.vo.Member;
@@ -107,5 +108,14 @@ public class MemberService {
 		close(conn);
 		
 		return result;
+	}
+	
+	//회원 가입 여부 확인
+	public Member checkedMemberEnroll(String joinName,String joinPhone) {
+		Connection conn =getConnection();
+		
+		Member m = mDao.checkedMemberEnroll(conn,joinName,joinPhone);
+		close(conn);
+		return m;
 	}
 }
