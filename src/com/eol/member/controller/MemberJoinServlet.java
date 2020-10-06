@@ -15,7 +15,7 @@ import com.eol.member.model.vo.Member;
 /**
  * Servlet implementation class MemberJoinServlet
  */
-@WebServlet("/memberEnllor.do")
+@WebServlet("/memberEnroll.do")
 public class MemberJoinServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -34,7 +34,7 @@ public class MemberJoinServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		Member m = new Member();
 		m.setmId(request.getParameter("id"));
-		m.setmId(request.getParameter("id"));
+		m.setmPw(request.getParameter("pw"));
 		m.setmName(request.getParameter("name"));
 		m.setmBirth(request.getParameter("birth"));
 		m.setmEmail(request.getParameter("email"));

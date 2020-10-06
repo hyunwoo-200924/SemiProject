@@ -113,7 +113,7 @@
 						
 						<div class="button col2">
 							<input type="button" value="탈퇴하기" onclick="fn_delete();">
-							<input type="submit" onclick="fn_updateMember();" value="회원정보 수정">
+							<input type="submit" onclick="return fn_updateMember();" value="회원정보 수정">
 						</div>
 					</div>
 				</form>
@@ -191,16 +191,19 @@
 		})
 		
 	 	function fn_updateMember(){
-			if(    )
-			if(!pwMsg1 || !pwMsg2){
-				alert('비밀번호를 조건에 맞게 입력해 주세요.')
-				return;
+			let new_pw = $("#new_pw").val().trim();
+			if(new_pw != ""){
+				if(!pwMsg1 || !pwMsg2){
+					alert('비밀번호를 조건에 맞게 입력해 주세요.')
+					$("#new_pw").focus();
+					return false;
+				}
+				if(!pwCkMsg){
+					alert('동일한 비밀번호를 입력해 주세요.')
+					return false;
+				}
+				
 			}
-			if(!pwCkMsg){
-				alert('동일한 비밀번호를 입력해 주세요.')
-				return;
-			}
-			
 			$("memberFrm").attr("action","<%=request.getContextPath()%>/updateMember").submit();
 		} 
 			

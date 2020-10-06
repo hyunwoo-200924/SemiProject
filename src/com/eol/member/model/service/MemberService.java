@@ -31,6 +31,13 @@ public class MemberService {
 		
 	}
 	
+	public Member searchMemberId(String findName, String findEmail) {
+		Connection conn = getConnection();
+		Member m = mDao.searchMemberId(conn,findName,findEmail);
+		close(conn);
+		return m;
+	}
+	
 	//아이디 중복체크
 	public int selectMemberId(String id) {
 		Connection conn = getConnection();

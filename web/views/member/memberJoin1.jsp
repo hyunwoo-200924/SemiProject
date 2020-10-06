@@ -21,7 +21,7 @@
 				<div class="title">
 					<h1 style="text-align:center">회원가입</h1>
 				</div>
-				<form id="memberFrm" method="post" action="<%=request.getContextPath()%>/memberEnllor.do">
+				<form id="memberFrm" method="post" action="<%=request.getContextPath()%>/memberEnroll.do">
 					<div class="user_update_form">
 						<div class="form_box col3">
 							<p>아이디</p>
