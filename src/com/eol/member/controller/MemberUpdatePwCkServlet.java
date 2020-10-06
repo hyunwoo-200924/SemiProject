@@ -1,7 +1,6 @@
 package com.eol.member.controller;
 
 import java.io.IOException;
-import java.sql.Date;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -13,16 +12,16 @@ import com.eol.member.model.service.MemberService;
 import com.eol.member.model.vo.Member;
 
 /**
- * Servlet implementation class MemberJoinServlet
+ * Servlet implementation class MemberUpdatePwCkServlet
  */
-@WebServlet("/memberEnroll.do")
-public class MemberJoinServlet extends HttpServlet {
+@WebServlet("/memberUpdatePwCk")
+public class MemberUpdatePwCkServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public MemberJoinServlet() {
+    public MemberUpdatePwCkServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -31,31 +30,22 @@ public class MemberJoinServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		Member m = new Member();
-		m.setmId(request.getParameter("id"));
-		m.setmPw(request.getParameter("pw"));
-		m.setmName(request.getParameter("name"));
-		m.setmBirth(request.getParameter("birth"));
-		m.setmEmail(request.getParameter("email"));
-		m.setmPhone(request.getParameter("phone"));
-		String address1 = request.getParameter("address1"); //주소
-		String address2 = request.getParameter("address2"); //상세주소
-		System.out.println(address2);
-		String address = address1 + ", " + address2;
-		m.setmAddress(address);
-		if(request.getParameter("gender") != null) {
-			m.setmGender(request.getParameter("gender"));
-		}else {
-			m.setmGender("N");
+		String pw = request.getParameter("pwck");
+		String id = ((Member)request.getSession().getAttribute("loginMember")).getmId();
+		
+		String dbpw = new MemberService().selectMemberPw(id);
+		
+		if(pw.equals(dbpw)) {
+			//response.sendRedirect(request.getContextPath() + "/views/member/memberUpdate.jsp");
+			request.getRequestDispatcher("/views/member/memberUpdate.jsp").forward(request, response);
+		} else {
+			String msg = "비밀번호를 정확히 입력해 주세요.";
+			String loc = "/views/member/memberUpdatePwCheck.jsp";
+			
+			request.setAttribute("msg", msg);
+			request.setAttribute("loc", loc);
+			request.getRequestDispatcher("/views/common/msg.jsp").forward(request, response);
 		}
-		System.out.println("111");
-		
-	   int result = new MemberService().insertMember(m);
-		
-	   //if(result != null)
-	   //response.sendRedirect(어디로보내지~~);
-
 	}
 
 	/**

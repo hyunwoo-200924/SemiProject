@@ -87,6 +87,10 @@
 		height:30px;
 		padding: 0 5px;
 	}
+	input:not([type=radio]) {
+		height:30px;
+		padding: 0 5px;
+	}
 	.form_box input[type=checkbox]{
 	    width: auto;
 	    height: auto;
@@ -166,6 +170,7 @@
 	}
 	.form_box_delete .checkbox_container .checkbox input{
 		margin-right: 5px;
+		vertical-align: middle;
 	}
 	.user_request{
 		margin-top: -40px;
@@ -321,7 +326,7 @@
 	.question_box{
 	   display: grid;
 	   grid-template-columns: 140px auto;
-	   margin: 20px 0;
+	   margin: 40px 0;
 	}
 	
 	.question_box.col3 {
@@ -352,6 +357,7 @@
 	}
 	.question_box input[type=checkbox]{
 		margin-right: 5px;
+	    vertical-align: middle;
 	}
 	
 	/* 마이페이지 */
