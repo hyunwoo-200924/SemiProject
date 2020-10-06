@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 <link rel="stylesheet" type="text/css" 
 href="<%=request.getContextPath() %>/css/main.css">
-      <footer>
+		<footer>
             <div id="footer">
                 <div id="footerlogo">
                     <img src="<%=request.getContextPath() %>/images/mainImages/logo.png" alt="" width="150" height="45">
@@ -24,10 +24,10 @@ href="<%=request.getContextPath() %>/css/main.css">
                 </div>
                 <div id="footer3">
                     <h3>고객센터 1111-2222</h3>
-                    <button><a href="">1:1문의</a></button>
+                    <button onclick="">1:1문의</button>
                 </div>
             </div>
         </footer>
-   </div>
+	</div>
 </body>
 </html>
