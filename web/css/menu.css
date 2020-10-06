@@ -1,0 +1,504 @@
+@charset "UTF-8";
+
+
+/* common */
+body{
+    
+    width: 1270px;
+    font-weight: 500;
+}
+ul{
+    list-style-type:none;
+}
+a{
+    text-decoration-line: none;
+}
+a:hover{
+    color:red;
+}
+
+/* button */
+
+.button-container{
+  
+    display: block;
+    
+    padding :10px;
+    margin: 10px;
+    border-radius: 3px;
+  }
+  
+  .botton-group{
+    border-radius: 5px;
+    width: 50px;
+    height: 25px;
+    padding: 10px;
+    color:#ccc;
+    background-color: black;
+  align-items: center;
+  }
+  .botton-group:hover{
+    color: red;
+  }
+
+  /* 찜 버튼 */
+  .jjim{
+      width:46px;
+      height: 46px;
+      margin-right: 30px;
+      background:#D3D3D3;
+  }
+  .jjim:hover{
+    border: 2px solid black;
+  }
+  /* 장바구니 버튼 */
+  .jjim-btn-container{
+      margin: 20px 0;
+      width: auto;
+      display: flex;
+  }
+  .cart-botton-items{
+      width: 85%;
+      height: auto;
+      font-size: 30px;
+      color: #ccc;
+      background: black;
+  }
+  /* --- */
+.etc_txt{
+    padding: 5px;
+  font-size: 20px;
+}
+.order_check_day{
+    width: auto;
+    height: 40px;
+}
+.product-price-number-group{
+    font-size:25px;
+    margin: 20px 0;
+    width: auto;
+    height: 50px;
+    display: flex;
+    justify-content: space-between;
+   
+}
+
+
+
+/* section && detail--menu */
+.menu-container-group{
+    display: grid;
+    grid-template-columns: repeat(1, 600px 600px 1fr);
+    grid-template-rows: auto;
+    gap: 50px 100px;
+}
+.section{
+    display: block;
+  margin: 100px 50px;
+}
+.text-container2{
+    padding: 10px;
+}
+.text-container{
+    display:block;
+    margin:40px;
+    padding: 5px;
+}
+.text-group{
+    display: grid;
+    grid-template-columns: repeat(1, 500px);
+}
+.img{
+    float: left;
+    margin: 20px;
+    padding: 20px;
+}
+#new{ 
+    float:left;
+    
+}
+.h2-text,.h3-text{
+    margin-bottom: 30px;
+}
+.text-menu-group {
+    display: grid;
+    grid-template-columns: repeat(2, 80px 100px 130px 120px 1fr);
+    
+}
+
+.text-items{
+    display: grid;
+    grid-template-columns: repeat(1,250px 1fr);
+    margin: 5px;
+    padding: 5px 15px;
+    border-bottom: 0.5px solid #333;
+   
+}
+.text-menu{
+    text-align: justify;
+    margin-top: 5px;
+    font-size: 18px;
+    list-style-type: none;
+    border-right:1px solid #333;
+}
+
+.order-date{
+    align-items: center;
+    width:200px;
+    height: 80px;
+    padding: 5px;
+    margin: 10px 50px;
+    border-radius: 10px;
+}
+.order_check_day{
+    font-size: 25px;
+    font-weight: 500;
+    text-align: center;
+    transition: .4;
+    border: 1px solid black;
+    
+}
+
+/* 슬라이드  */
+.slideshow-container{
+    height: 80px;
+    display:flex;
+    flex-wrap: wrap;
+    padding-left: 20px;
+    margin: 20px;
+}
+.myslides{
+    padding-left: 40px;
+}
+.text-right{
+    text-align: right;
+}
+
+.img-img-small:hover{
+    border:2px royalblue solid ;
+   transform: matrix(1);
+    
+}
+
+
+
+
+/* 별표css */
+.review_btn_wrap{
+clear: left;
+width: 400px;
+height: 100px;
+position: relative;
+top: 10px;
+left: 50px;
+}
+.span-text  ,.review_wrap{
+padding: 20px 0;
+}
+.sns_btn_wrap-items{
+height: 100px;
+margin: 50px;
+}
+.sns-btn-wrap-items-group{
+    height: 50px;
+    /* margin-bottom: 10px  ; */
+     border-bottom: 2px solid #6E6E6E;
+} 
+.sns-btn-wrap-items{
+    display: grid;
+    grid-template-columns: repeat(4, 250px);
+    justify-content: center;
+    align-content: center;
+    text-align: center;
+}
+.start_group{
+    float: right;
+    justify-content: end;
+   
+}
+
+.resipy-img-group{
+    margin: 50px;
+    display: grid;
+    grid-template-columns: repeat(3,380px);
+    gap: 30px 50px;
+}
+.resipy-img{
+    width: 330px;
+    height: 300px;
+    border-radius: 10px;
+}
+.span-text:hover{
+    font-size: 20px;
+    font-weight: 600;
+    transition: .5;
+}
+
+.resipy-h3-text{
+    display: grid;
+    grid-template-columns: repeat(1, 600px 1fr);
+    gap: 50px;
+}
+.resipy-h3-text-legft,.resipy-h3-text-right{
+    text-align: center;
+}
+.resipy-imag-group-container-group{
+
+    display: grid;
+    grid-template-columns: repeat(1, 380px 380px);
+    grid-template-rows: repeat(2, 400px);
+    justify-content: start;
+    gap: 100px;
+    margin: 30px;
+ 
+    
+
+}
+.resipy-imag-group-container{
+    margin: 10px 150px;
+    display: grid;
+    grid-template-columns: repeat(1,370px);
+    grid-template-rows: repeat(1,250px);
+}
+
+/* 날짜 선택시 나타나는 품목box  품목명, 갯수 , 가격*/
+
+.menu-title-choice-wrap{
+    width: auto;
+    height: 70px;
+    /* display: none; */
+    margin-top: 20px;
+    border: 2px solid 
+  }
+  .menu-date-container-box1{
+    display: flex;
+    border-bottom:1px solid #333; 
+    justify-content: space-between;
+    align-content: center;
+  
+  }
+  .menu-date-container-box2{
+      display: flex;
+    justify-content: space-between;
+}
+.product-number-group{
+    width: 110px;
+    display: flex;
+    justify-content: space-around;
+    align-content: center;
+
+}
+  .menu-delivery-delete-btn,product-minus,product-plus{
+    width: 25px;
+    height: 25px;
+    border:none;
+    
+  }
+  .menu-date-text,.product-price{
+    font-size: 25px;
+    font-weight: 500;
+  }
+  .menu-delivery-delete-btn{
+    justify-items:end;
+  }
+
+
+
+
+/* header& footer */
+        *{
+            margin : 0px;
+        }
+        div, section, header, footer{
+            padding: 0px;
+        }
+        div#container{
+            width: 1270px;
+            margin: 0 auto;
+        }
+
+        /*top메뉴 스타일*/
+        header #blacktop{
+            background-color: black;
+            height: 30px;
+            position: relative;
+            /* text-align: right; */
+        }
+        header #blacktop ul{
+            position: absolute;
+            top: 0px;
+            right: 0px;
+        }
+        #blacktop>ul>li{
+            display: inline-block;
+            
+        }
+        #blacktop>ul>li>a{
+            color: white;
+            text-decoration: none;
+            /* padding: 5px; */
+            font-size: 7px;
+            
+        }
+        
+
+
+        /*메인메뉴 스타일*/
+        header nav{
+            background-color: #A6784E;
+            width: 100%;
+            height: 100px;
+            display: flex;
+            position: relative;
+        }
+        nav#menu img#headerlogo{
+            position: absolute;
+            top: 15px;
+            left: 20px;
+        }
+        
+        nav#menu ul{
+            display:table;
+            padding: 0px;
+            margin: auto;
+        }
+        nav#menu li{
+            list-style-type: none;
+            width: 10em;
+            float: left;
+            text-align: center;
+            align-items: center;
+        }
+        #menu a{
+            text-decoration: none;
+            font-weight: bolder;
+            font-size: 20px;
+            color:#FAF9E6;
+        }
+        nav#menu img#headerB{
+            position : absolute;
+            top : 40px;
+            right: 20px;
+        }
+
+
+
+        /* footer */
+
+    footer div#footer{
+        background-color: #D3D3D3;
+        width: 100%;
+        height: 150px;
+        display: flex;
+        position: relative;
+    }
+
+    footer div#footerlogo{
+        position: absolute;
+        top: 20px;
+        left: 100px;
+    }
+
+    footer #footercenter{
+        padding : 0px;
+        margin : auto;
+        position: relative;
+    }
+    footer div#footer1{
+        position: absolute;
+        top:0px;
+        left: 10px;
+        text-align:center;
+        
+    }
+    footer #footer1 ul li{
+        list-style-type: none;
+        float : left;
+        text-align:center;
+        width: 10em;
+        font-size: 11px;
+    }
+    div#footer1 ul li a{
+        text-decoration: none;
+        color: #6E6E6E;
+    }
+    footer #footer2{
+        margin-top: 50px;
+        margin-left: 50px;
+        /* text-align: center; */
+    }
+    div#footer2 p{
+        font-size: 12px;
+    }
+    footer div#footer3{
+        position: absolute;
+        top: 50px;
+        right: 20px;
+    }
+    footer div#footer3 h3{
+        height: 2em;
+    }
+    div#footer3 button{
+        position: absolute;
+        right: 0px;
+        background-color:  #6E6E6E;
+    }
+    div#footer button a{
+        text-decoration: none;
+        color: white
+        
+    }
+    /* 별점 */
+#star1{
+    font-size: 50px;
+color: black;
+
+}
+
+/* 상품등록 */
+.product-resiter{
+    display: block;
+    width: 1270px;
+    height: 900px;
+    border: 2px solid black;
+}
+.product-resiter-container{
+    display: block;
+    padding: 20px ;
+}
+.product-resiter-container ol{
+    width: auto;
+    height: auto;
+    margin: 20px 0;
+    border: 2px solid ;
+}
+.file-items{
+    display: flex;
+    width: auto;
+    height: 150px;
+    justify-content: space-around;
+    border-bottom: 1px solid #6E6E6E;
+    margin: 10px 0;
+  
+}
+.file-items1{
+    display: flex;
+    margin:20px 0;
+    width: auto;
+    justify-content: center;
+    align-content: center;
+
+}
+.product-btn-box{
+    width: auto;
+    justify-content: center;
+}
+.product-register{
+   
+    margin: 20px 0;
+    width: 100px;
+    height: 50px;
+    background-color: black;
+    color: #ccc;
+
+}
