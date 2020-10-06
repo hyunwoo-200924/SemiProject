@@ -36,10 +36,12 @@ href="<%=request.getContextPath() %>/css/member/memberLogin.css">
             <input type="submit" name="loginBtn" id="loginBtn" value="로그인">
         </form>
         <div class="noUserLoginContainer">
+        <form class="noUserLoginContainer" action="<%=request.getContextPath()%>/noMemorderNumview.do" method="post">
             <h1>비회원 주문조회</h1>
            	 주문번호 &nbsp <input type="text" name="orderNum" id="orderNum" placeholder="주문번호를 입력하세요"><br><br>
           	 비밀번호 &nbsp <input type="password" name="pw" id="pw"><br><br><br><br><br>
-            <input type="submit" name="noMemorderNumview" id="" value="주문/배송조회" onclick="location.replace('<%=request.getContextPath()%>/noMemorderNumview.do')">
+            <input type="submit" name="noMemorderNumview" id="" value="주문/배송조회">
+          </form>
         </div>
     </div>
     <div class="loginImgContainer">

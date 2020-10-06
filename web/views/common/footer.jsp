@@ -10,7 +10,7 @@ href="<%=request.getContextPath() %>/css/main.css">
                 <div id="footercenter">
                     <div id="footer1">
                         <ul>
-                            <li><a href="">이용약관</a></li>
+                            <li><a href="<%=request.getContextPath()%>/term.do">이용약관</a></li>
                             <li><a href="">개인정보처리방침</a></li>
                             <li><a href="">정책</a></li>
                             <li><a href="">사업자정보확인</a></li>
