@@ -82,7 +82,7 @@ public class ProductWriteServlet extends HttpServlet {
 		
 		p.setpDetailTitle1(mr.getParameter("pDetailTitle1"));
 		p.setpDetailTitle2(mr.getParameter("pDetailTitle2"));
-		p.setpDetailmain(mr.getParameter("pDetailmain"));
+		p.setpDetailMain(mr.getParameter("pDetailMain"));
 		p.setpDetailContent1(mr.getParameter("pDetailContent1"));
 		p.setpDetailContent2(mr.getParameter("pDetailContent2"));
 		
