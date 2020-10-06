@@ -39,7 +39,7 @@ href="<%=request.getContextPath() %>/css/hayong.css">
              <!-- 검은top -->
             <div id="blacktop">
                 <ul>
-                    <li><a href="#"><%=loginMember.getmName() %></a></li>
+                    <li><a href="#"><%=loginMember.getmName() %>님</a></li>
                     <li><a href="<%=request.getContextPath()%>/logOut.do">로그아웃</a></li>
                     <li style="padding: 0px 20px 0px 0px;"><a href="#" >고객센터</a></li>
                 </ul>
