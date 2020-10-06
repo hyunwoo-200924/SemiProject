@@ -4,14 +4,17 @@
 <link rel="stylesheet" type="text/css" 
 href="<%=request.getContextPath() %>/css/member/memberEnrollCheckedView.css">
 <section>
+	<form class="enroll-container" action="<%=request.getContextPath() %>/memberEnrollCheck.do" method="post">
+	<!--memberEnrollCheckedEndServlet으로 넘어감  -->
         <div class="joinText"> 
             <p>'회원관리 여부 확인'</p>
         </div>
         <div class="join1">
-            	이름 <input type="text" name="joinNmae" id="joinName"><br><br>
+            	이름 <input type="text" name="joinName" id="joinName"><br><br>
             	생년월일 <input type="text" name="joinBirth" id="joinBirth"><br><br>
             	전화번호 <input type="text" name="joinPhone" id="joinPhone"><br><br>
             <input type="submit" name="ckJoin" id="ckJoin" value="가입여부 확인" onclick="location.replace('<%=request.getContextPath()%>/MemberEnrollCheck1.do')">
         </div>
+     </form>
 </section>
 <%@ include file="/views/common/footer.jsp"%>
