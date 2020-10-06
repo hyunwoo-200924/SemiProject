@@ -57,7 +57,7 @@ public class MemberDao {
 				m.setmNo(rs.getInt("m_No"));
 				m.setmId(rs.getString("m_Id"));
 				m.setmPw(rs.getString("m_Pw"));
-				m.setmPw(rs.getString("m_Name"));
+				m.setmName(rs.getString("m_Name"));
 				m.setmBirth(rs.getString("m_Birth"));
 				m.setmEmail(rs.getString("m_Email"));
 				m.setmPhone(rs.getString("m_Phone"));

@@ -1,0 +1,114 @@
+/* .reviews page && notice page */
+#reviews-container{
+    display: block;
+    margin-top:20px ;
+
+}
+#reviews-section-group{
+    margin: 40px;
+    display: grid;
+    grid-template-columns: repeat(1, 300px 800px);
+    grid-template-rows: repeat(300px);
+    column-gap: 50px;
+    padding: 30px 0;
+}
+.reviews-content-group{
+    width: 300px;
+    height: auto;
+    display: block;
+    align-items: center;
+    /* border-right: 2px solid #000; */
+}
+
+.reviews-h1{
+    margin-bottom: 30px;
+}
+.reviews-h3{
+    margin-bottom: 20px;
+}
+.written-reviews-button{
+    border-start-start-radius:5px ;
+    border-bottom: none;
+}
+.reviews-sort{
+    display: grid;
+    grid-template-columns: 800px;
+}
+.search-radio{
+    width:70px;
+    height: 30px;
+    align-content: center;
+    border: 1px solid #000;
+    text-align: start;
+  
+}
+.search-month{
+    display: flex;
+    justify-content: flex-start;
+  
+}
+.search-month input:hover{
+    background:rgba(192,192,192, 0.3);
+    
+}
+.search-month input{
+    text-align: center;
+}
+.search-year{
+    padding-left: 30px;
+
+
+}
+table{
+    height: auto;
+    border-top: 1px solid #000;
+}
+
+#reviewtitle{
+    margin-bottom: 20px;
+}
+
+.reviews-table{
+    height: 300px;
+    display: block;
+    margin: 10px 0;
+    border-bottom: 1px solid #000;
+    
+}
+.reviews-guide{
+    margin: 10px 0;
+    background:rgba(192,192,192, 0.5);
+    
+}
+td.reviews-talbe-group>th,td.reviews-talbe-group>tr{
+    display: block;
+    
+}
+th,td{
+    width: 200px;
+    height: 30px;
+    text-align: center;
+}
+/* reviews table */
+.reviews-container-group{
+    margin: 10px 0;
+    padding: 0 20px;
+}
+.reviews-container{
+    width:auto;
+    height: 350px;
+}
+.reviews-table-group1{
+    padding:0  20px;
+    text-align: center;
+    border-bottom: 1px solid #000;
+    
+}
+.reviews-button-group{
+    width: auto;
+    height: auto;
+    margin: 20px 0;
+    display: block;
+   position: relative;
+   margin-left : 20px;
+}

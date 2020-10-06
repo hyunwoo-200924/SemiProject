@@ -39,7 +39,7 @@ href="<%=request.getContextPath() %>/css/hayong.css">
              <!-- 검은top -->
             <div id="blacktop">
                 <ul>
-                    <li><a href="#"><%=loginMember.getmName() %></a></li>
+                    <li><a href="#"><%=loginMember.getmName() %>님</a></li>
                     <li><a href="<%=request.getContextPath()%>/logOut.do">로그아웃</a></li>
                     <li style="padding: 0px 20px 0px 0px;"><a href="#" >고객센터</a></li>
                 </ul>
@@ -50,7 +50,7 @@ href="<%=request.getContextPath() %>/css/hayong.css">
             <nav id="menu">
                 <a href="<%=request.getContextPath() %>/mainview.do"><img id="headerlogo" src="<%=request.getContextPath()%>/images/mainImages/logo.png" alt="" width="150px" height="45px" herf=""></a><!--로고-->
                 <ul>
-                    <li><a href="<%=request.getContextPath()%>/information.do">회사소개</a></li>
+                    <li><a href="<%=request.getContextPath()%>/companyView.do">회사소개</a></li>
                     <li><a href="<%=request.getContextPath()%>/productList.do">메뉴</a></li>
                     <li><a href="#">이벤트</a></li>
                     <li><a href="<%=request.getContextPath()%>/mypageMain.do">마이페이지</a></li>
