@@ -37,4 +37,12 @@ public class MemberService {
 		close(conn);
 		return m;
 	}
+	
+	//비밀번호 찾기
+	public Member searchMemberPw(String findId, String findEmail) {
+		Connection conn = getConnection();
+		Member m = mDao.searchMemberPw(conn,findId,findEmail);
+		close(conn);
+		return m;
+	}
 }
