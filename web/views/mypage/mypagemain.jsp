@@ -1,5 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+
+<%@ page import="com.eol.member.model.vo.Member" %>
+
+<%
+	Member m = (Member) request.getSession().getAttribute("loginMember");
+	int coCount = (int) request.getAttribute("coCount");
+%>
+
 <%@ include file="/views/common/header.jsp"%>
 
       <section class="container">
@@ -26,11 +34,11 @@
          <div class="mypage">
             <div class="mypage_top">
                <div class="mypage_info">
-                  <p>이하영님</p><span>[144444]경기도 안산시 성록구 오덕로4길</span>
+                  <p><%=m.getmName() %></p><span><%=m.getmAddress() %></span>
                </div>
                <div class="mypage_point">
-                  <p><span>CJ ONE 포인트</span><b>4,457P</b></p>
-                  <p><span>보유쿠폰</span><b>0장</b></p>
+                  <p><span>CJ ONE 포인트</span><b><%=m.getmPonint() %>P</b></p>
+                  <p><span>보유쿠폰</span><b><%=coCount %>장</b></p>
                </div>
             </div>
             <div class="mypage_body">
