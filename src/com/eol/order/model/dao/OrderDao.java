@@ -30,7 +30,7 @@ public class OrderDao {
 		Orders o = null;
 		try {
 			pstmt = conn.prepareStatement(prop.getProperty("nNOrderselect"));
-			//nNOrderselect=SELECT * FROM ORDERS WHERE M_NO=999 AND O_NO=? AND O_PW=?
+			//nNOrderselect=SELECT * FROM ORDERS WHERE M_NO=null AND O_NO=? AND O_PW=?
 			pstmt.setString(1,nMONum);
 			pstmt.setString(2, pw);
 			rs=pstmt.executeQuery();

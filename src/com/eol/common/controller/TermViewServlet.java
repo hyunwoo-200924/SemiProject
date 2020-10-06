@@ -1,28 +1,23 @@
-package com.eol.order.controller;
+package com.eol.common.controller;
 
 import java.io.IOException;
-import java.util.List;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.eol.order.model.service.OrderService;
-import com.eol.order.model.vo.Orders;
-
 /**
- * Servlet implementation class NoneMemberOrderNumberListView
+ * Servlet implementation class TermViewServlet
  */
-@WebServlet("/noMemorderNumview.do")
-public class NoneMemberOrderNumberListView extends HttpServlet {
+@WebServlet("/term.do")
+public class TermViewServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public NoneMemberOrderNumberListView() {
+    public TermViewServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -31,17 +26,8 @@ public class NoneMemberOrderNumberListView extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		//클라이언트에게 받은 주문번호와 비밀번호로 조회하기
-		String nMONum = request.getParameter("orderNum");
-		String pw = request.getParameter("pw");
-		System.out.println(nMONum + pw);
-		Orders o = new OrderService().nMOrderList(nMONum, pw);
-		System.out.println(o);
-		
-		request.setAttribute("nMOrder",o);
-		
-		request.getRequestDispatcher("/views/nonemember/noneMemberOrderDelivery.jsp").forward(request, response);
-		
+		// TODO Auto-generated method stub
+		request.getRequestDispatcher("/views/common/term.jsp").forward(request, response);
 	}
 
 	/**
