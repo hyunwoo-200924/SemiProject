@@ -38,6 +38,15 @@ public class MemberService {
 		return m;
 	}
 	
+	//비밀번호 찾기
+	public Member searchMemberPw(String findId, String findEmail) {
+		Connection conn = getConnection();
+		Member m = mDao.searchMemberPw(conn,findId,findEmail);
+		close(conn);
+		return m;
+	}
+		
+	
 	//아이디 중복체크
 	public int selectMemberId(String id) {
 		Connection conn = getConnection();

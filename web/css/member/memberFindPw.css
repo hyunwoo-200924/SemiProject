@@ -1,0 +1,14 @@
+@charset "UTF-8";
+.findPWContainer{
+    border: 3px red solid;
+    width: 100%;
+    height: 550px;
+}
+.findPWContainer>h1{
+    text-align: center;
+    margin-top: 100px;
+}
+.findPwText{
+    text-align: center;
+    margin-top: 100px;
+}
