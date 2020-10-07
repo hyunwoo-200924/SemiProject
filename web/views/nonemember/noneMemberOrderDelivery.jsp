@@ -39,7 +39,7 @@ href="<%=request.getContextPath() %>/css/noneoderDelivery.css">
                     <table class="orderDate">
                         <tr>
                             <td>주문일시<br>
-                            <%= o.getoRdate() %></td>
+                            <%= o.getoRDate() %></td>
                             <td>주문번호<br>
                             <%= o.getoNo() %></td>
                         </tr>
@@ -60,13 +60,15 @@ href="<%=request.getContextPath() %>/css/noneoderDelivery.css">
                     <h2 class="cont_title">배송정보</h2>
                     <div class="cont_content">
                         <p>배송지 : <%=o.getoAddress() %></p>
-                        <p>결제완료 : 2020-08-26(수) </p>
+                        <p><%=o.getoStatus() %> : <%if(o.getoPayDate()!= null){ %>
+                        	<%=o.getoPayDate() %>
+                        <%} %></p>
                     </div>
                 </div>
                 
                 <div class="content4">
                    <div class="orderNumber">
-                        <p>2020 / 9 / 1 (20200901-89891212)</p>
+                        <p><%=o.getoRDate() %> (<%=o.getoNo() %>)</p>
                     </div>
                     <div class="productView">
                         <div class="orderproduct">
@@ -80,16 +82,16 @@ href="<%=request.getContextPath() %>/css/noneoderDelivery.css">
                         </div>
                         <div class="ordernotice">
                             <p>도착일, 배송지변경 및 주문취소는<br>
-                                주문마감기한인 2020-08-25 07:00까지 가능합니다.</p>
+                                주문마감기한인 <%=o.getoAllowDate() %> 07:00 까지 가능합니다.</p>
                         </div>
                     </div>
                     <div class="orderButton">
                         <div class="arriveDate">
                             <p>배송준비중</p><!-- 배송중 또는 배송완료 -->
-                            <p>9 / 3 수요일 도착예정</p>
+                            <p><%=o.getoDeliveryEDate() %> 도착예정</p>
                         </div>
                         <ul class="Button">
-                            <li><button><a href="">배송조회</a></button></li>
+                     <!--        <li><button><a href="">배송조회</a></button></li> -->
                             <li><button><a href="">교환신청</a></button></li>
                             <li><button><a href="">반품신청</a></button></li>
                             <li><button><a href="">리뷰쓰기</a></button></li>
@@ -101,11 +103,11 @@ href="<%=request.getContextPath() %>/css/noneoderDelivery.css">
                     <table class="cont_content">
                         <tr>
                             <td>결제수단 신용카드(신용카드/일시불)</td>
-                            <td>총 상품금액 : </td>
+                            <td>총 상품금액 : <%=o.getoPayment() %> </td>
                         </tr>
                         <tr>
                             <td></td>
-                            <td>총 배송비 : </td>
+                            <td>총 배송비 : 3,000원</td>
                         </tr>
                         <tr>
                             <td><button>결제수단 변경</button></td>
@@ -113,7 +115,7 @@ href="<%=request.getContextPath() %>/css/noneoderDelivery.css">
                         </tr>
                         <tr>
                             <td></td>
-                            <td>총결제금액</td>
+                            <td>총결제금액 </td>
                         </tr>
                     </table>
                 </div>

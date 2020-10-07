@@ -35,14 +35,13 @@ public class NoticeDao {
 			rs=pstmt.executeQuery();
 			if(rs.next()) {
 				n=new Notice();
-				n.setNoticeNumber(rs.getInt("notice_no"));
-				n.setNoticeadminNumber(rs.getInt("notice_admin_no"));
-				n.setNoticeWriter(rs.getNString("notice_writer"));
-				n.setNoticeTitle(rs.getNString("notice_Content"));
-				n.setFilePath(rs.getNString("filepath"));
-				n.setNoticeContent(rs.getNString("notice_content"));
-				n.setNoticeEnrollDate(rs.getDate("notice_date"));
-				n.setNoticeHit(rs.getInt("notice_hit"));
+				n.setnNumber(rs.getInt("nno"));
+				n.setnWriter(rs.getNString("nwriter"));
+				n.setnTitle(rs.getNString("ntitle"));
+				n.setFilePath(rs.getNString("nfile"));
+				n.setnContent(rs.getNString("ncontent"));
+				n.setnRdate(rs.getDate("nRdate"));
+				n.setnHit(rs.getInt("nhit"));
 				
 			}
 		}catch(SQLException e) {
@@ -60,10 +59,11 @@ public class NoticeDao {
 			int result=0;
 			try {
 				pstmt=conn.prepareStatement("insertNotice");
-				pstmt.setNString(1,n.getNoticeTitle());
-				pstmt.setNString(2, n.getNoticeWriter());
-				pstmt.setNString(3, n.getFilePath());
-				pstmt.setNString(4, n.getNoticeContent());
+				pstmt.setNString(1, n.getnWriter());
+				pstmt.setNString(2,n.getnTitle());
+				pstmt.setNString(3, n.getnContent());
+				pstmt.setNString(4, n.getFilePath());
+				pstmt.setDate(5, n.getnRdate());
 				result=pstmt.executeUpdate();
 				
 			}catch(SQLException e) {
@@ -83,14 +83,13 @@ public class NoticeDao {
 			rs=pstmt.executeQuery();
 			while(rs.next()) {
 				Notice n=new Notice();
-				n.setNoticeNumber(rs.getInt("notice_no"));
-				n.setNoticeadminNumber(rs.getInt("notice_admin_number"));
-				n.setNoticeTitle(rs.getNString("notice_title"));
-				n.setNoticeWriter(rs.getNString("notice_writer"));
-				n.setNoticeContent(rs.getNString("notice_content"));
-				n.setFilePath(rs.getString("filepath"));
-				n.setNoticeEnrollDate(rs.getDate("notice_enrolldate"));
-				n.setNoticeHit(rs.getInt("notice_hit"));
+				n.setnNumber(rs.getInt("nno"));
+				n.setnTitle(rs.getNString("ntitle"));
+				n.setnWriter(rs.getNString("nwriter"));
+				n.setnContent(rs.getNString("ncontent"));
+				n.setFilePath(rs.getString("nfile"));
+				n.setnRdate(rs.getDate("nrdate"));
+				n.setnHit(rs.getInt("nhit"));
 				list.add(n);
 				
 			}
@@ -107,7 +106,7 @@ public class NoticeDao {
 		ResultSet rs=null;
 		int result=0;
 		try {
-			pstmt=conn.prepareStatement(prop.getProperty("noticeCount"));
+			pstmt=conn.prepareStatement(prop.getProperty("nhit"));
 			rs=pstmt.executeQuery();
 			if(rs.next()) {
 				result=rs.getInt("cnt");

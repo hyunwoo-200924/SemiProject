@@ -85,7 +85,6 @@
 
 
 
-
 	<!-- 추천메뉴 -->
 	<div class="recommend-container" >
 		<div class="taste-select">
@@ -112,8 +111,6 @@
 			</div>
 		</div>
 	</div>
-
-
 	<!-- 실시간베스트 -->
 	<div class="best-container">
 		<h1>실시간베스트</h1>

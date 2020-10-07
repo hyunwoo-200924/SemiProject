@@ -22,6 +22,11 @@ public class Member {
 	public Member() {
 		// TODO Auto-generated constructor stub
 	}
+	
+	public Member(String mId) {
+		super();
+		this.mId = mId;
+	}
 
 	public Member(int mNo, String mId, String mPw, String mName, String mBirth, String mEmail, String mPhone,
 			String mAddress, String mGender, int mLevel, int mBuy, int mDrop, Date mEdate, int mPonint) {
@@ -163,6 +168,6 @@ public class Member {
 				+ ", mLevel=" + mLevel + ", mBuy=" + mBuy + ", mDrop=" + mDrop + ", mEdate=" + mEdate + ", mPonint="
 				+ mPonint + "]";
 	}
-	
+
 	
 }
