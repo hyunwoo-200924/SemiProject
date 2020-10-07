@@ -61,7 +61,7 @@ public class ProductDao {
 			pstmt.setNString(26, p.getpRecipeContent2());
 			pstmt.setNString(27, p.getpRecipeContent3());
 			pstmt.setNString(28, p.getpRecipeContent4());
-			pstmt.setDate(29, p.getpRdate());
+		
 			
 			result=pstmt.executeUpdate();
 			
