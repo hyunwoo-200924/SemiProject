@@ -47,8 +47,8 @@
                   <div class="order">
                      <div class="order_image"><span class="image1"></span><span>주문/결제</span></div>
                      <div></div>
-                     <div class="order_image"><span class="image2"></span><span>재료준비</span></div>
-                     <div></div>
+                     <!-- <div class="order_image"><span class="image2"></span><span>재료준비</span></div>
+                     <div></div> -->
                      <div class="order_image"><span class="image3"></span><span>배송준비</span></div>
                      <div></div>
                      <div class="order_image"><span class="image4"></span><span>배송중</span></div>
