@@ -263,14 +263,14 @@ public class MemberDao {
 	}
 	
 	//회원가입 여부 확인
-	public Member checkedMemberEnroll(Connection conn, String joinName,String joinPhone) {
+	public Member checkedMemberEnroll(Connection conn, String joinName,String joinEmail) {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		Member m = null;
 		try {
 			pstmt = conn.prepareStatement(prop.getProperty("checkedMemberEnroll"));
 			pstmt.setString(1,joinName);
-			pstmt.setString(2, joinPhone);
+			pstmt.setString(2, joinEmail);
 			rs = pstmt.executeQuery();
 			if(rs.next()) {
 				m = new Member();
