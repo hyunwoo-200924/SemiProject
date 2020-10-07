@@ -1,5 +1,7 @@
 package com.eol.product.model.dao;
 
+import static com.eol.common.JDBCTemplate.close;
+
 import java.io.FileReader;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -7,8 +9,6 @@ import java.sql.SQLException;
 import java.util.Properties;
 
 import com.eol.product.model.vo.Product;
-
-import static com.eol.common.JDBCTemplate.close;
 
 public class ProductDao {
 	private Properties prop = new Properties();
@@ -61,12 +61,8 @@ public class ProductDao {
 			pstmt.setNString(26, p.getpRecipeContent2());
 			pstmt.setNString(27, p.getpRecipeContent3());
 			pstmt.setNString(28, p.getpRecipeContent4());
-			pstmt.setDate(29, p.getpRdate());
 			
 			result=pstmt.executeUpdate();
-			
-			
-			
 			
 		}catch(SQLException e) {
 			e.printStackTrace();

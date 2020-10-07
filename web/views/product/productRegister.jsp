@@ -17,7 +17,7 @@
 
     //상품 등록 유효성 검사
     $(document).ready(function(){
-    	$("addProduct").click(function()){
+    	$("addProduct").click(function(){
     		const pName= $("#pName").val();
     		const pPrice= $("#pPrice").val();
     		const pDiscount=$("#pDiscount").val();
