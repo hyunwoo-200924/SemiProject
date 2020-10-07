@@ -5,7 +5,7 @@
  <link file="<%=request.getContextPath()%>/css/cart.css">   
 <%@include file="/views/common/header.jsp" %>
 
-
+<!-- cartpage -->
    <!-- section -->
 <div class="cart-section-container">
     <h2 class="cart-head-text"> 장바구니 </h2>

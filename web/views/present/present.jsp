@@ -3,6 +3,7 @@
     <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/cart.css">
 <%@ include file="/views/common/header.jsp"%>
 	<div class="present-section-container-block">
+	<!-- //선물하기 페이지 -->
     <h1>선물하기</h1>
     <!-- 그리드 2개 파트로 나눈섹션 -->
     <section class="present-section-container-block-wrap">

@@ -243,7 +243,7 @@
                     </div>
                 </div>
                </div> 
-                <!-- 이미지안에 품절 또는 추가 이미지안에 품절, 추가상품준비중 이라고 표시 관리자모드로  -->
+                <!-- 이미지안에 품절 또는 추가 이미지안에 품절, 추가상품준비중 이라고 표시 관리자모드로이다  -->
                 <div class="menu-img-group">
                     <div class="menu-img-group-wrap">
                     <div class="menu--img-group5">
