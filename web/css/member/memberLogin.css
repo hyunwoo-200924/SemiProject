@@ -13,6 +13,11 @@
     height: 300px;
     text-align: center;
 }
+.joinBtnContainer{
+	display : flex;
+	width: 100%;
+	
+}
 h1{
     /* 텍스트 */
     colir:#606060;

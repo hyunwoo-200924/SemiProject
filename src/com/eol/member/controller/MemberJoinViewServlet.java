@@ -27,7 +27,7 @@ public class MemberJoinViewServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		//회원 가입 화면으로 전환
-		request.getRequestDispatcher("/views/member/memberJoin1.jsp").forward(request, response);
+		request.getRequestDispatcher("/views/member/memberJoinForm.jsp").forward(request, response);
 	}
 
 	/**

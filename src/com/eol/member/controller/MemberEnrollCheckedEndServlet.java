@@ -33,10 +33,10 @@ public class MemberEnrollCheckedEndServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		//클라이언트한테 이름, 생년월일 , 전화번호 정보를 가져옴
 		String joinName = request.getParameter("joinName");
-		String joinPhone = request.getParameter("joinPhone");
+		String joinEmail = request.getParameter("joinEmail");
 		
 		//정보 담기
-		Member m = new MemberService().checkedMemberEnroll(joinName,joinPhone);
+		Member m = new MemberService().checkedMemberEnroll(joinName,joinEmail);
 		//조건문으로 회원 등록 여부 페이지 전환 해주기
 		String resutlId="";
 		if(m != null) {
