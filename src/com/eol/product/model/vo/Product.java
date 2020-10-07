@@ -21,7 +21,7 @@ public class Product {
 	private String pDetailImage3;
 	private String pDetailTitle1;
 	private String pDetailTitle2;
-	private String pDetailmain;
+	private String pDetailMain;
 	private String pDetailContent1;
 	private String pDetailContent2;
 	private String pRecipeImage1;
@@ -32,7 +32,6 @@ public class Product {
 	private String pRecipeContent2;
 	private String pRecipeContent3;
 	private String pRecipeContent4;
-	
 	private Date pRdate;
 	private int pHit;
 	private int pSell;
@@ -44,7 +43,7 @@ public class Product {
 	public Product(int pNo, String pName, int pPrice, int pDiscount, int pStock, int pServing, int pCooktime,
 			int pReadytime, int pTaste, String pImage1, String pImage2, String pImage3, String pVideo,
 			String pDetailImage1, String pDetailImage2, String pDetailImage3, String pDetailTitle1,
-			String pDetailTitle2, String pDetailmain, String pDetailContent1, String pDetailContent2,
+			String pDetailTitle2, String pDetailMain, String pDetailContent1, String pDetailContent2,
 			String pRecipeImage1, String pRecipeImage2, String pRecipeImage3, String pRecipeImage4,
 			String pRecipeContent1, String pRecipeContent2, String pRecipeContent3, String pRecipeContent4, Date pRdate,
 			int pHit, int pSell) {
@@ -67,7 +66,7 @@ public class Product {
 		this.pDetailImage3 = pDetailImage3;
 		this.pDetailTitle1 = pDetailTitle1;
 		this.pDetailTitle2 = pDetailTitle2;
-		this.pDetailmain = pDetailmain;
+		this.pDetailMain = pDetailMain;
 		this.pDetailContent1 = pDetailContent1;
 		this.pDetailContent2 = pDetailContent2;
 		this.pRecipeImage1 = pRecipeImage1;
@@ -227,12 +226,12 @@ public class Product {
 		this.pDetailTitle2 = pDetailTitle2;
 	}
 
-	public String getpDetailmain() {
-		return pDetailmain;
+	public String getpDetailMain() {
+		return pDetailMain;
 	}
 
-	public void setpDetailmain(String pDetailmain) {
-		this.pDetailmain = pDetailmain;
+	public void setpDetailMain(String pDetailMain) {
+		this.pDetailMain = pDetailMain;
 	}
 
 	public String getpDetailContent1() {
@@ -346,12 +345,13 @@ public class Product {
 				+ pReadytime + ", pTaste=" + pTaste + ", pImage1=" + pImage1 + ", pImage2=" + pImage2 + ", pImage3="
 				+ pImage3 + ", pVideo=" + pVideo + ", pDetailImage1=" + pDetailImage1 + ", pDetailImage2="
 				+ pDetailImage2 + ", pDetailImage3=" + pDetailImage3 + ", pDetailTitle1=" + pDetailTitle1
-				+ ", pDetailTitle2=" + pDetailTitle2 + ", pDetailmain=" + pDetailmain + ", pDetailContent1="
+				+ ", pDetailTitle2=" + pDetailTitle2 + ", pDetailMain=" + pDetailMain + ", pDetailContent1="
 				+ pDetailContent1 + ", pDetailContent2=" + pDetailContent2 + ", pRecipeImage1=" + pRecipeImage1
 				+ ", pRecipeImage2=" + pRecipeImage2 + ", pRecipeImage3=" + pRecipeImage3 + ", pRecipeImage4="
 				+ pRecipeImage4 + ", pRecipeContent1=" + pRecipeContent1 + ", pRecipeContent2=" + pRecipeContent2
 				+ ", pRecipeContent3=" + pRecipeContent3 + ", pRecipeContent4=" + pRecipeContent4 + ", pRdate=" + pRdate
 				+ ", pHit=" + pHit + ", pSell=" + pSell + "]";
 	}
-
+	
+	
 }

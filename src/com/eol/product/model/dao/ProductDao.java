@@ -47,7 +47,7 @@ public class ProductDao {
 			
 			pstmt.setNString(16, p.getpDetailTitle1());
 			pstmt.setNString(17, p.getpDetailTitle2());
-			pstmt.setNString(18, p.getpDetailmain());
+			pstmt.setNString(18, p.getpDetailMain());
 			
 			pstmt.setNString(19, p.getpDetailContent1());
 			pstmt.setNString(20, p.getpDetailContent2());

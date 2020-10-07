@@ -34,12 +34,21 @@ public class NoneMemberOrderNumberListView extends HttpServlet {
 		//클라이언트에게 받은 주문번호와 비밀번호로 조회하기
 		String nMONum = request.getParameter("orderNum");
 		String pw = request.getParameter("pw");
-		
+		System.out.println(nMONum + pw);
 		Orders o = new OrderService().nMOrderList(nMONum, pw);
+		System.out.println(o);
 		
-		request.setAttribute("nMOrder",o);
-		
-		request.getRequestDispatcher("/views/nonemember/noneMemberOrderDelivery.jsp").forward(request, response);
+		if(o!=null) {
+			
+			request.setAttribute("nMOrder",o);
+			request.getRequestDispatcher("/views/nonemember/noneMemberOrderDelivery.jsp").forward(request, response);
+			
+		}else {
+			String msg = "일치하는 정보가 없습니다. 다시 한번 확인해주세요.";
+			request.setAttribute("msg", msg);
+			request.setAttribute("loc", "/views/member/memberLogin.jsp");
+			request.getRequestDispatcher("views/common/msg.jsp").forward(request, response);
+		}
 		
 	}
 

@@ -15,7 +15,7 @@ import com.eol.member.model.vo.Member;
 /**
  * Servlet implementation class MemberJoinServlet
  */
-@WebServlet("/memberEnllor.do")
+@WebServlet("/memberEnroll.do")
 public class MemberJoinServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -36,7 +36,7 @@ public class MemberJoinServlet extends HttpServlet {
 		m.setmId(request.getParameter("id"));
 		m.setmPw(request.getParameter("pw"));
 		m.setmName(request.getParameter("name"));
-//		m.setmBirth(request.getParameter("birth"));
+		m.setmBirth(request.getParameter("birth"));
 		m.setmEmail(request.getParameter("email"));
 		m.setmPhone(request.getParameter("phone"));
 		String address1 = request.getParameter("address1"); //주소
@@ -44,15 +44,18 @@ public class MemberJoinServlet extends HttpServlet {
 		System.out.println(address2);
 		String address = address1 + ", " + address2;
 		m.setmAddress(address);
-		m.setmGender(request.getParameter("gender"));
+		if(request.getParameter("gender") != null) {
+			m.setmGender(request.getParameter("gender"));
+		}else {
+			m.setmGender("N");
+		}
 		System.out.println("111");
 		
 	   int result = new MemberService().insertMember(m);
 		
-	   
-	   request.getRequestDispatcher("/views/member/memberJoin1.jsp").forward(request, response);
-	
-	
+	   //if(result != null)
+	   //response.sendRedirect(어디로보내지~~);
+
 	}
 
 	/**
