@@ -4,6 +4,7 @@
  <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/cart.css">   
 <%@ include file="/views/common/header.jsp"%>
 
+taste
 	  <!-- section -->
     
     <section class="taste-section-container">
