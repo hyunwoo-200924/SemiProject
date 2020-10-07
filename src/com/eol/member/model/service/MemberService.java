@@ -111,10 +111,10 @@ public class MemberService {
 	}
 	
 	//회원 가입 여부 확인
-	public Member checkedMemberEnroll(String joinName,String joinPhone) {
+	public Member checkedMemberEnroll(String joinName,String joinEmail) {
 		Connection conn =getConnection();
 		
-		Member m = mDao.checkedMemberEnroll(conn,joinName,joinPhone);
+		Member m = mDao.checkedMemberEnroll(conn,joinName,joinEmail);
 		close(conn);
 		return m;
 	}

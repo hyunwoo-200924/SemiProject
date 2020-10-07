@@ -61,7 +61,7 @@ public class ProductDao {
 			pstmt.setNString(26, p.getpRecipeContent2());
 			pstmt.setNString(27, p.getpRecipeContent3());
 			pstmt.setNString(28, p.getpRecipeContent4());
-			
+
 			result=pstmt.executeUpdate();
 			
 		}catch(SQLException e) {

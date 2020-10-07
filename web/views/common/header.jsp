@@ -51,10 +51,10 @@ href="<%=request.getContextPath() %>/css/hayong.css">
                 <a href="<%=request.getContextPath() %>/mainview.do"><img id="headerlogo" src="<%=request.getContextPath()%>/images/mainImages/logo.png" alt="" width="150px" height="45px" herf=""></a><!--로고-->
                 <ul>
                     <li><a href="<%=request.getContextPath()%>/companyView.do">회사소개</a></li>
-                    <li><a href="<%=request.getContextPath()%>/productList.do">메뉴</a></li>
-                    <li><a href="#">이벤트</a></li>
+                    <li><a href="<%=request.getContextPath()%>/productmainView.do">메뉴</a></li>
+                    <li><a href="<%=request.getContextPath()%>/event.do">이벤트</a></li>
                     <li><a href="<%=request.getContextPath()%>/mypageMain.do">마이페이지</a></li>
                 </ul>
-                <a href="<%=request.getContextPath() %>/cartList.do"><img id="headerB" src="<%=request.getContextPath() %>/images/mainImages/shopping-cart-solid.svg" alt="" width="30px" height="30px"></a><!-- 장바구니 -->
+                <a href="<%=request.getContextPath() %>/cartView.do"><img id="headerB" src="<%=request.getContextPath() %>/images/mainImages/shopping-cart-solid.svg" alt="" width="30px" height="30px"></a><!-- 장바구니 -->
             </nav>
         </header>

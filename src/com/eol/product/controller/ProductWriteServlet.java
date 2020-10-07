@@ -77,13 +77,13 @@ public class ProductWriteServlet extends HttpServlet {
 		p.setpReadytime(Integer.parseInt(mr.getParameter("pReadytime")));
 		p.setpTaste(Integer.parseInt(mr.getParameter("pTaste")));
 		
-		p.setpImage1(mr.getFilesystemName("upload"));
-		p.setpImage2(mr.getFilesystemName("upload"));
-		p.setpImage3(mr.getFilesystemName("upload"));
-		p.setpVideo(mr.getFilesystemName("upload"));
-		p.setpDetailImage1(mr.getFilesystemName("upload"));
-		p.setpDetailImage2(mr.getFilesystemName("upload"));
-		p.setpDetailImage3(mr.getFilesystemName("upload"));
+		p.setpImage1(mr.getFilesystemName("pImage1"));
+		p.setpImage2(mr.getFilesystemName("pImage2"));
+		p.setpImage3(mr.getFilesystemName("pImage3"));
+		p.setpVideo(mr.getFilesystemName("pVideo"));
+		p.setpDetailImage1(mr.getFilesystemName("pDetailImage1"));
+		p.setpDetailImage2(mr.getFilesystemName("pDetailImage2"));
+		p.setpDetailImage3(mr.getFilesystemName("pDetailImage3"));
 		
 		p.setpDetailTitle1(mr.getParameter("pDetailTitle1"));
 		p.setpDetailTitle2(mr.getParameter("pDetailTitle2"));
@@ -91,16 +91,17 @@ public class ProductWriteServlet extends HttpServlet {
 		p.setpDetailContent1(mr.getParameter("pDetailContent1"));
 		p.setpDetailContent2(mr.getParameter("pDetailContent2"));
 		
-		p.setpRecipeImage1(mr.getFilesystemName("upload"));
-		p.setpRecipeImage2(mr.getFilesystemName("upload"));
-		p.setpRecipeImage3(mr.getFilesystemName("upload"));
-		p.setpRecipeImage4(mr.getFilesystemName("upload"));
+		p.setpRecipeImage1(mr.getFilesystemName("pRecipeImage1"));
+		p.setpRecipeImage2(mr.getFilesystemName("pRecipeImage2"));
+		p.setpRecipeImage3(mr.getFilesystemName("pRecipeImage3"));
+		p.setpRecipeImage4(mr.getFilesystemName("pRecipeImage4"));
 	
 		
-		p.setpRecipeContent1(mr.getParameter("pRecipeConten1"));
-		p.setpRecipeContent2(mr.getParameter("pRecipeConten2"));
-		p.setpRecipeContent3(mr.getParameter("pRecipeConten3"));
-		p.setpRecipeContent4(mr.getParameter("pRecipeConten4"));
+		p.setpRecipeContent1(mr.getParameter("pRecipeContent1"));
+		p.setpRecipeContent2(mr.getParameter("pRecipeContent2"));
+		p.setpRecipeContent3(mr.getParameter("pRecipeContent3"));
+		p.setpRecipeContent4(mr.getParameter("pRecipeContent4"));
+	
 		
 		int result = new ProductService().insertProduct(p);
 		

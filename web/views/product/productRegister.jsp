@@ -128,7 +128,7 @@
     	//상품목록이동
     	$("#gotoMenu").click(function(){
     		location.href="<%=request.getContextPath()%>/product/productMainMenu.jsp";
-    	});
+    	})
     		
     	}
     }
@@ -146,7 +146,7 @@
            <li>조리시간:<input type="text" name="pCooktime" value="" id="pCooktime" placeholder="예)10">분</li>
            <li>준비시간:<input type="text"  name="pReadytime" value="" id="pReadytime" placeholder="예)10">분</li>
            <li>맛:<input type="text" name="pTaste" value="" id="pTaste" placeholder="예)1:보통 2: 약간 3:중간 4:매우 숫자로표기"></li>
-           <li>상품타이틀:<input type="text" name="pDetailmain" value="" id="pDetailmain" placeholer="예)부채살스테이크"></li>
+           <li>상품타이틀:<input type="text" name="pDetailMain" value="" id="pDetailMain" placeholer="예)부채살스테이크"></li>
        </ol>
        <ol class="file-items">
                                
@@ -191,7 +191,7 @@
       </li>
       <li class="file--container">
         <label for="uploadImg">
-            상품이미2 
+            상품이미지2 
         </label>
         <input type="file" name="pDetailImage2" id="pDetailImage2" value="">
         <div><img src="" frameborder="0"></img></div>
