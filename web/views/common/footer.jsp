@@ -5,7 +5,7 @@ href="<%=request.getContextPath() %>/css/main.css">
 		<footer>
             <div id="footer">
                 <div id="footerlogo">
-                    <img src="<%=request.getContextPath() %>/images/mainImages/logo.png" alt="" width="150" height="45">
+                    <a href="<%=request.getContextPath() %>/mainview.do"><img src="<%=request.getContextPath() %>/images/mainImages/logo.png" alt="" width="150" height="45"></a>
                 </div>
                 <div id="footercenter">
                     <div id="footer1">
