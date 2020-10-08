@@ -1,12 +1,13 @@
 package com.eol.product.service;
 
-import static com.eol.common.JDBCTemplate.getConnection;
 import static com.eol.common.JDBCTemplate.close;
 import static com.eol.common.JDBCTemplate.commit;
+import static com.eol.common.JDBCTemplate.getConnection;
 import static com.eol.common.JDBCTemplate.rollback;
 
 import java.sql.Connection;
 
+import com.eol.order.model.vo.OrderDetail;
 import com.eol.product.model.dao.ProductDao;
 import com.eol.product.model.vo.Product;
 
@@ -23,5 +24,7 @@ public class ProductService {
 		close(conn);
 		return result;
 	}
+	
+
 
 }
