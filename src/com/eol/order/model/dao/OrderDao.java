@@ -1,12 +1,15 @@
 package com.eol.order.model.dao;
 
-import java.io.FileReader;
 import static com.eol.common.JDBCTemplate.close;
+
+import java.io.FileReader;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Properties;
 
 import com.eol.order.model.vo.Orders;
@@ -59,6 +62,38 @@ public class OrderDao {
 			close(rs);
 			close(pstmt);
 		}return o;
+	}
+
+	//주문리스트 가져오기
+	public List<Orders> selectOrder(Connection conn, int mNo) {
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		List<Orders> list = new ArrayList<Orders>();
+		
+		try {
+			pstmt = conn.prepareStatement(prop.getProperty("selectOrder"));
+			pstmt.setInt(1, mNo);
+			
+			rs = pstmt.executeQuery();
+			
+			while(rs.next()) {
+				Orders o = new Orders();
+				o.setoNo(rs.getInt("o_no"));
+				o.setoRDate(rs.getDate("o_rdate"));
+				o.setoAmount(rs.getInt("O_AMOUNT"));
+				o.setoPayment(rs.getInt("O_PAYMENT"));
+				
+				list.add(o);
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rs);
+			close(pstmt);
+		}
+		
+		return list;
 	}
 
 }

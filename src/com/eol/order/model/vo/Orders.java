@@ -20,6 +20,7 @@ public class Orders {
 	private String oDeliveryStatus;
 	private Date oDeliveryEDate;
 	private String oPayWays;
+	private String orderContent; //"사과 외 3건" 문구담으려고 만든 변수
 	
 	
 	public Orders() {
@@ -209,6 +210,17 @@ public class Orders {
 		this.oPayWays = oPayWays;
 	}
 
+
+	public String getOrderContent() {
+		return orderContent;
+	}
+
+
+	public void setOrderContent(String orderContent) {
+		this.orderContent = orderContent;
+	}
+
+	
 
 	
 
