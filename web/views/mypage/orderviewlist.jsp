@@ -5,6 +5,7 @@
 href="<%=request.getContextPath() %>/css/orderviewlist.css">
 
 <section>
+<%@ include file="/views/mypage/common/mypagenav.jsp" %>
 	<div class="aside"></div>
 	<div class="content">
 		<h1>주문 / 배송조회</h1>
