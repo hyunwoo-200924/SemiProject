@@ -1,22 +1,26 @@
 package com.eol.order.model.vo;
 
+import com.eol.product.model.vo.Product;
+
 public class OrderDetail {
 	
 	private int odNo;
 	private int oNo;
 	private int pNo;
 	private int odQty;
+	private Product odproduct;
 	
 	public OrderDetail() {
 		// TODO Auto-generated constructor stub
 	}
 
-	public OrderDetail(int odNo, int oNo, int pNo, int odQty) {
+	public OrderDetail(int odNo, int oNo, int pNo, int odQty, Product odproduct) {
 		super();
 		this.odNo = odNo;
 		this.oNo = oNo;
 		this.pNo = pNo;
 		this.odQty = odQty;
+		this.odproduct = odproduct;
 	}
 
 	public int getOdNo() {
@@ -50,6 +54,15 @@ public class OrderDetail {
 	public void setOdQty(int odQty) {
 		this.odQty = odQty;
 	}
+
+	public Product getOdproduct() {
+		return odproduct;
+	}
+
+	public void setOdproduct(Product odproduct) {
+		this.odproduct = odproduct;
+	}
+
 	
 	
 

@@ -1,6 +1,8 @@
 package com.eol.order.model.vo;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 public class Orders {
 	
@@ -20,16 +22,19 @@ public class Orders {
 	private String oDeliveryStatus;
 	private Date oDeliveryEDate;
 	private String oPayWays;
-	
+	private List<OrderDetail> details=new ArrayList();
 	
 	public Orders() {
 		// TODO Auto-generated constructor stub
 	}
 
 
+	
+
+
 	public Orders(int oNo, int mNo, Date oRDate, String oName, String oPhone, String oAddress, Date oDeliveryDate,
 			int oAmount, int oPayment, String oPw, String oStatus, Date oPayDate, Date oAllowDate,
-			String oDeliveryStatus, Date oDeliveryEDate, String oPayWays) {
+			String oDeliveryStatus, Date oDeliveryEDate, String oPayWays, List<OrderDetail> details) {
 		super();
 		this.oNo = oNo;
 		this.mNo = mNo;
@@ -47,7 +52,11 @@ public class Orders {
 		this.oDeliveryStatus = oDeliveryStatus;
 		this.oDeliveryEDate = oDeliveryEDate;
 		this.oPayWays = oPayWays;
+		this.details = details;
 	}
+
+
+
 
 
 	public int getoNo() {
@@ -55,9 +64,15 @@ public class Orders {
 	}
 
 
+
+
+
 	public void setoNo(int oNo) {
 		this.oNo = oNo;
 	}
+
+
+
 
 
 	public int getmNo() {
@@ -65,9 +80,15 @@ public class Orders {
 	}
 
 
+
+
+
 	public void setmNo(int mNo) {
 		this.mNo = mNo;
 	}
+
+
+
 
 
 	public Date getoRDate() {
@@ -75,9 +96,15 @@ public class Orders {
 	}
 
 
+
+
+
 	public void setoRDate(Date oRDate) {
 		this.oRDate = oRDate;
 	}
+
+
+
 
 
 	public String getoName() {
@@ -85,9 +112,15 @@ public class Orders {
 	}
 
 
+
+
+
 	public void setoName(String oName) {
 		this.oName = oName;
 	}
+
+
+
 
 
 	public String getoPhone() {
@@ -95,9 +128,15 @@ public class Orders {
 	}
 
 
+
+
+
 	public void setoPhone(String oPhone) {
 		this.oPhone = oPhone;
 	}
+
+
+
 
 
 	public String getoAddress() {
@@ -105,9 +144,15 @@ public class Orders {
 	}
 
 
+
+
+
 	public void setoAddress(String oAddress) {
 		this.oAddress = oAddress;
 	}
+
+
+
 
 
 	public Date getoDeliveryDate() {
@@ -115,9 +160,15 @@ public class Orders {
 	}
 
 
+
+
+
 	public void setoDeliveryDate(Date oDeliveryDate) {
 		this.oDeliveryDate = oDeliveryDate;
 	}
+
+
+
 
 
 	public int getoAmount() {
@@ -125,9 +176,15 @@ public class Orders {
 	}
 
 
+
+
+
 	public void setoAmount(int oAmount) {
 		this.oAmount = oAmount;
 	}
+
+
+
 
 
 	public int getoPayment() {
@@ -135,9 +192,15 @@ public class Orders {
 	}
 
 
+
+
+
 	public void setoPayment(int oPayment) {
 		this.oPayment = oPayment;
 	}
+
+
+
 
 
 	public String getoPw() {
@@ -145,9 +208,15 @@ public class Orders {
 	}
 
 
+
+
+
 	public void setoPw(String oPw) {
 		this.oPw = oPw;
 	}
+
+
+
 
 
 	public String getoStatus() {
@@ -155,9 +224,15 @@ public class Orders {
 	}
 
 
+
+
+
 	public void setoStatus(String oStatus) {
 		this.oStatus = oStatus;
 	}
+
+
+
 
 
 	public Date getoPayDate() {
@@ -165,9 +240,15 @@ public class Orders {
 	}
 
 
+
+
+
 	public void setoPayDate(Date oPayDate) {
 		this.oPayDate = oPayDate;
 	}
+
+
+
 
 
 	public Date getoAllowDate() {
@@ -175,9 +256,15 @@ public class Orders {
 	}
 
 
+
+
+
 	public void setoAllowDate(Date oAllowDate) {
 		this.oAllowDate = oAllowDate;
 	}
+
+
+
 
 
 	public String getoDeliveryStatus() {
@@ -185,9 +272,15 @@ public class Orders {
 	}
 
 
+
+
+
 	public void setoDeliveryStatus(String oDeliveryStatus) {
 		this.oDeliveryStatus = oDeliveryStatus;
 	}
+
+
+
 
 
 	public Date getoDeliveryEDate() {
@@ -195,9 +288,15 @@ public class Orders {
 	}
 
 
+
+
+
 	public void setoDeliveryEDate(Date oDeliveryEDate) {
 		this.oDeliveryEDate = oDeliveryEDate;
 	}
+
+
+
 
 
 	public String getoPayWays() {
@@ -205,11 +304,32 @@ public class Orders {
 	}
 
 
+
+
+
 	public void setoPayWays(String oPayWays) {
 		this.oPayWays = oPayWays;
 	}
 
 
+
+
+
+	public List<OrderDetail> getDetails() {
+		return details;
+	}
+
+
+
+
+
+	public void setDetails(List<OrderDetail> details) {
+		this.details = details;
+	}
+
+
+
+	
 	
 
 }

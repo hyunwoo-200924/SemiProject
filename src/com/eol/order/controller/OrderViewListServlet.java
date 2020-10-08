@@ -1,11 +1,19 @@
 package com.eol.order.controller;
 
 import java.io.IOException;
+import java.util.List;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import com.eol.member.model.vo.Member;
+import com.eol.order.model.service.OrderService;
+import com.eol.order.model.vo.OrderDetail;
+import com.eol.order.model.vo.Orders;
+import com.eol.product.model.vo.Product;
 
 /**
  * Servlet implementation class OrderViewListServlet
@@ -27,6 +35,27 @@ public class OrderViewListServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		Member m = (Member)request.getSession().getAttribute("loginMember");
+		int mNo = m.getmNo();
+		List<Orders> orderslist = new OrderService().orderList(mNo);
+		
+		
+		
+		for(Orders order : orderslist) {
+
+			List<OrderDetail> odlist = new OrderService().orderdetailList(order);//각 주문 1건에 있는 주문상세내역 list
+			
+			for(OrderDetail od : odlist) {
+				Product p = new OrderService().odproduct(od);//주문 상세내역의 각 상품들 정보 가져오기
+				od.setOdproduct(p);
+			}
+			order.setDetails(odlist);
+			
+		}
+		
+		request.setAttribute("orderlist", orderslist);
+		
+		
 		request.getRequestDispatcher("views/mypage/orderviewlist.jsp").forward(request, response);
 	
 	}
