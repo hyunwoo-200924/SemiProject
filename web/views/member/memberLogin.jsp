@@ -31,7 +31,7 @@ href="<%=request.getContextPath() %>/css/member/memberLogin.css">
     </div>
     <form class="joinLoginContainer" action="<%=request.getContextPath()%>/loginfrm.do" method="post">
 	    <div class="loginContainer" ">
-            	<input type="text" name="userId" id="userId" placeholder="아이디를 입력하세요" value='<%=saveId != null?saveId:"" %>'><br><br>
+            	<input type="search" name="userId" id="userId" placeholder="아이디를 입력하세요" value='<%=saveId != null?saveId:"" %>'><br><br>
             	<input type="password" name="password" id="password" placeholder="비밀번호를 입력하세요"><br><br>
             <input type="checkbox" name="saveId" id="saveId"<%=saveId!=null?"checked":"" %>><label for="saveId">아이디저장</label>&nbsp;&nbsp;
             <a href="#" onclick="location.replace('<%=request.getContextPath()%>/findId.do')">아이디 찾기</a>
@@ -49,7 +49,7 @@ href="<%=request.getContextPath() %>/css/member/memberLogin.css">
     <!-- 비회원 주문 페이지 화면 시작 -->
     <form class="noUserLoginContainer" action="<%=request.getContextPath()%>/noMemorderNumview.do" method="post">
     	<div class="noUserLogin-Container" style="display: none">
-           	 <input type="text" name="orderNum" id="orderNum" placeholder="주문번호를 입력하세요"><br><br>
+           	 <input type="search" name="orderNum" id="orderNum" placeholder="주문번호를 입력하세요"><br><br>
           	 <input type="password" name="pw" id="pw" placeholder="비밀번호를 입력하세요"><br><br><br><br><br>
             <input type="submit" name="noMemorderNumview" id="" value="주문/배송조회">
             <p> 주문 시 입력한 주문비밀번호와 문자로 발송된 주문번호를 입력하시면 주문내역/배송현황을 조회할 수 있습니다.<br>
