@@ -1,4 +1,4 @@
-package com.eol.member.controller;
+package com.eol.qna.controller;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -7,17 +7,19 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.eol.qna.model.service.QnaService;
+
 /**
- * Servlet implementation class MemberJoinViewServlet
+ * Servlet implementation class QuestionDeleteAjaxServlet
  */
-@WebServlet("/memberjoin.do")
-public class MemberJoinViewServlet extends HttpServlet {
+@WebServlet("/questionDelete")
+public class QuestionDeleteAjaxServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public MemberJoinViewServlet() {
+    public QuestionDeleteAjaxServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -26,8 +28,12 @@ public class MemberJoinViewServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		//회원 가입 화면으로 전환
-		request.getRequestDispatcher("/views/member/memberJoinForm.jsp").forward(request, response);
+		int qNo = Integer.parseInt(request.getParameter("qNo"));
+		System.out.println(qNo);
+		int result = new QnaService().deleteQna(qNo);
+		System.out.println(result);
+		
+		response.getWriter().print(result);
 	}
 
 	/**

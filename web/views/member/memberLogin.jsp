@@ -49,7 +49,7 @@ href="<%=request.getContextPath() %>/css/member/memberLogin.css">
       		<!--    카카오 아이콘<img src="#" alt="" aria-valuemax="">
         	아이콘<img src="#" alt="" aria-valuemax="">
         	아이콘<img src="#" alt="" aria-valuemax=""><br><br>-->
-        <input type="submit" name="joinBtn" id="joinBtn" value="회원가입" onclick="location.replace('<%=request.getContextPath()%>/memberjoin.do')">
+        <input type="button" name="joinBtn" id="joinBtn" value="회원가입" onclick="location.replace('<%=request.getContextPath()%>/memberjoin.do')">
         </div>
     </div>
 <%@ include file="/views/common/footer.jsp"%>
