@@ -160,4 +160,36 @@ public class OrderDao {
 	}
 	
 
+	//주문리스트 가져오기
+	public List<Orders> selectOrder(Connection conn, int mNo) {
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		List<Orders> list = new ArrayList<Orders>();
+		
+		try {
+			pstmt = conn.prepareStatement(prop.getProperty("selectOrder"));
+			pstmt.setInt(1, mNo);
+			
+			rs = pstmt.executeQuery();
+			
+			while(rs.next()) {
+				Orders o = new Orders();
+				o.setoNo(rs.getInt("o_no"));
+				o.setoRDate(rs.getDate("o_rdate"));
+				o.setoAmount(rs.getInt("O_AMOUNT"));
+				o.setoPayment(rs.getInt("O_PAYMENT"));
+				
+				list.add(o);
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rs);
+			close(pstmt);
+		}
+		
+		return list;
+	}
+
 }

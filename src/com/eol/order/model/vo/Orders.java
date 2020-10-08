@@ -23,6 +23,8 @@ public class Orders {
 	private Date oDeliveryEDate;
 	private String oPayWays;
 	private List<OrderDetail> details=new ArrayList();
+	private String orderContent; //"사과 외 3건" 문구담으려고 만든 변수
+	
 	
 	public Orders() {
 		// TODO Auto-generated constructor stub
@@ -315,6 +317,7 @@ public class Orders {
 
 
 
+
 	public List<OrderDetail> getDetails() {
 		return details;
 	}
@@ -330,6 +333,19 @@ public class Orders {
 
 
 	
+
+	public String getOrderContent() {
+		return orderContent;
+	}
+
+
+	public void setOrderContent(String orderContent) {
+		this.orderContent = orderContent;
+	}
+
+	
+
+
 	
 
 }

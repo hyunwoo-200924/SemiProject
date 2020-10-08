@@ -23,6 +23,16 @@ public class OrderService {
 		close(conn);
 		return o;
 	}
+
+	public List<Orders> selectOrder(int mNo) {
+		Connection conn = getConnection();
+		
+		List<Orders> list = dao.selectOrder(conn, mNo);
+		
+		close(conn);
+		
+		return list;
+	}
 	
 	public List<Orders> orderList(int mNo) {
 		//회원 주문조회 : 이미 로그인 되어있는 회원의 번호를 가져옴
