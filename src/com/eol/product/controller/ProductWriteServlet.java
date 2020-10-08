@@ -1,5 +1,6 @@
 package com.eol.product.controller;
 
+import java.io.File;
 import java.io.IOException;
 
 import javax.servlet.ServletException;
@@ -7,8 +8,6 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
-import org.apache.tomcat.util.http.fileupload.servlet.ServletFileUpload;
 
 import com.eol.product.model.vo.Product;
 import com.eol.product.service.ProductService;
@@ -36,24 +35,30 @@ public class ProductWriteServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 	
-		String fileName=request.getParameter("file");
+//		
 		//1파일의 경로를 가져옴(절대경로)
-		if(!ServletFileUpload.isMultipartContent(request)) {
-			request.setAttribute("msg","공지사항작성오류![form:enctype에러관리자에게 문의하세요!]");
-			request.setAttribute("loc","/");
-			request.getRequestDispatcher("/views/common/msg.jsp").forward(request, response);
-			return;
-		}
+//		if(!ServletFileUpload.isMultipartContent(request)) {
+//			request.setAttribute("msg","공지사항작성오류![form:enctype에러관리자에게 문의하세요!]");
+//			request.setAttribute("loc","/product/productList");
+//			request.getRequestDispatcher("/views/common/msg.jsp").forward(request, response);
+//			return;
+//		}
 		
 		//정상적인 multipart방식으로 요청이 오면 파일을 업로드하고 db에 저장하기
 		//cos.jar를 이용해서 파일을 업로드한다.
 		//1.파일 업로드위치를 선정! 절대경로로
-		String path=getServletContext().getRealPath("/upload/notice");
+		String path=getServletContext().getRealPath("/upload/product");
 		//2.업로드파일의 최대크기를 설정
-		int maxSize=1024*1024*10;//10MB
+		
+		File dir=new File(path);
+		if(!dir.exists())dir.mkdirs();
+		int maxSize=1024*1024*100;//10MB
 		//3.파일명에 대한 인코딩값을 설정(UTF-8)
 		String encode="UTF-8";
 		//4.파일명을 재정의할수있는 객체 (메소드).대입
+		
+		
+		
 		//COS.JAR에서 기본제공하는 파일명 RENAME객체가  있음.
 		DefaultFileRenamePolicy rename=new DefaultFileRenamePolicy();
 		
@@ -72,13 +77,13 @@ public class ProductWriteServlet extends HttpServlet {
 		p.setpReadytime(Integer.parseInt(mr.getParameter("pReadytime")));
 		p.setpTaste(Integer.parseInt(mr.getParameter("pTaste")));
 		
-		p.setpImage1(mr.getFilesystemName("upload"));
-		p.setpImage2(mr.getFilesystemName("upload"));
-		p.setpImage3(mr.getFilesystemName("upload"));
-		p.setpVideo(mr.getFilesystemName("upload"));
-		p.setpDetailImage1(mr.getFilesystemName("upload"));
-		p.setpDetailImage2(mr.getFilesystemName("upload"));
-		p.setpDetailImage3(mr.getFilesystemName("upload"));
+		p.setpImage1(mr.getFilesystemName("pImage1"));
+		p.setpImage2(mr.getFilesystemName("pImage2"));
+		p.setpImage3(mr.getFilesystemName("pImage3"));
+		p.setpVideo(mr.getFilesystemName("pVideo"));
+		p.setpDetailImage1(mr.getFilesystemName("pDetailImage1"));
+		p.setpDetailImage2(mr.getFilesystemName("pDetailImage2"));
+		p.setpDetailImage3(mr.getFilesystemName("pDetailImage3"));
 		
 		p.setpDetailTitle1(mr.getParameter("pDetailTitle1"));
 		p.setpDetailTitle2(mr.getParameter("pDetailTitle2"));
@@ -86,20 +91,22 @@ public class ProductWriteServlet extends HttpServlet {
 		p.setpDetailContent1(mr.getParameter("pDetailContent1"));
 		p.setpDetailContent2(mr.getParameter("pDetailContent2"));
 		
-		p.setpRecipeImage1(mr.getParameter("pRecipeImage1"));
-		p.setpRecipeImage2(mr.getParameter("pRecipeImage2"));
-		p.setpRecipeImage3(mr.getParameter("pRecipeImage3"));
-		p.setpRecipeImage4(mr.getParameter("pRecipeImage4"));
+		p.setpRecipeImage1(mr.getFilesystemName("pRecipeImage1"));
+		p.setpRecipeImage2(mr.getFilesystemName("pRecipeImage2"));
+		p.setpRecipeImage3(mr.getFilesystemName("pRecipeImage3"));
+		p.setpRecipeImage4(mr.getFilesystemName("pRecipeImage4"));
+	
 		
-		p.setpRecipeContent1(mr.getParameter("pRecipeConten1"));
-		p.setpRecipeContent2(mr.getParameter("pRecipeConten2"));
-		p.setpRecipeContent3(mr.getParameter("pRecipeConten3"));
-		p.setpRecipeContent4(mr.getParameter("pRecipeConten4"));
+		p.setpRecipeContent1(mr.getParameter("pRecipeContent1"));
+		p.setpRecipeContent2(mr.getParameter("pRecipeContent2"));
+		p.setpRecipeContent3(mr.getParameter("pRecipeContent3"));
+		p.setpRecipeContent4(mr.getParameter("pRecipeContent4"));
+	
 		
 		int result = new ProductService().insertProduct(p);
 		
 		String msg="";
-		String loc="/product/productWrite";
+		String loc="/product/productRegister.jsp";
 		msg=result>0?"상품등록 성공":"상품등록실패";
 		
 		request.setAttribute("msg", msg);

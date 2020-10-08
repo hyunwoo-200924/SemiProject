@@ -5,14 +5,14 @@ href="<%=request.getContextPath() %>/css/main.css">
 		<footer>
             <div id="footer">
                 <div id="footerlogo">
-                    <img src="<%=request.getContextPath() %>/images/mainImages/logo.png" alt="" width="150" height="45">
+                    <a href="<%=request.getContextPath() %>/mainview.do"><img src="<%=request.getContextPath() %>/images/mainImages/logo.png" alt="" width="150" height="45"></a>
                 </div>
                 <div id="footercenter">
                     <div id="footer1">
                         <ul>
                             <li><a href="<%=request.getContextPath()%>/term.do">이용약관</a></li>
-                            <li><a href="">개인정보처리방침</a></li>
-                            <li><a href="">정책</a></li>
+                            <li><a href="<%=request.getContextPath()%>/protect.do">개인정보처리방침</a></li>
+                            <li><a href="<%=request.getContextPath()%>/legal.do">정책</a></li>
                             <li><a href="">사업자정보확인</a></li>
                         </ul>
                     </div>

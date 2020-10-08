@@ -85,14 +85,14 @@ href="<%=request.getContextPath() %>/css/review.css">
 			<div class="reviews-container">
 				<form class="reviews-container-group1" href="" method="post">
 					<table class="reviews-table">
-						<tbody class="reviews-table-items" style="display: none;">
+						<tbody class="reviews-table-items">
 							<tr class="reviews-table-group">
 								<th>번호</th>
 								<th>제목</th>
 								<th>작성자</th>
 								<th>작성날짜</th>
 							</tr>
-							<tr class="reviews-table-group">
+							<tr class="reviews-table-group" style="display: none;">
 								<td class="" name="">1</td>
 								<td class="" name="">명절이다</td>
 								<td class="" name="">홍길동</td>
@@ -133,12 +133,12 @@ href="<%=request.getContextPath() %>/css/review.css">
 					<ul class="bul_list">
 						<li class="bul_dot"><i class="bullet"></i> 리뷰는 배송 완료 후 30일 이내
 							작성 가능합니다.</li>
-						<li class="bul_dot"><i class="bullet"></i> CJ ONE 포인트는 리뷰 작성
+						<li class="bul_dot"><i class="bullet"></i> 포인트는 리뷰 작성
 							10일 이내 정상적으로 게시된 리뷰에 한해 지급됩니다.</li>
 						<li class="bul_dot"><i class="bullet"></i> 포토 리뷰는 300P, 텍스트
 							리뷰는 200P가 지급되며 꿀팁 작성 시 100P가 추가 지급됩니다. (최대 400P 지급)</li>
 						<li class="bul_dot"><i class="bullet"></i> 베스트 리뷰는 선정된 당일 별도로
-							1,000P가 지급되며 [MY쿡킷&gt;CJ ONE 포인트]에서 확인할 수 있습니다.</li>
+							1,000P가 지급되며 [MY쿡킷&gt;포인트]에서 확인할 수 있습니다.</li>
 						<li class="bul_dot"><i class="bullet"></i> 리뷰 수정은 포인트 지급전까지만
 							가능하며, 리뷰를 삭제하는 경우 지급된 포인트가 회수됩니다.</li>
 						<li class="bul_dot"><i class="bullet"></i> 리뷰에 적합하지 않은 내용이나

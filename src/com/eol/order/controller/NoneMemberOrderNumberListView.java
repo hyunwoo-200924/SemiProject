@@ -38,9 +38,17 @@ public class NoneMemberOrderNumberListView extends HttpServlet {
 		Orders o = new OrderService().nMOrderList(nMONum, pw);
 		System.out.println(o);
 		
-		request.setAttribute("nMOrder",o);
-		
-		request.getRequestDispatcher("/views/nonemember/noneMemberOrderDelivery.jsp").forward(request, response);
+		if(o!=null) {
+			
+			request.setAttribute("nMOrder",o);
+			request.getRequestDispatcher("/views/nonemember/noneMemberOrderDelivery.jsp").forward(request, response);
+			
+		}else {
+			String msg = "일치하는 정보가 없습니다. 다시 한번 확인해주세요.";
+			request.setAttribute("msg", msg);
+			request.setAttribute("loc", "/views/member/memberLogin.jsp");
+			request.getRequestDispatcher("views/common/msg.jsp").forward(request, response);
+		}
 		
 	}
 

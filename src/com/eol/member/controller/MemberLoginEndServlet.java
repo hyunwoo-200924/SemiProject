@@ -63,14 +63,14 @@ public class MemberLoginEndServlet extends HttpServlet {
 			response.sendRedirect(request.getContextPath());
 		}else {
 			//로그인 실패
-			//실패하면 메세지 띄우고 메인으로 돌아가기
+			//실패하면 메세지 띄우기
 			String msg ="아이디나 패스워드가 일치하지 않습니다!";
 			request.setAttribute("msg",msg);
-			request.setAttribute("loc", "/");
+			request.setAttribute("loc", "/views/member/memberLogin.jsp");
 			request.getRequestDispatcher("/views/common/msg.jsp").forward(request, response);
 			
-					
-		}
+		}			
+		
 	
 	}
 

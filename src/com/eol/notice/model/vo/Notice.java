@@ -3,14 +3,13 @@ package com.eol.notice.model.vo;
 import java.sql.Date;
 
 public class Notice {
-	private int NoticeNumber;
-	private int NoticeadminNumber;
-	private String NoticeWriter;
-	private String NoticeTitle;
-	private String NoticeContent;
+	private int nNumber;
+	private String nWriter;
+	private String nTitle;
+	private String nContent;
 	private String FilePath;
-	private Date NoticeEnrollDate;
-	private int NoticeHit;
+	private Date nRdate;
+	private int nHit;
 	
 	
 	public Notice() {
@@ -18,67 +17,55 @@ public class Notice {
 	}
 
 
-	public Notice(int noticeNumber, int noticeadminNumber, String noticeWriter, String noticeTitle,
-			String noticeContent, String filePath, Date noticeEnrollDate, int noticeHit) {
+	public Notice(int nNumber, String nWriter, String nTitle, String nContent, String filePath, Date nRdate, int nHit) {
 		super();
-		NoticeNumber = noticeNumber;
-		NoticeadminNumber = noticeadminNumber;
-		NoticeWriter = noticeWriter;
-		NoticeTitle = noticeTitle;
-		NoticeContent = noticeContent;
+		this.nNumber = nNumber;
+		this.nWriter = nWriter;
+		this.nTitle = nTitle;
+		this.nContent = nContent;
 		FilePath = filePath;
-		NoticeEnrollDate = noticeEnrollDate;
-		NoticeHit = noticeHit;
+		this.nRdate = nRdate;
+		this.nHit = nHit;
 	}
 
 
-	public int getNoticeNumber() {
-		return NoticeNumber;
+	public int getnNumber() {
+		return nNumber;
 	}
 
 
-	public void setNoticeNumber(int noticeNumber) {
-		NoticeNumber = noticeNumber;
+	public void setnNumber(int nNumber) {
+		this.nNumber = nNumber;
 	}
 
 
-	public int getNoticeadminNumber() {
-		return NoticeadminNumber;
+	public String getnWriter() {
+		return nWriter;
 	}
 
 
-	public void setNoticeadminNumber(int noticeadminNumber) {
-		NoticeadminNumber = noticeadminNumber;
+	public void setnWriter(String nWriter) {
+		this.nWriter = nWriter;
 	}
 
 
-	public String getNoticeWriter() {
-		return NoticeWriter;
+	public String getnTitle() {
+		return nTitle;
 	}
 
 
-	public void setNoticeWriter(String noticeWriter) {
-		NoticeWriter = noticeWriter;
+	public void setnTitle(String nTitle) {
+		this.nTitle = nTitle;
 	}
 
 
-	public String getNoticeTitle() {
-		return NoticeTitle;
+	public String getnContent() {
+		return nContent;
 	}
 
 
-	public void setNoticeTitle(String noticeTitle) {
-		NoticeTitle = noticeTitle;
-	}
-
-
-	public String getNoticeContent() {
-		return NoticeContent;
-	}
-
-
-	public void setNoticeContent(String noticeContent) {
-		NoticeContent = noticeContent;
+	public void setnContent(String nContent) {
+		this.nContent = nContent;
 	}
 
 
@@ -92,32 +79,33 @@ public class Notice {
 	}
 
 
-	public Date getNoticeEnrollDate() {
-		return NoticeEnrollDate;
+	public Date getnRdate() {
+		return nRdate;
 	}
 
 
-	public void setNoticeEnrollDate(Date noticeEnrollDate) {
-		NoticeEnrollDate = noticeEnrollDate;
+	public void setnRdate(Date nRdate) {
+		this.nRdate = nRdate;
 	}
 
 
-	public int getNoticeHit() {
-		return NoticeHit;
+	public int getnHit() {
+		return nHit;
 	}
 
 
-	public void setNoticeHit(int noticeHit) {
-		NoticeHit = noticeHit;
+	public void setnHit(int nHit) {
+		this.nHit = nHit;
 	}
 
 
 	@Override
 	public String toString() {
-		return "Notice [NoticeNumber=" + NoticeNumber + ", NoticeadminNumber=" + NoticeadminNumber + ", NoticeWriter="
-				+ NoticeWriter + ", NoticeTitle=" + NoticeTitle + ", NoticeContent=" + NoticeContent + ", FilePath="
-				+ FilePath + ", NoticeEnrollDate=" + NoticeEnrollDate + ", NoticeHit=" + NoticeHit + "]";
+		return "Notice [nNumber=" + nNumber + ", nWriter=" + nWriter + ", nTitle=" + nTitle + ", nContent=" + nContent
+				+ ", FilePath=" + FilePath + ", nRdate=" + nRdate + ", nHit=" + nHit + "]";
 	}
 
+	
 
+	
 }
