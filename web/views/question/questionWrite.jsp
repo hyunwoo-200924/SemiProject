@@ -19,6 +19,11 @@
 				display: grid;
     			grid-auto-flow: column;
 			}
+			#inquiry .inquiry_form .none{
+				display: grid;
+    			grid-auto-flow: column;
+    			background: red;
+			}
 			#inquiry .inquiry_form span{
    				text-align: center;
 			}
@@ -94,7 +99,7 @@
 								</div>
 								<div class="question_box col3">
 									<p>주문/상품 선택</p>
-									<input type="text" name="o_no" readonly >
+									<input type="text" id="o_no" name="o_no" readonly >
 									<input type="button" value="조회" onclick="fn_inquiry();">
 									<div id="inquiry">
 										<div class="inquiry_form">
@@ -128,7 +133,7 @@
 								</div>
 								<div class="question_box">
 									<p>문의내용</p>
-									<textarea name="content" cols="30" rows="10" placeholder="문의 내용을 입력해주세요."></textarea>
+									<textarea name="content" cols="30" rows="10" style="resize: none;" placeholder="문의 내용을 입력해주세요."></textarea>
 									<div class="note">
 										<ul>
 											<li>고객님의 개인정보(이름,핸드폰 번호, 계좌번호 등) 입력 시 관리자에 의해 임의 삭제될 수 있습니다.</li>
@@ -167,27 +172,30 @@
 		</section>
 		
 		<script>
-		
 			function fu_questionList(){
 				location.href="<%= request.getContextPath()%>/questionList"
 			}
 			
-			function fn_inquiry(){
-				$("#inquiry").slideToggle("slow");                                                                                                                                                                                                                                                        ㄴ
+		 	function fn_inquiry(){
+				$("#inquiry").slideToggle("slow");                                                                                                                                                                                                                                                        
 				$.ajax({
 					url: "<%= request.getContextPath() %>/OrderList",
 					type: "post",
 					dataType: "json",
 					success: function(data){
 						console.log(data);
-						
-						$("#inquiry").append($("div"))
-						
+						if(data.length != 0) {
+							$(".inquiry_form").after($("<div>").addClass('none').append('<span>없음</span>'));
+							
+						}
 						
 					}
+					
+					
 				})
-				
 			}
+				
+			
 		</script>
 		
 		

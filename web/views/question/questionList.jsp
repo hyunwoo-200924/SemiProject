@@ -59,6 +59,7 @@
 							</div>
                      		<div style="display:none">
                      			<div><%=q.getqContent() %></div>
+                     			<button class="update">수정</button>
                      			<button class="delete">삭제</button>
                      		</div>
 						</div>

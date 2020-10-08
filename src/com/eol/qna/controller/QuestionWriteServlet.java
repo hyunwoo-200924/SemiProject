@@ -36,6 +36,7 @@ public class QuestionWriteServlet extends HttpServlet {
 		q.setqCategory(request.getParameter("category"));
 		q.setqTitle(request.getParameter("title"));
 		String oNo = request.getParameter("o_no");
+		System.out.println(oNo);
 		if(oNo != "") {
 			q.setoNo(Integer.parseInt(oNo));
 		}
