@@ -1,7 +1,7 @@
 @charset "UTF-8";
 
-
-/* common */
+/* 
+common
 body{
     
     width: 1270px;
@@ -15,7 +15,7 @@ a{
 }
 a:hover{
     color:red;
-}
+} */
 
 /* button */
 
