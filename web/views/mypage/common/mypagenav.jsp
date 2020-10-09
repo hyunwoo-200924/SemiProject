@@ -11,7 +11,7 @@
 		<li>취소/반품조회</li>
 		<li>선물내역</li>
 		<li class="mypage_left_title1">나의혜택</li>
-		<li>쿠폰</li>
+		<li><a href="<%=request.getContextPath() %>/couponList">쿠폰</a></li>
 		<li><a href="<%=request.getContextPath() %>/pointPage.do">포인트</a></li>
 		<li class="mypage_left_title1">나의활동</li>
 		<li>리뷰</li>
