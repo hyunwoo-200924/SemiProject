@@ -1,6 +1,7 @@
 package com.eol.order.controller;
 
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -9,23 +10,24 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+
 import com.eol.member.model.vo.Member;
 import com.eol.order.model.service.OrderService;
-import com.eol.order.model.vo.OrderDetail;
 import com.eol.order.model.vo.Orders;
-import com.eol.product.model.vo.Product;
 
 /**
- * Servlet implementation class OrderViewListServlet
+ * Servlet implementation class OrderListAjaxServlet
  */
-@WebServlet("/orderViewList.do")
-public class OrderViewListServlet extends HttpServlet {
+@WebServlet("/OrderList")
+public class OrderListAjaxServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public OrderViewListServlet() {
+    public OrderListAjaxServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -34,30 +36,34 @@ public class OrderViewListServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		Member m = (Member)request.getSession().getAttribute("loginMember");
-		int mNo = m.getmNo();
-		List<Orders> orderslist = new OrderService().orderList(mNo);
+		
+		int mNo = 1; //확인용 아래줄 대신
+		//int mNo = ((Member)request.getSession().getAttribute("loginMember")).getmNo();
+		
+		List<Orders> list = new OrderService().selectOrder(mNo);
 		
 		
 		
-		for(Orders order : orderslist) {
-
-			List<OrderDetail> odlist = new OrderService().orderdetailList(order);//각 주문 1건에 있는 주문상세내역 list
-			
-			for(OrderDetail od : odlist) {
-				Product p = new OrderService().odproduct(od);//주문 상세내역의 각 상품들 정보 가져오기
-				od.setOdproduct(p);
+		JSONArray olist = null;
+		
+	if(!list.isEmpty()) {
+			for(Orders o : list) {
+				olist = new JSONArray();
+				
+				JSONObject order = new JSONObject();
+				
+				order.put("oNo", o.getoNo());
+				
+				SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+				order.put("oRDate", sdf.format(o.getoRDate()));
+				order.put("oAmount", o.getoAmount());
+				order.put("oPayment", o.getoPayment());
+				
+				olist.add(order);
 			}
-			order.setDetails(odlist);
-			
 		}
 		
-		request.setAttribute("orderlist", orderslist);
-		
-		
-		request.getRequestDispatcher("views/mypage/orderviewlist.jsp").forward(request, response);
-	
+		response.getWriter().print(olist);//주문내역이 없다면 olist는 null
 	}
 
 	/**

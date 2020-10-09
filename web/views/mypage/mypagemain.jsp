@@ -18,7 +18,7 @@
                   <p><%=m.getmName() %></p><span><%=m.getmAddress() %></span>
                </div>
                <div class="mypage_point">
-                  <p><span>CJ ONE 포인트</span><b><%=m.getmPonint() %>P</b></p>
+                  <p><span>뚝딱쿡 포인트</span><b><%=m.getmPonint() %>P</b></p>
                   <p><span>보유쿠폰</span><b><%=coCount %>장</b></p>
                </div>
             </div>
