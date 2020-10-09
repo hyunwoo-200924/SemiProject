@@ -51,7 +51,7 @@ public class MemberJoinServlet extends HttpServlet {
 		}
 		System.out.println("111");
 		
-	   int result = new MemberService().insertMember(m);
+		int result = new MemberService().insertMember(m);
 		
 	   //if(result != null)
 	   //response.sendRedirect(어디로보내지~~);
