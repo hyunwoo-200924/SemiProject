@@ -8,9 +8,13 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.tomcat.util.http.fileupload.servlet.ServletFileUpload;
+
 import com.eol.member.model.vo.Member;
 import com.eol.qna.model.service.QnaService;
 import com.eol.qna.model.vo.Qna;
+import com.oreilly.servlet.MultipartRequest;
+import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
 /**
  * Servlet implementation class QuestionListViewServlet
@@ -32,17 +36,35 @@ public class QuestionWriteServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
+		if(!ServletFileUpload.isMultipartContent(request)) {
+			request.setAttribute("msg", "1:1문의 작성 오류[form:enctype에러] 고객센터로 문의바랍니다.");
+			request.setAttribute("loc", "/");
+			request.getRequestDispatcher("/views/common/msg.jsp").forward(request, response);
+			return;
+		}
+		
+		String path = getServletContext().getRealPath("/upload/question");
+		int maxSize = 1024 * 1024 * 10; //10MB
+		String encode = "UTF-8";
+		DefaultFileRenamePolicy rename = new DefaultFileRenamePolicy();
+		
+		MultipartRequest mr = new MultipartRequest(request, path, maxSize, encode, rename);
+		
+		
 		Qna q = new Qna();
-		q.setqCategory(request.getParameter("category"));
-		q.setqTitle(request.getParameter("title"));
-		String oNo = request.getParameter("o_no");
+		q.setqCategory(mr.getParameter("category"));
+		q.setqTitle(mr.getParameter("title"));
+		String oNo = mr.getParameter("o_no");
 		System.out.println(oNo);
 		if(oNo != "") {
 			q.setoNo(Integer.parseInt(oNo));
 		}
-		q.setqContent(request.getParameter("content"));
-		q.setqFile(request.getParameter("file"));
-		q.setqAnswer(request.getParameter("answer"));
+		q.setqContent(mr.getParameter("content"));
+		q.setqFile(mr.getFilesystemName("file"));
+		if(mr.getParameter("answer") != "") {
+			q.setqAnswer(mr.getParameter("answer"));
+		}
+		System.out.println(mr.getParameter("answer"));
 		q.setmNo(1);//아래줄 대신 확인용
 		//q.setmNo(((Member)request.getSession().getAttribute("loginMember")).getmNo());
 		System.out.println(q);

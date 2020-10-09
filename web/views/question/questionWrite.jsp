@@ -11,26 +11,31 @@
 		<style>
 			#inquiry{
 				display: none;
-				grid-column-start: 2;
+				grid-column: 2/4;
 	   			border: 1px solid black;
 	    		height: 300px;
 			}
 			#inquiry .inquiry_form{
 				display: grid;
-    			grid-auto-flow: column;
+    			grid-template-columns: 70px 120px 156px 50px 122px auto;
+    			align-items: center;
 			}
-			#inquiry .inquiry_form .none{
-				display: grid;
-    			grid-auto-flow: column;
-    			background: red;
+			#inquiry .inquiry_form input{
+				margin: auto;
+			}
+			#inquiry .none{
+			    text-align: center;
+    			padding-top: 50px;
 			}
 			#inquiry .inquiry_form span{
    				text-align: center;
 			}
+			
 		</style>
 	
 		<section class="container">
-			<nav class="mypage_left">
+			<%@ include file="/views/mypage/common/mypagenav.jsp" %>
+			<!-- <nav class="mypage_left">
            		<h2>마이페이지</h2>
                 <ul>
                     <li class="mypage_left_title1">나의 주문정보</li>
@@ -49,7 +54,7 @@
                     <li>개인정보변경</li>
                     <li>회원탈퇴</li>
                 </ul>
-           	</nav>
+           	</nav> -->
 			<div class="user_content_form_wrap">
 				<div class="title">
 					<h1>1:1 문의</h1>
@@ -81,7 +86,7 @@
 						</div>
 					</div> -->
 					<div class="qeustion_context" style="margin-top: 50px;">
-						<form method="post" action="<%= request.getContextPath() %>/questionWrite">
+						<form method="post" action="<%= request.getContextPath() %>/questionWrite" enctype="multipart/form-data" onsubmit="return fn_submit();">
 							<div class="question_context_form">
 								<div class="question_box col3" style="grid-template-columns: 140px 120px auto;">
 									<p>제목</p>
@@ -110,25 +115,6 @@
 											<span>주문금액</span>
 											<span>선택</span>
 										</div>
-										
-										
-										<!-- <table>
-									        <tr>
-									            <th>주문번호</th>
-									            <th>주문일자</th>
-									            <th>상품명</th>
-									            <th>수량</th>
-									            <th>주문금액</th>
-									            <th>선택</th>
-									        </tr>
-									        <tr>
-									            <td></td>
-									            <td></td>
-									            <td></td>
-									            <td></td>
-									            <td><input type="radio"></td>
-									        </tr>
-									    </table> -->
 									</div>
 								</div>
 								<div class="question_box">
@@ -144,14 +130,18 @@
 								<div class="question_box">
 									<p>첨부파일</p>
 								<!--<p class="file">+</p> -->
-									<input type="file" name="file">
+									<input type="file" name="file" multiple>
 									<p class="file-note">*최대 5장 등록 (PNG, JPEG, JPG, GIF 포맷)</p>
 								</div>
 								<div class="question_box">
 									<p>답변알림</p>
 									<div style="display: grid;grid-template-columns: 283px auto;">
 										<input type="text" name="answer" <%-- value="<%= m.getmEmail() %>" --%>>
-										<p class="check" style="margin-left:10px"><label><input type="checkbox">답변수신을 이메일로 받겠습니다.</label></p>
+										<p class="check" style="margin-left:10px">
+											<label>
+												<input type="checkbox" name="emailAnswer">답변수신을 이메일로 받겠습니다.
+											</label>
+										</p>
 									</div>
 									<%-- <div style="display: grid;grid-template-columns: 283px auto;grid-column-start: 2;    margin-top: 10px;">
 										<input type="text" name="phoneSend" value="<%= m.getmPhone() %>">
@@ -172,29 +162,57 @@
 		</section>
 		
 		<script>
+			$(function(){
+				$.ajax({
+					url: "<%= request.getContextPath() %>/OrderList",
+					type: "post",
+					dataType:"json",
+					success: function(data){
+						console.log(data);
+						if(data.length == 0) {
+							$(".inquiry_form").after($("<div>").addClass('none').append($('<span>없음</span>')));
+							
+						} else {
+								//let div = $(".inquiry_form").after($("<div>").addClass('inquiry_form')
+							let div =$(".inquiry_form");
+							for(let i = 0; i < data.length; i++){
+								
+								let o_no = $('<span></span>').text(data[i]["oNo"]);
+								let or_date = $('<span></span>').text(data[i]["oRDate"]);
+								let or_content = $('<span></span>').text(data[i]["orderContent"]);
+								let o_amount = $('<span></span>').text(data[i]["oAmount"]);
+								let o_payment = $('<span></span>').text(data[i]["oPayment"]);
+								let choice = $("<input type='radio' ></input>").addClass('choice').attr('name','category');
+								
+								let result = div.after($("<div>").addClass('inquiry_form').append(o_no, or_date, or_content, o_amount, o_payment, choice));
+							}
+							
+							
+						}
+					}
+				})
+				
+			})
+		
 			function fu_questionList(){
 				location.href="<%= request.getContextPath()%>/questionList"
 			}
 			
 		 	function fn_inquiry(){
-				$("#inquiry").slideToggle("slow");                                                                                                                                                                                                                                                        
-				$.ajax({
-					url: "<%= request.getContextPath() %>/OrderList",
-					type: "post",
-					dataType: "json",
-					success: function(data){
-						console.log(data);
-						if(data.length != 0) {
-							$(".inquiry_form").after($("<div>").addClass('none').append('<span>없음</span>'));
-							
-						}
-						
-					}
-					
-					
+				$("#inquiry").slideToggle("slow");
+				$('.choice').click(function(){
+					let c = $(this).parent().children().eq(0).text();
+					$("#o_no").val(c);
+					$("#inquiry").css('display','none');
 				})
 			}
-				
+			
+		 	function fn_submit(){
+		 		if($('input:checkbox[name="emailAnswer"]').is(':checked') == false) {
+		 			$('input[name="answer"]').val("");
+		 		}
+		 	}
+		 	
 			
 		</script>
 		
