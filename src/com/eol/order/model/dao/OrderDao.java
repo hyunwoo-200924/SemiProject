@@ -198,10 +198,18 @@ public class OrderDao {
 		List<Orders> orderslist = new ArrayList();
 		
 		try {
-			String sql = "SELECT * FROM (SELECT * FROM ORDERS WHERE M_NO="+mNo+") WHERE O_STATUS=\"취소신청\" OR O_STATUS=\"취소완료\" OR O_DELIVERYSTATUS=\"환불신청\" OR O_DELIVERYSTATUS=\"환불완료\"";
-			pstmt = conn.prepareStatement(sql);
 			
+			String cancelAsk = "취소신청";
+			String cancelEnd = "취소완료";
+			String returnAsk = "환불신청";
+			String returnEnd = "환불완료";
+			//"SELECT * FROM (SELECT * FROM ORDERS WHERE M_NO=?) WHERE O_STATUS=? OR O_STATUS=? OR O_DELIVERYSTATUS=? OR O_DELIVERYSTATUS=?";
+			pstmt = conn.prepareStatement(prop.getProperty("selectCancelReturn"));
 			pstmt.setInt(1, mNo);
+			pstmt.setString(2, cancelAsk);
+			pstmt.setString(3, cancelEnd);
+			pstmt.setString(4, returnAsk);
+			pstmt.setString(5, returnEnd);
 			rs=pstmt.executeQuery();
 			while(rs.next()) {
 				Orders o = new Orders();
