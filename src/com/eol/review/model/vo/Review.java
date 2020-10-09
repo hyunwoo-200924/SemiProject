@@ -7,7 +7,6 @@ public class Review {
 	private int pNo;
 	private int oNo;
 	private String rWriter;
-	private String rPw;
 	private String rTitle;
 	private String rContent;
 	private String rPhoto1;
@@ -20,14 +19,13 @@ public class Review {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Review(int rNo, int pNo, int oNo, String rWriter, String rPw, String rTitle, String rContent, String rPhoto1,
+	public Review(int rNo, int pNo, int oNo, String rWriter, String rTitle, String rContent, String rPhoto1,
 			String rPhoto2, String rPhoto3, Date rRdate, int rStarScore) {
 		super();
 		this.rNo = rNo;
 		this.pNo = pNo;
 		this.oNo = oNo;
 		this.rWriter = rWriter;
-		this.rPw = rPw;
 		this.rTitle = rTitle;
 		this.rContent = rContent;
 		this.rPhoto1 = rPhoto1;
@@ -67,14 +65,6 @@ public class Review {
 
 	public void setrWriter(String rWriter) {
 		this.rWriter = rWriter;
-	}
-
-	public String getrPw() {
-		return rPw;
-	}
-
-	public void setrPw(String rPw) {
-		this.rPw = rPw;
 	}
 
 	public String getrTitle() {
@@ -135,8 +125,11 @@ public class Review {
 
 	@Override
 	public String toString() {
-		return "Review [rNo=" + rNo + ", pNo=" + pNo + ", oNo=" + oNo + ", rWriter=" + rWriter + ", rPw=" + rPw
-				+ ", rTitle=" + rTitle + ", rContent=" + rContent + ", rPhoto1=" + rPhoto1 + ", rPhoto2=" + rPhoto2
-				+ ", rPhoto3=" + rPhoto3 + ", rRdate=" + rRdate + ", rStarScore=" + rStarScore + "]";
+		return "Review [rNo=" + rNo + ", pNo=" + pNo + ", oNo=" + oNo + ", rWriter=" + rWriter + ", rTitle=" + rTitle
+				+ ", rContent=" + rContent + ", rPhoto1=" + rPhoto1 + ", rPhoto2=" + rPhoto2 + ", rPhoto3=" + rPhoto3
+				+ ", rRdate=" + rRdate + ", rStarScore=" + rStarScore + "]";
 	}
+
+	
+	
 }

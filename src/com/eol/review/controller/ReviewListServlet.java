@@ -9,13 +9,16 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.eol.member.model.vo.Member;
+import com.eol.qna.model.service.QnaService;
+import com.eol.qna.model.vo.Qna;
 import com.eol.review.model.service.ReviewService;
 import com.eol.review.model.vo.Review;
 
 /**
  * Servlet implementation class NoticeListServlet
  */
-@WebServlet("/review/reviewList")
+@WebServlet("/review/reviewlist")
 public class ReviewListServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -33,6 +36,7 @@ public class ReviewListServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		//paging처리하자
+		int mNo = ((Member)request.getSession().getAttribute("loginMember")).getmNo();
 		
 		int cPage;
 		try {
@@ -43,7 +47,7 @@ public class ReviewListServlet extends HttpServlet {
 			
 		}
 		int numPerPage=5;
-		
+//		List<Qna> list = new QnaService().selectQna(mNo,cPage,numPerPage);
 		List<Review>list=new ReviewService().reviewList(cPage,numPerPage);
 		int totalData=new ReviewService().reviewCount();
 		

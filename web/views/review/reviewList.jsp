@@ -1,9 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ page import="java.util.List,com.eol.review.model.vo.Review"%>
+<%@ page import="com.eol.member.model.vo.Member" %>
 <%
 	List<Review> list=(List)request.getAttribute("list");
 	String pageBar = (String)request.getAttribute("pageBar");
+	Member m = (Member)request.getSession().getAttribute("loginMember");
 %>
 <%@ include file="/views/common/header.jsp"%>
 
@@ -25,7 +27,7 @@
 					&nbsp;
 					<button class="written-reviews-button">작성한 리뷰</button>
 				</div>
-				<div id="reviews-content">
+				<!-- <div id="reviews-content">
 					<div class="reviews-sort">
 						<div class="search-month">
 							<div class="search-radio">
@@ -56,9 +58,43 @@
 							</div>
 						</div>
 					</div>
-				</div>
+				</div> -->
 			</div>
-			<div class="reviews-container">
+			<div class="question_box col3">
+									<p>주문/상품 선택</p>
+									<input type="text" name="o_no" readonly >
+									<input type="button" value="조회" onclick="fn_inquiry();">
+									<div id="inquiry">
+										<div class="inquiry_form">
+											<span>주문번호</span>
+											<span>주문일자</span>
+											<span>상품명</span>
+											<span>수량</span>
+											<span>주문금액</span>
+											<span>선택</span>
+										</div>
+										
+										
+										<!-- <table>
+									        <tr>
+									            <th>주문번호</th>
+									            <th>주문일자</th>
+									            <th>상품명</th>
+									            <th>수량</th>
+									            <th>주문금액</th>
+									            <th>선택</th>
+									        </tr>
+									        <tr>
+									            <td></td>
+									            <td></td>
+									            <td></td>
+									            <td></td>
+									            <td><input type="radio"></td>
+									        </tr>
+									    </table> -->
+									</div>
+								</div>
+			<%-- <div class="reviews-container">
 				<form class="reviews-container-group1" href="" method="post">
 					<table class="reviews-table">
 						<tbody class="reviews-table-items">
@@ -86,18 +122,18 @@
          				   }%>
 						</tbody>
 					</table>
-					<%-- <div id="pageBar">
+					<div id="pageBar">
 						<%=pageBar %>
-					</div> --%>
+					</div>
 
 					<div class="reviews-button-group">
-						<%-- <%if(loginMember!=null){ %> --%>
+						<% if(loginMember!=null){ %>
 						<input type="button" value="작성하기"
 							onclick="location.assign('<%=request.getContextPath()%>/review/reviewWrite')">
-						<%-- <%} %> --%>
+						<%} %>
 					</div>
 				</form>
-			</div>
+			</div> --%>
 			<div class="reviews-guide">
 				<div class="guidecontent">
 					<div class="guide-content-items">
@@ -143,4 +179,27 @@
 		</div>
 	</div>
 </form>
+<script>
+		
+			function fu_questionList(){
+				location.href="<%= request.getContextPath()%>/questionList"
+			}
+			
+			function fn_inquiry(){
+				$("#inquiry").slideToggle("slow");                                                                                                                                                                                                                                                        ㄴ
+				$.ajax({
+					url: "<%= request.getContextPath() %>/OrderList",
+					type: "post",
+					dataType: "json",
+					success: function(data){
+						console.log(data);
+						
+						$("#inquiry").append($("div"))
+						
+						
+					}
+				})
+				
+			}
+		</script>
 <%@ include file="/views/common/footer.jsp"%>
