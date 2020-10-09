@@ -191,5 +191,44 @@ public class OrderDao {
 		
 		return list;
 	}
+	
+	public List<Orders> selectorderCancelReturnList(Connection conn, int mNo){
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		List<Orders> orderslist = new ArrayList();
+		
+		try {
+			String sql = "SELECT * FROM (SELECT * FROM ORDERS WHERE M_NO="+mNo+") WHERE O_STATUS=\"취소신청\" OR O_STATUS=\"취소완료\" OR O_DELIVERYSTATUS=\"환불신청\" OR O_DELIVERYSTATUS=\"환불완료\"";
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setInt(1, mNo);
+			rs=pstmt.executeQuery();
+			while(rs.next()) {
+				Orders o = new Orders();
+				o.setoNo(rs.getInt("o_no"));
+				o.setmNo(rs.getInt("m_no"));
+				o.setoRDate(rs.getDate("o_rdate"));
+				o.setoName(rs.getString("o_name"));
+				o.setoPhone(rs.getString("o_phone"));
+				o.setoAddress(rs.getString("o_address"));
+				o.setoDeliveryDate(rs.getDate("o_deliverydate"));
+				o.setoAmount(rs.getInt("o_amount"));
+				o.setoPayment(rs.getInt("o_payment"));
+				o.setoPw(rs.getString("o_pw"));
+				o.setoStatus(rs.getString("o_status"));
+				o.setoPayDate(rs.getDate("o_paydate"));
+				o.setoAllowDate(rs.getDate("o_allowdate"));
+				o.setoDeliveryStatus(rs.getString("o_deliverystatus"));
+				o.setoDeliveryEDate(rs.getDate("o_deliveryedate"));
+				o.setoPayWays(rs.getString("o_payways"));
+				orderslist.add(o);
+			}
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rs);
+			close(pstmt);
+		}return orderslist;
+	}
 
 }
