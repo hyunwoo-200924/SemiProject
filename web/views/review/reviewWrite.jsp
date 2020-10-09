@@ -1,11 +1,11 @@
-<%-- <%@ page language="java" contentType="text/html; charset=UTF-8"
+<%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ include file="/views/common/header.jsp"%>
 <link rel="stylesheet" type="text/css" 
 href="<%=request.getContextPath() %>/css/review.css">
     <section class="section-writer-container">
     <h1 class="write-title">리뷰 작성하기</h1>
-        <form class="writer--container" action="<%=request.getContextPath()%>/review/reviewWrite" method="post"
+        <form class="writer--container" action="<%=request.getContextPath()%>/review/reviewList" method="post"
         enctype="multipart/form-data">
             <div class="writer-container-items">
                 <dl>
@@ -25,11 +25,10 @@ href="<%=request.getContextPath() %>/css/review.css">
                     </dd>
                 </dl>
             </div>   
-         
-        </form>
-        <div class="btn-group">
+         	<div class="btn-group">
             <button type="submit" name="등록하기" id="updateBtn-write" class="btn">등록하기 </button>  
             </div>
+        </form>
 
     </section>
-<%@ include file="/views/common/footer.jsp"%> --%>
+<%@ include file="/views/common/footer.jsp"%>

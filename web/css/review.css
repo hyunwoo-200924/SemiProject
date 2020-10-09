@@ -1,23 +1,16 @@
 /* .reviews page && notice page */
 #reviews-container{
     display: block;
-    margin-top:20px ;
+    /* margin-top:20px ; */
 
 }
-#reviews-section-group{
+.reviews-section-group{
     margin: 40px;
     display: grid;
     grid-template-columns: repeat(1, 300px 800px);
     grid-template-rows: repeat(300px);
     column-gap: 50px;
     padding: 30px 0;
-}
-.reviews-content-group{
-    width: 300px;
-    height: auto;
-    display: block;
-    align-items: center;
-    /* border-right: 2px solid #000; */
 }
 
 .reviews-h1{
