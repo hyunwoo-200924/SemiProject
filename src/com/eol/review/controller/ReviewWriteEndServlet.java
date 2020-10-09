@@ -42,7 +42,6 @@ public class ReviewWriteEndServlet extends HttpServlet {
 			request.setAttribute("msg", "리뷰작성오류![form:enctype에러관리자에게 문의하세요");
 			request.setAttribute("loc", "/");
 			request.getRequestDispatcher("/views/common/msg.jsp").forward(request, response);
-			System.out.println("여기까지는 가나??");
 			return;
 		}
 	

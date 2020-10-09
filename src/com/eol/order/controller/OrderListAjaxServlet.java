@@ -15,6 +15,7 @@ import org.json.simple.JSONObject;
 
 import com.eol.member.model.vo.Member;
 import com.eol.order.model.service.OrderService;
+import com.eol.order.model.vo.OrderDetail;
 import com.eol.order.model.vo.Orders;
 
 /**
@@ -42,28 +43,35 @@ public class OrderListAjaxServlet extends HttpServlet {
 		
 		List<Orders> list = new OrderService().selectOrder(mNo);
 		
+		JSONArray olist = new JSONArray();
 		
-		
-		JSONArray olist = null;
-		
-	if(!list.isEmpty()) {
+		if(!list.isEmpty()) {//주문내역이 있다면
+				
 			for(Orders o : list) {
-				olist = new JSONArray();
-				
-				JSONObject order = new JSONObject();
-				
-				order.put("oNo", o.getoNo());
-				
-				SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-				order.put("oRDate", sdf.format(o.getoRDate()));
-				order.put("oAmount", o.getoAmount());
-				order.put("oPayment", o.getoPayment());
-				
-				olist.add(order);
+					
+					JSONObject order = new JSONObject();
+					
+					order.put("oNo", o.getoNo());
+					
+					SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+					order.put("oRDate", sdf.format(o.getoRDate()));
+					
+					int oNo = o.getoNo();
+					System.out.println(oNo);
+					String pName = new OrderService().orderdetailList(oNo);
+					System.out.println(pName);
+					int oAmount = o.getoAmount()-1;
+					
+					order.put("orderContent", pName + " 외" + " " + oAmount + "건");
+					order.put("oAmount", o.getoAmount());
+					order.put("oPayment", o.getoPayment());
+					
+					olist.add(order);
+				}
 			}
-		}
+		System.out.println(olist.size());
 		
-		response.getWriter().print(olist);//주문내역이 없다면 olist는 null
+		response.getWriter().print(olist);//주문내역이 없다면 olist.isEmpty()=true
 	}
 
 	/**

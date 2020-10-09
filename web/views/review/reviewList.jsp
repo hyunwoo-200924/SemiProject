@@ -104,30 +104,29 @@
 								<th>작성자</th>
 								<th>작성날짜</th>
 							</tr>
-							<%if(list.isEmpty()){ %>
 							<tr>
-								<td colspan="4">조회된 게시글이 없습니다.</td>
-							</tr>
-							<%}else{ 
-                				for(Review r : list){ %>
-							<tr>
+							<% for(Review r: list){ %>
 								<td><%=r.getrNo() %></td>
-								<td><a
-									href="<%=request.getContextPath() %>/review/reviewView?no=<%=r.getrNo() %>">
-										<%=r.getrTitle() %></a></td>
-								<td><%=r.getrWriter() %></td>
-								<td><%=r.getrRdate()%></td>
-		 					</tr>
-							<%}
-         				   }%>
+								<td><%=r.getrTitle() %></td>
+								<td>3</td>
+								<td>4</td>
+							<%} %>
 						</tbody>
 					</table>
+<<<<<<< HEAD
 					<div id="pageBar">
 						<%=pageBar %>
 					</div>
 
 					<div class="reviews-button-group">
 						<% if(loginMember!=null){ %>
+=======
+							
+							
+							
+							<div class="reviews-button-group">
+						<%-- <%if(loginMember!=null){ %> --%>
+>>>>>>> branch 'master' of https://github.com/hyunwoo-200924/SemiProject.git
 						<input type="button" value="작성하기"
 							onclick="location.assign('<%=request.getContextPath()%>/review/reviewWrite')">
 						<%} %>

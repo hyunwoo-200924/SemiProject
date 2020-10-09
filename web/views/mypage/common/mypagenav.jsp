@@ -8,7 +8,7 @@
 	<ul>
 		<li class="mypage_left_title1">나의 주문정보</li>
 		<li><a href="<%=request.getContextPath() %>/orderViewList.do">주문/배송조회</a></li>
-		<li>취소/반품조회</li>
+		<li><a href="<%=request.getContextPath() %>/orderCancelReturnViewList.do">취소/반품조회</a></li>
 		<li>선물내역</li>
 		<li class="mypage_left_title1">나의혜택</li>
 		<li>쿠폰</li>
