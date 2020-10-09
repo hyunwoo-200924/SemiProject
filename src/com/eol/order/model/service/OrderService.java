@@ -71,4 +71,15 @@ public class OrderService {
 		return list;
 	}
 
+	//각각 주문에 대한 주문디테일로 상품명 가져오기
+	public String orderdetailList(int oNo) {
+		Connection conn = getConnection();
+		
+		String pName = dao.selectodList(conn, oNo);
+		
+		close(conn);
+		
+		return pName;
+	}
+
 }

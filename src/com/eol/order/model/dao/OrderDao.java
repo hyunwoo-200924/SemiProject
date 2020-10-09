@@ -231,4 +231,30 @@ public class OrderDao {
 		}return orderslist;
 	}
 
+	//각각 주문에 대한 주문디테일로 상품명 가져오기
+	public String selectodList(Connection conn, int oNo) {
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String pName = null;
+		
+		try {
+			pstmt = conn.prepareStatement(prop.getProperty("selectpName"));
+			pstmt.setInt(1, oNo);
+			
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				pName = rs.getString("P_NAME");
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rs);
+			close(pstmt);
+		}
+		System.out.println(pName);
+		return pName;
+	}
+
 }

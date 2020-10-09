@@ -139,5 +139,4 @@ public class Review {
 				+ ", rTitle=" + rTitle + ", rContent=" + rContent + ", rPhoto1=" + rPhoto1 + ", rPhoto2=" + rPhoto2
 				+ ", rPhoto3=" + rPhoto3 + ", rRdate=" + rRdate + ", rStarScore=" + rStarScore + "]";
 	}
-	
 }

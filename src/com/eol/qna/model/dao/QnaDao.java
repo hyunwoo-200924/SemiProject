@@ -58,7 +58,7 @@ public class QnaDao {
 		} finally {
 			close(pstmt);
 		}
-		
+		System.out.println(3);
 		return result;
 	}
 

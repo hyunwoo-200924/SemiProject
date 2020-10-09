@@ -78,7 +78,7 @@ public class MemberDao {
 			close(pstmt);
 		}return m;
 	}
-	
+	//회원가입
 	public int insertMember(Connection conn, Member m) {
 		PreparedStatement pstmt = null;
 		int result = 0;

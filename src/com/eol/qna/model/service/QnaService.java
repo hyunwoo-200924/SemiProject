@@ -25,7 +25,7 @@ public class QnaService {
 		else rollback(conn);
 		
 		close(conn);
-		
+		System.out.println(2);
 		return result;
 		
 	}
