@@ -30,6 +30,8 @@ public class CouponDao {
 		int coCount = 0;
 		try {
 			pstmt = conn.prepareStatement(prop.getProperty("couponCount"));
+			//couponCount=SELECT COUNT(*) FROM COUPON WHERE M_NO=?
+			pstmt.setInt(1, mNo);
 			rs = pstmt.executeQuery();
 			if(rs.next()) {
 				coCount = rs.getInt("count(*)");

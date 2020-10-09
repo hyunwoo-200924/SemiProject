@@ -32,7 +32,7 @@ public class PointDao {
 		ResultSet rs = null;
 		Point p = null;
 		try {
-			pstmt = conn.prepareStatement(prop.getProperty("selectPoint"));
+			pstmt = conn.prepareStatement(prop.getProperty("viewPoint"));
 			rs = pstmt.executeQuery();
 			if(rs.next()) {
 				p = new Point();
