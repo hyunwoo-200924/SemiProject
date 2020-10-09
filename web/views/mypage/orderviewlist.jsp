@@ -38,8 +38,13 @@ href="<%=request.getContextPath() %>/css/orderviewlist.css">
 				<option value="12">12월</option>
 			</select> <input type="submit" value="조회">
 		</form>
-		<% for(Orders o : olist){ %>
+		<%if(olist.isEmpty()){ %>
 		<div class="detail">
+			<h1>주문내역이 없습니다!</h1>
+		</div>
+		<%}else{ %>
+		<div class="detail">
+		<% for(Orders o : olist){ %>
 			<div class="orderNumber">
 				<p> <%=o.getoRDate() %> (<%=o.getoNo() %>)</p>
 			</div>
@@ -53,6 +58,7 @@ href="<%=request.getContextPath() %>/css/orderviewlist.css">
 					<p><%=od.getOdproduct().getpPrice() %> / <%=od.getOdQty() %></p>
 				</div>
 			</div>
+			<%} %>
 			<div class="orderButton">
 				<div class="arriveDate">
 					<p><%=o.getoDeliveryStatus() %></p>

@@ -35,6 +35,11 @@
 				<option value="12">12월</option>
 			</select> <input type="submit" value="조회">
 		</form>
+		<%if(olist.isEmpty()){ %>
+		<div class="detail">
+		<h1>취소/반품 내역이 없습니다!</h1>
+		</div>
+		<%}else{ %>
 		<div class="detail">
 		<%for(Orders o : olist) {%>
 			<div class="orderNumber">
@@ -67,6 +72,7 @@
 			</div>
 			<%} %>
 		</div>
+		<%} %>
 	</div>
 </section>
 
