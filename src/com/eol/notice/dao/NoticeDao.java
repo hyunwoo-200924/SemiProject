@@ -51,8 +51,6 @@ public class NoticeDao {
 			close(pstmt);
 		}return n;
 		
-		
-		
 	}
 	public int insertNotice(Connection conn, Notice n) {
 			PreparedStatement pstmt=null;
@@ -60,7 +58,7 @@ public class NoticeDao {
 			try {
 				pstmt=conn.prepareStatement("insertNotice");
 				pstmt.setNString(1, n.getnWriter());
-				pstmt.setNString(2,n.getnTitle());
+				pstmt.setNString(2, n.getnTitle());
 				pstmt.setNString(3, n.getnContent());
 				pstmt.setNString(4, n.getFilePath());
 				pstmt.setDate(5, n.getnRdate());
@@ -72,6 +70,7 @@ public class NoticeDao {
 				close(pstmt);
 			}return result;
 	}
+	
 	public List<Notice> noticeList(Connection conn, int cPage, int numPerPage) {
 		PreparedStatement pstmt=null;
 		ResultSet rs=null;
@@ -101,6 +100,7 @@ public class NoticeDao {
 		}
 		return list;
 	}
+	
 	public int noticeCount(Connection conn) {
 		PreparedStatement pstmt=null;
 		ResultSet rs=null;

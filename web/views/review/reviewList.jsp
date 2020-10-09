@@ -1,44 +1,20 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ page import="java.util.List,com.eol.review.model.vo.Review"%>
+<%
+	List<Review> list=(List)request.getAttribute("list");
+	String pageBar = (String)request.getAttribute("pageBar");
+%>
 <%@ include file="/views/common/header.jsp"%>
-<link rel="stylesheet" type="text/css" 
-href="<%=request.getContextPath() %>/css/review.css">
-<form id="reviews-container" method="post" action="<%=request.getContextPath()%>" enctype="multipart/form-data">
+
+<link rel="stylesheet" type="text/css"
+	href="<%=request.getContextPath() %>/css/review.css">
+	
+<form id="reviews-container" method="post"
+	action="<%=request.getContextPath()%>" enctype="multipart/form-data">
+	
 	<div id="reviews-section-group">
-		<div class="reviews-content-group">
-			<h2 class="reviews-h1">마이페이지</h2>
-			<div class="order">
-				<h3 class="reviews-h3">주문 정보</h3>
-				<ul>
-					<li><a href="">주문/배송 조회</a></li>
-					<li><a href="">취소/반품 조회</a></li>
-					<li><a href="">선물내역</a></li>
-				</ul>
-			</div>
-			<div class="benefit">
-				<h3 class="reviews-h3">혜택</h3>
-				<ul>
-					<li><a href="">쿠폰</a></li>
-					<li><a href="">포인트</a></li>
-				</ul>
-			</div>
-			<div class="acti">
-				<h3 class="reviews-h3">나의 활동</h3>
-				<ul>
-					<li><a href="">리뷰</a></li>
-					<li><a href="">맛취향</a></li>
-					<li><a href="">쇼핑찜</a></li>
-					<li><a href="">1:1 문의</a></li>
-				</ul>
-			</div>
-			<div class="info">
-				<h3 class="reviews-h3">나의 정보</h3>
-				<ul>
-					<li><a href="">개인정보변경</a></li>
-					<li><a href="">회원탈퇴</a></li>
-				</ul>
-			</div>
-		</div>
+		<!-- NAV부분 -->
 		<div class="reviews-right">
 			<div class="reviews-container-group">
 
@@ -92,17 +68,33 @@ href="<%=request.getContextPath() %>/css/review.css">
 								<th>작성자</th>
 								<th>작성날짜</th>
 							</tr>
-							<tr class="reviews-table-group" style="display: none;">
-								<td class="" name="">1</td>
-								<td class="" name="">명절이다</td>
-								<td class="" name="">홍길동</td>
-								<td class="" name="">2020.9.10</td>
+							<%if(list.isEmpty()){ %>
+							<tr>
+								<td colspan="4">조회된 게시글이 없습니다.</td>
 							</tr>
+							<%}else{ 
+                				for(Review r : list){ %>
+							<tr>
+								<td><%=r.getrNo() %></td>
+								<td><a
+									href="<%=request.getContextPath() %>/review/reviewView?no=<%=r.getrNo() %>">
+										<%=r.getrTitle() %></a></td>
+								<td><%=r.getrWriter() %></td>
+								<td><%=r.getrRdate()%></td>
+		 					</tr>
+							<%}
+         				   }%>
 						</tbody>
 					</table>
+					<%-- <div id="pageBar">
+						<%=pageBar %>
+					</div> --%>
+
 					<div class="reviews-button-group">
-						<input type="button" value="검색"> <input type="button"
-							value="작성"> <input type="button" value="수정">
+						<%-- <%if(loginMember!=null){ %> --%>
+						<input type="button" value="작성하기"
+							onclick="location.assign('<%=request.getContextPath()%>/review/reviewWrite')">
+						<%-- <%} %> --%>
 					</div>
 				</form>
 			</div>
@@ -118,7 +110,6 @@ href="<%=request.getContextPath() %>/css/review.css">
 							</dt>
 							<dd>포토 + 텍스트(50자)</dd>
 						</dl>
-
 					</div>
 					<div class="guide-content-items">
 
@@ -129,12 +120,11 @@ href="<%=request.getContextPath() %>/css/review.css">
 							<dd>텍스트(50자)</dd>
 						</dl>
 					</div>
-
 					<ul class="bul_list">
 						<li class="bul_dot"><i class="bullet"></i> 리뷰는 배송 완료 후 30일 이내
 							작성 가능합니다.</li>
-						<li class="bul_dot"><i class="bullet"></i> 포인트는 리뷰 작성
-							10일 이내 정상적으로 게시된 리뷰에 한해 지급됩니다.</li>
+						<li class="bul_dot"><i class="bullet"></i> 포인트는 리뷰 작성 10일 이내
+							정상적으로 게시된 리뷰에 한해 지급됩니다.</li>
 						<li class="bul_dot"><i class="bullet"></i> 포토 리뷰는 300P, 텍스트
 							리뷰는 200P가 지급되며 꿀팁 작성 시 100P가 추가 지급됩니다. (최대 400P 지급)</li>
 						<li class="bul_dot"><i class="bullet"></i> 베스트 리뷰는 선정된 당일 별도로
@@ -150,7 +140,6 @@ href="<%=request.getContextPath() %>/css/review.css">
 					</ul>
 				</div>
 			</div>
-
 		</div>
 	</div>
 </form>
