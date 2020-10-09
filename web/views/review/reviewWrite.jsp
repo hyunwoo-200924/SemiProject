@@ -9,12 +9,7 @@
 href="<%=request.getContextPath() %>/css/review.css">
     <section class="section-writer-container">
     <h1 class="write-title">리뷰 작성하기</h1>
-<<<<<<< HEAD
-        <form class="writer--container" action="<%=request.getContextPath()%>/review/reviewWriteEnd" method="post"
-=======
-        <form class="writer--container" action="<%=request.getContextPath()%>/review/reviewList" method="post"
->>>>>>> branch 'master' of https://github.com/hyunwoo-200924/SemiProject.git
-        enctype="multipart/form-data">
+        <form class="writer--container" action="<%=request.getContextPath()%>/review/reviewList" method="post">
             <div class="writer-container-items">
                 <dl>
                     <dd>
@@ -36,9 +31,7 @@ href="<%=request.getContextPath() %>/css/review.css">
             </div>   
 
         	<div class="btn-group">
-=======
          	<div class="btn-group">
->>>>>>> branch 'master' of https://github.com/hyunwoo-200924/SemiProject.git
             <button type="submit" name="등록하기" id="updateBtn-write" class="btn">등록하기 </button>  
             </div>
         </form>

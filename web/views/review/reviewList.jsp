@@ -126,10 +126,9 @@
 							
 							<div class="reviews-button-group">
 						<%-- <%if(loginMember!=null){ %> --%>
->>>>>>> branch 'master' of https://github.com/hyunwoo-200924/SemiProject.git
 						<input type="button" value="작성하기"
 							onclick="location.assign('<%=request.getContextPath()%>/review/reviewWrite')">
-						<%} %>
+						<%--<%} %>  --%>
 					</div>
 				</form>
 			</div> --%>

@@ -1,15 +1,18 @@
 package com.eol.member.model.dao;
 
+import static com.eol.common.JDBCTemplate.close;
+
 import java.io.FileReader;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Properties;
 
 import com.eol.member.model.vo.Point;
-import static com.eol.common.JDBCTemplate.close;
 
 
 public class PointDao {
@@ -26,29 +29,30 @@ public class PointDao {
 		}
 	}
 	
-	public Point myPoint(Connection conn, int mNo) {
-		
+	public List<Point> selectpointlist(Connection conn, int mNo) {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		Point p = null;
+		List<Point> pointlist = new ArrayList();
+		
 		try {
-			pstmt = conn.prepareStatement(prop.getProperty("viewPoint"));
+			pstmt = conn.prepareStatement(prop.getProperty("selectpointlist"));
+			pstmt.setInt(1, mNo);
 			rs = pstmt.executeQuery();
-			if(rs.next()) {
-				p = new Point();
-				p.setmNO(rs.getInt("m_No"));
-				p.setpGet(rs.getInt("po_get"));
-				p.setpUse(rs.getInt("po_use"));
-				p.setpTotal(rs.getInt("po_total"));
-				p.setpStatus(rs.getString("po_status"));
+			while(rs.next()) {
+				Point p = new Point();
+				p.setmNo(rs.getInt("m_no"));
+				p.setPoStatus(rs.getString("po_status"));
+				p.setPoNo(rs.getInt("po_no"));
+				p.setPoDate(rs.getDate("po_date"));
+				p.setPoPoint(rs.getInt("po_point"));
+				pointlist.add(p);
 			}
 		}catch(SQLException e) {
 			e.printStackTrace();
 		}finally {
 			close(rs);
 			close(pstmt);
-		}return p;
-		
+		}return pointlist;
 		
 	}
 }
