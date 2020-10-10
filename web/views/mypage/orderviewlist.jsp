@@ -46,7 +46,7 @@ href="<%=request.getContextPath() %>/css/orderviewlist.css">
 		<div class="detail">
 		<% for(Orders o : olist){ %>
 			<div class="orderNumber">
-				<p> <%=o.getoRDate() %> (<%=o.getoNo() %>)</p>
+				<p> <%=o.getoPayDate() %> (<%=o.getoNo() %>)</p>
 			</div>
 			<% for(OrderDetail od : o.getDetails()){ %>
 			<div class="productView">
