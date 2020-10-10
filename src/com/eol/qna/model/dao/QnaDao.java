@@ -1,5 +1,7 @@
 package com.eol.qna.model.dao;
 
+import static com.eol.common.JDBCTemplate.close;
+
 import java.io.FileReader;
 import java.io.IOException;
 import java.sql.Connection;
@@ -10,8 +12,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
 
+import com.eol.qna.model.vo.Paging;
 import com.eol.qna.model.vo.Qna;
-import static com.eol.common.JDBCTemplate.close;
 
 public class QnaDao {
 
@@ -27,6 +29,7 @@ public class QnaDao {
 		}
 	}
 
+	//1:1 문의 작성하기
 	public int insertQna(Connection conn, Qna q) {
 		PreparedStatement pstmt = null;
 		int result = 0;
@@ -63,14 +66,20 @@ public class QnaDao {
 	}
 
 	//문의 리스트 가져오기
-	public List<Qna> selectQna(Connection conn, int mNo) {
+	public List<Qna> selectQna(Connection conn, Paging pg, int mNo) {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		List<Qna> list = new ArrayList<Qna>();
 		
 		try {
 			pstmt = conn.prepareStatement(prop.getProperty("selectQnaList"));
+			
+			int startRow = (pg.getCurrentPage() - 1) * pg.getNumPerPage() + 1;
+			int endRow = pg.getCurrentPage() * pg.getNumPerPage();
+			
 			pstmt.setInt(1, mNo);
+			pstmt.setInt(2, startRow);
+			pstmt.setInt(3, endRow);
 			
 			rs = pstmt.executeQuery();
 			
@@ -112,6 +121,31 @@ public class QnaDao {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
+			close(pstmt);
+		}
+		return result;
+	}
+
+	//1:1 문의 총 갯수
+	public int getListCount(Connection conn, int mNo) {
+		//select count(*) from qna where m_no=1;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		int result = 0;
+		
+		try {
+			pstmt = conn.prepareStatement(prop.getProperty("getListCount"));
+			pstmt.setInt(1, mNo);
+			
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				result = rs.getInt(1);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rs);
 			close(pstmt);
 		}
 		return result;

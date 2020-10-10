@@ -1,5 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ page import="com.eol.member.model.vo.Member" %>
+<%
+	Member m = (Member) request.getSession().getAttribute("loginMember");
+%>
+
 <link rel="stylesheet" type="text/css"
 	href="<%=request.getContextPath() %>/css/hayong.css">
 <script src="<%=request.getContextPath() %>/js/jquery-3.5.1.min.js"></script>
@@ -22,4 +27,12 @@
 		<li>개인정보변경</li>
 		<li>회원탈퇴</li>
 	</ul>
+	<%if(m != null && m.getmId().equals("admin")) {%>
+	<h2>게시판 관리</h2>
+	<ul>
+		<li>1:1문의</li>
+		<li>상품문의</li>
+		<li>공지사항</li>
+	</ul>
+	<%} %>
 </nav>

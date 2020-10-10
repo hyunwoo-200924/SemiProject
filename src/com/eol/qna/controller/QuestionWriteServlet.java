@@ -19,7 +19,7 @@ import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 /**
  * Servlet implementation class QuestionListViewServlet
  */
-@WebServlet("/questionWrite")
+@WebServlet("/questionWrite.do")
 public class QuestionWriteServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -52,11 +52,12 @@ public class QuestionWriteServlet extends HttpServlet {
 		
 		
 		Qna q = new Qna();
+		System.out.println(mr.getParameter("category"));
 		q.setqCategory(mr.getParameter("category"));
 		q.setqTitle(mr.getParameter("title"));
 		String oNo = mr.getParameter("o_no");
 		System.out.println(oNo);
-		if(oNo != "") {
+		if(!oNo.equals("")) {
 			q.setoNo(Integer.parseInt(oNo));
 		}
 		q.setqContent(mr.getParameter("content"));
@@ -67,6 +68,7 @@ public class QuestionWriteServlet extends HttpServlet {
 		System.out.println(mr.getParameter("answer"));
 		q.setmNo(1);//아래줄 대신 확인용
 		//q.setmNo(((Member)request.getSession().getAttribute("loginMember")).getmNo());
+		System.out.println("이거다음");
 		System.out.println(q);
 		int result = new QnaService().insertQna(q);
 		

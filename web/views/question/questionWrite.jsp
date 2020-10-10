@@ -65,7 +65,7 @@
 						<p style="padding-left:20px;" onclick="fu_questionList();">1:1 문의 내역</p>
 					</div>
 					<div class="qeustion_context" style="margin-top: 50px;">
-						<form method="post" action="<%= request.getContextPath() %>/questionWrite" enctype="multipart/form-data" onsubmit="return fn_submit();">
+						<form method="post" action="<%= request.getContextPath() %>/questionWrite.do" enctype="multipart/form-data" onsubmit="return fn_submit();">
 							<div class="question_context_form">
 								<div class="question_box col3" style="grid-template-columns: 140px 120px auto;">
 									<p>제목</p>
@@ -165,17 +165,12 @@
 								
 								let result = div.after($("<div>").addClass('inquiry_form').append(o_no, or_date, or_content, o_amount, o_payment, choice));
 							}
-							
-							
 						}
 					}
 				})
 				
 			})
 		
-			function fu_questionList(){
-				location.href="<%= request.getContextPath()%>/questionList"
-			}
 			
 		 	function fn_inquiry(){
 				$("#inquiry").slideToggle("slow");
@@ -192,6 +187,9 @@
 		 		}
 		 	}
 		 	
+			function fu_questionList(){
+				location.href="<%= request.getContextPath()%>/questionList"
+			}
 			
 		</script>
 		

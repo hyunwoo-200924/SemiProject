@@ -175,7 +175,7 @@ public class OrderDao {
 			while(rs.next()) {
 				Orders o = new Orders();
 				o.setoNo(rs.getInt("o_no"));
-				o.setoRDate(rs.getDate("o_rdate"));
+				o.setoRDate(rs.getDate("O_PAYDATE"));
 				o.setoAmount(rs.getInt("O_AMOUNT"));
 				o.setoPayment(rs.getInt("O_PAYMENT"));
 				
