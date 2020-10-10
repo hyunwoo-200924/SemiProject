@@ -39,10 +39,16 @@ public class CartIntoPayServlet extends HttpServlet {
 			List<Cart> list = new CartService().cartintopay(m.getmNo());
 			
 			for(Cart c : list ) {
-				Product p = new CartService().cartProduct(c);
+				Product p = new CartService().cartProduct(c.getpNo());
 				c.setProduct(p);
 			}
+			
+			request.setAttribute("cartList", list);
+			
+		}else {
+			
 		}
+		request.getRequestDispatcher("views/order/orderpay.jsp").forward(request, response);
 	}
 
 	/**

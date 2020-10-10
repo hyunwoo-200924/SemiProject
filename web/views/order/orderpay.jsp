@@ -1,10 +1,17 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     
+<%@ page import="java.util.List, com.eol.cart.model.vo.Cart, com.eol.product.model.vo.Product, com.eol.member.model.vo.*" %>
+    
 <%@ include file="/views/common/header.jsp" %>
 
 <link rel="stylesheet" type="text/css" 
 href="<%=request.getContextPath() %>/css/orderpay.css">
+
+<%
+	Member m = (Member)request.getSession().getAttribute("loginMember");
+	List<Cart> clist = (List)request.getAttribute("cartList");
+%>
 
 <div class="present-section-container-block">
     <h1>결제하기</h1>
@@ -19,16 +26,17 @@ href="<%=request.getContextPath() %>/css/orderpay.css">
                         <div class="present-order-person">
                             <h3 class="info-title">주문자</h3>
                             <label class="order-person-group">
-                                이름 <input type="text" name="">
+                                <%= m.getmName() %> <input type="text" name="">
                                 
                             </label>
                             <label class="order-person-group">
-                                연락처<input type="text" name="">
+                                <%=m.getmPhone() %><input type="text" name="">
                                 
                             </label>
                         </div>
                     </div>
                 </div>
+        
                 <!-- 배송지 주소 입력 블록 -->
                 <div class="present-section-group2">
                     <div class="present-items-group2-2">
@@ -57,14 +65,22 @@ href="<%=request.getContextPath() %>/css/orderpay.css">
                 
                 <div class="present-section-group4">
                     <div class="present-items-group4-4">
-                        <h3 class="info-title">도착예정날짜</h3>
+                    <%for(Cart c : clist) { %>
+                        <h3 class="info-title"><%=c.getoDeliveryEDate() %>도착예정</h3>
                         <div class="present-items-imggroup">
-                            <img src="D:\programwork\semiProject\img\oyakkodong.jpg" alt="상품이미지" class="items-img" style="width:200px;height:150px">
+                            <img src="<%=request.getContextPath() %>/images/product/<%=c.getProduct().getpImage1() %>" alt="상품이미지" class="items-img" style="width:200px;height:150px">
                             <div class="present-items-img-text">
-                                <p class=preset-items-title>상품명:<span class="items-payitems">맛난음식</span></p>
-                                <p class="present-items-title">가격:<span class="items-payitems">0<span>원</span></p>
+                                <p class=preset-items-title>상품명:<span class="items-payitems"><%=c.getProduct().getpName() %></span></p>
+                                <p class="present-items-title">가격:<span class="items-payitems"><%=c.getProduct().getpPrice() %><span>원</span></p>
+                                <p class="present-items-title">수량:<span class="items-payitems"><%=c.getcQty() %></span></p>
                             </div>
                         </div>
+                       	
+                            <div>
+                            <%int total = c.getProduct().getpPrice()*c.getcQty();%>
+                            	<p>총액 : <%=total %></p>
+                            </div>
+                        <%} %>
                     </div>
                 </div>
 
@@ -75,7 +91,7 @@ href="<%=request.getContextPath() %>/css/orderpay.css">
                             <!-- 할인 포인트및 할인 적용금액 자바스크립트 -->
                             <p>쿠폰 적용</p>
                             
-                                <p class="right"><span >1000</span><span>원</span></p>
+                                <p class="right"><span >2000</span><span>원 할인쿠폰</span></p>
 
                         </div>
                         <div class="present-items">

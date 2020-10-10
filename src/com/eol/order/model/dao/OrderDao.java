@@ -29,6 +29,7 @@ public class OrderDao {
 		}
 	}
 	
+	//비회원 주문조회
 	public Orders nMOrderList(Connection conn, String nMONum, String pw) {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -43,7 +44,6 @@ public class OrderDao {
 				o = new Orders();
 				o.setoNo(rs.getInt("o_no"));
 				o.setmNo(rs.getInt("m_no"));
-				o.setoRDate(rs.getDate("o_rdate"));
 				o.setoName(rs.getString("o_name"));
 				o.setoPhone(rs.getString("o_phone"));
 				o.setoAddress(rs.getString("o_address"));
@@ -53,10 +53,10 @@ public class OrderDao {
 				o.setoPw(rs.getString("o_pw"));
 				o.setoStatus(rs.getString("o_status"));
 				o.setoPayDate(rs.getDate("o_paydate"));
-				o.setoAllowDate(rs.getDate("o_allowdate"));
 				o.setoDeliveryStatus(rs.getString("o_deliverystatus"));
 				o.setoDeliveryEDate(rs.getDate("o_deliveryedate"));
 				o.setoPayWays(rs.getString("o_payways"));
+				
 			}
 		}catch(SQLException e) {
 			e.printStackTrace();
@@ -80,7 +80,6 @@ public class OrderDao {
 				Orders o = new Orders();
 				o.setoNo(rs.getInt("o_no"));
 				o.setmNo(rs.getInt("m_no"));
-				o.setoRDate(rs.getDate("o_rdate"));
 				o.setoName(rs.getString("o_name"));
 				o.setoPhone(rs.getString("o_phone"));
 				o.setoAddress(rs.getString("o_address"));
@@ -90,7 +89,6 @@ public class OrderDao {
 				o.setoPw(rs.getString("o_pw"));
 				o.setoStatus(rs.getString("o_status"));
 				o.setoPayDate(rs.getDate("o_paydate"));
-				o.setoAllowDate(rs.getDate("o_allowdate"));
 				o.setoDeliveryStatus(rs.getString("o_deliverystatus"));
 				o.setoDeliveryEDate(rs.getDate("o_deliveryedate"));
 				o.setoPayWays(rs.getString("o_payways"));
@@ -175,7 +173,7 @@ public class OrderDao {
 			while(rs.next()) {
 				Orders o = new Orders();
 				o.setoNo(rs.getInt("o_no"));
-				o.setoRDate(rs.getDate("O_PAYDATE"));
+				o.setoPayDate(rs.getDate("o_paydate"));
 				o.setoAmount(rs.getInt("O_AMOUNT"));
 				o.setoPayment(rs.getInt("O_PAYMENT"));
 				
@@ -192,6 +190,7 @@ public class OrderDao {
 		return list;
 	}
 	
+	//취소/환불 조회
 	public List<Orders> selectorderCancelReturnList(Connection conn, int mNo){
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -215,7 +214,6 @@ public class OrderDao {
 				Orders o = new Orders();
 				o.setoNo(rs.getInt("o_no"));
 				o.setmNo(rs.getInt("m_no"));
-				o.setoRDate(rs.getDate("o_rdate"));
 				o.setoName(rs.getString("o_name"));
 				o.setoPhone(rs.getString("o_phone"));
 				o.setoAddress(rs.getString("o_address"));
@@ -225,7 +223,6 @@ public class OrderDao {
 				o.setoPw(rs.getString("o_pw"));
 				o.setoStatus(rs.getString("o_status"));
 				o.setoPayDate(rs.getDate("o_paydate"));
-				o.setoAllowDate(rs.getDate("o_allowdate"));
 				o.setoDeliveryStatus(rs.getString("o_deliverystatus"));
 				o.setoDeliveryEDate(rs.getDate("o_deliveryedate"));
 				o.setoPayWays(rs.getString("o_payways"));

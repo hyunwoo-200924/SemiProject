@@ -6,24 +6,23 @@ import java.util.List;
 
 public class Orders {
 	
-	private int oNo;
-	private int mNo;
-	private Date oRDate;
-	private String oName;
-	private String oPhone;
-	private String oAddress;
-	private Date oDeliveryDate;
-	private int oAmount;
-	private int oPayment;
-	private String oPw;
-	private String oStatus;
-	private Date oPayDate;
-	private Date oAllowDate;
-	private String oDeliveryStatus;
-	private Date oDeliveryEDate;
-	private String oPayWays;
+	private int oNo;//주문번호 1회 주문결제 할 때 부여되는 고유번호
+	private int mNo;//회원이 주문할때 회원번호
+	private String oName;//주문자 이름
+	private String oPhone;//받는사람 연락처
+	private String oAddress;//받는사람 주소
+	private Date oDeliveryDate;//배송시작날짜
+	private int oAmount;//주문하는 상품의 종류 수
+	private int oPayment;//결제할 금액(배송비까지 포함)
+	private String oPw;//비회원 주문 비밀번호 - 회원은 null
+	private String oStatus;//결제 상태 : 결제완료, 취소신청, 취소완료
+	private Date oPayDate;//결제하기 완료 날짜
+	private String oDeliveryStatus;//배송상태 : 배송준비중, 배송중, 배송완료, 환불신청, 환불완료
+	private Date oDeliveryEDate;//배송완료날짜
+	private String oPayWays;//결제수단
 	private List<OrderDetail> details=new ArrayList();
 	private String orderContent; //"사과 외 3건" 문구담으려고 만든 변수
+	private String oToName;//받는사람 이름
 	
 	
 	public Orders() {
@@ -31,16 +30,15 @@ public class Orders {
 	}
 
 
-	
 
 
-	public Orders(int oNo, int mNo, Date oRDate, String oName, String oPhone, String oAddress, Date oDeliveryDate,
-			int oAmount, int oPayment, String oPw, String oStatus, Date oPayDate, Date oAllowDate,
-			String oDeliveryStatus, Date oDeliveryEDate, String oPayWays, List<OrderDetail> details) {
+
+	public Orders(int oNo, int mNo, String oName, String oPhone, String oAddress, Date oDeliveryDate, int oAmount,
+			int oPayment, String oPw, String oStatus, Date oPayDate, String oDeliveryStatus, Date oDeliveryEDate,
+			String oPayWays, List<OrderDetail> details, String orderContent, String oToName) {
 		super();
 		this.oNo = oNo;
 		this.mNo = mNo;
-		this.oRDate = oRDate;
 		this.oName = oName;
 		this.oPhone = oPhone;
 		this.oAddress = oAddress;
@@ -50,11 +48,12 @@ public class Orders {
 		this.oPw = oPw;
 		this.oStatus = oStatus;
 		this.oPayDate = oPayDate;
-		this.oAllowDate = oAllowDate;
 		this.oDeliveryStatus = oDeliveryStatus;
 		this.oDeliveryEDate = oDeliveryEDate;
 		this.oPayWays = oPayWays;
 		this.details = details;
+		this.orderContent = orderContent;
+		this.oToName = oToName;
 	}
 
 
@@ -66,15 +65,9 @@ public class Orders {
 	}
 
 
-
-
-
 	public void setoNo(int oNo) {
 		this.oNo = oNo;
 	}
-
-
-
 
 
 	public int getmNo() {
@@ -82,31 +75,9 @@ public class Orders {
 	}
 
 
-
-
-
 	public void setmNo(int mNo) {
 		this.mNo = mNo;
 	}
-
-
-
-
-
-	public Date getoRDate() {
-		return oRDate;
-	}
-
-
-
-
-
-	public void setoRDate(Date oRDate) {
-		this.oRDate = oRDate;
-	}
-
-
-
 
 
 	public String getoName() {
@@ -114,15 +85,9 @@ public class Orders {
 	}
 
 
-
-
-
 	public void setoName(String oName) {
 		this.oName = oName;
 	}
-
-
-
 
 
 	public String getoPhone() {
@@ -130,15 +95,9 @@ public class Orders {
 	}
 
 
-
-
-
 	public void setoPhone(String oPhone) {
 		this.oPhone = oPhone;
 	}
-
-
-
 
 
 	public String getoAddress() {
@@ -146,15 +105,9 @@ public class Orders {
 	}
 
 
-
-
-
 	public void setoAddress(String oAddress) {
 		this.oAddress = oAddress;
 	}
-
-
-
 
 
 	public Date getoDeliveryDate() {
@@ -162,15 +115,9 @@ public class Orders {
 	}
 
 
-
-
-
 	public void setoDeliveryDate(Date oDeliveryDate) {
 		this.oDeliveryDate = oDeliveryDate;
 	}
-
-
-
 
 
 	public int getoAmount() {
@@ -178,15 +125,9 @@ public class Orders {
 	}
 
 
-
-
-
 	public void setoAmount(int oAmount) {
 		this.oAmount = oAmount;
 	}
-
-
-
 
 
 	public int getoPayment() {
@@ -194,15 +135,9 @@ public class Orders {
 	}
 
 
-
-
-
 	public void setoPayment(int oPayment) {
 		this.oPayment = oPayment;
 	}
-
-
-
 
 
 	public String getoPw() {
@@ -210,15 +145,9 @@ public class Orders {
 	}
 
 
-
-
-
 	public void setoPw(String oPw) {
 		this.oPw = oPw;
 	}
-
-
-
 
 
 	public String getoStatus() {
@@ -226,15 +155,9 @@ public class Orders {
 	}
 
 
-
-
-
 	public void setoStatus(String oStatus) {
 		this.oStatus = oStatus;
 	}
-
-
-
 
 
 	public Date getoPayDate() {
@@ -242,31 +165,9 @@ public class Orders {
 	}
 
 
-
-
-
 	public void setoPayDate(Date oPayDate) {
 		this.oPayDate = oPayDate;
 	}
-
-
-
-
-
-	public Date getoAllowDate() {
-		return oAllowDate;
-	}
-
-
-
-
-
-	public void setoAllowDate(Date oAllowDate) {
-		this.oAllowDate = oAllowDate;
-	}
-
-
-
 
 
 	public String getoDeliveryStatus() {
@@ -274,15 +175,9 @@ public class Orders {
 	}
 
 
-
-
-
 	public void setoDeliveryStatus(String oDeliveryStatus) {
 		this.oDeliveryStatus = oDeliveryStatus;
 	}
-
-
-
 
 
 	public Date getoDeliveryEDate() {
@@ -290,15 +185,9 @@ public class Orders {
 	}
 
 
-
-
-
 	public void setoDeliveryEDate(Date oDeliveryEDate) {
 		this.oDeliveryEDate = oDeliveryEDate;
 	}
-
-
-
 
 
 	public String getoPayWays() {
@@ -306,16 +195,9 @@ public class Orders {
 	}
 
 
-
-
-
 	public void setoPayWays(String oPayWays) {
 		this.oPayWays = oPayWays;
 	}
-
-
-
-
 
 
 	public List<OrderDetail> getDetails() {
@@ -323,16 +205,10 @@ public class Orders {
 	}
 
 
-
-
-
 	public void setDetails(List<OrderDetail> details) {
 		this.details = details;
 	}
 
-
-
-	
 
 	public String getOrderContent() {
 		return orderContent;
@@ -343,6 +219,22 @@ public class Orders {
 		this.orderContent = orderContent;
 	}
 
+
+
+
+
+	public String getoToName() {
+		return oToName;
+	}
+
+
+
+
+
+	public void setoToName(String oToName) {
+		this.oToName = oToName;
+	}
+	
 	
 
 

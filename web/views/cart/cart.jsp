@@ -40,6 +40,7 @@
                 <!-- 선택상품클릭시 선택상품만 전체선택 -->
                <button class="btn">전체선택</button>
                <button class="btn">선택삭제</button>
+               <!-- 상품 결제는 무조건 배송일이 같은 날로 선택되어 있는 상품끼리만 한번에 묶어서 결제 가능 -->
                <button class="btn" onclick="location.replace('<%=request.getContextPath()%>/cartintopay.do')">상품결제</button>
             </div>
     </section>
