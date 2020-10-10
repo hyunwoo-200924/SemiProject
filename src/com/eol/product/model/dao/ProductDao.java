@@ -165,52 +165,62 @@ public class ProductDao {
 		PreparedStatement pstmt=null;
 		ResultSet rs=null;
 		Product p=null;
+		if(pNo==0) {
+			System.out.println("값이 없습니다.");
+		}else {
+			System.out.println("값이 있고 다른문제입니다.");
+		}
 		try {
 			pstmt=conn.prepareStatement(prop.getProperty("selectOneProduct"));
 			pstmt.setInt(1, pNo);
 			rs=pstmt.executeQuery();
 			if(rs.next()) {
 				p=new Product();
-				p.setpNo(rs.getInt("pNo"));
-				p.setpName(rs.getNString("pName"));
-				p.setpPrice(rs.getInt("pPrice"));
-				p.setpDiscount(rs.getInt("pDiscount"));
-				p.setpStock(rs.getInt("pStock"));
-				p.setpServing(rs.getInt("pServing"));
-				p.setpCooktime(rs.getInt("pCooktime"));
-				p.setpReadytime(rs.getInt("pReadytime"));
-				p.setpTaste(rs.getInt("pTaste"));
+				p.setpNo(rs.getInt("p_No"));
+				p.setpName(rs.getNString("p_Name"));
+				p.setpPrice(rs.getInt("p_Price"));
+				p.setpDiscount(rs.getInt("p_Discount"));
+				p.setpStock(rs.getInt("p_Stock"));
+				p.setpServing(rs.getInt("p_Serving"));
+				p.setpCooktime(rs.getInt("p_Cooktime"));
+				p.setpReadytime(rs.getInt("p_Readytime"));
+				p.setpTaste(rs.getInt("p_Taste"));
 				
-				p.setpImage1(rs.getNString("pImage1"));
-				p.setpImage2(rs.getNString("pImage2"));
-				p.setpImage3(rs.getNString("pImage3"));
-				p.setpVideo(rs.getNString("pVideo"));
+				p.setpImage1(rs.getNString("p_Image1"));
+				p.setpImage2(rs.getNString("p_Image2"));
+				p.setpImage3(rs.getNString("p_Image3"));
+				p.setpVideo(rs.getNString("p_Video"));
 				
-				p.setpDetailImage1(rs.getNString("pDetailImage1"));
-				p.setpDetailImage2(rs.getNString("pDetailImage2"));
-				p.setpDetailImage3(rs.getNString("pDetailImage3"));
-				p.setpDetailTitle1(rs.getNString("pDetailTitle1"));
-				p.setpDetailTitle2(rs.getNString("pDetailTitle2"));
-				p.setpDetailMain(rs.getNString("pDetailMain"));
+				p.setpDetailImage1(rs.getNString("p_DetailImage1"));
+				p.setpDetailImage2(rs.getNString("p_DetailImage2"));
+				p.setpDetailImage3(rs.getNString("p_DetailImage3"));
+				p.setpDetailTitle1(rs.getNString("p_DetailTitle1"));
+				p.setpDetailTitle2(rs.getNString("p_DetailTitle2"));
+				p.setpDetailMain(rs.getNString("p_DetailMain"));
 				
-				p.setpDetailContent1(rs.getNString("pDetailContent1"));
-				p.setpDetailContent2(rs.getNString("pDetailContent2"));
+				p.setpDetailContent1(rs.getNString("p_DetailContent1"));
+				p.setpDetailContent2(rs.getNString("p_DetailContent2"));
 				
-				p.setpRecipeImage1(rs.getNString("pRecipeImage1"));
-				p.setpRecipeImage2(rs.getNString("pRecipeImage2"));
-				p.setpRecipeImage3(rs.getNString("pRecipeImage3"));
-				p.setpRecipeImage4(rs.getNString("pRecipeImage4"));
+				p.setpRecipeImage1(rs.getNString("p_RecipeImage1"));
+				p.setpRecipeImage2(rs.getNString("p_RecipeImage2"));
+				p.setpRecipeImage3(rs.getNString("p_RecipeImage3"));
+				p.setpRecipeImage4(rs.getNString("p_RecipeImage4"));
 				
-				p.setpRecipeContent1(rs.getNString("pRecipeContent1"));
-				p.setpRecipeContent2(rs.getNString("pRecipeContent2"));
-				p.setpRecipeContent3(rs.getNString("pRecipeContent3"));
-				p.setpRecipeContent4(rs.getNString("pRecipeContent4"));
+				p.setpRecipeContent1(rs.getNString("p_RecipeContent1"));
+				p.setpRecipeContent2(rs.getNString("p_RecipeContent2"));
+				p.setpRecipeContent3(rs.getNString("p_RecipeContent3"));
+				p.setpRecipeContent4(rs.getNString("p_RecipeContent4"));
+				p.setpRdate(rs.getDate("p_Rdate"));
+				p.setpHit(rs.getInt("p_Hit"));
+				p.setpSell(rs.getInt("p_Sell"));
+				
 			}
 		}catch(SQLException e) {
 			e.printStackTrace();
 		}finally {
 			close(rs);
 			close(pstmt);
+			
 		}
 		return p;
 	}
@@ -253,6 +263,7 @@ public class ProductDao {
 			pstmt.setString(26,p.getpRecipeContent2());
 			pstmt.setString(27,p.getpRecipeContent3());
 			pstmt.setString(28,p.getpRecipeContent4());
+			
 		
 			result=pstmt.executeUpdate();
 		}catch(SQLException e) {
@@ -266,24 +277,22 @@ public class ProductDao {
 
 	public int deleteProduct(Connection conn, int pNo) {
 		PreparedStatement pstmt=null;
-		ResultSet rs=null;
 		int result=0;
+		System.out.println(pNo);
 		try {
 			pstmt=conn.prepareStatement(prop.getProperty("deleteProduct"));
 			pstmt.setInt(1, pNo);
-			rs=pstmt.executeQuery();
-			if(rs.next()) {
-				result=rs.getInt(1);
-			}
+			System.out.println(pNo);
+			result=pstmt.executeUpdate();
+		
 			
 			}catch (SQLException e) {
 			e.printStackTrace();
 		}finally {
-			close(rs);
 			close(pstmt);
+			System.out.println("result: "+result);
+			System.out.println();
 		}
-			
-		
 		return result;
 	}
 }

@@ -21,6 +21,7 @@ public class ProductService {
 		Connection conn=getConnection();
 		List<Product> list=dao.productList(conn, cPage,numPerPage);
 		close(conn);
+		System.out.println("list 갓다옴");
 		return list;
 	}
 	
@@ -49,11 +50,13 @@ public class ProductService {
 		Connection conn=getConnection();
 		Product p=dao.selectOneProduct(conn,pNo);
 		close(conn);
+		System.out.println("번호잇는지 확인하고옴");
 		return p;
 	}
 
 	public int updateProduct(Product p) {
 		Connection conn=getConnection();
+		System.out.println("수정하러감");
 		int result=dao.updateProduct(conn,p);
 		if(result>0) commit(conn);
 		else rollback(conn);
@@ -64,6 +67,10 @@ public class ProductService {
 	public int deleteProduct(int pNo) {
 		Connection conn=getConnection();
 		int result=dao.deleteProduct(conn, pNo);
+		if(result>0)commit(conn);
+		else rollback(conn);
+		close(conn);
+		System.out.println("서비스지나옴");
 		return result;
 	}
 

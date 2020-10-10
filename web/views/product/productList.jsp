@@ -10,24 +10,9 @@
 %>
 
 <script>
-	function deleteProduct(){
-		$.ajax({
-			url:"<%=request.getContextPath()%>/product/productDelete",
-			type: "post",
-			data:{pw:$("#pNo").val()},
-			success: function(data){
-				console.log(data);
-				if(data == "true"){
-					let msg = confirm('정말로 삭제하시겟습니까?');
-					if(msg){
-						location.href="<% request.getContextPath()%>/product/productDelete"
-					}
-				}
-			
-		})
-		};
-
-
+function updateProduct(){
+	$("#updateProduct").attr("action","<%=request.getContextPath()%>/product/productUpdate").submit();
+}
 </script>
 <%@ include file="/views/common/header.jsp"%>
 
@@ -99,7 +84,7 @@
             
                             <div id="pNo"><%=p.getpNo()%></div>
       		<input type="submit" class="product-register" id="updateProduct" onclick="updateProduct()" value="수정">
-      		<input type="submit" class="product-register" id="deleteProduct" onclick="deleteProduct()" value="삭제">
+      		<input type="button" class="product-register" id="deleteProduct" onclick="location.assign('<%=request.getContextPath() %>/product/productDelete?pNo=<%=p.getpNo() %>')" value="삭제">
               <div class="menu-img-group">
                 <div class="menu-img-group-wrap">
                     <div class="menu--img-group2">
@@ -124,7 +109,7 @@
                                     </ul>
                                 </a>
                                 <!-- 리뷰페이지로 ~ -->
-                                <a  href="<%=request.getContextPath() %>/review/review.jsp" class="menu--text-group">
+                                <a  href="<%=request.getContextPath() %>/review/review" class="menu--text-group">
                                     <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
 
                                    
@@ -144,7 +129,7 @@
                                 <img src="<%=request.getContextPath() %>/images/product/hart40px.jpg" alt="찜" class="hart--img" onclick="hart();"></img>
                             </a>
                             <!-- 장바구니페이지 -->
-                            <a href="<%=request.getContextPath() %>/views/cart/cart.jsp">
+                            <a href="<%=request.getContextPath() %>/cartView.do">
 
                                 <img src="<%=request.getContextPath() %>/images/product/cart40px.jpg" alt="장바구니" class="cart--img" onclick="cartInsert()"></img>
                             </a>

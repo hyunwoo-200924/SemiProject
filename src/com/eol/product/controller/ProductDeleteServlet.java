@@ -34,25 +34,37 @@ public class ProductDeleteServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		
-		int pNo=Integer.parseInt(request.getParameter("pNo"));
-	int pNo1	=((Product)request.getAttribute("productList")).getpNo();
-	int result=new ProductService().deleteProduct(pNo1);
+		int pNo = Integer.parseInt(request.getParameter("pNo"));
+		if(request.getParameter("pNo").equals("")) {
+			   System.out.println(pNo);
+			      }
+		
+//		if(pNo==(p.getpNo())) {
+//			
+//		}
+		System.out.println("값이 잇음");
+		int result=new ProductService().deleteProduct(pNo);
+		System.out.println("받아옴");
 	
 	String msg="";
 	String loc="";
 	String path="";
 	if(result>0) {
 		//선택한 공지사항이 삭제됨.
-		msg="조회한 상품이 존재하지 않습니다.";
+		msg="선택한 상품이 삭제되었습니다.";
 		loc="/product/productList";
 		path="/views/common/msg.jsp";
 		request.setAttribute("msg",msg);
 		request.setAttribute("loc",loc);
 	}else {
-		request.setAttribute("path",path);
-		path="/views/product/productList.jsp";
+		System.out.println("값이 0이니깐  다오문제냐?실패냐");
+		System.out.println(result);
+		request.setAttribute("result",result);
+		msg="상품을 삭제에 실패하엿습니다..";
+		path="/view/product/productList.jsp";
 	}
-	request.getRequestDispatcher(path).forward(request, response);
+	System.out.println("경로실패냐");
+	request.getRequestDispatcher(loc).forward(request, response);
 	
 	}
 	

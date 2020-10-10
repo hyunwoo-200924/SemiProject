@@ -32,12 +32,19 @@ public class ProductViewServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		int pNo=Integer.parseInt(request.getParameter("pNo"));
-	
+		
+		if(pNo==0) {
+			System.out.println("값을 가져와야합니다");
+			
+		}else {
+			System.out.println("값이 있네요");
+		}
 		Product p=new ProductService().selectOneProduct(pNo);
 		
 		String msg="";
 		String loc="";
 		String path="";
+		System.out.println("조건문 전입니다.");
 		if(p==null) {
 			//선택한 공지사항이 삭제됨.
 			msg="선택한 공지사항이 존재하지 않습니다.";
@@ -46,8 +53,9 @@ public class ProductViewServlet extends HttpServlet {
 			request.setAttribute("msg",msg);
 			request.setAttribute("loc",loc);
 		}else {
-			request.setAttribute("product",p);
-			path="/views/product/ProductMenu.jsp";
+			System.out.println("거의다왓어요");
+			request.setAttribute("Product",p);//object, 변수명
+			path="/views/product/productView.jsp";
 		}
 		request.getRequestDispatcher(path).forward(request, response);
 		
