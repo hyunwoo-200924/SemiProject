@@ -78,6 +78,8 @@
                 
             <%for(Product p : list) {%>
             
+      		<input type="submit" class="product-register" id="updateProduct" onclick="location.replace('<%=request.getContextPath()%>/product/productUpdate')" value="수정">
+      		<input type="submit" class="product-register" id="updateProduct" src="<%=request.getContextPath()%>/product/productDelete"value="삭제">
               <div class="menu-img-group">
                 <div class="menu-img-group-wrap">
                     <div class="menu--img-group2">
