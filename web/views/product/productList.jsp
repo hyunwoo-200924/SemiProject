@@ -9,11 +9,6 @@
 	String pageBar=(String)request.getAttribute("pageBar");
 %>
 
-<script>
-function updateProduct(){
-	$("#updateProduct").attr("action","<%=request.getContextPath()%>/product/productUpdate").submit();
-}
-</script>
 <%@ include file="/views/common/header.jsp"%>
 
 
@@ -83,7 +78,7 @@ function updateProduct(){
             <%for(Product p : list) {%>
             
                             <div id="pNo"><%=p.getpNo()%></div>
-      		<input type="submit" class="product-register" id="updateProduct" onclick="updateProduct()" value="수정">
+      		<input type="submit" class="product-register" id="updateProduct" onclick="location.assign('<%=request.getContextPath() %>/product/productUpdate?pNo=<%=p.getpNo() %>')" value="수정">
       		<input type="button" class="product-register" id="deleteProduct" onclick="location.assign('<%=request.getContextPath() %>/product/productDelete?pNo=<%=p.getpNo() %>')" value="삭제">
               <div class="menu-img-group">
                 <div class="menu-img-group-wrap">

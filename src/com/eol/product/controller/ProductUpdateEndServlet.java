@@ -18,14 +18,14 @@ import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 /**
  * Servlet implementation class ProductUpdateServlet
  */
-@WebServlet("/product/productUpdate")
-public class ProductUpdateServlet extends HttpServlet {
+@WebServlet("/product/productUpdateEnd")
+public class ProductUpdateEndServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ProductUpdateServlet() {
+    public ProductUpdateEndServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -101,27 +101,25 @@ public class ProductUpdateServlet extends HttpServlet {
 		p.setpRecipeContent3(mr.getParameter("pRecipeContent3"));
 		p.setpRecipeContent4(mr.getParameter("pRecipeContent4"));
 	
+		System.out.println("p-dao가기전:여기오류??"+p);
 		int result=new ProductService().updateProduct(p);
-		
+		System.out.println("result오류??"+result);
 		String msg="";
 		String loc="";
 		String path1="";
 		if(result>0) {
 			//선택한 공지사항이 삭제됨.
 			msg="상품이 수정되었습니다";
-			loc="/product/productList";
-			path1="/views/common/msg.jsp";
+			
 			request.setAttribute("msg",msg);
-			request.setAttribute("loc",loc);
-		}else {
-			request.setAttribute("result",result);
-			path1="/views/product/productRegister.jsp";
-		}
-		request.getRequestDispatcher(path1).forward(request, response);
 		
-		request.setAttribute("msg", msg);
-		request.setAttribute("loc","/product/productList.jsp");
-		request.getRequestDispatcher("/views/common/msg.jsp").forward(request, response);
+			response.sendRedirect(request.getContextPath()+"/views/product/productUpdate.jsp");
+		}else {
+			msg="상품수정이 실패하였습니다.";
+			request.setAttribute("result",result);
+			path1="/views/product/productUpdate.jsp";
+		}
+	
 	
 	}
 

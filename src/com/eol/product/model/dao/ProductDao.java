@@ -228,6 +228,7 @@ public class ProductDao {
 	public int updateProduct(Connection conn, Product p) {
 		PreparedStatement pstmt=null;
 		int result=0;
+		System.out.println("p:가 오류냐?"+p);
 		try {
 			pstmt=conn.prepareStatement(prop.getProperty("updateProduct"));
 			pstmt.setString(1,p.getpName());
@@ -264,13 +265,14 @@ public class ProductDao {
 			pstmt.setString(27,p.getpRecipeContent3());
 			pstmt.setString(28,p.getpRecipeContent4());
 			
-		
+		System.out.println("받아온 pstmt:가 오류냐?"+pstmt);
 			result=pstmt.executeUpdate();
 		}catch(SQLException e) {
 			e.printStackTrace();
 			System.out.println("업데이트오류");
 		}finally {
 			close(pstmt);
+			System.out.println("result값이 얼마냐:"+result);
 		}
 		return result;
 	}
