@@ -127,7 +127,7 @@
     	});
     	//상품목록이동
     	$("#gotoMenu").click(function(){
-    		location.href="<%=request.getContextPath()%>/product/productMainMenu.jsp";
+    		location.href="<%=request.getContextPath()%>/product/productList.jsp";
     	})
     		
     	}
@@ -267,7 +267,6 @@
        </ul>
        <div class="product-btn-box">
            <button type="submit" class="product-register" id="addProduct">등록</button>
-           <button type="submit" class="product-register" id="updateProduct">수정</button>
            <button type="submit" class="product-register" id="gotoMenu">목록</button>
 
        </div>
