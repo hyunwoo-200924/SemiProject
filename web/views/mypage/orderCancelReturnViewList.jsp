@@ -1,13 +1,21 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
+<%@ page import="java.util.List,com.eol.order.model.vo.*, com.eol.product.model.vo.Product" %>
+	
+	
+<%
+	List<Orders> olist = (List)request.getAttribute("orderlist");
+%>
+
 <%@ include file="/views/common/header.jsp"%>
-<link rel="stylesheet" type="text/css" 
-href="<%=request.getContextPath() %>/css/orderviewlist.css">
+<link rel="stylesheet" type="text/css"
+	href="<%=request.getContextPath() %>/css/orderCancelReturnViewList.css">
+
 
 <section>
-	<div class="aside"></div>
+	<%@ include file="/views/mypage/common/mypagenav.jsp"%>
 	<div class="content">
-		<h1>주문 / 배송조회</h1>
+		<h1>취소 / 반품 조회</h1>
 		<form action="" name="orderView" id="orderView" method="">
 			<select name="year" id="year">
 				<option value="2019">2019년</option>
@@ -27,42 +35,45 @@ href="<%=request.getContextPath() %>/css/orderviewlist.css">
 				<option value="12">12월</option>
 			</select> <input type="submit" value="조회">
 		</form>
+		<%if(olist.isEmpty()){ %>
 		<div class="detail">
+		<h1>취소/반품 내역이 없습니다!</h1>
+		</div>
+		<%}else{ %>
+		<div class="detail">
+		<%for(Orders o : olist) {%>
 			<div class="orderNumber">
-				<p>2020 / 9 / 1 (20200901-89891212)</p>
+				<p><%=o.getoRDate() %>(<%=o.getoNo() %>)</p>
 			</div>
+			<%for(OrderDetail od : o.getDetails()){ %>
 			<div class="productView">
 				<div class="order_pro_img">
-					<img src="임시로고.jpg" alt="" width="100" height="100">
+					<img src="<%=request.getContextPath() %>/images/product/<%=od.getOdproduct().getpImage1() %>" alt="" width="100" height="100">
 				</div>
 				<div class="order_pro_name">
-					<h3>상품명</h3>
-					<p>가격 / 수량</p>
+					<h3><%=od.getOdproduct().getpName() %></h3>
+					<p><%=od.getOdproduct().getpPrice() %> / <%=od.getOdQty() %></p>
 				</div>
 			</div>
+			<%} %>
 			<div class="orderButton">
 				<div class="arriveDate">
-					<p>배송준비중</p>
-					<!-- 배송중 또는 배송완료 -->
-					<p>9 / 3 수요일 도착예정</p>
+					<%if(o.getoStatus().equals("취소신청") || o.getoStatus().equals("취소완료")) {%>
+					<p><%=o.getoStatus() %></p>
+					<%}else{ %>
+					<p><%=o.getoDeliveryStatus() %></p>
+					<%} %>
 				</div>
 				<ul class="Button">
 					<li><button>
-							<a href="">배송조회</a>
-						</button></li>
-					<li><button>
-							<a href="">교환신청</a>
-						</button></li>
-					<li><button>
-							<a href="">반품신청</a>
-						</button></li>
-					<li><button>
-							<a href="">리뷰쓰기</a>
+							<a href="">상세보기</a>
 						</button></li>
 				</ul>
 			</div>
+			<%} %>
 		</div>
+		<%} %>
+	</div>
 </section>
-
 
 <%@ include file="/views/common/footer.jsp"%>

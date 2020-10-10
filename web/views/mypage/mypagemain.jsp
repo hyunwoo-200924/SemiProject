@@ -11,33 +11,14 @@
 <%@ include file="/views/common/header.jsp"%>
 
       <section class="container">
-         <nav class="mypage_left">
-                 <h2>마이페이지</h2>
-                <ul>
-                    <li class="mypage_left_title1">나의 주문정보</li>
-                    <li>주문/배송조회</li>
-                    <li>취소/반품조회</li>
-                    <li>선물내역</li>    
-                    <li class="mypage_left_title1">나의혜택</li>
-                    <li>쿠폰</li>
-                    <li>포인트</li>
-                    <li class="mypage_left_title1">나의활동</li>
-                    <li>리뷰</li>
-                    <li>맛취향</li>
-                    <li>쇼핑찜</li>
-                    <li>1:1문의</li>
-                    <li class="mypage_left_title1">나의 정보</li>
-                    <li>개인정보변경</li>
-                    <li>회원탈퇴</li>
-                </ul>
-              </nav>
+<%@ include file="/views/mypage/common/mypagenav.jsp" %>
          <div class="mypage">
             <div class="mypage_top">
                <div class="mypage_info">
                   <p><%=m.getmName() %></p><span><%=m.getmAddress() %></span>
                </div>
                <div class="mypage_point">
-                  <p><span>CJ ONE 포인트</span><b><%=m.getmPonint() %>P</b></p>
+                  <p><span>뚝딱쿡 포인트</span><b><%=m.getmPonint() %>P</b></p>
                   <p><span>보유쿠폰</span><b><%=coCount %>장</b></p>
                </div>
             </div>

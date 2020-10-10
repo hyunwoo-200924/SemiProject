@@ -51,13 +51,16 @@ public class MemberJoinServlet extends HttpServlet {
 		}
 		System.out.println("111");
 		
-	   int result = new MemberService().insertMember(m);
+		int result = new MemberService().insertMember(m);
 		
-	   //if(result != null)
-	   //response.sendRedirect(어디로보내지~~);
+	   if(result > 0) {
+		   request.getRequestDispatcher("/views/member/memberJoinEnd.jsp").forward(request, response);
+	   } else {
+		   request.setAttribute("msg", "가입에 실패하였습니다. 고객센터로 문의 바랍니다.");
+		   request.getRequestDispatcher("/views/common/msg.jsp").forward(request, response);
+	   }
 
 	}
-
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */

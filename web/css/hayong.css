@@ -232,24 +232,40 @@
          position: relative;
    }
    .user_request_list .list_form div:nth-child(2) {
-      height: 45px;
+       height: 45px;
        margin-top: 10px;
+       display: grid;
+       grid-template-columns: auto 100px;
    }
-   .user_request_list .list_form div:nth-child(2) button{
+   .user_request_list .list_form div:nth-child(2) div {
+	 	padding-left: 70px;
+	    font-size: 11px;
+   }
+   .user_request_list .list_form div:nth-child(2) button.update{
       position: absolute;
        top: 0;
        bottom: 0;
        margin: auto;
        height: 28px;
-       right: 20px;
+       right: 70px;
        width: 60px;
-       line-height: 28px;
+       line-height: 25px;
+   }
+   .user_request_list .list_form div:nth-child(2) button.delete{
+      position: absolute;
+       top: 0;
+       bottom: 0;
+       margin: auto;
+       height: 28px;
+       right: 0px;
+       width: 60px;
+       line-height: 25px;
    }
    .user_request_list {
       margin: 35px 0 100px 0;
       border-top: 2px solid #202020;
    }
-   .user_request_list .list_form span:nth-child(1) {
+   .user_request_list .list_form #no {
        font-size: 12px;
        height: 22px;
        line-height: 22px;
@@ -258,11 +274,21 @@
        margin-right: 15px;
        padding: 0 6px;
    }
-   .user_request_list .list_form span:nth-child(2) {
+   .user_request_list .list_form #yes {
+       font-size: 12px;
+       height: 22px;
+       line-height: 22px;
+       background: #000000;
+       color: white;
+       display: inline-block; /* height값 주려고 함 */
+       margin-right: 15px;
+       padding: 0 6px;
+   }
+   .user_request_list .list_form span:nth-child(3) :nth-child(1) {
        font-size: 14px;
        display: inline-block;
    }
-   .user_request_list .list_form span:nth-child(3) {
+   .user_request_list .list_form span:nth-child(4) {
        font-size: 14px;
        position: absolute;
        right: 70px;
@@ -272,7 +298,7 @@
        display: inline-block;
        height: 20px;
    }
-   .user_request_list .list_form span:nth-child(3):after {
+   .user_request_list .list_form span:nth-child(4):after {
        content: '';
        display: block;
        position: absolute;
