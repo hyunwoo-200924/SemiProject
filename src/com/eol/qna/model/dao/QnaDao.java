@@ -99,6 +99,43 @@ public class QnaDao {
 		return list;
 	}
 
+//	//문의 리스트 가져오기
+//	public List<Qna> selectQna(Connection conn, int mNo) {
+//		PreparedStatement pstmt = null;
+//		ResultSet rs = null;
+//		List<Qna> list = new ArrayList<Qna>();
+//		
+//		try {
+//			pstmt = conn.prepareStatement(prop.getProperty("selectQnaList"));
+//			pstmt.setInt(1, mNo);
+//			
+//			rs = pstmt.executeQuery();
+//			
+//			while(rs.next()) {
+//				Qna q = new Qna();
+//				
+//				q.setqNo(rs.getInt("q_no"));
+//				q.setoNo(rs.getInt("o_no"));
+//				q.setqCategory(rs.getString("q_category"));
+//				q.setqTitle(rs.getString("q_title"));
+//				q.setqContent(rs.getString("q_content"));
+//				q.setqFile(rs.getString("q_file"));
+//				q.setqRdate(rs.getDate("q_rdate"));
+//				q.setmNo(mNo);
+//				q.setqAnswer(rs.getString("q_answer"));
+//				q.setqStatus(rs.getString("q_status"));
+//				
+//				list.add(q);
+//			}
+//		} catch (SQLException e) {
+//			e.printStackTrace();
+//		} finally {
+//			close(rs);
+//			close(pstmt);
+//		}
+//		return list;
+//	}
+
 	//문의 지우기
 	public int deleteQna(Connection conn, int qNo) {
 		PreparedStatement pstmt = null;

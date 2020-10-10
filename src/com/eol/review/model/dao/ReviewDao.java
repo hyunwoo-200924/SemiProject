@@ -40,7 +40,6 @@ public class ReviewDao {
 				r.setpNo(rs.getInt("pNo"));
 				r.setoNo(rs.getInt("oNo"));
 				r.setrWriter(rs.getString("rWriter"));
-				r.setrPw(rs.getString("rRw"));
 				r.setrTitle(rs.getString("rTitle"));
 				r.setrContent(rs.getString("rContent"));
 				r.setrPhoto1(rs.getString("rPhoto1"));
@@ -57,22 +56,37 @@ public class ReviewDao {
 		}
 		return r;
 	}
-	
+////	 p_no o_no 가져오기
+//	public int[] pullReview(Connection conn, int mNo) {
+//		PreparedStatement pstmt = null;
+//		ResultSet rs = null;
+//		int[] nResult = null;
+//		
+//		try {
+//			pstmt = conn.prepareStatement(prop.getProperty("pullReview"));
+//			
+//			if(rs.next()) {
+//				pstmt.setInt(rs.getInt("p_no"), mNo);
+//			}
+//		}
+//	}
 	public int insertReview(Connection conn, Review r) {
 		PreparedStatement pstmt = null;
 		int result = 0;
+		
 		try {
-			pstmt = conn.prepareStatement("insertReview");
-			pstmt.setInt(1, r.getpNo());
-			pstmt.setInt(2, r.getoNo());
-			pstmt.setString(3, r.getrWriter());
-			pstmt.setString(4, r.getrPw());
-			pstmt.setString(5, r.getrTitle());
-			pstmt.setString(6, r.getrContent());
-			pstmt.setString(7, r.getrPhoto1());
-			pstmt.setString(8, r.getrPhoto2());
-			pstmt.setString(9,  r.getrPhoto3());
-			pstmt.setInt(10, r.getrStarScore());
+			pstmt = conn.prepareStatement(prop.getProperty("insertReview"));
+//			pstmt.setInt(1, r.getpNo());
+//			pstmt.setInt(2, r.getoNo());
+			pstmt.setString(1, r.getrWriter());
+			pstmt.setString(2, r.getrTitle());
+			pstmt.setString(3, r.getrContent());
+//			pstmt.setString(6, r.getrPhoto1());
+//			pstmt.setString(7, r.getrPhoto2());
+//			pstmt.setString(8,  r.getrPhoto3());
+//			pstmt.setInt(9, r.getrStarScore());
+			
+			System.out.println("r3");
 			result=pstmt.executeUpdate();
 		}catch(Exception e) {
 			e.printStackTrace();
@@ -98,7 +112,6 @@ public class ReviewDao {
 				r.setpNo(rs.getInt("pNo"));
 				r.setoNo(rs.getInt("oNo"));
 				r.setrWriter(rs.getString("rWriter"));
-				r.setrPw(rs.getString("rPw"));
 				r.setrTitle(rs.getString("rTitle"));
 				r.setrContent(rs.getString("rContent"));
 				r.setrPhoto1(rs.getString("rPhoto1"));

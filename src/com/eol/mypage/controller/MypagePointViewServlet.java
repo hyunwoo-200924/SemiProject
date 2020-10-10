@@ -1,6 +1,7 @@
 package com.eol.mypage.controller;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -15,7 +16,7 @@ import com.eol.member.model.vo.Point;
 /**
  * Servlet implementation class MypagePointViewServlet
  */
-@WebServlet("/pointPage.do")
+@WebServlet("/pointPageView.do")
 public class MypagePointViewServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -32,14 +33,13 @@ public class MypagePointViewServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		//포인트 뷰 페이지 전환
-		//클라이언트로 부터 포인트 정보를 받아옴
-		Member m = (Member) request.getSession().getAttribute("loginMember");
+		//Member 테이블의 mNo를 point 테이블의 mNo에 담기
+		Member m = (Member)request.getSession().getAttribute("loginMember");
+		int mNo = m.getmNo();
+		List<Point> pointlist = new PointService().pointList(mNo);
 		
-		if(m != null) {
-			Point p = new PointService().myPoint(m.getmPonint());
-			request.setAttribute("selectPoint", p);
-			request.getRequestDispatcher("views/mypage/maypagePoint.jsp").forward(request, response);
-		}
+		request.setAttribute("pointlist", pointlist);
+		request.getRequestDispatcher("views/mypage/maypagePointListView.jsp").forward(request, response);
 		
 	}
 
