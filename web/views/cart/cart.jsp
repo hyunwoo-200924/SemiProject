@@ -40,7 +40,7 @@
                 <!-- 선택상품클릭시 선택상품만 전체선택 -->
                <button class="btn">전체선택</button>
                <button class="btn">선택삭제</button>
-               <button class="btn" onclick="location.replace('<%=request.getContextPath()%>/orderpayinput.do')">상품결제</button>
+               <button class="btn" onclick="location.replace('<%=request.getContextPath()%>/cartintopay.do')">상품결제</button>
             </div>
     </section>
 </div>
