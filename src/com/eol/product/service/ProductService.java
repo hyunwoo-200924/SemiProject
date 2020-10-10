@@ -58,15 +58,16 @@ public class ProductService {
 		if(result>0) commit(conn);
 		else rollback(conn);
 		close(conn);
-		return 0;
+		return result;
 	}
 
-	public String deleteProduct(String pName) {
+	public int deleteProduct(int pNo) {
 		Connection conn=getConnection();
-		String p=dao.deleteProduct(conn,pName);
-		close(conn);
-		return p;
+		int result=dao.deleteProduct(conn, pNo);
+		return result;
 	}
+
+
 
 
 

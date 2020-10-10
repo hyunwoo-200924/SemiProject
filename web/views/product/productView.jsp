@@ -103,8 +103,6 @@ function gotoMainMenu(){
         <div class="menu-section">
          <%-- <%if(m.getmId()!=null && m.getmId().equals("admin")){ %> --%>
         <button type="button" onclick="gotoMainMenu();">목록</button>
-        <button type="button" onclick="location.assign('<%=request.getContextPath()%>/product/productUpdate')">수정</button>
-        <button type="button" onclick="location.assign('<%=request.getContextPath()%>/product/productDelete')">삭제</button>
         <%-- <%} %>  --%>
             <div class="menu-container">
                 

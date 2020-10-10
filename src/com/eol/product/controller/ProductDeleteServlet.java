@@ -1,6 +1,8 @@
 package com.eol.product.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -32,13 +34,14 @@ public class ProductDeleteServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		
-	String pName=request.getParameter("pName");	
-	String p=new ProductService().deleteProduct(pName);
+		int pNo=Integer.parseInt(request.getParameter("pNo"));
+	int pNo1	=((Product)request.getAttribute("productList")).getpNo();
+	int result=new ProductService().deleteProduct(pNo1);
 	
 	String msg="";
 	String loc="";
 	String path="";
-	if(p==null) {
+	if(result>0) {
 		//선택한 공지사항이 삭제됨.
 		msg="조회한 상품이 존재하지 않습니다.";
 		loc="/product/productList";
@@ -46,8 +49,8 @@ public class ProductDeleteServlet extends HttpServlet {
 		request.setAttribute("msg",msg);
 		request.setAttribute("loc",loc);
 	}else {
-		request.setAttribute("product",p);
-		path="/views/product/ProductMenu.jsp";
+		request.setAttribute("path",path);
+		path="/views/product/productList.jsp";
 	}
 	request.getRequestDispatcher(path).forward(request, response);
 	

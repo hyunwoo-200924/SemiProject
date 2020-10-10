@@ -7,9 +7,28 @@
 <%
 	List<Product> list=(List)request.getAttribute("list");
 	String pageBar=(String)request.getAttribute("pageBar");
-
-
 %>
+
+<script>
+	function deleteProduct(){
+		$.ajax({
+			url:"<%=request.getContextPath()%>/product/productDelete",
+			type: "post",
+			data:{pw:$("#pNo").val()},
+			success: function(data){
+				console.log(data);
+				if(data == "true"){
+					let msg = confirm('정말로 삭제하시겟습니까?');
+					if(msg){
+						location.href="<% request.getContextPath()%>/product/productDelete"
+					}
+				}
+			
+		})
+		};
+
+
+</script>
 <%@ include file="/views/common/header.jsp"%>
 
 
@@ -78,14 +97,14 @@
                 
             <%for(Product p : list) {%>
             
-      		<input type="submit" class="product-register" id="updateProduct" onclick="location.replace('<%=request.getContextPath()%>/product/productUpdate')" value="수정">
-      		<input type="submit" class="product-register" id="updateProduct" src="<%=request.getContextPath()%>/product/productDelete"value="삭제">
+                            <div id="pNo"><%=p.getpNo()%></div>
+      		<input type="submit" class="product-register" id="updateProduct" onclick="updateProduct()" value="수정">
+      		<input type="submit" class="product-register" id="deleteProduct" onclick="deleteProduct()" value="삭제">
               <div class="menu-img-group">
                 <div class="menu-img-group-wrap">
                     <div class="menu--img-group2">
                        <div class="menu--img-items-group"> 
                             <div class="menu--img-items">
-                            <div><%=p.getpNo()%></div>
                                 <!-- 메뉴상세페이지로이동 -->
                                 <a href="<%=request.getContextPath()%>/product/productView?pNo=<%=p.getpNo()%>">
 									<%if(p.getpImage1()!=null) {%>

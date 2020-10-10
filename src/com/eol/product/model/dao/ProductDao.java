@@ -264,27 +264,26 @@ public class ProductDao {
 		return result;
 	}
 
-	public String deleteProduct(Connection conn, String pName) {
+	public int deleteProduct(Connection conn, int pNo) {
 		PreparedStatement pstmt=null;
 		ResultSet rs=null;
-		String p=null;
+		int result=0;
 		try {
 			pstmt=conn.prepareStatement(prop.getProperty("deleteProduct"));
-			pstmt.setString(1, pName);
+			pstmt.setInt(1, pNo);
 			rs=pstmt.executeQuery();
 			if(rs.next()) {
-				p=rs.getString(1);
+				result=rs.getInt(1);
 			}
 			
 			}catch (SQLException e) {
 			e.printStackTrace();
-			System.out.println("delete삭제 오류");
 		}finally {
 			close(rs);
 			close(pstmt);
 		}
 			
 		
-		return p;
+		return result;
 	}
 }
