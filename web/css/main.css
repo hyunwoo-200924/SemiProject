@@ -174,7 +174,7 @@ div#footer3 button:hover{
 
 
 /*section.main style*/
-section {
+.section {
 	padding-top: 40px;
 	padding-bottom: 40px;
 }
@@ -182,7 +182,7 @@ section {
 
 /*광고배너 스타일*/
 /* .mySlides {display: none} */
-.myslides img {
+myslides img {
 	vertical-align: middle;
 } /*이미지 가운데 정렬*/
 .slideshow-container { /*광고의 전체적인 <div>부분*/

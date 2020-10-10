@@ -1,6 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <link rel="stylesheet" type="text/css" herf="<%=request.getContextPath()%>/css/menu.css">
+
+
+<%@ page import="java.util.List,com.eol.product.model.vo.Product" %>
+<%
+	List<Product> list=(List)request.getAttribute("list");
+	String pageBar=(String)request.getAttribute("pageBar");
+
+
+%>
 <%@ include file="/views/common/header.jsp"%>
 
 
@@ -16,7 +25,7 @@
                         <h1>뚝딱KIT메뉴</h1>
                     </div>
                     <div class="head-text">
-
+						
                         <div class="head-left">
                             <h4><a href="" class="head-left-title">배송일별</a></h4>
                             <h4><a href="" class="head-left-title">테마일별</a></h4>
@@ -25,6 +34,7 @@
                         <!-- 클릭을 하게되면 아래 date-change가 클릭한 날짜로 바뀜 -->
                         <!-- hover를 줘서 클릭하게되면 동그란색안에 숫자가 표현되게해야함 -->
                         <ul class="head-right">
+                        
                             <li class="head-right-items1">화<p class="week-day">25</p></li>
                             <li class="head-right-items1">수<p class="week-day">26</p></li>
                             <li class="head-right-items1">목<p class="week-day">27</p></li>
@@ -60,76 +70,44 @@
     <!-- 메뉴 이미지칸  3 x  3 배열 -->
     <div class="section-menu-group-container">
         <div class="section-menu-group-container1">
-
+        		<!-- 로긴멤버가 관리자 admin이면  if(mId!=null&&mId().equals("admin")){%> -->
+					<button  onclick="location.assign('<%=request.getContextPath()%>/product/productWrite')">등록하기</button>
+        		<!--}%>  -->
+					
             <section class="menu-group-section1">
-                <div class="menu-img-group">
-                    <div class="menu-img-group-wrap">
-                    <!-- menu--img-group1 클릭을 하게되면 메뉴상세페이지로 넘어가게 자바스크립트 -->
-                    <div class="menu--img-group1">
-                        <div class="menu--img-items">
-                            <img src="D:\programwork\semiProject\img\gaabasmenu.jpg" alt="menu" class="menu-click1">
-                            <ul class="menu--text-group">
-                                <li class="menu--text">3인분</li>
-                                <li class="menu--text">조리10분</li>
-                            </ul>
-                            <ul class="menu--text-group">
-                                <h4 class="menu--text--title">감바스알아히요</h4>
-                            </ul>
-                            <ul class="menu--text-group">
-                                <li class="menu--text--price">34,800<span>원</span></li>
-                            </ul>
-                            <ul class="menu--text-group">
-                                <li class="menu--text--price">34,800<span>원</span></li>
-                            </ul>
-                            
-                            
-                        </div>
-                    </div>
-                    
-                    <!-- 이미지 클릭시에 찜또는 장바구니에 담아지기 -->
-                    <div class="cart-hart">
-                        <ul class="hart">
-                        <!-- 찜 페이지 -->
-                            <a href="">
-
-                                <img src="" alt="찜" class="hart--img" onclick="hart();"></img>
-                            </a>
-                            <!-- 장바구니페이지 -->
-                            <a href="">
-
-                                <img src="" alt="" class="cart--img" onclick="cartInsert()"></img>
-                            </a>
-                        </ul>
-                    </div>
-                 </div>   
-                </div>
+                
+            <%for(Product p : list) {%>
             
-            <div class="menu-img-group">
+              <div class="menu-img-group">
                 <div class="menu-img-group-wrap">
                     <div class="menu--img-group2">
                        <div class="menu--img-items-group"> 
                             <div class="menu--img-items">
+                            <div><%=p.getpNo()%></div>
                                 <!-- 메뉴상세페이지로이동 -->
-                                <a href="">
-
-                                    <img src="D:\programwork\semiProject\img\cheezemenu.jpg" alt="menu" class="menu-click1">
+                                <a href="<%=request.getContextPath()%>/product/productView?pNo=<%=p.getpNo()%>">
+									<%if(p.getpImage1()!=null) {%>
+                                    <img type="file" src="<%=request.getContextPath() %>/product/productFileDownload?fileName=<%=p.getpImage1() %>" alt="menu" class="menu-click1">
+                                    <%} %>
+                                    <ul class="menu--text-group">
+                                        <div class="new">
+                                            <p>NEW</p>
+                                        </div>
+                                        <span class="menu--text"><%=p.getpServing()%></span><span class="menu--text"><%=p.getpCooktime() %></span>
+                                    </ul>
+                                    <ul class="menu--text-group">
+                                        <h4 class="menu--text--title"><%=p.getpDetailMain() %></h4>
+                                    </ul>
+                                    <ul class="menu--text-group">오늘의 핫딜
+                                        <span class="menu--text--price"><%=p.getpPrice() %><span>원</span></span>  <span class="menu--text--price" style="text-decoration: line-through; color: red;"><%=p.getpPrice() %><span>원</span></span>
+                                    </ul>
                                 </a>
-                                <ul class="menu--text-group">
-                                    <div class="new">
-                                        <p>NEW</p>
-                                      </div>
-                                    <li class="menu--text">3인분</li>
-                                    <li class="menu--text">조리10분</li>
-                                </ul>
-                                <ul class="menu--text-group">
-                                    <h4 class="menu--text--title">눈꽃치즈 닭갈비</h4>
-                                </ul>
-                                <ul class="menu--text-group">
-                                    <li class="menu--text--price">34,800<span>원</span></li>
-                                </ul>
-                                <ul class="menu--text-group">
-                                    <li class="menu--text--price">34,800<span>원</span></li>
-                                </ul>
+                                <!-- 리뷰페이지로 ~ -->
+                                <a  href="<%=request.getContextPath() %>/review/review.jsp" class="menu--text-group">
+                                    <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+
+                                   
+                                </a>
                                 
                                 
                             </div>
@@ -140,210 +118,26 @@
                     <div class="cart-hart">
                         <ul class="hart">
                         <!-- 찜 페이지 -->
-                            <a href="">
+                            <a href="<%=request.getContextPath()%>/views/cart/jjim.jsp">
 
-                                <img src="D:\programwork\semiProject\img\hart40px.jpg" alt="찜" class="hart--img" onclick="hart();"></img>
+                                <img src="<%=request.getContextPath() %>/images/product/hart40px.jpg" alt="찜" class="hart--img" onclick="hart();"></img>
                             </a>
                             <!-- 장바구니페이지 -->
-                            <a href="">
+                            <a href="<%=request.getContextPath() %>/views/cart/cart.jsp">
 
-                                <img src="D:\programwork\semiProject\img\cart40px.jpg" alt="" class="cart--img" onclick="cartInsert()"></img>
+                                <img src="<%=request.getContextPath() %>/images/product/cart40px.jpg" alt="장바구니" class="cart--img" onclick="cartInsert()"></img>
                             </a>
                         </ul>
                     </div>
                     </div>
                 </div>
-             <div class="menu-img-group">
-                 <div class="menu-img-group-wrap"> 
-                    <div class="menu--img-group3">
-                        <div class="menu--img-items">
-                            <!-- 메뉴상세페이지로 이동 -->
-                            <a href="">
-
-                                <img src="D:\programwork\semiProject\img\chapbeemenu.jsp.jpg" alt="menu" class="menu-click1">
-                            </a>
-                            <ul class="menu--text-group">
-                                <li class="menu--text">3인분</li>
-                                <li class="menu--text">조리10분</li>
-                            </ul>
-                            <ul class="menu--text-group">
-                                <h4 class="menu--text--title">부채살 찹스테이크</h4>
-                            </ul>
-                            <ul class="menu--text-group">
-                                <li class="menu--text--price">34,800<span>원</span></li>
-                            </ul>
-                            <ul class="menu--text-group">
-                                <li class="menu--text--price">34,800<span>원</span></li>
-                            </ul>
-                            
-                            
-                        </div>
-                    </div>
-                    
-                    <!-- 이미지 클릭시에 찜또는 장바구니에 담아지기 -->
-                    <div class="cart-hart">
-                        <ul class="hart">
-                        <!-- 찜 페이지 -->
-                            <a href="">
-
-                                <img src="D:\programwork\semiProject\img\hart40px.jpg" alt="찜" class="hart--img" onclick="hart();"></img>
-                            </a>
-                            <!-- 장바구니페이지 -->
-                            <a href="">
-
-                                <img src="D:\programwork\semiProject\img\cart40px.jpg" alt="" class="cart--img" onclick="cartInsert()"></img>
-                            </a>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-             <div class="menu-img-group">
-                 <div class="menu-img-group-wrap">
-                    <div class="menu--img-group4">
-                        <div class="menu--img-items">
-                            <a href="">
-
-                                <img src="D:\programwork\semiProject\img\forkbbqmenu.jpg" alt="menu" class="menu-click1">
-                            </a>
-                            <ul class="menu--text-group">
-                                <div class="new">
-                                    <p>NEW</p>
-                                  </div>
-                                <li class="menu--text">3인분</li>
-                                <li class="menu--text">조리10분</li>
-                            </ul>
-                            <ul class="menu--text-group">
-                                <h4 class="menu--text--title">돼지고기 맥적구이</h4>
-                            </ul>
-                            <ul class="menu--text-group">
-                                <li class="menu--text--price">20,800<span>원</span></li>
-                            </ul>
-                            <ul class="menu--text-group">
-                                <li class="menu--text--price">20,800<span>원</span></li>
-                            </ul>
-                            
-                            
-                        </div>
-                    </div>
-                    
-                    <!-- 이미지 클릭시에 찜또는 장바구니에 담아지기 -->
-                    <div class="cart-hart">
-                        <ul class="hart">
-                        <!-- 찜 페이지 -->
-                            <a href="">
-
-                                <img src="D:\programwork\semiProject\img\hart40px.jpg" alt="찜" class="hart--img" onclick="hart();"></img>
-                            </a>
-                            <!-- 장바구니페이지 -->
-                            <a href="">
-
-                                <img src="D:\programwork\semiProject\img\cart40px.jpg" alt="" class="cart--img" onclick="cartInsert()"></img>
-                            </a>
-                        </ul>
-                    </div>
-                </div>
-               </div> 
-                <!-- 이미지안에 품절 또는 추가 이미지안에 품절, 추가상품준비중 이라고 표시 관리자모드로이다  -->
-                <div class="menu-img-group">
-                    <div class="menu-img-group-wrap">
-                    <div class="menu--img-group5">
-                        <div class="menu--img-items">
-                            <!-- 메뉴상세페이지로이동 -->
-                            <a href="">
-
-                                <img src="D:\programwork\semiProject\img\ddoinjangmenu.jpg" alt="menu" class="menu-click1">
-                            </a>
-                            <ul class="menu--text-group">
-                                <div class="new">
-                                    <p>NEW</p>
-                                  </div>
-                                <li class="menu--text">3인분</li>
-                                <li class="menu--text">조리10분</li>
-                            </ul>
-                            <ul class="menu--text-group">
-                                <h4 class="menu--text--title">모둠버섯된장전골</h4>
-                            </ul>
-                            <ul class="menu--text-group">
-                                <li class="menu--text--price">20,800<span>원</span></li>
-                            </ul>
-                            <ul class="menu--text-group">
-                                <li class="menu--text--price">20,800<span>원</span></li>
-                            </ul>
-                            
-                            
-                        </div>
-                    </div>
-                    
-                    <!-- 이미지 클릭시에 찜또는 장바구니에 담아지기 -->
-                    <div class="cart-hart">
-                        <ul class="hart">
-                        <!-- 찜 페이지 -->
-                            <a href="">
-
-                                <img src="D:\programwork\semiProject\img\hart40px.jpg" alt="찜" class="hart--img" onclick="hart();"></img>
-                            </a>
-                            <!-- 장바구니페이지 -->
-                            <a href="">
-
-                                <img src="D:\programwork\semiProject\img\cart40px.jpg" alt="" class="cart--img" onclick="cartInsert()"></img>
-                            </a>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-                <!-- 이미지안에 품절 또는 추가상품준비중 시  안에 흰색글씨로 보이기해주기 -->
-                <div class="menu-img-group">
-                    <div class="menu-img-group-wrap">
-
-                        <div class="menu--img-group6">
-                            <div class="menu--img-items">
-                            <!-- 메뉴상세 페이지로 이동 -->
-                            <a href="">
-                                
-                                <img src="D:\programwork\semiProject\img\ddanhobakmenu.jpg" alt="menu" class="menu-click1">
-                            </a>
-                            <ul class="menu--text-group">
-                                <div class="new">
-                                    <p>NEW</p>
-                                </div>
-                                <li class="menu--text">3인분</li>
-                                <li class="menu--text">조리10분</li>
-                            </ul>
-                            <ul class="menu--text-group">
-                                <h4 class="menu--text--title">단호박 치즈오리불고기</h4>
-                            </ul>
-                            <ul class="menu--text-group">
-                                <li class="menu--text--price">34,800<span>원</span></li>
-                            </ul>
-                            <ul class="menu--text-group">
-                                <li class="menu--text--price">34,800<span>원</span></li>
-                            </ul>
-                            
-                            
-                        </div>
-                    </div>
-                    
-                    <!-- 이미지 클릭시에 찜또는 장바구니에 담아지기 -->
-                    <div class="cart-hart">
-                        <ul class="hart">
-                            <!-- 찜 페이지 -->
-                            <a href="">
-                                
-                                <img src="D:\programwork\semiProject\img\hart40px.jpg" alt="찜" class="hart--img" onclick="hart();"></img>
-                            </a>
-                            <!-- 장바구니페이지 -->
-                            <a href="">
-                                
-                                <img src="D:\programwork\semiProject\img\cart40px.jpg" alt="" class="cart--img" onclick="cartInsert()"></img>
-                            </a>
-                        </ul>
-                    </div>
-                </div>
-                    
-            </div>
-                
+                <%} %>
             </section>
         </div>
+      <%--   <%=pageBar() %> --%>
+      <div id="pageBar">
+			<%=pageBar %>
+		</div>
     </div>
 </div>
     
