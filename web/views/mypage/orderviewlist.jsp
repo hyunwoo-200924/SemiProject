@@ -38,21 +38,27 @@ href="<%=request.getContextPath() %>/css/orderviewlist.css">
 				<option value="12">12월</option>
 			</select> <input type="submit" value="조회">
 		</form>
-		<% for(Orders o : olist){ %>
+		<%if(olist.isEmpty()){ %>
 		<div class="detail">
+			<h1>주문내역이 없습니다!</h1>
+		</div>
+		<%}else{ %>
+		<div class="detail">
+		<% for(Orders o : olist){ %>
 			<div class="orderNumber">
 				<p> <%=o.getoRDate() %> (<%=o.getoNo() %>)</p>
 			</div>
 			<% for(OrderDetail od : o.getDetails()){ %>
 			<div class="productView">
 				<div class="order_pro_img">
-					<img src="사진경로하기<%=od.getOdproduct().getpImage1() %>" alt="" width="100" height="100">
+					<img src="<%=request.getContextPath() %>/images/product/<%=od.getOdproduct().getpImage1() %>" alt="" width="100" height="100">
 				</div>
 				<div class="order_pro_name">
 					<h3><%=od.getOdproduct().getpName() %></h3>
 					<p><%=od.getOdproduct().getpPrice() %> / <%=od.getOdQty() %></p>
 				</div>
 			</div>
+			<%} %>
 			<div class="orderButton">
 				<div class="arriveDate">
 					<p><%=o.getoDeliveryStatus() %></p>

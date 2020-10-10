@@ -1,7 +1,7 @@
 @charset "UTF-8";
 
-/* 
-common
+ 
+/* common */
 body{
     
     width: 1270px;
@@ -15,7 +15,7 @@ a{
 }
 a:hover{
     color:red;
-} */
+}
 
 /* button */
 
@@ -92,7 +92,7 @@ a:hover{
     grid-template-rows: auto;
     gap: 50px 100px;
 }
-.section{
+.menu-section{
     display: block;
   margin: 100px 50px;
 }
@@ -167,7 +167,7 @@ a:hover{
     padding-left: 20px;
     margin: 20px;
 }
-.myslides{
+.myslides1{
     padding-left: 40px;
 }
 .text-right{
@@ -448,7 +448,7 @@ th, td{
 
 }
 
-/* section && menupage head part */
+/* section && Mainmenupage head part */
 
 .menu-group-container{
     width: auto;

@@ -13,13 +13,13 @@
 	<ul>
 		<li class="mypage_left_title1">나의 주문정보</li>
 		<li><a href="<%=request.getContextPath() %>/orderViewList.do">주문/배송조회</a></li>
-		<li>취소/반품조회</li>
+		<li><a href="<%=request.getContextPath() %>/orderCancelReturnViewList.do">취소/반품조회</a></li>
 		<li>선물내역</li>
 		<li class="mypage_left_title1">나의혜택</li>
 		<li><a href="<%=request.getContextPath() %>/couponList">쿠폰</a></li>
-		<li><a href="<%=request.getContextPath() %>/pointPage.do">포인트</a></li>
+		<li><a href="<%=request.getContextPath() %>/pointPageView.do">포인트</a></li>
 		<li class="mypage_left_title1">나의활동</li>
-		<li>리뷰</li>
+		<li><a href="<%=request.getContextPath() %>/review/reviewlist">리뷰</a></li>
 		<li>맛취향</li>
 		<li>쇼핑찜</li>
 		<li>1:1문의</li>

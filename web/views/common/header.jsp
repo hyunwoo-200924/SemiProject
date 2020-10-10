@@ -49,6 +49,7 @@ href="<%=request.getContextPath() %>/css/hayong.css">
             <!-- 메인메뉴 -->
             <nav id="menu">
                 <a href="<%=request.getContextPath() %>/mainview.do"><img id="headerlogo" src="<%=request.getContextPath()%>/images/mainImages/logo.png" alt="" width="150px" height="45px" herf=""></a><!--로고-->
+
                 <%if(loginMember != null && loginMember.getmId().equals("admin")){ %> //관리자 페이지
 	                <ul>
 	                    <li><a href="<%=request.getContextPath()%>">상품관리</a></li>
@@ -59,7 +60,7 @@ href="<%=request.getContextPath() %>/css/hayong.css">
                 <%}else{ %>
 	                <ul>
 	                    <li><a href="<%=request.getContextPath()%>/companyView.do">회사소개</a></li>
-	                    <li><a href="<%=request.getContextPath()%>/productmainView.do">메뉴</a></li>
+	                    <li><a href="<%=request.getContextPath()%>/product/productList">메뉴</a></li>
 	                    <li><a href="<%=request.getContextPath()%>/event.do">이벤트</a></li>
 	                    <li><a href="<%=request.getContextPath()%>/mypageMain.do">마이페이지</a></li>
 	                </ul>

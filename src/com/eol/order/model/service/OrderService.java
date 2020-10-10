@@ -15,6 +15,7 @@ public class OrderService {
 	
 	OrderDao dao=new OrderDao();
 	
+	//비회원 주문조회
 	public Orders nMOrderList(String nMONum, String pw) {
 		
 		//비회원 주문조회 : 클라이언트에게 입력받은 주문번호와 주문비밀번호를 가져와서 dao에게 전달
@@ -34,6 +35,8 @@ public class OrderService {
 		return list;
 	}
 	
+	
+	//회원 주문조회
 	public List<Orders> orderList(int mNo) {
 		//회원 주문조회 : 이미 로그인 되어있는 회원의 번호를 가져옴
 		Connection conn = getConnection();
@@ -55,6 +58,18 @@ public class OrderService {
 		close(conn);
 		return p;
 	}
+	
+	
+	
+	
+	
+	//취소/반품조회
+	public List<Orders> orderCancelReturnList(int mNo){
+		Connection conn = getConnection();
+		List<Orders> list = dao.selectorderCancelReturnList(conn, mNo);
+		close(conn);
+		return list;
+	}
 
 	//각각 주문에 대한 주문디테일로 상품명 가져오기
 	public String orderdetailList(int oNo) {
@@ -66,5 +81,11 @@ public class OrderService {
 		
 		return pName;
 	}
+	
+	
+	
+	
+	
+	
 
 }

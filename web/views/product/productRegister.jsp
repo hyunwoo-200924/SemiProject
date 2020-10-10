@@ -122,12 +122,12 @@
     			pRecipeImage4.focus();
     		}
     		//상풍정보전송
-    		document.form.action="<%=request.getContextPath()%>/product/productWrite";
+     		document.form.action="<%=request.getContextPath()%>/product/productWriteEnd";
     		document.form.submit();
     	});
     	//상품목록이동
     	$("#gotoMenu").click(function(){
-    		location.href="<%=request.getContextPath()%>/product/productMainMenu.jsp";
+    		location.href="<%=request.getContextPath()%>/product/productList.jsp";
     	})
     		
     	}
@@ -136,7 +136,7 @@
 <body>
 <section class="product-resiter">
     <h1>상품등록</h1>
-    <form id="form" name="form" action="<%=request.getContextPath() %>/product/productWrite" method="post" class="product-resiter-container" enctype="multipart/form-data">
+    <form id="form" name="form" action="<%=request.getContextPath() %>/product/productWriteEnd" method="post" class="product-resiter-container" enctype="multipart/form-data">
        <ol>
            <li>상품이름:<input type="text"required name="pName" value="" id="pName"></li>
            <li>상품가격:<input type="text" name="pPrice" value="" id="pPrice">원</li>
@@ -267,7 +267,6 @@
        </ul>
        <div class="product-btn-box">
            <button type="submit" class="product-register" id="addProduct">등록</button>
-           <button type="submit" class="product-register" id="updateProduct">수정</button>
            <button type="submit" class="product-register" id="gotoMenu">목록</button>
 
        </div>

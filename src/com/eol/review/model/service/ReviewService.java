@@ -25,6 +25,7 @@ public class ReviewService {
 
 	public int insertReview(Review r) {
 		Connection conn=getConnection();
+		System.out.println("r1");
 		int result=dao.insertReview(conn,r);
 		if(result>0) commit(conn);
 		else rollback(conn);
@@ -46,4 +47,12 @@ public class ReviewService {
 		close(conn);
 		return count;
 	}
+	
+//	public int[] pullReview(int mNo) {
+//		//p_no o_no 가져오기
+//		Connection conn = getConnection();
+//		int[] nResult = dao.pullReview(conn,mNo);
+//		close(conn);
+//		return nResult;
+//	}
 }

@@ -63,26 +63,35 @@
 //		//MultipartRequest객체를 생성후에는 파라미터값을 MultipartRequest로 가져와야함
 //		//HttpServletRequest는 사용하지않음
 //		
+//		//클라리언트에서 M_NO 가져오기
+//		int mNo = Integer.parseInt(mr.getParameter("mNo"));
+//		
+////		int[] nResult = new ReviewService().pullReview(mNo);
+//		
 //		Review r=new Review();
-//		r.setrTitle(mr.getParameter("title"));
-//		r.setrWriter(mr.getParameter("writer"));
-//		r.setrContent(mr.getParameter("content"));
+//		r.setrTitle(mr.getParameter("reviewTitle"));
+//		r.setrWriter(mr.getParameter("reviewWriter"));
+//		r.setrContent(mr.getParameter("reviewContent"));
+//		
 //		//파일이름은 rename,되어있는 파일이름을 가져와야하기때문에
 //		//mr.getFilesystemName("name")메소드를이용
 //		//n.setFilePath(request.getParameter("upload")
 //		
 //		int result=new ReviewService().insertReview(r);
 //		
-//		String msg="";
-//		String loc="/notice/noticeList";
-//		msg=result>0?"공지사항등록성공":"공지사항등록실패";
-//		request.setAttribute("msg", msg);
-//		request.setAttribute("loc",loc);
-//		request.getRequestDispatcher("/views/common/msg.jsp").forward(request, response);
+//		if(result > 0) {
+//			System.out.println("인서트 성공");
+//			request.getRequestDispatcher("views/review/reviewList.jsp").forward(request, response);
+//		}else {
+//			
+//			String msg="등록 실패";
+//			String loc="/views/review/reviewList.jsp";
+//			request.setAttribute("msg", msg);
+//			request.setAttribute("loc",loc);
+//			request.getRequestDispatcher("/views/common/msg.jsp").forward(request, response);
+//		}
+//		}
 //	
-//	
-//	}
-//
 //	/**
 //	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 //	 */
