@@ -1,6 +1,7 @@
-package com.eol.member.controller;
+package com.eol.mypage.controller;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -8,20 +9,21 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.eol.member.model.service.MemberService;
+import com.eol.member.model.vo.Coupon;
+import com.eol.member.model.service.CouponService;
 import com.eol.member.model.vo.Member;
 
 /**
- * Servlet implementation class MemberUpdateServlet
+ * Servlet implementation class CouponListServlet
  */
-@WebServlet("/MemberUpdate")
-public class MemberUpdateServlet extends HttpServlet {
+@WebServlet("/couponList")
+public class CouponListServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public MemberUpdateServlet() {
+    public CouponListServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -30,25 +32,16 @@ public class MemberUpdateServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		Member m = new Member();
-		m.setmId(request.getParameter("id"));
-		m.setmPw(request.getParameter("new_pw"));//비밀번호를 입력하지 않았다면 ""
-		m.setmName(request.getParameter("name"));
-		m.setmBirth(request.getParameter("birth"));
-		m.setmEmail(request.getParameter("email"));
-		m.setmGender(request.getParameter("gender"));
-		m.setmPhone(request.getParameter("phone"));
+		int mNo = (int)((Member)request.getSession().getAttribute("loginMember")).getmNo();
 		
-		int result = new MemberService().updateMember(m);
-		System.out.println(result);
+		List<Coupon> list = new CouponService().selectCoupon(mNo);
 		
-		if(result > 0) {
-			response.sendRedirect(request.getContextPath() + "/views/member/memberUpdate.jsp");
-		}else {
-			
+		if(!list.isEmpty()) {
+			System.out.println("성공");
+			System.out.println(list);
+			request.setAttribute("list", list);
+			request.getRequestDispatcher("/views/coupon/couponList.jsp").forward(request, response);
 		}
-		
-		
 		
 	}
 

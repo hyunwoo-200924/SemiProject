@@ -1,4 +1,4 @@
-package com.eol.member.model.vo;
+package com.eol.coupon.model.vo;
 
 import java.sql.Date;
 
@@ -13,13 +13,6 @@ public class Coupon {
 	
 	public Coupon() {
 		// TODO Auto-generated constructor stub
-	}
-	
-	public Coupon(int mNo, int coType, int coContent) {
-		super();
-		this.mNo = mNo;
-		this.coType = coType;
-		this.coContent = coContent;
 	}
 
 	public Coupon(int mNo, int coType, int coContent, String coName, String coStatus, Date coRDate) {

@@ -49,12 +49,22 @@ href="<%=request.getContextPath() %>/css/hayong.css">
             <!-- 메인메뉴 -->
             <nav id="menu">
                 <a href="<%=request.getContextPath() %>/mainview.do"><img id="headerlogo" src="<%=request.getContextPath()%>/images/mainImages/logo.png" alt="" width="150px" height="45px" herf=""></a><!--로고-->
-                <ul>
-                    <li><a href="<%=request.getContextPath()%>/companyView.do">회사소개</a></li>
-                    <li><a href="<%=request.getContextPath()%>/product/productList">메뉴</a></li>
-                    <li><a href="<%=request.getContextPath()%>/event.do">이벤트</a></li>
-                    <li><a href="<%=request.getContextPath()%>/mypageMain.do">마이페이지</a></li>
-                </ul>
+
+                <%if(loginMember != null && loginMember.getmId().equals("admin")){ %> //관리자 페이지
+	                <ul>
+	                    <li><a href="<%=request.getContextPath()%>">상품관리</a></li>
+	                    <li><a href="<%=request.getContextPath()%>">회원관리</a></li>
+	                    <li><a href="<%=request.getContextPath()%>/boardManagement">게시판관리</a></li>
+	                    <li><a href="<%=request.getContextPath()%>">쿠폰관리</a></li>
+	                </ul>
+                <%}else{ %>
+	                <ul>
+	                    <li><a href="<%=request.getContextPath()%>/companyView.do">회사소개</a></li>
+	                    <li><a href="<%=request.getContextPath()%>/product/productList">메뉴</a></li>
+	                    <li><a href="<%=request.getContextPath()%>/event.do">이벤트</a></li>
+	                    <li><a href="<%=request.getContextPath()%>/mypageMain.do">마이페이지</a></li>
+	                </ul>
                 <a href="<%=request.getContextPath() %>/cartView.do"><img id="headerB" src="<%=request.getContextPath() %>/images/mainImages/shopping-cart-solid.svg" alt="" width="30px" height="30px"></a><!-- 장바구니 -->
+                <%} %>
             </nav>
         </header>

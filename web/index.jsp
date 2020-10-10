@@ -17,7 +17,7 @@
 			<a type="input" class="cart"><img src="<%=request.getContextPath() %>/images/mainImages/shopping-cart-solid.svg"></a>
 			<!--장바구니에 현재 광고 상품 담기-->
 		</div>
-
+		
 		<div class="mySlides fade">
 			<div class="numbertext">2 / 3</div>
 			<img src="<%=request.getContextPath() %>/images/mainImages/gim.jpg" style="width: 100%">

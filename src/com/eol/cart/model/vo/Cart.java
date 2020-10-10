@@ -1,23 +1,41 @@
 package com.eol.cart.model.vo;
 
+import java.util.Date;
+
+import com.eol.product.model.vo.Product;
+
 public class Cart {
 	
 	private int cNo;
 	private int mNo;
 	private int pNo;
 	private int cQty;
+	private Product product;
+	private Date oDeliveryEDate;
 	
 	public Cart() {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Cart(int cNo, int mNo, int pNo, int cQty) {
+	
+
+
+
+
+	public Cart(int cNo, int mNo, int pNo, int cQty, Product product, Date oDeliveryEDate) {
 		super();
 		this.cNo = cNo;
 		this.mNo = mNo;
 		this.pNo = pNo;
 		this.cQty = cQty;
+		this.product = product;
+		this.oDeliveryEDate = oDeliveryEDate;
 	}
+
+
+
+
+
 
 	public int getcNo() {
 		return cNo;
@@ -50,6 +68,38 @@ public class Cart {
 	public void setcQty(int cQty) {
 		this.cQty = cQty;
 	}
+
+
+
+	public Product getProduct() {
+		return product;
+	}
+
+
+
+	public void setProduct(Product product) {
+		this.product = product;
+	}
+
+
+
+
+
+
+	public Date getoDeliveryEDate() {
+		return oDeliveryEDate;
+	}
+
+
+
+
+
+
+	public void setoDeliveryEDate(Date oDeliveryEDate) {
+		this.oDeliveryEDate = oDeliveryEDate;
+	}
+	
+	
 	
 
 }

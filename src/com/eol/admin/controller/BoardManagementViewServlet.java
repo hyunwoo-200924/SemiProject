@@ -1,4 +1,4 @@
-package com.eol.order.controller;
+package com.eol.admin.controller;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -8,16 +8,16 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Servlet implementation class OrderPayInputServlet
+ * Servlet implementation class BoardManagementViewServlet
  */
-@WebServlet("/orderpayinput.do")
-public class OrderPayInputServlet extends HttpServlet {
+@WebServlet("/boardManagement")
+public class BoardManagementViewServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public OrderPayInputServlet() {
+    public BoardManagementViewServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -26,9 +26,7 @@ public class OrderPayInputServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		request.getRequestDispatcher("/views/order/orderpay.jsp").forward(request, response);
-	
+		request.getRequestDispatcher("/views/admin/boardManagement.jsp").forward(request, response);
 	}
 
 	/**
