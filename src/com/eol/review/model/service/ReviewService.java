@@ -25,7 +25,6 @@ public class ReviewService {
 
 	public int insertReview(Review r) {
 		Connection conn=getConnection();
-		System.out.println("r1");
 		int result=dao.insertReview(conn,r);
 		if(result>0) commit(conn);
 		else rollback(conn);

@@ -52,6 +52,7 @@ href="<%=request.getContextPath() %>/css/hayong.css">
                 <a href="<%=request.getContextPath() %>/mainview.do"><img id="headerlogo" src="<%=request.getContextPath()%>/images/mainImages/logo.png" alt="" width="150px" height="45px" herf=""></a><!--로고-->
 
                 <%if(loginMember != null && loginMember.getmId().equals("admin")){ %>
+
 	                <ul>
 	                    <li><a href="<%=request.getContextPath()%>">상품관리</a></li>
 	                    <li><a href="<%=request.getContextPath()%>">회원관리</a></li>

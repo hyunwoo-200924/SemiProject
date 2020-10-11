@@ -39,7 +39,7 @@ href="<%=request.getContextPath() %>/css/noneoderDelivery.css">
                     <table class="orderDate">
                         <tr>
                             <td>주문일시<br>
-                            <%= o.getoRDate() %></td>
+                            <%= o.getoPayDate() %></td>
                             <td>주문번호<br>
                             <%= o.getoNo() %></td>
                         </tr>
@@ -68,7 +68,7 @@ href="<%=request.getContextPath() %>/css/noneoderDelivery.css">
                 
                 <div class="content4">
                    <div class="orderNumber">
-                        <p><%=o.getoRDate() %> (<%=o.getoNo() %>)</p>
+                        <p><%=o.getoPayDate() %> (<%=o.getoNo() %>)</p>
                     </div>
                     <div class="productView">
                         <div class="orderproduct">
@@ -82,7 +82,7 @@ href="<%=request.getContextPath() %>/css/noneoderDelivery.css">
                         </div>
                         <div class="ordernotice">
                             <p>도착일, 배송지변경 및 주문취소는<br>
-                                주문마감기한인 <%=o.getoAllowDate() %> 07:00 까지 가능합니다.</p>
+                                주문마감기한인 <%=o.getoDeliveryDate() %> 07:00 까지 가능합니다.</p>
                         </div>
                     </div>
                     <div class="orderButton">

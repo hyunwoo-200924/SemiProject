@@ -9,7 +9,7 @@ public class Orders {
 	private int oNo;//주문번호 1회 주문결제 할 때 부여되는 고유번호
 	private int mNo;//회원이 주문할때 회원번호
 	private String oName;//주문자 이름
-	private String oPhone;//받는사람 연락처
+	private String oPhone;//주문자 연락처
 	private String oAddress;//받는사람 주소
 	private Date oDeliveryDate;//배송시작날짜
 	private int oAmount;//주문하는 상품의 종류 수
@@ -23,6 +23,7 @@ public class Orders {
 	private List<OrderDetail> details=new ArrayList();
 	private String orderContent; //"사과 외 3건" 문구담으려고 만든 변수
 	private String oToName;//받는사람 이름
+	private String oToPhone;//받는사람 연락처
 	
 	
 	public Orders() {
@@ -31,11 +32,9 @@ public class Orders {
 
 
 
-
-
 	public Orders(int oNo, int mNo, String oName, String oPhone, String oAddress, Date oDeliveryDate, int oAmount,
 			int oPayment, String oPw, String oStatus, Date oPayDate, String oDeliveryStatus, Date oDeliveryEDate,
-			String oPayWays, List<OrderDetail> details, String orderContent, String oToName) {
+			String oPayWays, List<OrderDetail> details, String orderContent, String oToName, String oToPhone) {
 		super();
 		this.oNo = oNo;
 		this.mNo = mNo;
@@ -54,7 +53,14 @@ public class Orders {
 		this.details = details;
 		this.orderContent = orderContent;
 		this.oToName = oToName;
+		this.oToPhone = oToPhone;
 	}
+
+
+
+
+
+
 
 
 
@@ -233,6 +239,18 @@ public class Orders {
 
 	public void setoToName(String oToName) {
 		this.oToName = oToName;
+	}
+
+
+
+	public String getoToPhone() {
+		return oToPhone;
+	}
+
+
+
+	public void setoToPhone(String oToPhone) {
+		this.oToPhone = oToPhone;
 	}
 	
 	
