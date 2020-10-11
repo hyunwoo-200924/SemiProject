@@ -21,9 +21,26 @@ public class CartService {
 		return list;
 	}
 	
-	public Product cartProduct(int pNo) {
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	public List<Cart> nonlistCart(){
+		Connection conn =getConnection();
+		List<Cart> list = dao.nonlistCart(conn);
+		close(conn);
+		return list;
+	}
+	
+	public Product nonCartProduct(int pNo) {
 		Connection conn = getConnection();
-		Product p = dao.selectCartProduct(conn, pNo);
+		Product p = dao.selectnonCartProduct(conn,pNo);
 		close(conn);
 		return p;
 	}
