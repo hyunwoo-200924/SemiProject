@@ -88,7 +88,7 @@
                                 <!-- 메뉴상세페이지로이동 -->
                                 <a href="<%=request.getContextPath()%>/product/productView?pNo=<%=p.getpNo()%>">
 									<%if(p.getpImage1()!=null) {%>
-                                    <img type="file" src="<%=request.getContextPath() %>/product/productFileDownload?fileName=<%=p.getpImage1() %>" alt="menu" class="menu-click1">
+                                    <img type="file" src="<%=request.getContextPath() %>/upload/product/<%=p.getpImage1() %>" alt="menu" class="menu-click1">
                                     <%} %>
                                     <ul class="menu--text-group">
                                         <div class="new">

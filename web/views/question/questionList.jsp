@@ -79,7 +79,7 @@
 								<span class="list"><%=q.getqRdate() %></span>
 							</div>
                      		<div class="contentBox" style="display:none">
-                     			<%-- <div>
+                     			<%-- <div> 여기 추가 할꺼면 update함수, delete함수 수정해야함
                      			<img src="<%= request.getContextPath() %>/upload/question/<%= q.getqFile() %>">
                      			</div> --%>
                      			<!-- <div> -->
