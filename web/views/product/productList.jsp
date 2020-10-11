@@ -3,14 +3,17 @@
 <link rel="stylesheet" type="text/css" herf="<%=request.getContextPath()%>/css/menu.css">
 
 
-<%@ page import="java.util.List,com.eol.product.model.vo.Product" %>
-<%
-	List<Product> list=(List)request.getAttribute("list");
-	String pageBar=(String)request.getAttribute("pageBar");
-%>
+<%@ page import="java.util.List,
+com.eol.product.model.vo.Product,
+com.eol.member.model.vo.Member" %>
 
 <%@ include file="/views/common/header.jsp"%>
 
+<%
+	List<Product> list=(List)request.getAttribute("list");
+	String pageBar=(String)request.getAttribute("pageBar");
+	Member loginMember1 = (Member)request.getSession().getAttribute("loginMember");
+%>
 
 
     <!-- section -->
@@ -69,10 +72,10 @@
     <!-- 메뉴 이미지칸  3 x  3 배열 -->
     <div class="section-menu-group-container">
         <div class="section-menu-group-container1">
-        		<!-- 로긴멤버가 관리자 admin이면  if(mId!=null&&mId().equals("admin")){%> -->
+        <%if((loginMember1!=null)&& loginMember1.equals("admin")){ %>
 					<button  onclick="location.assign('<%=request.getContextPath()%>/product/productWrite')">등록하기</button>
-        		<!--}%>  -->
-					
+        	
+				<%} %>	
             <section class="menu-group-section1">
                 
             <%for(Product p : list) {%>
