@@ -37,6 +37,7 @@ public class NonCartViewServlet extends HttpServlet {
 		// 1.회원 정보 가져오기(로그인, 비로그인)
 
 		Member m = (Member)request.getAttribute("loginMember"); //회원 정보 가져오기
+
 		
 		if(m ==null) {
 			//비회원 일때 리스트에 카트 정보를 담기

@@ -1,15 +1,15 @@
 
+<%@page import="java.util.ArrayList"%>
 <%@page import="com.eol.product.model.vo.Product"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     
 <%@
-	page import="java.util.List,com.eol.cart.model.vo.Cart,javax.servlet.http.Cookie"
+	page import="java.util.List,java.util.ArrayList,com.eol.cart.model.vo.Cart"
  %>
  <%
- /*  	List<Cart> list = (List)request.getSession().getAttribute("nonlistCart");
- */
- 	List<Cart> list = (List)session.getAttribute("nonselectCart");
+   	List<Cart> list = (List)session.getAttribute("nonselectCart");
+ 
  %>
     
  <link file="<%=request.getContextPath()%>/css/cart.css">   
@@ -25,8 +25,9 @@
                 <label for=""><input type="radio">
             </div>
            <%for(Cart c : list){%>
+           
             <div class="cart-section-body-group2">
-                <img src="<%=request.getContextPath() %>/product/productFileDownload?fileName=<%=c.getProduct().getpImage1() %>" alt="상품이미지" style="width:200px;height:150px;">
+               <img src="<%=request.getContextPath() %>/upload/product/<%=c.getProduct().getpImage1() %>" alt="상품이미지" style="width:200px;height:150px;">
 
             </div>
             <div class="cart-section-body-group3">

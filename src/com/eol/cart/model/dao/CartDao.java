@@ -78,36 +78,6 @@ public class CartDao {
 			close(pstmt);
 		}return p;
 	}
-	
-	
-	
-	
-	
-
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 	//리스트에 카트 정보 담기
 	public List<Cart> nonlistCart(Connection conn){
 		PreparedStatement pstmt = null;

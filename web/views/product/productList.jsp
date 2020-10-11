@@ -84,9 +84,10 @@
                     <div class="menu--img-group2">
                        <div class="menu--img-items-group"> 
                             <div class="menu--img-items">
+                            
                             <div><%=p.getpNo()%></div>
                                 <!-- 메뉴상세페이지로이동 -->
-                                <a href="<%=request.getContextPath()%>/product/productView?pNo=<%=p.getpNo()%>">
+                                <a href="<%=request.getContextPath()%>/product/productView?pNo=<%=p.getpNo()%>" name="plz">
 									<%if(p.getpImage1()!=null) {%>
                                     <img type="file" src="<%=request.getContextPath() %>/product/productFileDownload?fileName=<%=p.getpImage1() %>" alt="menu" class="menu-click1">
                                     <%} %>
