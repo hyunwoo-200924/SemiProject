@@ -241,7 +241,7 @@ public class OrderDao {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		String pName = null;
-		
+		System.out.println(oNo);
 		try {
 			pstmt = conn.prepareStatement(prop.getProperty("selectpName"));
 			pstmt.setInt(1, oNo);

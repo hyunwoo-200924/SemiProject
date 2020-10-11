@@ -103,12 +103,28 @@ public class ProductWriteEndServlet extends HttpServlet {
 		
 		int result = new ProductService().insertProduct(p);
 		
+//		String msg="";
+////		String loc="/product/productList.jsp";
+//		msg=result>0?"상품등록 성공":"상품등록실패";
+		
 		String msg="";
-		String loc="/product/productRegister.jsp";
-		msg=result>0?"상품등록 성공":"상품등록실패";
+		String loc="";
+		String path1="";
+		if(result>0) {
+			//선택한 공지사항이 삭제됨.
+			msg="상품이 등록되었습니다";
+			loc="/product/productList";
+			path1="/views/common/msg.jsp";
+			request.setAttribute("msg",msg);
+			request.setAttribute("loc",loc);
+		}else {
+			request.setAttribute("product",p);
+			path1="/views/product/productRegister.jsp";
+		}
+		request.getRequestDispatcher(path1).forward(request, response);
 		
 		request.setAttribute("msg", msg);
-		request.setAttribute("loc",loc);
+		request.setAttribute("loc","/product/productList.jsp");
 		request.getRequestDispatcher("/views/common/msg.jsp").forward(request, response);
 		
 		

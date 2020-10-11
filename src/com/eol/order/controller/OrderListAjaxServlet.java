@@ -57,9 +57,9 @@ public class OrderListAjaxServlet extends HttpServlet {
 					order.put("oRDate", sdf.format(o.getoPayDate()));
 					
 					int oNo = o.getoNo();
-					System.out.println(oNo);
+					//System.out.println(oNo);
 					String pName = new OrderService().orderdetailList(oNo);
-					System.out.println(pName);
+					//System.out.println(pName);
 					int oAmount = o.getoAmount()-1;
 					
 					order.put("orderContent", pName + " 외" + " " + oAmount + "건");

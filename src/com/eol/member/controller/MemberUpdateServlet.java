@@ -32,8 +32,7 @@ public class MemberUpdateServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		Member m = new Member();
 		m.setmId(request.getParameter("id"));
-		m.setmPw(request.getParameter("new_pw"));
-		System.out.println(m.getmPw());
+		m.setmPw(request.getParameter("new_pw"));//비밀번호를 입력하지 않았다면 ""
 		m.setmName(request.getParameter("name"));
 		m.setmBirth(request.getParameter("birth"));
 		m.setmEmail(request.getParameter("email"));
