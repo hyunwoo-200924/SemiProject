@@ -14,7 +14,9 @@ public class Qna {
 	private int mNo; 
 	private String qAnswer;
 	private String qStatus;
-
+	private String mId;
+	private String answerResult;
+	
 	public Qna() {
 		// TODO Auto-generated constructor stub
 	}
@@ -112,6 +114,22 @@ public class Qna {
 
 	public void setqStatus(String qStatus) {
 		this.qStatus = qStatus;
+	}
+
+	public String getmId() {
+		return mId;
+	}
+
+	public void setmId(String mId) {
+		this.mId = mId;
+	}
+	
+	public String getAnswerResult() {
+		return answerResult;
+	}
+
+	public void setAnswerResult(String answerResult) {
+		this.answerResult = answerResult;
 	}
 
 	@Override
