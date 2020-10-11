@@ -1,7 +1,7 @@
 package com.eol.cart.model.service;
 
-import static com.eol.common.JDBCTemplate.getConnection;
 import static com.eol.common.JDBCTemplate.close;
+import static com.eol.common.JDBCTemplate.getConnection;
 
 import java.sql.Connection;
 import java.util.List;

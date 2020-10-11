@@ -103,8 +103,6 @@ function gotoMainMenu(){
         <div class="menu-section">
          <%-- <%if(m.getmId()!=null && m.getmId().equals("admin")){ %> --%>
         <button type="button" onclick="gotoMainMenu();">목록</button>
-        <button type="button" onclick="location.assign('<%=request.getContextPath()%>/product/productUpdate')">수정</button>
-        <button type="button" onclick="location.assign('<%=request.getContextPath()%>/product/productDelete')">삭제</button>
         <%-- <%} %>  --%>
             <div class="menu-container">
                 
@@ -176,7 +174,7 @@ function gotoMainMenu(){
                              <div class="button-container">
                                  <!-- 날짜선택시 품목명 갯수 선택할 박스  생성. -->
                                  <a src="<%=request.getContextPath()%>/cart/jjim.jsp"><input type="radio" class="botton-group" name="choice-radio" id="cartPut();" checked>장바구니</input></a>
-                                 <a src="<%=request.getContextPath()%>/cart/cart.jsp"><input type="radio" class="botton-group" name="choice-radio" id="presentbtn();">선물하기</input></a>
+                                 <a src="<%=request.getContextPath()%>/cartView.do"><input type="radio" class="botton-group" name="choice-radio" id="presentbtn();">선물하기</input></a>
                              </div>
                              <div class="etc_txt" id="cart_txt" style="display:block;">
                                  <span>주문 마감시간 오전 7시</span>

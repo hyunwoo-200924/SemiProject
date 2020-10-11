@@ -7,9 +7,8 @@
 <%
 	List<Product> list=(List)request.getAttribute("list");
 	String pageBar=(String)request.getAttribute("pageBar");
-
-
 %>
+
 <%@ include file="/views/common/header.jsp"%>
 
 
