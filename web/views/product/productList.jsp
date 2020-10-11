@@ -88,7 +88,7 @@ com.eol.member.model.vo.Member" %>
                        <div class="menu--img-items-group"> 
                             <div class="menu--img-items">
                             
-                            <div><%=p.getpNo()%></div>
+                            <div name="pNo"><%=p.getpNo()%></div>
                                 <!-- 메뉴상세페이지로이동 -->
                                 <a href="<%=request.getContextPath()%>/product/productView?pNo=<%=p.getpNo()%>" name="plz">
 									<%if(p.getpImage1()!=null) {%>
@@ -128,7 +128,7 @@ com.eol.member.model.vo.Member" %>
                                 <img src="<%=request.getContextPath() %>/images/product/hart40px.jpg" alt="찜" class="hart--img" onclick="hart();"></img>
                             </a>
                             <!-- 장바구니페이지 -->
-                            <a href="<%=request.getContextPath() %>/views/cart/cartViewServlet" id="cartBtn" name="cartBtn">
+                            <a href="<%=request.getContextPath() %>/views/cart/cartViewServlet?pNo=<%=p.getpNo() %>" id="cartBtn" name="cartBtn">
 
                                 <img src="<%=request.getContextPath() %>/images/product/cart40px.jpg" alt="장바구니" class="cart--img" onclick="cartInsert()"></img>
                             </a>

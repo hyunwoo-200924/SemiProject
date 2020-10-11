@@ -13,6 +13,7 @@ import java.util.List;
 import java.util.Properties;
 
 import com.eol.cart.model.vo.Cart;
+import com.eol.member.model.vo.Member;
 import com.eol.product.model.vo.Product;
 
 public class CartDao {
@@ -78,58 +79,4 @@ public class CartDao {
 			close(pstmt);
 		}return p;
 	}
-	//리스트에 카트 정보 담기
-	public List<Cart> nonlistCart(Connection conn){
-		PreparedStatement pstmt = null;
-		ResultSet rs = null;
-		List<Cart> list = new ArrayList<Cart>();
-		try {
-			pstmt = conn.prepareStatement(prop.getProperty("nonselectCart"));
-			rs = pstmt.executeQuery();
-			
-			while(rs.next()) {
-				Cart c = new Cart();
-				c.setcNo(rs.getInt("c_no"));
-				c.setmNo(rs.getInt("p_no"));
-				c.setcQty(rs.getInt("c_qty"));
-				
-				list.add(c);
-				}
-			
-			}catch(SQLException e) {
-				e.printStackTrace();
-			}finally {
-				close(rs);
-				close(pstmt);
-			}return list;
-	}
-	
-	//카트의 상품  p 에 리스트 내용 담기
-	public Product selectnonCartProduct(Connection conn, int pNo) {
-		PreparedStatement pstmt = null;
-		ResultSet rs = null;
-		Product p = null;
-		try {
-			pstmt = conn.prepareStatement(prop.getProperty("nonselectCartProduct"));
-			//selectCartProduct=SELECT * FROM PRODUCT WHERE P_NO=?
-			pstmt.setInt(1, pNo);
-			rs = pstmt.executeQuery();
-			if(rs.next()) {
-				p = new Product();
-				p.setpNo(rs.getInt("p_no"));
-				p.setpName(rs.getString("p_name"));
-				p.setpPrice(rs.getInt("p_price"));
-				p.setpImage1(rs.getString("p_image1"));
-			}
-		}catch(SQLException e) {
-			e.printStackTrace();
-		}finally {
-			close(rs);
-			close(pstmt);
-		}return p;
-	}
-	
-	
-	
-
 }
