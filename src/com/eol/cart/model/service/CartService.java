@@ -22,15 +22,14 @@ public class CartService {
 	}
 	
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+	public Product cartProduct(int pNo) {
+		Connection conn = getConnection();
+		Product p = dao.selectCartProduct(conn, pNo);
+		close(conn);
+		return p;
+	}
+
+
 	public List<Cart> nonlistCart(){
 		Connection conn =getConnection();
 		List<Cart> list = dao.nonlistCart(conn);
