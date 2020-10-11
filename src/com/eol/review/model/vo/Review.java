@@ -14,13 +14,14 @@ public class Review {
 	private String rPhoto3;
 	private Date rRdate;
 	private int rStarScore;
+	private String FilePath;
 	
 	public Review() {
 		// TODO Auto-generated constructor stub
 	}
 
 	public Review(int rNo, int pNo, int oNo, String rWriter, String rTitle, String rContent, String rPhoto1,
-			String rPhoto2, String rPhoto3, Date rRdate, int rStarScore) {
+			String rPhoto2, String rPhoto3, Date rRdate, int rStarScore, String filePath) {
 		super();
 		this.rNo = rNo;
 		this.pNo = pNo;
@@ -33,6 +34,7 @@ public class Review {
 		this.rPhoto3 = rPhoto3;
 		this.rRdate = rRdate;
 		this.rStarScore = rStarScore;
+		FilePath = filePath;
 	}
 
 	public int getrNo() {
@@ -123,13 +125,13 @@ public class Review {
 		this.rStarScore = rStarScore;
 	}
 
-	@Override
-	public String toString() {
-		return "Review [rNo=" + rNo + ", pNo=" + pNo + ", oNo=" + oNo + ", rWriter=" + rWriter + ", rTitle=" + rTitle
-				+ ", rContent=" + rContent + ", rPhoto1=" + rPhoto1 + ", rPhoto2=" + rPhoto2 + ", rPhoto3=" + rPhoto3
-				+ ", rRdate=" + rRdate + ", rStarScore=" + rStarScore + "]";
+	public String getFilePath() {
+		return FilePath;
 	}
 
-	
+	public void setFilePath(String filePath) {
+		FilePath = filePath;
+	}
+
 	
 }

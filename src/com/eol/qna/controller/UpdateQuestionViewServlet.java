@@ -1,4 +1,4 @@
-package com.eol.cart.controller;
+package com.eol.qna.controller;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -8,16 +8,16 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Servlet implementation class CartViewServlet
+ * Servlet implementation class UpdateQuestionViewServlet
  */
-@WebServlet("/cartView.do")
-public class CartViewServlet extends HttpServlet {
+@WebServlet("/updateQuestionView")
+public class UpdateQuestionViewServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public CartViewServlet() {
+    public UpdateQuestionViewServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -26,9 +26,8 @@ public class CartViewServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		request.getRequestDispatcher("/views/cart/cart.jsp").forward(request, response);
-	
+		//1:1문의 수정하는 화면으로 전환
+		request.getRequestDispatcher("views/question/updateQuestion.jsp").forward(request, response);
 	}
 
 	/**

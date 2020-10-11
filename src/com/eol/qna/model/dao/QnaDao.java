@@ -65,7 +65,7 @@ public class QnaDao {
 		return result;
 	}
 
-	//문의 리스트 가져오기
+	//문의 리스트 가져오기 (페이징 처리 한거)
 	public List<Qna> selectQna(Connection conn, Paging pg, int mNo) {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -186,6 +186,31 @@ public class QnaDao {
 			close(pstmt);
 		}
 		return result;
+	}
+
+	//1:1문의 답변 가져오기
+	public String selectAnswer(Connection conn, int qNo) {
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String answer = null;
+		
+		try {
+			pstmt = conn.prepareStatement(prop.getProperty("selectAnswer"));
+			pstmt.setInt(1, qNo);
+			
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				answer = rs.getString(1);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rs);
+			close(pstmt);
+		}
+		
+		return answer;
 	}
 	
 	
