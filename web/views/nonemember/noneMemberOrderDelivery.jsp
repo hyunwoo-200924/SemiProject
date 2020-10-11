@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
+<%-- <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ page import="com.eol.order.model.vo.Orders" %>
 
@@ -121,4 +121,4 @@ href="<%=request.getContextPath() %>/css/noneoderDelivery.css">
                 </div>
             </div>
         </section>
-<%@ include file="/views/common/footer.jsp"%>
+<%@ include file="/views/common/footer.jsp"%> --%>

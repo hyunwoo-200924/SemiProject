@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ page import="com.eol.member.model.vo.Member" %>
+
 <%
 	//로그인 된 상태이면 loginMember에 값이 있다.
 	//로그인 안된 상태이면 loginMEmber가 null값이 된다.
@@ -50,11 +51,12 @@ href="<%=request.getContextPath() %>/css/hayong.css">
             <nav id="menu">
                 <a href="<%=request.getContextPath() %>/mainview.do"><img id="headerlogo" src="<%=request.getContextPath()%>/images/mainImages/logo.png" alt="" width="150px" height="45px" herf=""></a><!--로고-->
 
-                <%if(loginMember != null && loginMember.getmId().equals("admin")){ %> //관리자 페이지
+                <%if(loginMember != null && loginMember.getmId().equals("admin")){ %>
+
 	                <ul>
-	                    <li><a href="<%=request.getContextPath()%>">상품관리</a></li>
+	                    <li><a href="<%=request.getContextPath()%>/product/productList">상품관리</a></li>
 	                    <li><a href="<%=request.getContextPath()%>">회원관리</a></li>
-	                    <li><a href="<%=request.getContextPath()%>/boardManagement">게시판관리</a></li>
+	                    <li><a href="<%=request.getContextPath()%>/adminQuestionList">게시판관리</a></li>
 	                    <li><a href="<%=request.getContextPath()%>">쿠폰관리</a></li>
 	                </ul>
                 <%}else{ %>
