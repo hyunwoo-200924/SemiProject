@@ -86,6 +86,7 @@ public class ProductDao {
 			close(rs);
 			close(pstmt);
 		}
+		System.out.println(list);
 		System.out.println("db갓다와서 출력햇음");
 		return list;
 		
