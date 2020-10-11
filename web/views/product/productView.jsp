@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<link rel="stylesheet" type="text/css" href="/css/menu.css">    
+<link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/css/menu.css">  
+<link rel="stylesheet" type="text/Javascript" href="<%=request.getContextPath() %>/js/productJavascript.js">  
 <script>
 //menu menubar scroll 영역///
 
@@ -83,18 +84,17 @@ function gotoMainMenu(){
 	//페이지를 전환시켜주는명령어 실행
 	location.replace("<%=request.getContextPath()%>/product/productList.jsp");
 };
+//금액을 받아와야함.
+//
+
+
 
 </script>
 
 <%@page import="com.eol.product.model.vo.Product" %>
 
 <%
-
-
 	Product p=(Product)request.getAttribute("Product");
-	
-	
-
 %>
 <%@ include file="/views/common/header.jsp"%>
 	
@@ -107,27 +107,27 @@ function gotoMainMenu(){
             <div class="menu-container">
                 
                 <div class="img">
-                   <iframe class="big_img" width="600" height="500" src="<%=request.getContextPath() %>/product/productFileDownload?fileName=<%=p.getpVideo() %>" frameborder="0" allow="accelerometer; autoplay;  picture-in-picture" allowfullscreen></iframe>
+                   <iframe class="big_img" width="600" height="500" src="<%=request.getContextPath() %>/upload/product/<%=p.getpVideo() %>" frameborder="0" allow="accelerometer; autoplay;  picture-in-picture" allowfullscreen></iframe>
                    <div class="img-parents">
                      <div class="img-container">
                          <ul class="slideshow-container">
                              <li class="myslides1 fade">
-                                 <iframe  data-target="" width="50" height="50" src="<%=request.getContextPath() %>/product/productFileDownload?fileName=<%=p.getpVideo() %>" frameborder="0" allow="accelerometer; gyroscope; picture-in-picture" allowfullscreen class="img-img-small" alt="동영상"></iframe>
+                                 <iframe  data-target="" width="50" height="50" src="<%=request.getContextPath() %>/upload/product/<%=p.getpVideo() %>" frameborder="0" allow="accelerometer; gyroscope; picture-in-picture" allowfullscreen class="img-img-small" alt="동영상"></iframe>
                                
                              </li>
                              <li class="myslides1 fade">
                              
-                                 <img src="<%=request.getContextPath() %>/product/productFileDownload?fileName=<%=p.getpImage1() %>"  data-target="cheeze-resipy-medium.gif" alt="이미지1" style="width: 50px; height: 50px;" class="img-img-small">
+                                 <img src="<%=request.getContextPath() %>/upload/product/<%=p.getpImage1() %>"  data-target="cheeze-resipy-medium.gif" alt="이미지1" style="width: 50px; height: 50px;" class="img-img-small">
                                
                              </li>
                              <li class="myslides1 fade">
                                
-                                 <img src="<%=request.getContextPath() %>/product/productFileDownload?fileName=<%=p.getpImage2() %>" data-target="cheesechic.jpg" alt="이미지2" style="width: 50px; height: 50px;" class="img-img-small">
+                                 <img src="<%=request.getContextPath() %>/upload/product/<%=p.getpImage2() %>" data-target="cheesechic.jpg" alt="이미지2" style="width: 50px; height: 50px;" class="img-img-small">
                                  
                              </li>
                              <li class="myslides1 fade">
                  
-                                 <img src="<%=request.getContextPath() %>/product/productFileDownload?fileName=<%=p.getpImage3() %>" data-target="cheezemenu.jpg" alt="이미지3" style="width: 50px; height: 50px;" class="img-img-small">
+                                 <img src="<%=request.getContextPath() %>/upload/product/<%=p.getpImage3() %>" data-target="cheezemenu.jpg" alt="이미지3" style="width: 50px; height: 50px;" class="img-img-small">
                                 
                              </li>
                          </ul>
@@ -137,7 +137,7 @@ function gotoMainMenu(){
                  </div>
             </div>
         </div>
-        <div class="text-container">
+        <form class="text-container">
             <div class="text-container2">
                 <div class="text-group">
                   <img src="<%=request.getContextPath() %>/images/product/new64.png" alt="new" id="new">
@@ -155,13 +155,13 @@ function gotoMainMenu(){
                              <li class="text-menu"><%=p.getpTaste() %></li>
                          </ul>
                          <dl class="text-items">판매가
-                             <dd class="price text-right" name="P_"><%=p.getpPrice() %><span>원</span></dd>
+                             <dd class="price text-right" name="<%=p.getpPrice() %>" value="" id="pPrice"><%=p.getpPrice() %><span>원</span></dd>
                          </dl>
                          <dl class="text-items">할인가
-                             <dd class="price text-right"><%=p.getpPrice() %><span>원</span></dd>
+                             <dd class="price text-right" name="<%=p.getpDiscount()%>" id="pDiscount"><span>원</span></dd>
                          </dl>
                          <dl class="text-items">포인트적립
-                             <dd  class="text-right"><%=p.getpPrice() %>0.5% <img src="<%=request.getContextPath() %>/images/mul.png" alt="정보" class="info-img"></dd>
+                             <dd  class="text-right" name="" id="pPoint"><%=p.getpPrice() %>0.5% <img src="<%=request.getContextPath() %>/images/mul.png" alt="정보" class="info-img"></dd>
                          </dl>
                          <dl class="text-items">배송방법 :
                                  <dd class="delivery text-right">선택배송</dd>
@@ -199,20 +199,20 @@ function gotoMainMenu(){
                                  <div value="order-date01" class="order_check_day">    배송을  원하는 날짜를 고르세요. <span  style="display:hidden; font-size:25px;">√</span></div>
                                  
                                  <!-- 갯수를 30개로 가정하고 시작하자! -->
-                                 <div value="order-date00" class="order_check_day" style="display: none;">    배송을  원하는 날짜를 고르세요. <img src="#" alt="체크" hidden></div>
-                                 <div value="order-date01" class="order_check_day" id="order_check_day1" style="display:none;" onclick="mouseClick();">      9월 22일(화)
+                                 <div name="" value="<%=p.getpRdate() %>" class="order_check_day" style="display: none;">    배송을  원하는 날짜를 고르세요. <img src="#" alt="체크" hidden></div>
+                                 <div name="" value="order-date01" class="order_check_day" id="order_check_day1" style="display:none;" onclick="mouseClick();">      9월 22일(화)
                                      <span></span><span alt="체크" style="displa:none; font-size:25px; bold: 1000;">√</span>
                                  </div>
-                                 <div value="order-date02" class="order_check_day" id="order_check_day2" style="display: none;" onclick="mouseClick1();">      9월 23일(수)
+                                 <div  name="" value="order-date02" class="order_check_day" id="order_check_day2" style="display: none;" onclick="mouseClick1();">      9월 23일(수)
                                      <span>5개!</span><span alt="체크" style="displa:none; font-size:25px; bold: 1000;">√</span>
                                  </div>
-                                 <div value="order-date03"class="order_check_day" id="order_check_day3" style="display: none;" onclick="mouseClick2();">       9월 24일(목)
+                                 <div name="" value="order-date03"class="order_check_day" id="order_check_day3" style="display: none;" onclick="mouseClick2();">       9월 24일(목)
                                      <span>2개!</span><span alt="체크" style="displa:none; font-size:25px; bold: 1000;">√</span>
                                  </div>
-                                 <div value="order-date04" class="order_check_day" id="order_check_day4" style="display: none;" onclick="mouseClick3();">      9월 25일(금)
+                                 <div name="" value="order-date04" class="order_check_day" id="order_check_day4" style="display: none;" onclick="mouseClick3();">      9월 25일(금)
                                      <span>0개!</span><span alt="체크" style="displa:none; font-size:25px; bold: 1000;">√</span>
                                  </div>
-                                 <div value="order-date05" class="order_check_day" id="order_check_day5" style="display: none;" onclick="mouseClick4();">      9월 26일(토)
+                                 <div name="" value="order-date05" class="order_check_day" id="order_check_day5" style="display: none;" onclick="mouseClick4();">      9월 26일(토)
                                      <span>2개</span ><span alt="체크" style="displa:none; font-size:25px; bold: 1000;">√</span>
                                  </div>
                              </a>
@@ -254,13 +254,13 @@ function gotoMainMenu(){
                                  <div class="jjim-btn-container">
                                     <a href=""><img src="<%=request.getContextPath() %>/images/product/hart.jpg" alt="찜" class="jjim"></a>
                                    <a href="/cart/cart.jsp"><span class="jjim">♥</span></a>
-                                    <button class="cart-botton-items" id="buybtn()">장바구니</button>
+                                    <button type="submit" class="cart-botton-items" id="buybtn()" onclick="location.relace('<%=request.getContextPath()%>/cartView.do')">장바구니</button>
                                     
                                  </div>
                              
                          </div>
                      </div>
-             </div>
+             </form>
            
              <div class="etc_info_wrap">
                  <div class="review_btn_wrap">

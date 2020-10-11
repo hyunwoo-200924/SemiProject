@@ -52,7 +52,7 @@ href="<%=request.getContextPath() %>/css/hayong.css">
 
                 <%if(loginMember != null && loginMember.getmId().equals("admin")){ %> //관리자 페이지
 	                <ul>
-	                    <li><a href="<%=request.getContextPath()%>">상품관리</a></li>
+	                    <li><a href="<%=request.getContextPath()%>/product/productList">상품관리</a></li>
 	                    <li><a href="<%=request.getContextPath()%>">회원관리</a></li>
 	                    <li><a href="<%=request.getContextPath()%>/boardManagement">게시판관리</a></li>
 	                    <li><a href="<%=request.getContextPath()%>">쿠폰관리</a></li>
