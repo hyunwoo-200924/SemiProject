@@ -21,13 +21,13 @@ import com.eol.product.service.ProductService;
  * Servlet implementation class CartViewServlet
  */
 @WebServlet("/views/cart/cartViewServlet")
-public class NonCartViewServlet extends HttpServlet {
+public class CartViewServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public NonCartViewServlet() {
+    public CartViewServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
