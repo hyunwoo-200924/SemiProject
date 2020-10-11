@@ -70,6 +70,13 @@ public class Cart {
 	public void setProduct(Product product) {
 		this.product = product;
 	}
+
+
+
+	@Override
+	public String toString() {
+		return "Cart [cNo=" + cNo + ", mNo=" + mNo + ", pNo=" + pNo + ", cQty=" + cQty + ", product=" + product + "]";
+	}
 	
 	
 	
