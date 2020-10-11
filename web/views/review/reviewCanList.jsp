@@ -2,13 +2,13 @@
 	pageEncoding="UTF-8"%>
 <%@ page import="java.util.List,com.eol.review.model.vo.Review"%>
 <%
-	List<Review> list=(List)request.getAttribute("list");
-	String pageBar = (String)request.getAttribute("pageBar");
+	List<Review> list = (List) request.getAttribute("list");
+String pageBar = (String) request.getAttribute("pageBar");
 %>
 <%@ include file="/views/common/header.jsp"%>
 
 <link rel="stylesheet" type="text/css"
-	href="<%=request.getContextPath() %>/css/review.css">
+	href="<%=request.getContextPath()%>/css/review.css">
 
 <section id="reviews-container">
 	<div id="reviews-section-group">
@@ -16,64 +16,29 @@
 			<div class="reviews-container-group">
 				<div id="reviewtitle">
 					<h1 class="reviews-h1">리뷰</h1>
-					<button class="written-reviews-button" onclick="location.assign('<%=request.getContextPath()%>/review/reviewCanList')">작성 가능한 리뷰</button>
+					<button class="written-reviews-button"
+						onclick="location.assign('<%=request.getContextPath()%>/review/reviewCanList')">작성
+						가능한 리뷰</button>
 					&nbsp;
-					<button class="written-reviews-button" onclick="location.assign('<%=request.getContextPath()%>/review/reviewList')">작성한 리뷰</button>
+					<button class="written-reviews-button"
+						onclick="location.assign('<%=request.getContextPath()%>/review/reviewList')">작성한
+						리뷰</button>
 				</div>
-				<div id="reviews-content">
-					<div class="reviews-sort">
-						<div class="search-month">
-							<div class="search-radio">
-								<input type="radio" name="month" id="01" style="opacity: 0;">
-								<label for="01">1개월</label>
-							</div>
-							<div class="search-radio">
-								<input type="radio" name="month" id="03" style="opacity: 0;">
-								<label for="03">3개월</label>
-							</div>
-							<div class="search-radio">
-								<input type="radio" name="month" id="06" style="opacity: 0;">
-								<label for="06">6개월</label>
-							</div>
-							<div class="search-radio">
-								<input type="radio" name="month" id="1" style="opacity: 0;">
-								<label for="1">1년</label>
-							</div>
-							<label class="search-year"> <input type="date"
-								name="date" value="2020~" class="search-date"
-								placeholder="choice" style="width: 200px; height: 30px;">
-							</label>
-							<div class="search-year">
-								<input type="date" name="date" value="2020~" class="search-date"
-									placeholder="choice" style="width: 200px; height: 30px;">
-							</div>
+				<div class="reviews-container">
+					<form class="reviews-container-group1" href="" method="post">
+						<table class="reviews-table">
+
+						</table>
+						<div class="reviews-container">
+							<form class="reviews-container-group1" href="" method="post">
+								<div class="reviews-button-group">
+									<input type="button" value="작성하기"
+										onclick="location.assign('<%=request.getContextPath()%>/review/reviewWrite')">
+								</div>
+							</form>
 						</div>
-					</div>
+					</form>
 				</div>
-			</div>
-			<div class="reviews-container">
-				<form class="reviews-container-group1" href="" method="post">
-					<table class="reviews-table">
-							<tr class="reviews-table-group">
-								<th>제목</th>
-								<th>작성자</th>
-								<th>작성날짜</th>
-							</tr>
-						<%if(list.isEmpty()){ %>
-							<tr>
-							<td colspan="5"><p style="text-align:center">조회된 게시글이 없습니다.</p></td>
-            			</tr>
-            			<%}else{ 
-                			for(Review r: list){ %>
-                				<tr>
-				                    <td><%=r.getrTitle() %></td>
-				                    <td><%=r.getrWriter() %></td>
-				                    <td><%=r.getrRdate() %></td>
-				                </tr>
-				           	<%}
-				            }%>
-					</table>
-				</form>
 			</div>
 			<div class="reviews-guide">
 				<div class="guidecontent">
