@@ -7,9 +7,8 @@
 <%
 	List<Product> list=(List)request.getAttribute("list");
 	String pageBar=(String)request.getAttribute("pageBar");
-
-
 %>
+
 <%@ include file="/views/common/header.jsp"%>
 
 
@@ -125,7 +124,7 @@
                                 <img src="<%=request.getContextPath() %>/images/product/hart40px.jpg" alt="찜" class="hart--img" onclick="hart();"></img>
                             </a>
                             <!-- 장바구니페이지 -->
-                            <a href="<%=request.getContextPath() %>/views/cart/cart.jsp">
+                            <a href="<%=request.getContextPath() %>/views/cart/cartViewServlet" id="cartBtn" name="cartBtn">
 
                                 <img src="<%=request.getContextPath() %>/images/product/cart40px.jpg" alt="장바구니" class="cart--img" onclick="cartInsert()"></img>
                             </a>

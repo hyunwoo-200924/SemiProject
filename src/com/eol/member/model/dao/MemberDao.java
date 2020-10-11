@@ -243,13 +243,22 @@ public class MemberDao {
 		int result = 0;
 		
 		try {
-			pstmt = conn.prepareStatement(prop.getProperty("updateMember"));
-			pstmt.setString(1, m.getmPw());
-			pstmt.setString(2, m.getmName());
-			pstmt.setString(3, m.getmBirth());
-			pstmt.setString(4, m.getmGender());
-			pstmt.setString(5, m.getmPhone());
-			pstmt.setString(6, m.getmId());
+			if(m.getmPw() == "") {
+				pstmt = conn.prepareStatement(prop.getProperty("updateMemberNoPw"));
+				pstmt.setString(1, m.getmName());
+				pstmt.setString(2, m.getmBirth());
+				pstmt.setString(3, m.getmGender());
+				pstmt.setString(4, m.getmPhone());
+				pstmt.setString(5, m.getmId());
+			} else {
+				pstmt = conn.prepareStatement(prop.getProperty("updateMember"));
+				pstmt.setString(1, m.getmPw());
+				pstmt.setString(2, m.getmName());
+				pstmt.setString(3, m.getmBirth());
+				pstmt.setString(4, m.getmGender());
+				pstmt.setString(5, m.getmPhone());
+				pstmt.setString(6, m.getmId());
+			}
 			
 			result = pstmt.executeUpdate();
 		} catch (SQLException e) {

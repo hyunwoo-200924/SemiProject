@@ -64,29 +64,8 @@
 						<p class="active">1:1 문의 작성</p>
 						<p style="padding-left:20px;" onclick="fu_questionList();">1:1 문의 내역</p>
 					</div>
-					<!-- <div class="question_type">
-							
-							
-						<div class="question_type_box">
-							<span class="active">배송</span>
-							<span>주문/결제</span>
-							<span>취소/반품</span>
-							<span>쿡킷메뉴/상품</span>
-							<span>회원/포인트</span>
-							<span>이벤트</span>
-							<span>영수증/증빙</span>
-							<span>사이트이용</span>
-							<span>기타</span>
-						</div>
-						<div class="note">
-							<ul>
-								<li style="font-weight:600;">문의 전 확인해주세요.</li>
-								<li>배송 진행 상태는 마이페이지에서 확인하실 수 있습니다. <a style="text-decoration:underline;">주문/배송조회 바로가기</a></li>
-							</ul>
-						</div>
-					</div> -->
 					<div class="qeustion_context" style="margin-top: 50px;">
-						<form method="post" action="<%= request.getContextPath() %>/questionWrite" enctype="multipart/form-data" onsubmit="return fn_submit();">
+						<form method="post" action="<%= request.getContextPath() %>/questionWrite.do" enctype="multipart/form-data" onsubmit="return fn_submit();">
 							<div class="question_context_form">
 								<div class="question_box col3" style="grid-template-columns: 140px 120px auto;">
 									<p>제목</p>
@@ -186,17 +165,12 @@
 								
 								let result = div.after($("<div>").addClass('inquiry_form').append(o_no, or_date, or_content, o_amount, o_payment, choice));
 							}
-							
-							
 						}
 					}
 				})
 				
 			})
 		
-			function fu_questionList(){
-				location.href="<%= request.getContextPath()%>/questionList"
-			}
 			
 		 	function fn_inquiry(){
 				$("#inquiry").slideToggle("slow");
@@ -213,6 +187,9 @@
 		 		}
 		 	}
 		 	
+			function fu_questionList(){
+				location.href="<%= request.getContextPath()%>/questionList"
+			}
 			
 		</script>
 		
