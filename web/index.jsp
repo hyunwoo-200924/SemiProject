@@ -6,7 +6,6 @@
 
 	<!-- 광고배너 -->
 	<div class="slideshow-container" onclick="">
-
 		<!-- 화면에 나올 이미지와 텍스트(div와 img태그) -->
 		<div class="mySlides fade">
 			<div class="numbertext">1 / 3</div>

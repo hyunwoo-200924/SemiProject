@@ -44,11 +44,11 @@ public class CartIntoPayServlet extends HttpServlet {
 			}
 			
 			request.setAttribute("cartList", list);
+			request.getRequestDispatcher("views/order/orderpay.jsp").forward(request, response);
 			
 		}else {
-			
+			request.getRequestDispatcher("views/order/nonorderpay.jsp").forward(request, response);
 		}
-		request.getRequestDispatcher("views/order/orderpay.jsp").forward(request, response);
 	}
 
 	/**

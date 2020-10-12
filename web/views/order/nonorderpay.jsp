@@ -17,12 +17,8 @@ IMP.init('imp14973248'); // 'iamport' 대신 부여받은 "가맹점 식별코�
 	href="<%=request.getContextPath() %>/css/orderpay.css">
 
 <%
-	Member m = (Member)request.getSession().getAttribute("loginMember");
-	List<Cart> clist = (List)request.getAttribute("cartList");
-	/* Member m = new Member(1,"qwer","qwer","이요셉","93/03/09","laksmi0628@gmail.com","123123","경기도","M",1,0,1000,null,1000);
-	List<Cart> clist = new ArrayList();
-	clist.add(new Cart(1,1,2,3,new Product(2,"감자",1000,0,0,0,0,0,0,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,0,0),null));
-	clist.add(new Cart(1,1,1,1,new Product(2,"고구마",3000,0,0,0,0,0,0,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,0,0),null)); */
+	
+	List list = (List)request.getSession().getAttribute("nonCartList");
 	
 %>
 
@@ -42,8 +38,10 @@ IMP.init('imp14973248'); // 'iamport' 대신 부여받은 "가맹점 식별코�
 						<div class="present-order-person">
 							<h3 class="info-title">주문자</h3>
 							
-							이름 <input class="order-person-group" id="oName" name="oName" type="text" value="<%= m.getmName() %>" readonly/>
-							연락처 <input class="order-person-group" id="oPhone" name="oPhone" type="text" value="<%=m.getmPhone() %>" readonly/>
+							이름 <input class="order-person-group" id="oName" name="oName" type="text" value=""/>
+							연락처 <input class="order-person-group" id="oPhone" name="oPhone" type="text" value=""/>
+							주문비밀번호 <input class="order-person-group" id="oPw" name="oPw" type="password" value=""/>
+							비밀번호 확인<input class="order-person-group" id="oPwCheck" type="password" value=""/>
 							
 						</div>
 					</div>
@@ -57,6 +55,7 @@ IMP.init('imp14973248'); // 'iamport' 대신 부여받은 "가맹점 식별코�
 						<button class="btn-small">배송지추가</button> -->
 						<div class="present-items-img">
 
+							<!-- 주소창에 입력후에 자동생성되게 자바스크립트 -->
 
 							<div class="persnal-info">
 								이름<input type="text" id="oToName" value="" placeholder="이름을 입력하세요" class="text-inputtag"/> 
@@ -64,13 +63,12 @@ IMP.init('imp14973248'); // 'iamport' 대신 부여받은 "가맹점 식별코�
 							</div>
 							
 							<div class="persnal-info">
-								
-							<!-- 주소입력 -->
+								<!-- 주소입력 -->
 							<input class="btn-small" type="button" id="addressButton" onclick="fn_address();" value="주소검색">
 							<input type="text" class="address-text" id="address" name="address1" style="display: none; width: 300px; height: 25px; margin: 5px 0;" readonly  >
 							<input class="btn-small" type="button" id="addressAgain" style="display:none;" onclick="fn_address();" value="주소재검색">
 							<input type="text" id="addressDetail" name="address2" style="display: none; width: 300px; height: 25px; margin: 5px 0;" placeholder="상세주소를 입력해주세요." >
-							
+
 							</div>
 
 						</div>
@@ -84,19 +82,19 @@ IMP.init('imp14973248'); // 'iamport' 대신 부여받은 "가맹점 식별코�
 					<%
 						int oAmount = 0;
 					Date oDeliveryEDate = null;
-						for(Cart c : clist){
-							oDeliveryEDate = c.getoDeliveryEDate();
+						for( p : list){
+							oDeliveryEDate = p.getoDeliveryEDate();
 						}
 					%>
 					
-						<input type="text" class="info-title" id="oDeliveryEDate" name="oDeliveryEDate" value="<%=oDeliveryEDate %>" readonly>도착예정
+						<input class="info-title" id="oDeliveryEDate" name="oDeliveryEDate" value="<%=oDeliveryEDate %>"><%=oDeliveryEDate %>도착예정
 						<%for(Cart c : clist) { %>
 						</h3>
 						<div class="present-items-imggroup">
 							<img
 								src="<%=request.getContextPath() %>/upload/product/<%=c.getProduct().getpImage1() %>"
 								alt="상품이미지" class="items-img"
-								style="width: 200px; height: 150px"> 
+								style="width: 200px; height: 150px">
 							<div class="present-items-img-text">
 								<p class=preset-items-title>
 									상품명:<span class="items-payitems"><%=c.getProduct().getpName() %></span>
@@ -105,7 +103,7 @@ IMP.init('imp14973248'); // 'iamport' 대신 부여받은 "가맹점 식별코�
 									가격:<span class="items-payitems"><%=c.getProduct().getpPrice() %><span>원</span>
 								</p>
 								<p class="present-items-title">
-									수량:<input type="text" class="items-payitems" id="odQty" name="odQty" value="<%=c.getcQty() %>" readonly>개
+									수량:<input class="items-payitems" id="odQty" name="odQty" value="<%=c.getcQty() %>"><%=c.getcQty() %>개
 								</p>
 							</div>
 						</div>
@@ -128,10 +126,10 @@ IMP.init('imp14973248'); // 'iamport' 대신 부여받은 "가맹점 식별코�
 				</div>
 
 				<!-- 할인및 포인트 적용 블록 -->
-				<div class="present-section-group5">
+				<!-- <div class="present-section-group5">
 					<div class="present-items-group5-5">
 						<div class="present-items">
-							<!-- 할인 포인트및 할인 적용금액 자바스크립트 -->
+							할인 포인트및 할인 적용금액 자바스크립트
 							<p>쿠폰 적용</p>
 
 							<p class="right">
@@ -141,13 +139,13 @@ IMP.init('imp14973248'); // 'iamport' 대신 부여받은 "가맹점 식별코�
 						</div>
 						<div class="present-items">
 							<p>포인트적용</p>
-							<!-- 포인트적용후 차감되는 자바스크립트 -->
+							포인트적용후 차감되는 자바스크립트
 							<p class="right">
 								<span>0</span>point
 							</p>
 						</div>
 					</div>
-				</div>
+				</div> -->
 
 				<div class="orderway">
 					<p>결제수단 선택</p>
@@ -177,7 +175,6 @@ IMP.init('imp14973248'); // 'iamport' 대신 부여받은 "가맹점 식별코�
                         	for(Cart c : clist ){
                         		alltotal =+ (c.getProduct().getpPrice()*c.getcQty());
                         	}
-                        
                         	
                         %>
 							<p class="pay-items-text-right"><%=alltotal %><span>원</span>
@@ -221,7 +218,7 @@ IMP.init('imp14973248'); // 'iamport' 대신 부여받은 "가맹점 식별코�
 						<div class="pay-items">
 							<p class="pay-items-text-left middle">결제 금액</p>
 							<%int oPayment = alltotal+3000; %>
-							<input type="text" class="pay-items-text-right" id="oPayment" name="oPayment" value="<%=oPayment %>" readonly/><span>원</span>
+							<input class="pay-items-text-right" id="oPayment" name="oPayment" value="<%=oPayment %>"/><%=oPayment %><span>원</span>
 							
 
 						</div>
@@ -270,93 +267,101 @@ function fn_address(){
 	            }
 	
 			}).open();
-};
-
-//주문완료!!!!!!!!!!!!!!!
-function fn_dd(){
-	$("#order").submit();
-}
-
-
+		};
 		
-//결제하기 버튼 누루면 공란 체크 후 결제api 실행
-$("#pay").click(function () {
-	if($('#oToName').val()==='') {
-		alert('받는사람의 이름을 입력해주세요.')
-		return false;
-	}
-	if($('#oToPhone').val()==='') {
-		alert('받는사람의 연락처를 입력해주세요.')
-		return false;
-	}
-	if($('#address').val()===''){
-		alert('받는사람의 주소를 입력해주세요.')
-		return false;
-	}
-	if($('#oPayway').val()==='') {
-		alert('결제수단을 선택해주세요.')
-		return false;
-	}
-	
-	
-      IMP.request_pay({
-         pg: 'html5_inicis', // 위에서 선택한 결제수단이 여기 값으로 들어와야함
-         pay_method: 'card', 
-         merchant_uid: 'merchant_' + new Date().getTime(),
-         /* name: $("#").val(), */
-         amount: $("#oPayment").val(),
-         /* buyer_email: 'iamport@siot.do', */
-         buyer_name: $("#oName").val(),
-         buyer_tel: $("#oPhone").val(),
-         /* buyer_addr: $("#buyer_addr").val(),
-         buyer_postcode: '123-456', */
-        
-     }, 
-    	function(rsp) {
- 		if ( rsp.success ) {
- 		//[1] 서버단에서 결제정보 조회를 위해 jQuery ajax로 imp_uid 전달하기
- 		jQuery.ajax({
- 			url: "/payments/complete", //cross-domain error가 발생하지 않도록 동일한 도메인으로 전송
-			type: 'POST',
- 			dataType: 'json',
- 			data: {
- 				imp_uid : rsp.imp_uid
- 				//기타 필요한 데이터가 있으면 추가 전달
- 			}
- 		}).done(function(data) {
- 	//[2] 서버에서 REST API로 결제정보확인 및 서비스루틴이 정상적인 경우
- 			if ( everythings_fine ) {
- 				var msg = '결제가 완료되었습니다.';
- 				msg += '\n고유ID : ' + rsp.imp_uid;
- 				msg += '\n상점 거래ID : ' + rsp.merchant_uid;
- 				msg += '\결제 금액 : ' + rsp.paid_amount;
- 				msg += '카드 승인번호 : ' + rsp.apply_num;
-		
- 		        alert(msg);
-		        
- 		        console.log();
- 			} else {
- 				var msg = '결제가 취소처리 되었습니다.';
- 				alert(msg);
- 				//[3] 아직 제대로 결제가 되지 않았습니다.
- 				//[4] 결제된 금액이 요청한 금액과 달라 결제를 자동취소처리하였습니다.
- 			}
- 			});
- 		} else {
- 			var msg = '결제에 실패하였습니다.';
- 			msg += '에러내용 : ' + rsp.error_msg;
-			
- 			alert(msg);
-			console.log(msg);
- 		}
- 		});
-   $("#pay").css("display","none");
-})
 
+	//주문완료!!!!!!!!!!!!!!!
+	function fn_dd() {
+		$("#order").submit();
+	}
 
-       
+	$("#pay").click(function() {
+		if ($('#oName').val() === '') {
+			alert('주문자의 이름을 입력해주세요.')
+			return false;
+		}
+		if ($("#oPhone").val() === '') {
+			alert('주문자의 연락처를 입력해주세요.')
+			return false;
+		}
+		if ($("#oPw").val() === '') {
+			alert('주문비밀번호를 입력해주세요.')
+			return false;
+		}
+		let pw = document.getElementById("oPw").value;
+		let pwck = document.getElementById("oPwCheck").value;
+		if (pw.trim() != pwck.trim()) {
+			alert("비밀번호가 일치하지 않습니다.");
+			return false;
+		}
+		if ($('#oToName').val() === '') {
+			alert('받는사람의 이름을 입력해주세요.')
+			return false;
+		}
+		if ($('#oToPhone').val() === '') {
+			alert('받는사람의 연락처를 입력해주세요.')
+			return false;
+		}
+		if ($('#oAddress').val() === '') {
+			alert('받는사람의 주소를 입력해주세요.')
+			return false;
+		}
+		if ($('#oPayway').val() === '') {
+			alert('결제수단을 선택해주세요.')
+			return false;
+		}
+		IMP.request_pay({
+			pg : 'html5_inicis', // 위에서 선택한 결제수단이 여기 값으로 들어와야함
+			pay_method : 'card',
+			merchant_uid : 'merchant_' + new Date().getTime(),
+			/* name: $("#").val(), */
+			amount : $("#oPayment").val(),
+			/* buyer_email: 'iamport@siot.do', */
+			buyer_name : $("#oName").val(),
+			buyer_tel : $("#oPhone").val(),
+		/* buyer_addr: $("#buyer_addr").val(),
+		buyer_postcode: '123-456', */
 
-    
+		}, function(rsp) {
+			if (rsp.success) {
+				//[1] 서버단에서 결제정보 조회를 위해 jQuery ajax로 imp_uid 전달하기
+				jQuery.ajax({
+					url : "/payments/complete", //cross-domain error가 발생하지 않도록 동일한 도메인으로 전송
+					type : 'POST',
+					dataType : 'json',
+					data : {
+						imp_uid : rsp.imp_uid
+					//기타 필요한 데이터가 있으면 추가 전달
+					}
+				}).done(function(data) {
+					//[2] 서버에서 REST API로 결제정보확인 및 서비스루틴이 정상적인 경우
+					if (everythings_fine) {
+						var msg = '결제가 완료되었습니다.';
+						msg += '\n고유ID : ' + rsp.imp_uid;
+						msg += '\n상점 거래ID : ' + rsp.merchant_uid;
+						msg += '\결제 금액 : ' + rsp.paid_amount;
+						msg += '카드 승인번호 : ' + rsp.apply_num;
+
+						alert(msg);
+
+						console.log();
+					} else {
+						var msg = '결제가 취소처리 되었습니다.';
+						alert(msg);
+						//[3] 아직 제대로 결제가 되지 않았습니다.
+						//[4] 결제된 금액이 요청한 금액과 달라 결제를 자동취소처리하였습니다.
+					}
+				});
+			} else {
+				var msg = '결제에 실패하였습니다.';
+				msg += '에러내용 : ' + rsp.error_msg;
+
+				alert(msg);
+				console.log(msg);
+			}
+		});
+		$("#pay").css("display", "none");
+	})
 </script>
 
 <%@ include file="/views/common/footer.jsp"%>
