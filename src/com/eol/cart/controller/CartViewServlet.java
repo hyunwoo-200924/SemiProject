@@ -39,24 +39,47 @@ public class CartViewServlet extends HttpServlet {
 		// 1.회원 정보 가져오기(로그인, 비로그인)
 
 		Member m = (Member)request.getAttribute("loginMember"); //회원 정보 가져오기
+		int mNo = (int)((Member)request.getSession().getAttribute("loginMember")).getmNo();
 		int pNo = Integer.parseInt(request.getParameter("pNo"));
+//		int pCount = (int)((Product)request.getAttribute("selectOneProduct")).getpCount();
+		List list = new ArrayList();
+		Product p = new ProductService().selectOneProduct(pNo);
+		list.add(p);
 		System.out.println(pNo);
+		
+		
 		if(m ==null) {
 			//비회원 일때 리스트에 카트 정보를 담기
-//			List<Cart> list = new CartService().nonlistCart();
-			List list = new ArrayList();
-			Product p = new ProductService().selectOneProduct(pNo);
-			list.add(p);
-			
 			//3.Session 선언
-			
 			HttpSession session = request.getSession();
-			session.setAttribute("nonCartList", list);
+			Object o = session.getAttribute("cart_list");
+			ArrayList<Cart> cartlist = null;
 			
-			System.out.println(list);
-			response.sendRedirect(request.getContextPath() +"/views/cart/cart.jsp");
+			if(o != null) {
+				cartlist = (ArrayList) o;
+			}else {
+				cartlist = new ArrayList<Cart>();
+			}
 			
-		}
+			int searchIndex = -1;
+			if(cartlist.size()>=0) {
+				searchIndex = cartlist.indexOf(cartlist);
+			}else if(searchIndex==-1) {
+				cartlist.add();
+			}
+			
+			List<Cart> list = new CartService().nonlistCart();
+//			for( Product pp :list) {
+//				
+//				if(pp.getpCount()==0) {
+////					pCount=pp.getpCount();
+////					pCount ++;
+////					System.out.println(list);
+//				}
+//				session.setAttribute("nonCartList", list);
+//				System.out.println(list);
+//				response.sendRedirect(request.getContextPath() +"/views/cart/cart.jsp");
+			}
 	
 	}
 

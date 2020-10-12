@@ -30,5 +30,12 @@ public class CartService {
 		close(conn);
 		return p;
 	}
+	
+	public List<Cart> memberIndertCart(int mNo,int pNo){
+		Connection conn = getConnection();
+		List<Cart> cart = dao.memberIndertCart(conn,mNo,pNo);
+		close(conn);
+		return cart;
+	}
 
 }

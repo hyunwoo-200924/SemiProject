@@ -8,8 +8,10 @@
 	page import="java.util.List,java.util.ArrayList,com.eol.product.model.vo.Product"
  %>
  <%
-   	List<Product> list = (List)request.getSession().getAttribute("nonCartList");
- 
+ 		
+   	
+ 		/* List<Product> list = (List)request.getSession().getAttribute("nonCartList");*/
+ 		List<Product> list = (List)session.getAttribute("nonCartList");
  %>
     
  <link file="<%=request.getContextPath()%>/css/cart.css">   
@@ -40,6 +42,10 @@
             </div>
             <div class="cart-section-body-group4">
                 <p class="cart-pricetext"><%=p.getpPrice() %> <span>원</span></p>
+
+            </div>
+            <div class="cart-section-body-group5">
+                <span>수량<p class="cart-pricetext"><%=p.getpCount() %></p></span>
 
             </div>
             </label>
