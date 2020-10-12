@@ -23,10 +23,8 @@ public class QnaService {
 
 		int result = qDao.insertQna(conn, q);
 
-		if (result > 0)
-			commit(conn);
-		else
-			rollback(conn);
+		if (result > 0) commit(conn);
+		else rollback(conn);
 
 		close(conn);
 		System.out.println(2);
@@ -41,18 +39,21 @@ public class QnaService {
 
 		List<Qna> list = qDao.selectQna(conn, pg, mNo);
 
-		System.out.println("이거다음");
-		for(Qna a : list) {
-			
-			System.out.println(list.get(0).getqStatus());
-		}
 		// 답변 가져오기 
 		for(Qna q : list) {
-			System.out.println(q.getqStatus());
+
+			//질문내용 엔터처리
+			String qContentOrigin = q.getqContent();
+			
+			if(qContentOrigin != null && qContentOrigin.contains("\r\n")) {
+				q.setqContent(qContentOrigin.replace("\r\n", "<br>"));
+			}
+			
 			 if(q.getqStatus().equals("Y")) {//답변이 달렸다면
 			  
 				 String answer = qDao.selectAnswer(conn, q.getqNo()); 
-				 System.out.println(answer);
+				 
+				 //대답 엔터처리
 				 String answerResult = "";
 				 if(answer != null && answer.contains("\r\n")) {
 					 answerResult = answer.replace("\r\n", "<br>"); 
@@ -92,5 +93,32 @@ public class QnaService {
 		close(conn);
 
 		return result;
+	}
+
+	//1:1 문의 수정하기 눌렀응ㄹ 때 내용 가져오기
+	public Qna selectQuestionView(int qNo) {
+		Connection conn = getConnection();
+		
+		Qna q = qDao.selectQuestionView(conn, qNo);
+		
+		close(conn);
+		
+		return q;
+	}
+
+	//1:1문의 수정하기
+	public int updateQuestion(Qna q) {
+		
+		Connection conn = getConnection();
+
+		int result = qDao.updateQuestion(conn, q);
+
+		if (result > 0) commit(conn);
+		else rollback(conn);
+
+		close(conn);
+
+		return result;
+		
 	}
 }

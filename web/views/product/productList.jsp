@@ -9,6 +9,7 @@
 	List<Product> list=(List)request.getAttribute("list");
 	String pageBar=(String)request.getAttribute("pageBar");
 	Member loginMember1 = (Member)request.getSession().getAttribute("loginMember");
+	
 %>
 
 
@@ -88,11 +89,8 @@
                     <div class="menu--img-group2">
                        <div class="menu--img-items-group"> 
                             <div class="menu--img-items">
-<<<<<<< HEAD
-=======
                             
                             <div name="pNo"><%=p.getpNo()%></div>
->>>>>>> branch 'master' of https://github.com/hyunwoo-200924/SemiProject.git
                                 <!-- 메뉴상세페이지로이동 -->
                                 <a href="<%=request.getContextPath()%>/product/productView?pNo=<%=p.getpNo()%>" name="plz">
 									<%if(p.getpImage1()!=null) {%>
@@ -132,11 +130,8 @@
                                 <img src="<%=request.getContextPath() %>/images/product/hart40px.jpg" alt="찜" class="hart--img" onclick="hart();"></img>
                             </a>
                             <!-- 장바구니페이지 -->
-<<<<<<< HEAD
                             <a href="<%=request.getContextPath() %>/cartView.do">
-=======
                             <a href="<%=request.getContextPath() %>/views/cart/cartViewServlet?pNo=<%=p.getpNo() %>" id="cartBtn" name="cartBtn">
->>>>>>> branch 'master' of https://github.com/hyunwoo-200924/SemiProject.git
 
                                 <img src="<%=request.getContextPath() %>/images/product/cart40px.jpg" alt="장바구니" class="cart--img" onclick="cartInsert()"></img>
                             </a>

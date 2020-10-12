@@ -54,7 +54,8 @@ public class MemberJoinServlet extends HttpServlet {
 		int result = new MemberService().insertMember(m);
 		
 	   if(result > 0) {
-		   request.getRequestDispatcher("/views/member/memberJoinEnd.jsp").forward(request, response);
+		   
+		   response.sendRedirect(request.getContextPath() + "/views/member/memberJoinEnd.jsp");
 	   } else {
 		   request.setAttribute("msg", "가입에 실패하였습니다. 고객센터로 문의 바랍니다.");
 		   request.getRequestDispatcher("/views/common/msg.jsp").forward(request, response);

@@ -4,6 +4,11 @@
 <link rel="stylesheet" type="text/css"
 	href="<%=request.getContextPath() %>/css/hayong.css">
 <script src="<%=request.getContextPath() %>/js/jquery-3.5.1.min.js"></script>
+<style>
+ a:link { color: red; text-decoration: none;}
+ a:visited { color: black; text-decoration: none;}
+ a:hover { color: blue; text-decoration: underline;}
+</style>
 <nav class="mypage_left">
 	<h2>마이페이지</h2>
 	<ul>
@@ -18,10 +23,9 @@
 		<li><a href="<%=request.getContextPath() %>/review/reviewList">리뷰</a></li>
 		<li>맛취향</li>
 		<li>쇼핑찜</li>
-		<li>1:1문의</li>
+		<li><a href="<%=request.getContextPath() %>/questionList">1:1문의</a></li>
 		<li class="mypage_left_title1">나의 정보</li>
 		<li>개인정보변경</li>
 		<li>회원탈퇴</li>
 	</ul>
-
 </nav>

@@ -1,7 +1,6 @@
 package com.eol.qna.controller;
 
 import java.io.IOException;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -17,16 +16,16 @@ import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
 /**
- * Servlet implementation class QuestionListViewServlet
+ * Servlet implementation class UpdateQuestionServlet
  */
-@WebServlet("/questionWrite.do")
-public class QuestionWriteServlet extends HttpServlet {
+@WebServlet("/updateQuestion")
+public class UpdateQuestionServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public QuestionWriteServlet() {
+    public UpdateQuestionServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -53,7 +52,7 @@ public class QuestionWriteServlet extends HttpServlet {
 		
 		Qna q = new Qna();
 		
-		System.out.println("이거확인" + mr.getParameter("qnaCategory"));
+		q.setqNo(Integer.parseInt(mr.getParameter("qNo")));
 		q.setqCategory(mr.getParameter("qnaCategory"));
 		q.setqTitle(mr.getParameter("title"));
 		String oNo = mr.getParameter("o_no");
@@ -69,14 +68,16 @@ public class QuestionWriteServlet extends HttpServlet {
 		System.out.println(mr.getParameter("answer"));
 		//q.setmNo(1);//아래줄 대신 확인용
 		q.setmNo(((Member)request.getSession().getAttribute("loginMember")).getmNo());
-		System.out.println("이거다음");
+
 		System.out.println(q);
-		int result = new QnaService().insertQna(q);
+		
+		int result = new QnaService().updateQuestion(q);
+		System.out.println("이거" + result);
 		
 		String msg = "";
 		String loc = "/questionList";
 		if(result > 0) {
-			request.setAttribute("msg", "정상적으로 등록되었습니다.");
+			request.setAttribute("msg", "정상적으로 수정되었습니다.");
 			request.setAttribute("loc", loc);
 			request.getRequestDispatcher("/views/common/msg.jsp").forward(request, response);
 		}else {
@@ -84,9 +85,6 @@ public class QuestionWriteServlet extends HttpServlet {
 			request.setAttribute("loc", loc);
 			request.getRequestDispatcher("/views/common/msg.jsp").forward(request, response);
 		}
-		
-		
-		
 		
 		
 		

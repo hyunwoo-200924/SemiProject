@@ -246,6 +246,7 @@ tr.name{
 <section class="main">
 
 	<!-- 광고배너 -->
+
 	<div id="slider-wrap">
         <ul id="slider">
         <% for( Product p : list ) {%>
@@ -284,6 +285,7 @@ tr.name{
             </ul>
         </div>
     </div>
+
 
 	<!-- 광고배너 스크립트 -->
 	<script>

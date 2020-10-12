@@ -72,7 +72,6 @@ public class ProductListServlet extends HttpServlet {
 	}
 	request.setAttribute("list", list);
 	request.setAttribute("pageBar",pageBar);
-	
 	request.getRequestDispatcher("/views/product/productList.jsp").forward(request,response);
 	
 	}
