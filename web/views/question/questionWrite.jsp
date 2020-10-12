@@ -5,7 +5,6 @@
 	Member m = (Member)request.getSession().getAttribute("loginMember");
 %>
     
-
 <%@ include file="/views/common/header.jsp"%>
 
 		<style>
@@ -69,7 +68,7 @@
 							<div class="question_context_form">
 								<div class="question_box col3" style="grid-template-columns: 140px 120px auto;">
 									<p>제목</p>
-									<select name="category">
+									<select id="category" name="qnaCategory">
 										<option value="">선택해주세요.</option>
 										<option value="배송">배송</option>
 										<option value="주문/결제">주문/결제</option>
@@ -115,7 +114,7 @@
 								<div class="question_box">
 									<p>답변알림</p>
 									<div style="display: grid;grid-template-columns: 283px auto;">
-										<input type="text" name="answer" <%-- value="<%= m.getmEmail() %>" --%>>
+										<input type="text" name="answer" value="<%= m.getmEmail() %>" readonly>
 										<p class="check" style="margin-left:10px">
 											<label>
 												<input type="checkbox" name="emailAnswer">답변수신을 이메일로 받겠습니다.
@@ -185,6 +184,7 @@
 		 		if($('input:checkbox[name="emailAnswer"]').is(':checked') == false) {
 		 			$('input[name="answer"]').val("");
 		 		}
+		 		//$('#category option:selected').text()
 		 	}
 		 	
 			function fu_questionList(){

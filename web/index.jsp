@@ -11,7 +11,7 @@
 		<div class="mySlides fade">
 			<div class="numbertext">1 / 3</div>
 			<img src="<%=request.getContextPath() %>/images/mainImages/gogi.jpg" style="width: 100%">
-			<div class="text">
+			<div class="text">	
 				삼겹살<br>23,000원
 			</div>
 			<a type="input" class="cart"><img src="<%=request.getContextPath() %>/images/mainImages/shopping-cart-solid.svg"></a>

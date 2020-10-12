@@ -25,6 +25,42 @@
 href="<%=request.getContextPath() %>/css/member/memberLogin.css">
 <script src="<%=request.getContextPath() %>/js/jquery-3.5.1.min.js"></script>
 <!-- 로그인 페이지 화면 시작 -->
+<%-- 	<div class="first_login_form">
+		<div cloass="second_login_form">
+			<h1>로그인</h1>
+			<div class="loginTxtFrm">
+	        	<h1 class="log_menu">회원 로그인</h1>
+	        	<h1 class="nonLog_menu">비회원 주문조회</h1>
+	    	</div>
+	    	<form class="joinLoginContainer" action="<%=request.getContextPath()%>/loginfrm.do" method="post">
+	    		<div class="loginContainer" ">
+	            	<input type="search" name="userId" id="userId" placeholder="아이디를 입력하세요" value='<%=saveId != null?saveId:"" %>'><br><br>
+	            	<input type="password" name="password" id="password" placeholder="비밀번호를 입력하세요"><br><br>
+    			</div>
+    			<div>   
+		            <input type="checkbox" name="saveId" id="saveId"<%=saveId!=null?"checked":"" %>><label for="saveId">아이디저장</label>&nbsp;&nbsp;
+		            <a href="#" onclick="location.replace('<%=request.getContextPath()%>/findId.do')">아이디 찾기</a>
+		            <a href="#" onclick="location.replace('<%=request.getContextPath()%>/findPw.do')">비밀번호 찾기</a><br><br>
+		         </div>
+		         <input type="submit" name="loginBtn" id="loginBtn" value="로그인">
+   			 </form>
+		</div>
+	</div>
+ --%>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 	<div class="loginTxtFrm">
         	<h1 class="log_menu">회원 로그인</h1>
         	<h1 class="nonLog_menu">비회원 주문조회</h1>

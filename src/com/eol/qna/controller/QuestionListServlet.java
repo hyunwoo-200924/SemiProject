@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.eol.member.model.vo.Member;
 import com.eol.qna.model.service.QnaService;
 import com.eol.qna.model.vo.Paging;
 import com.eol.qna.model.vo.Qna;
@@ -34,8 +35,8 @@ public class QuestionListServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		//페이징 처리 했음
 	
-		int mNo = 1; //확인용 아래줄 대신
-		//int mNo = ((Member)request.getSession().getAttribute("loginMember")).getmNo();
+		//int mNo = 1; //확인용 아래줄 대신
+		int mNo = ((Member)request.getSession().getAttribute("loginMember")).getmNo();
 		
 		int listCount = new QnaService().getListCount(mNo);//총 문의 수
 		System.out.println(listCount);
