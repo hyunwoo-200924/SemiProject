@@ -348,19 +348,24 @@ public class Product {
 		this.pCount = pCount;
 	}
 
+//	@Override
+//	public String toString() {
+//		return "Product [pNo=" + pNo + ", pName=" + pName + ", pPrice=" + pPrice + ", pDiscount=" + pDiscount
+//				+ ", pStock=" + pStock + ", pServing=" + pServing + ", pCooktime=" + pCooktime + ", pReadytime="
+//				+ pReadytime + ", pTaste=" + pTaste + ", pImage1=" + pImage1 + ", pImage2=" + pImage2 + ", pImage3="
+//				+ pImage3 + ", pVideo=" + pVideo + ", pDetailImage1=" + pDetailImage1 + ", pDetailImage2="
+//				+ pDetailImage2 + ", pDetailImage3=" + pDetailImage3 + ", pDetailTitle1=" + pDetailTitle1
+//				+ ", pDetailTitle2=" + pDetailTitle2 + ", pDetailMain=" + pDetailMain + ", pDetailContent1="
+//				+ pDetailContent1 + ", pDetailContent2=" + pDetailContent2 + ", pRecipeImage1=" + pRecipeImage1
+//				+ ", pRecipeImage2=" + pRecipeImage2 + ", pRecipeImage3=" + pRecipeImage3 + ", pRecipeImage4="
+//				+ pRecipeImage4 + ", pRecipeContent1=" + pRecipeContent1 + ", pRecipeContent2=" + pRecipeContent2
+//				+ ", pRecipeContent3=" + pRecipeContent3 + ", pRecipeContent4=" + pRecipeContent4 + ", pRdate=" + pRdate
+//				+ ", pHit=" + pHit + ", pSell=" + pSell + ", pCount=" + pCount + "]";
+//	}
+	
 	@Override
 	public String toString() {
-		return "Product [pNo=" + pNo + ", pName=" + pName + ", pPrice=" + pPrice + ", pDiscount=" + pDiscount
-				+ ", pStock=" + pStock + ", pServing=" + pServing + ", pCooktime=" + pCooktime + ", pReadytime="
-				+ pReadytime + ", pTaste=" + pTaste + ", pImage1=" + pImage1 + ", pImage2=" + pImage2 + ", pImage3="
-				+ pImage3 + ", pVideo=" + pVideo + ", pDetailImage1=" + pDetailImage1 + ", pDetailImage2="
-				+ pDetailImage2 + ", pDetailImage3=" + pDetailImage3 + ", pDetailTitle1=" + pDetailTitle1
-				+ ", pDetailTitle2=" + pDetailTitle2 + ", pDetailMain=" + pDetailMain + ", pDetailContent1="
-				+ pDetailContent1 + ", pDetailContent2=" + pDetailContent2 + ", pRecipeImage1=" + pRecipeImage1
-				+ ", pRecipeImage2=" + pRecipeImage2 + ", pRecipeImage3=" + pRecipeImage3 + ", pRecipeImage4="
-				+ pRecipeImage4 + ", pRecipeContent1=" + pRecipeContent1 + ", pRecipeContent2=" + pRecipeContent2
-				+ ", pRecipeContent3=" + pRecipeContent3 + ", pRecipeContent4=" + pRecipeContent4 + ", pRdate=" + pRdate
-				+ ", pHit=" + pHit + ", pSell=" + pSell + ", pCount=" + pCount + "]";
+		return "Product [pNo=" + pNo + ", pCount=" + pCount + "]";
 	}
 	
 	

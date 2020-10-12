@@ -2,9 +2,13 @@
     pageEncoding="UTF-8"%>
 <%@ page import="java.util.List,
 com.eol.product.model.vo.Product,
-com.eol.member.model.vo.Member" %>
+com.eol.member.model.vo.Member, java.util.ArrayList" %>
 
 <%
+	if(request.getSession().getAttribute("nonCartList") == null) {
+		List nonCartList = new ArrayList();
+		request.getSession().setAttribute("nonCartList", nonCartList);
+	}
 	//로그인 된 상태이면 loginMember에 값이 있다.
 	//로그인 안된 상태이면 loginMEmber가 null값이 된다.
 	Member loginMember = (Member)request.getSession().getAttribute("loginMember");

@@ -206,34 +206,34 @@
 										 */						
                              //// 날짜 출력
                              function gdate(){
-	var sImg = "<IMG SRC=http://www.blueb.co.kr/SRC/javascript/image7/date/";
-	var eImg = ".gif BORDER=0>";
-	var now = new Date();
-	var month = (now.getMonth() + 1);
-	var date = now.getDate();
-	var year = now.getYear();
-		now = null;     month += "";     date += "";     year += "";
-	var text = "";
-	text += "<TABLE BGCOLOR=#000000 CELLPADDING=4><TR><TD>"; 
-
-	for (var i = 0; i < year.length; ++i) {
-		text += sImg + year.charAt(i) + eImg;
-	}
-		text += sImg + "slash" + eImg;
-
-	for (var i = 0; i < month.length; ++i) {
-		text += sImg + month.charAt(i) + eImg;
-	}
-		text += sImg + "slash" + eImg;
-
-	for (var i = 0; i < date.length; ++i) {
-		text += sImg + date.charAt(i) + eImg;
-	}
-	text += "</TD></TR></TABLE>";
-	document.write(text);
-	
-	
-}
+							var sImg = "<IMG SRC=http://www.blueb.co.kr/SRC/javascript/image7/date/";
+							var eImg = ".gif BORDER=0>";
+							var now = new Date();
+							var month = (now.getMonth() + 1);
+							var date = now.getDate();
+							var year = now.getYear();
+								now = null;     month += "";     date += "";     year += "";
+							var text = "";
+							text += "<TABLE BGCOLOR=#000000 CELLPADDING=4><TR><TD>"; 
+						
+							for (var i = 0; i < year.length; ++i) {
+								text += sImg + year.charAt(i) + eImg;
+							}
+								text += sImg + "slash" + eImg;
+						
+							for (var i = 0; i < month.length; ++i) {
+								text += sImg + month.charAt(i) + eImg;
+							}
+								text += sImg + "slash" + eImg;
+						
+							for (var i = 0; i < date.length; ++i) {
+								text += sImg + date.charAt(i) + eImg;
+							}
+							text += "</TD></TR></TABLE>";
+							document.write(text);
+							
+							
+						}
 
                             
                          /*      
