@@ -35,6 +35,7 @@ public class ProductUpdateEndServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		System.out.println(""+ServletFileUpload.isMultipartContent(request));
 		if(!ServletFileUpload.isMultipartContent(request)) {
 			request.setAttribute("msg","등록작성오류![form:enctype에러관리자에게 문의하세요!]");
 			request.setAttribute("loc","/");
@@ -101,9 +102,8 @@ public class ProductUpdateEndServlet extends HttpServlet {
 		p.setpRecipeContent3(mr.getParameter("pRecipeContent3"));
 		p.setpRecipeContent4(mr.getParameter("pRecipeContent4"));
 	
-		System.out.println("p-dao가기전:여기오류??"+p);
 		int result=new ProductService().updateProduct(p);
-		System.out.println("result오류??"+result);
+		System.out.println("p-dao가기전:여기오류??"+result);
 		String msg="";
 		String loc="";
 		String path1="";

@@ -35,6 +35,7 @@ public class Product {
 	private Date pRdate;
 	private int pHit;
 	private int pSell;
+	private int pCount; // 상품 갯수 담기 위한 변수 -ys-
 	
 	public Product() {
 		// TODO Auto-generated constructor stub
@@ -46,7 +47,7 @@ public class Product {
 			String pDetailTitle2, String pDetailMain, String pDetailContent1, String pDetailContent2,
 			String pRecipeImage1, String pRecipeImage2, String pRecipeImage3, String pRecipeImage4,
 			String pRecipeContent1, String pRecipeContent2, String pRecipeContent3, String pRecipeContent4, Date pRdate,
-			int pHit, int pSell) {
+			int pHit, int pSell, int pCount) {
 		super();
 		this.pNo = pNo;
 		this.pName = pName;
@@ -80,6 +81,7 @@ public class Product {
 		this.pRdate = pRdate;
 		this.pHit = pHit;
 		this.pSell = pSell;
+		this.pCount = pCount;
 	}
 
 	public int getpNo() {
@@ -338,20 +340,36 @@ public class Product {
 		this.pSell = pSell;
 	}
 
+	public int getpCount() {
+		return pCount;
+	}
+
+	public void setpCount(int pCount) {
+		this.pCount = pCount;
+	}
+
+//	@Override
+//	public String toString() {
+//		return "Product [pNo=" + pNo + ", pName=" + pName + ", pPrice=" + pPrice + ", pDiscount=" + pDiscount
+//				+ ", pStock=" + pStock + ", pServing=" + pServing + ", pCooktime=" + pCooktime + ", pReadytime="
+//				+ pReadytime + ", pTaste=" + pTaste + ", pImage1=" + pImage1 + ", pImage2=" + pImage2 + ", pImage3="
+//				+ pImage3 + ", pVideo=" + pVideo + ", pDetailImage1=" + pDetailImage1 + ", pDetailImage2="
+//				+ pDetailImage2 + ", pDetailImage3=" + pDetailImage3 + ", pDetailTitle1=" + pDetailTitle1
+//				+ ", pDetailTitle2=" + pDetailTitle2 + ", pDetailMain=" + pDetailMain + ", pDetailContent1="
+//				+ pDetailContent1 + ", pDetailContent2=" + pDetailContent2 + ", pRecipeImage1=" + pRecipeImage1
+//				+ ", pRecipeImage2=" + pRecipeImage2 + ", pRecipeImage3=" + pRecipeImage3 + ", pRecipeImage4="
+//				+ pRecipeImage4 + ", pRecipeContent1=" + pRecipeContent1 + ", pRecipeContent2=" + pRecipeContent2
+//				+ ", pRecipeContent3=" + pRecipeContent3 + ", pRecipeContent4=" + pRecipeContent4 + ", pRdate=" + pRdate
+//				+ ", pHit=" + pHit + ", pSell=" + pSell + ", pCount=" + pCount + "]";
+//	}
+	
 	@Override
 	public String toString() {
-		return "Product [pNo=" + pNo + ", pName=" + pName + ", pPrice=" + pPrice + ", pDiscount=" + pDiscount
-				+ ", pStock=" + pStock + ", pServing=" + pServing + ", pCooktime=" + pCooktime + ", pReadytime="
-				+ pReadytime + ", pTaste=" + pTaste + ", pImage1=" + pImage1 + ", pImage2=" + pImage2 + ", pImage3="
-				+ pImage3 + ", pVideo=" + pVideo + ", pDetailImage1=" + pDetailImage1 + ", pDetailImage2="
-				+ pDetailImage2 + ", pDetailImage3=" + pDetailImage3 + ", pDetailTitle1=" + pDetailTitle1
-				+ ", pDetailTitle2=" + pDetailTitle2 + ", pDetailMain=" + pDetailMain + ", pDetailContent1="
-				+ pDetailContent1 + ", pDetailContent2=" + pDetailContent2 + ", pRecipeImage1=" + pRecipeImage1
-				+ ", pRecipeImage2=" + pRecipeImage2 + ", pRecipeImage3=" + pRecipeImage3 + ", pRecipeImage4="
-				+ pRecipeImage4 + ", pRecipeContent1=" + pRecipeContent1 + ", pRecipeContent2=" + pRecipeContent2
-				+ ", pRecipeContent3=" + pRecipeContent3 + ", pRecipeContent4=" + pRecipeContent4 + ", pRdate=" + pRdate
-				+ ", pHit=" + pHit + ", pSell=" + pSell + "]";
+		return "Product [pNo=" + pNo + ", pCount=" + pCount + "]";
 	}
+	
+	
+	
 	
 	
 }

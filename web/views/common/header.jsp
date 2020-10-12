@@ -1,8 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ page import="com.eol.member.model.vo.Member" %>
+<%@ page import="java.util.List,
+com.eol.product.model.vo.Product,
+com.eol.member.model.vo.Member, java.util.ArrayList" %>
 
 <%
+	if(request.getSession().getAttribute("nonCartList") == null) {
+		List nonCartList = new ArrayList();
+		request.getSession().setAttribute("nonCartList", nonCartList);
+	}
 	//로그인 된 상태이면 loginMember에 값이 있다.
 	//로그인 안된 상태이면 loginMEmber가 null값이 된다.
 	Member loginMember = (Member)request.getSession().getAttribute("loginMember");
@@ -66,7 +72,7 @@ href="<%=request.getContextPath() %>/css/hayong.css">
 	                    <li><a href="<%=request.getContextPath()%>/event.do">이벤트</a></li>
 	                    <li><a href="<%=request.getContextPath()%>/mypageMain.do">마이페이지</a></li>
 	                </ul>
-                <a href="<%=request.getContextPath() %>/cartView.do"><img id="headerB" src="<%=request.getContextPath() %>/images/mainImages/shopping-cart-solid.svg" alt="" width="30px" height="30px"></a><!-- 장바구니 -->
+                <a href="<%=request.getContextPath()%>/views/cart/cartViewServlet"><img id="headerB" src="<%=request.getContextPath() %>/images/mainImages/shopping-cart-solid.svg" alt="" width="30px" height="30px"></a><!-- 장바구니 -->
                 <%} %>
             </nav>
         </header>
