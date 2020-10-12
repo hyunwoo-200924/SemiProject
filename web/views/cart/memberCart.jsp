@@ -8,7 +8,6 @@
 	page import="java.util.List,java.util.ArrayList,com.eol.product.model.vo.Product"
  %>
  <%
-   	List<Product> list = (List)request.getSession().getAttribute("nonCartList");
  
  %>
     
@@ -24,14 +23,13 @@
             <div class="cart-section-body-group1">
                 <label for=""><input type="radio">
             </div>
-	           <%for(Product p :list){%>
 	           
 	            <div class="cart-section-body-group2">
-	               <img src="<%=request.getContextPath() %>/upload/product/<%=p.getpImage1() %>" alt="상품이미지" style="width:200px;height:150px;">
+	               <img src="<%=request.getContextPath() %>/upload/product/" alt="상품이미지" style="width:200px;height:150px;">
 	
 	            </div>
 	            <div class="cart-section-body-group3">
-	                <p><%=p.getpName() %></p>
+	                <p>이름</p>
 	            </div>
 	            <div class="cart-section-body-group3">
 	                <select class="cart-selection" aria-placeholder="1" style="width:180px;height: 40px;">
@@ -39,12 +37,11 @@
 	                </select>
             </div>
             <div class="cart-section-body-group4">
-                <p class="cart-pricetext"><%=p.getpPrice() %> <span>원</span></p>
+                <p class="cart-pricetext">가격<span>원</span></p>
 
             </div>
             </label>
         </div>
-				<%} %>
             <div class="cart-btn">
                 <!-- 선택상품클릭시 선택상품만 전체선택 -->
                <button class="btn">전체선택</button>
