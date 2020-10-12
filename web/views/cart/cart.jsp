@@ -1,15 +1,15 @@
 
+<%@page import="java.util.ArrayList"%>
 <%@page import="com.eol.product.model.vo.Product"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     
 <%@
-	page import="java.util.List,com.eol.cart.model.vo.Cart,javax.servlet.http.Cookie"
+	page import="java.util.List,java.util.ArrayList,com.eol.product.model.vo.Product"
  %>
  <%
- /*  	List<Cart> list = (List)request.getSession().getAttribute("nonlistCart");
- */
- 	List<Cart> list = (List)session.getAttribute("nonselectCart");
+   	List<Product> list = (List)request.getSession().getAttribute("nonCartList");
+ 
  %>
     
  <link file="<%=request.getContextPath()%>/css/cart.css">   
@@ -24,27 +24,27 @@
             <div class="cart-section-body-group1">
                 <label for=""><input type="radio">
             </div>
-           <%for(Cart c : list){%>
-            <div class="cart-section-body-group2">
-                <img src="<%=request.getContextPath() %>/product/productFileDownload?fileName=<%=c.getProduct().getpImage1() %>" alt="상품이미지" style="width:200px;height:150px;">
-
-            </div>
-            <div class="cart-section-body-group3">
-                <p><%=c.getProduct().getpName() %></p>
-            </div>
-            <div class="cart-section-body-group3">
-                <select class="cart-selection" aria-placeholder="1" style="width:180px;height: 40px;">
-                    
-                </select>
-			<%} %>
+	           <%for(Product p :list){%>
+	           
+	            <div class="cart-section-body-group2">
+	               <img src="<%=request.getContextPath() %>/upload/product/<%=p.getpImage1() %>" alt="상품이미지" style="width:200px;height:150px;">
+	
+	            </div>
+	            <div class="cart-section-body-group3">
+	                <p><%=p.getpName() %></p>
+	            </div>
+	            <div class="cart-section-body-group3">
+	                <select class="cart-selection" aria-placeholder="1" style="width:180px;height: 40px;">
+	                    
+	                </select>
             </div>
             <div class="cart-section-body-group4">
-                <p class="cart-pricetext">1212 <span>원</span></p>
+                <p class="cart-pricetext"><%=p.getpPrice() %> <span>원</span></p>
 
             </div>
-                
             </label>
         </div>
+				<%} %>
             <div class="cart-btn">
                 <!-- 선택상품클릭시 선택상품만 전체선택 -->
                <button class="btn">전체선택</button>

@@ -1,33 +1,26 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ page import="java.util.List,com.eol.review.model.vo.Review"%>
-<%@ page import="com.eol.member.model.vo.Member" %>
 <%
 	List<Review> list=(List)request.getAttribute("list");
 	String pageBar = (String)request.getAttribute("pageBar");
-	Member m = (Member)request.getSession().getAttribute("loginMember");
 %>
 <%@ include file="/views/common/header.jsp"%>
 
 <link rel="stylesheet" type="text/css"
 	href="<%=request.getContextPath() %>/css/review.css">
-	
-<form id="reviews-container" method="post"
-	action="<%=request.getContextPath()%>" enctype="multipart/form-data">
-	
+
+<section id="reviews-container">
 	<div id="reviews-section-group">
-		<!-- NAV부분 -->
 		<div class="reviews-right">
 			<div class="reviews-container-group">
-
 				<div id="reviewtitle">
 					<h1 class="reviews-h1">리뷰</h1>
-
 					<button class="written-reviews-button">작성 가능한 리뷰</button>
 					&nbsp;
 					<button class="written-reviews-button">작성한 리뷰</button>
 				</div>
-				<!-- <div id="reviews-content">
+				<div id="reviews-content">
 					<div class="reviews-sort">
 						<div class="search-month">
 							<div class="search-radio">
@@ -49,89 +42,47 @@
 							<label class="search-year"> <input type="date"
 								name="date" value="2020~" class="search-date"
 								placeholder="choice" style="width: 200px; height: 30px;">
-
 							</label>
 							<div class="search-year">
-
 								<input type="date" name="date" value="2020~" class="search-date"
 									placeholder="choice" style="width: 200px; height: 30px;">
 							</div>
 						</div>
 					</div>
-				</div> -->
+				</div>
 			</div>
-			<div class="question_box col3">
-									<p>주문/상품 선택</p>
-									<input type="text" name="o_no" readonly >
-									<input type="button" value="조회" onclick="fn_inquiry();">
-									<div id="inquiry">
-										<div class="inquiry_form">
-											<span>주문번호</span>
-											<span>주문일자</span>
-											<span>상품명</span>
-											<span>수량</span>
-											<span>주문금액</span>
-											<span>선택</span>
-										</div>
-										
-										
-										<!-- <table>
-									        <tr>
-									            <th>주문번호</th>
-									            <th>주문일자</th>
-									            <th>상품명</th>
-									            <th>수량</th>
-									            <th>주문금액</th>
-									            <th>선택</th>
-									        </tr>
-									        <tr>
-									            <td></td>
-									            <td></td>
-									            <td></td>
-									            <td></td>
-									            <td><input type="radio"></td>
-									        </tr>
-									    </table> -->
-									</div>
-								</div>
-			<%-- <div class="reviews-container">
+			<div class="reviews-container">
 				<form class="reviews-container-group1" href="" method="post">
 					<table class="reviews-table">
-						<tbody class="reviews-table-items">
 							<tr class="reviews-table-group">
 								<th>번호</th>
 								<th>제목</th>
+								<th>내용</th>
 								<th>작성자</th>
 								<th>작성날짜</th>
 							</tr>
+						<%if(list.isEmpty()){ %>
 							<tr>
-							<% for(Review r: list){ %>
-								<td><%=r.getrNo() %></td>
-								<td><%=r.getrTitle() %></td>
-								<td>3</td>
-								<td>4</td>
-							<%} %>
-						</tbody>
+							<td colspan="5"><p style="text-align:center">조회된 게시글이 없습니다.</p></td>
+            			</tr>
+            			<%}else{ 
+                			for(Review r: list){ %>
+                				<tr>
+				                    <td><%=r.getrNo() %></td>             
+				                    <td><%=r.getrTitle() %></td>
+				                    <td><%=r.getrContent() %></td>
+				                    <td><%=r.getrWriter() %></td>
+				                    <td><%=r.getrRdate() %></td>
+				                </tr>
+				           	<%}
+				            }%>
 					</table>
-<<<<<<< HEAD
-					<div id="pageBar">
-						<%=pageBar %>
-					</div>
-
 					<div class="reviews-button-group">
-						<% if(loginMember!=null){ %>
-=======
-							
-							
-							
-							<div class="reviews-button-group">
-						<%-- <%if(loginMember!=null){ %> --%>
 						<input type="button" value="작성하기"
 							onclick="location.assign('<%=request.getContextPath()%>/review/reviewWrite')">
-						<%--<%} %>  --%>
 					</div>
 				</form>
-			</div> --%>
+			</div>
 			<div class="reviews-guide">
 				<div class="guidecontent">
 					<div class="guide-content-items">
@@ -157,12 +108,12 @@
 					<ul class="bul_list">
 						<li class="bul_dot"><i class="bullet"></i> 리뷰는 배송 완료 후 30일 이내
 							작성 가능합니다.</li>
-						<li class="bul_dot"><i class="bullet"></i> 포인트는 리뷰 작성 10일 이내
-							정상적으로 게시된 리뷰에 한해 지급됩니다.</li>
+						<li class="bul_dot"><i class="bullet"></i> CJ ONE 포인트는 리뷰 작성
+							10일 이내 정상적으로 게시된 리뷰에 한해 지급됩니다.</li>
 						<li class="bul_dot"><i class="bullet"></i> 포토 리뷰는 300P, 텍스트
 							리뷰는 200P가 지급되며 꿀팁 작성 시 100P가 추가 지급됩니다. (최대 400P 지급)</li>
 						<li class="bul_dot"><i class="bullet"></i> 베스트 리뷰는 선정된 당일 별도로
-							1,000P가 지급되며 [MY쿡킷&gt;포인트]에서 확인할 수 있습니다.</li>
+							1,000P가 지급되며 [MY쿡킷&gt;CJ ONE 포인트]에서 확인할 수 있습니다.</li>
 						<li class="bul_dot"><i class="bullet"></i> 리뷰 수정은 포인트 지급전까지만
 							가능하며, 리뷰를 삭제하는 경우 지급된 포인트가 회수됩니다.</li>
 						<li class="bul_dot"><i class="bullet"></i> 리뷰에 적합하지 않은 내용이나
@@ -176,28 +127,5 @@
 			</div>
 		</div>
 	</div>
-</form>
-<script>
-		
-			function fu_questionList(){
-				location.href="<%= request.getContextPath()%>/questionList"
-			}
-			
-			function fn_inquiry(){
-				$("#inquiry").slideToggle("slow");                                                                                                                                                                                                                                                        ㄴ
-				$.ajax({
-					url: "<%= request.getContextPath() %>/OrderList",
-					type: "post",
-					dataType: "json",
-					success: function(data){
-						console.log(data);
-						
-						$("#inquiry").append($("div"))
-						
-						
-					}
-				})
-				
-			}
-		</script>
+</section>
 <%@ include file="/views/common/footer.jsp"%>

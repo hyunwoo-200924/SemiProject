@@ -36,17 +36,17 @@ public class ReviewDao {
 			rs=pstmt.executeQuery();
 			if(rs.next()) {
 				r = new Review();
-				r.setrNo(rs.getInt("rNo"));
-				r.setpNo(rs.getInt("pNo"));
-				r.setoNo(rs.getInt("oNo"));
-				r.setrWriter(rs.getString("rWriter"));
-				r.setrTitle(rs.getString("rTitle"));
-				r.setrContent(rs.getString("rContent"));
-				r.setrPhoto1(rs.getString("rPhoto1"));
-				r.setrPhoto2(rs.getString("rPhoto2"));
-				r.setrPhoto3(rs.getString("rPhoto3"));
-				r.setrRdate(rs.getDate("rRdate"));
-				r.setrStarScore(rs.getInt("rStarScore"));
+				r.setrNo(rs.getInt("R_NO"));
+				r.setpNo(rs.getInt("P_NO"));
+				r.setoNo(rs.getInt("O_NO"));
+				r.setrWriter(rs.getString("R_WRITER"));
+				r.setrTitle(rs.getString("R_TITLE"));
+				r.setrContent(rs.getString("R_CONTENT"));
+				r.setrPhoto1(rs.getString("R_PHOTO1"));
+				r.setrPhoto2(rs.getString("R_PHOTO2"));
+				r.setrPhoto3(rs.getString("R_PHOTO3"));
+				r.setrRdate(rs.getDate("R_RDATE"));
+				r.setrStarScore(rs.getInt("R_STARSCORE"));
 			}
 		}catch(SQLException e) {
 			e.printStackTrace();
@@ -73,20 +73,11 @@ public class ReviewDao {
 	public int insertReview(Connection conn, Review r) {
 		PreparedStatement pstmt = null;
 		int result = 0;
-		
 		try {
 			pstmt = conn.prepareStatement(prop.getProperty("insertReview"));
-//			pstmt.setInt(1, r.getpNo());
-//			pstmt.setInt(2, r.getoNo());
-			pstmt.setString(1, r.getrWriter());
-			pstmt.setString(2, r.getrTitle());
-			pstmt.setString(3, r.getrContent());
-//			pstmt.setString(6, r.getrPhoto1());
-//			pstmt.setString(7, r.getrPhoto2());
-//			pstmt.setString(8,  r.getrPhoto3());
-//			pstmt.setInt(9, r.getrStarScore());
+			pstmt.setString(1, r.getrTitle());
+			pstmt.setString(2, r.getrContent());
 			
-			System.out.println("r3");
 			result=pstmt.executeUpdate();
 		}catch(Exception e) {
 			e.printStackTrace();
@@ -108,17 +99,17 @@ public class ReviewDao {
 			rs=pstmt.executeQuery();
 			while(rs.next()) {
 				Review r=new Review();
-				r.setrNo(rs.getInt("rNo"));
-				r.setpNo(rs.getInt("pNo"));
-				r.setoNo(rs.getInt("oNo"));
-				r.setrWriter(rs.getString("rWriter"));
-				r.setrTitle(rs.getString("rTitle"));
-				r.setrContent(rs.getString("rContent"));
-				r.setrPhoto1(rs.getString("rPhoto1"));
-				r.setrPhoto2(rs.getString("rPhoto2"));
-				r.setrPhoto3(rs.getString("rPhoto3"));
-				r.setrRdate(rs.getDate("rRdate"));
-				r.setrStarScore(rs.getInt("rStarScore"));
+				r.setrNo(rs.getInt("R_NO"));
+				r.setpNo(rs.getInt("P_NO"));
+				r.setoNo(rs.getInt("O_NO"));
+				r.setrWriter(rs.getString("R_WRITER"));
+				r.setrTitle(rs.getString("R_TITLE"));
+				r.setrContent(rs.getString("R_CONTENT"));
+				r.setrPhoto1(rs.getString("R_PHOTO1"));
+				r.setrPhoto2(rs.getString("R_PHOTO2"));
+				r.setrPhoto3(rs.getString("R_PHOTO3"));
+				r.setrRdate(rs.getDate("R_RDATE"));
+				r.setrStarScore(rs.getInt("R_STARSCORE"));
 				list.add(r);
 			}
 		}catch(SQLException e) {
@@ -146,7 +137,6 @@ public class ReviewDao {
 			close(rs);
 			close(pstmt);
 		}
-		
 		return result;
 	}
 }
