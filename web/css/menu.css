@@ -301,7 +301,14 @@ margin: 50px;
   .menu-delivery-delete-btn{
     justify-items:end;
   }
-
+.product-number{
+	border: none;
+	width: 30px;
+	color:#ff5912;
+	font-weight: 600;
+	text-align: center;
+	font-size:18px;
+}
 
 
 

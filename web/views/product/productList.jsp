@@ -3,17 +3,15 @@
 <link rel="stylesheet" type="text/css" herf="<%=request.getContextPath()%>/css/menu.css">
 
 
-<%@ page import="java.util.List,
-com.eol.product.model.vo.Product,
-com.eol.member.model.vo.Member" %>
-
 <%@ include file="/views/common/header.jsp"%>
-
+<%@ page import="java.util.List,com.eol.product.model.vo.Product, com.eol.member.model.vo.Member" %>
 <%
 	List<Product> list=(List)request.getAttribute("list");
 	String pageBar=(String)request.getAttribute("pageBar");
 	Member loginMember1 = (Member)request.getSession().getAttribute("loginMember");
 %>
+
+
 
 
     <!-- section -->
@@ -72,27 +70,33 @@ com.eol.member.model.vo.Member" %>
     <!-- 메뉴 이미지칸  3 x  3 배열 -->
     <div class="section-menu-group-container">
         <div class="section-menu-group-container1">
-        <%if((loginMember1!=null)&& loginMember1.equals("admin")){ %>
+        		<% if(loginMember1!=null&&(loginMember1.getmId().equals("admin"))){%> 
 					<button  onclick="location.assign('<%=request.getContextPath()%>/product/productWrite')">등록하기</button>
-        	
-				<%} %>	
+        		<%}%> 
+					
             <section class="menu-group-section1">
                 
             <%for(Product p : list) {%>
-            
-      		<input type="submit" class="product-register" id="updateProduct" onclick="location.replace('<%=request.getContextPath()%>/product/productUpdate')" value="수정">
-      		<input type="submit" class="product-register" id="updateProduct" src="<%=request.getContextPath()%>/product/productDelete"value="삭제">
+            	<% if(loginMember1!=null&&(loginMember1.getmId().equals("admin"))){%>
+                            <div id="pNo" style="display:none;"><%=p.getpNo()%></div>
+      		<input type="button" class="product-register" id="updateProduct" onclick="location.assign('<%=request.getContextPath() %>/product/productUpdate?pNo=<%=p.getpNo() %>')" value="수정">
+      		<input type="button" class="product-register" id="deleteProduct" onclick="location.assign('<%=request.getContextPath() %>/product/productDelete?pNo=<%=p.getpNo() %>')" value="삭제">
+              <%}%> 
+					              
               <div class="menu-img-group">
                 <div class="menu-img-group-wrap">
                     <div class="menu--img-group2">
                        <div class="menu--img-items-group"> 
                             <div class="menu--img-items">
+<<<<<<< HEAD
+=======
                             
                             <div name="pNo"><%=p.getpNo()%></div>
+>>>>>>> branch 'master' of https://github.com/hyunwoo-200924/SemiProject.git
                                 <!-- 메뉴상세페이지로이동 -->
                                 <a href="<%=request.getContextPath()%>/product/productView?pNo=<%=p.getpNo()%>" name="plz">
 									<%if(p.getpImage1()!=null) {%>
-                                    <img type="file" src="<%=request.getContextPath() %>/upload/product/<%=p.getpImage1() %>" alt="menu" class="menu-click1">
+                                    <img type="file" src="<%=request.getContextPath() %>/product/productFileDownload?fileName=<%=p.getpImage1() %>" alt="menu" class="menu-click1">
                                     <%} %>
                                     <ul class="menu--text-group">
                                         <div class="new">
@@ -108,7 +112,7 @@ com.eol.member.model.vo.Member" %>
                                     </ul>
                                 </a>
                                 <!-- 리뷰페이지로 ~ -->
-                                <a  href="<%=request.getContextPath() %>/review/review.jsp" class="menu--text-group">
+                                <a  href="<%=request.getContextPath() %>/review/review" class="menu--text-group">
                                     <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
 
                                    
@@ -128,7 +132,11 @@ com.eol.member.model.vo.Member" %>
                                 <img src="<%=request.getContextPath() %>/images/product/hart40px.jpg" alt="찜" class="hart--img" onclick="hart();"></img>
                             </a>
                             <!-- 장바구니페이지 -->
+<<<<<<< HEAD
+                            <a href="<%=request.getContextPath() %>/cartView.do">
+=======
                             <a href="<%=request.getContextPath() %>/views/cart/cartViewServlet?pNo=<%=p.getpNo() %>" id="cartBtn" name="cartBtn">
+>>>>>>> branch 'master' of https://github.com/hyunwoo-200924/SemiProject.git
 
                                 <img src="<%=request.getContextPath() %>/images/product/cart40px.jpg" alt="장바구니" class="cart--img" onclick="cartInsert()"></img>
                             </a>

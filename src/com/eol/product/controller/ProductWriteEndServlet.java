@@ -102,7 +102,7 @@ public class ProductWriteEndServlet extends HttpServlet {
 	
 		
 		int result = new ProductService().insertProduct(p);
-		
+		System.out.println("p가 출력이 안되냐"+p);
 //		String msg="";
 ////		String loc="/product/productList.jsp";
 //		msg=result>0?"상품등록 성공":"상품등록실패";

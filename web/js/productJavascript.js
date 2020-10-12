@@ -80,14 +80,26 @@ rating.each(function(){
 });
 
 
-//gotoMainMenu();
+/*//gotoMainMenu();
 function gotoMainMenu(){
 	//페이지를 전환시켜주는명령어 실행
 	location.replace("<%=request.getContextPath()%>/product/productList.jsp");
-};
+};*/
 const pPrice = $("#pPrice").val();// 상품 가격
+conslo.log(pPrice);
+alert(pPrice);
 const pDiscount=$("#pDiscount").val();//할인 률
-const pPoint= pPrice/pDiscount; //포인트 
+const pPoint= pPrice/pDiscount; //포인트
+const pstock=0;
+$('#selected_stock').children().on(function(){
+	$(".menu-title-choice-wrap").show().clone().insertAfter();
+	
+});
+
+		
+
+const totalPrice=null ;
+	
 
 
 
