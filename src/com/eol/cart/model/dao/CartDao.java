@@ -44,6 +44,7 @@ public class CartDao {
 				c.setmNo(rs.getInt("m_no"));
 				c.setpNo(rs.getInt("p_no"));
 				c.setcQty(rs.getInt("c_qty"));
+				c.setoDeliveryEDate(rs.getDate("o_deliveryedate"));
 				list.add(c);
 			}
 			
