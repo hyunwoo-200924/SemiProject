@@ -60,8 +60,22 @@ public class UpdateQuestionServlet extends HttpServlet {
 		if(!oNo.equals("")) {
 			q.setoNo(Integer.parseInt(oNo));
 		}
-		q.setqContent(mr.getParameter("content"));
-		q.setqFile(mr.getFilesystemName("file"));
+		q.setqContent(mr.getParameter("content"));	
+		
+		String file = mr.getFilesystemName("file");
+		System.out.println("요기" + file);
+		if(file != null) { //파일 선택 했을 때
+			q.setqFile(mr.getFilesystemName("file"));
+		} else { //파일 선택 안 했을 때
+			
+			String imgDelete = mr.getParameter("imgDelete");
+			if(imgDelete != null) {//삭제에 체크 했을 때
+				
+			} else {//삭제에 체크 안 했을 때 
+				q.setqFile(mr.getFilesystemName("originFile"));
+				
+			}
+		}
 		if(mr.getParameter("answer") != "") {
 			q.setqAnswer(mr.getParameter("answer"));
 		}
