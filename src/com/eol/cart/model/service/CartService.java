@@ -31,11 +31,24 @@ public class CartService {
 		return p;
 	}
 	
-//	public List<Cart> memberIndertCart(int mNo,int pNo){
-//		Connection conn = getConnection();
-//		List<Cart> cart = dao.memberIndertCart(conn,mNo,pNo);
-//		close(conn);
-//		return cart;
-//	}
+	public int insertCart(Cart c) {
+		Connection conn =getConnection();
+		int result = dao.insertCart(conn, c);
+		if(result > 0) commit(conn);
+		else rollback(conn);
+		close(conn);
+		return result;
+	}
+	
+	public int updateCartNum(int mNo, int pNo) {
+		Connection conn = getConnection();
+		int result = dao.updateCartNum(conn , mNo, pNo);
+		if(result > 0) commit(conn);
+		else rollback(conn);
+		close(conn);
+		return result;
 
+		
+		
+	}
 }

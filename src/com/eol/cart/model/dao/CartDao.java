@@ -45,7 +45,7 @@ public class CartDao {
 				c.setmNo(rs.getInt("m_no"));
 				c.setpNo(rs.getInt("p_no"));
 				c.setcQty(rs.getInt("c_qty"));
-				c.setoDeliveryEDate(rs.getDate("o_deliveryedate"));
+				c.setoDeliveryEDate(rs.getString("o_deliveryedate"));
 				list.add(c);
 			}
 			
@@ -79,6 +79,42 @@ public class CartDao {
 			close(rs);
 			close(pstmt);
 		}return p;
+	}
+	
+	public int insertCart(Connection conn, Cart c) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		
+		try {
+			pstmt = conn.prepareStatement(prop.getProperty("insertCart"));
+			pstmt.setInt(1, c.getmNo());
+			pstmt.setInt(2, c.getpNo());
+			pstmt.setInt(3, c.getcQty());
+			pstmt.setString(4, c.getoDeliveryEDate());
+			result = pstmt.executeUpdate();
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}return result;
+	}
+	
+	public int updateCartNum(Connection conn , int mNo, int pNo) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		System.out.println("6666666");
+		
+		try {
+			pstmt = conn.prepareStatement(prop.getProperty("updateCartNum"));
+			//System.out.println("돌아가나??" + pCount);
+			pstmt.setInt(1, mNo);
+			pstmt.setInt(2, pNo);
+			result = pstmt.executeUpdate();
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}return result;
 	}
 	
 }

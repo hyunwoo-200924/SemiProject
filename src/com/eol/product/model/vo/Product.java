@@ -36,6 +36,7 @@ public class Product {
 	private int pHit;
 	private int pSell;
 	private int pCount; // 상품 갯수 담기 위한 변수 -ys-
+	private String delivery;
 	
 	public Product() {
 		// TODO Auto-generated constructor stub
@@ -348,6 +349,15 @@ public class Product {
 		this.pCount = pCount;
 	}
 
+	public String getDelivery() {
+		return delivery;
+	}
+	
+	public void setDelivery(String delivery) {
+		this.delivery = delivery;
+	}
+	
+	
 //	@Override
 //	public String toString() {
 //		return "Product [pNo=" + pNo + ", pName=" + pName + ", pPrice=" + pPrice + ", pDiscount=" + pDiscount
@@ -363,6 +373,8 @@ public class Product {
 //				+ ", pHit=" + pHit + ", pSell=" + pSell + ", pCount=" + pCount + "]";
 //	}
 	
+
+
 	@Override
 	public String toString() {
 		return "Product [pNo=" + pNo + ", pCount=" + pCount + "]";
