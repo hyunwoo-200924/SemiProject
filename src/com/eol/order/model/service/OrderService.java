@@ -93,7 +93,7 @@ public class OrderService {
 		return result;
 	}
 	
-	//결제완료 후 주문내역의 상세내역 DB에 담기
+	//회원이 결제완료 후 주문내역의 상세내역 DB에 담기
 	public int odinsert(Cart c, int oNo) {
 		Connection conn = getConnection();
 		int result = dao.odinsert(conn, c, oNo);
@@ -101,12 +101,30 @@ public class OrderService {
 		return result;
 	}
 	
-	//회원이 갓 주문해서 인서트한 주문번호 가져오기
+	//회원이 갓 주문해서 주문정보를 인서트 할 때 부여받은 주문번호 가져오기
 	public int selectoNo(int mNo) {
 		Connection conn = getConnection();
 		int oNo = dao.selectoNo(conn, mNo);
 		close(conn);
 		return oNo;
+	}
+	
+	
+	//비회원이 갓 주문해서 주문정보를 인서트 할 떄 부여받은 주문번호 가져오기
+	public int noMemberselectoNo(String oPw, String oName, String oPhone) {
+		Connection conn = getConnection();
+		int oNo = dao.noMemberselectoNo(conn, oPw, oName, oPhone);
+		close(conn);
+		return oNo;
+		}
+	
+	
+	//비회원이 결제완료 후  주문내역의 상세내역 DB에 담기
+	public int noMemberodinsert(Product p, int oNo) {
+		Connection conn = getConnection();
+		int result = dao.nonodinsert(conn, p, oNo);
+		close(conn);
+		return result;
 	}
 	
 	

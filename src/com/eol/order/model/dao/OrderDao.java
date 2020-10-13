@@ -279,7 +279,6 @@ public class OrderDao {
 				//noMemberinsertOrder=INSERT INTO ORDERS VALUES(ORD_SEQ.NEXTVAL, NULL,?,?,?,?,SYSDATE-2,?,?,?,SYSDATE,NULL,NULL,?,?,?)
 				pstmt.setString(1, o.getoPw());
 			}
-			pstmt.setInt(1, o.getmNo());
 			pstmt.setString(2,o.getoName());
 			pstmt.setString(3, o.getoPhone());
 			pstmt.setString(4, o.getoAddress());
@@ -336,6 +335,47 @@ public class OrderDao {
 			close(rs);
 			close(pstmt);
 		}return oNo;
+	}
+	
+	//비회원이 지금 막 주문해서 부여받은 주문번호 가져오기
+	public int noMemberselectoNo(Connection conn, String oPw, String oName, String oPhone) {
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		int oNo = 0;
+		try {
+			pstmt = conn.prepareStatement(prop.getProperty("nonMemberselectoNo"));
+			//nonMemberselectoNo=SELECT MAX(O_NO) FROM ORDERS WHERE O_PW=? AND O_NAME=? AND O_PHONE=?
+			pstmt.setString(1, oPw);
+			pstmt.setString(2, oName);
+			pstmt.setString(3, oPhone);
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				oNo = rs.getInt(1);
+			}
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rs);
+			close(pstmt);
+		}return oNo;
+	}
+	
+	//비회원이 결제완료 후 주문 생세내역 DB에 담기
+	public int nonodinsert(Connection conn, Product p, int oNo) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		try {
+			pstmt = conn.prepareStatement(prop.getProperty("odinsert"));
+			//odinsert=INSERT INTO ORDERDETAIL VALUES(ORDD_SEQ.NEXTVAL,?,?,?)
+			pstmt.setInt(1, oNo);
+			pstmt.setInt(2, p.getpNo());
+			pstmt.setInt(3, p.getpCount());
+			result = pstmt.executeUpdate();
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}return result;
 	}
 
 }

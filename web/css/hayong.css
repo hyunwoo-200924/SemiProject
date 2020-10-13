@@ -232,11 +232,10 @@
          position: relative;
    }
    .user_request_list .list_form div:nth-child(2) {
-	    height: 45px;
 	    margin-top: 10px;
 	    padding-top: 16px;
 	    display: grid;
-	    grid-template-columns: 537px auto auto;
+	    grid-template-columns: 537px 40px 109px;
 	    border-top: 1px solid #e0e0e0;
 	}
 	.user_request_list .list_form div:nth-child(2) div {

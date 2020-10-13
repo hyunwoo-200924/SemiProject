@@ -54,7 +54,7 @@
 				</div>
 				<div class="user_request">
 					<div class="inline">
-						<p style="padding-right:20px">1:1 문의 작성</p>
+						<p style="padding-right:20px" onclick="fu_questionWrite();">1:1 문의 작성</p>
 						<p class="active">1:1 문의 내역</p>
 					</div>
 					<%if(list.isEmpty()) {%>
@@ -79,13 +79,17 @@
 								<span class="list"><%=q.getqRdate() %></span>
 							</div>
                      		<div class="contentBox" style="display:none">
-                     			<%-- <div>
+                     			<%-- <div> 여기 추가 할꺼면 update함수, delete함수 수정해야함
                      			<img src="<%= request.getContextPath() %>/upload/question/<%= q.getqFile() %>">
                      			</div> --%>
                      			<!-- <div> -->
                      			<div><%=q.getqContent() %></div>
+                     			<%if(!q.getqStatus().equals("Y")){ %> <!-- 답변  안 달렸다면 -->
                      			<button class="update">수정</button>
                      			<button class="delete">삭제</button>
+                     			<%} else { %>
+                     			<button class="delete" style="grid-column-start: 3;">삭제</button>
+                     			<%} %>
                      			<!-- </div> -->
                      		</div>
                      		<%if(q.getqStatus().equals("Y")){ %>
@@ -120,6 +124,9 @@
 			</div>
 		</section>
 		<script>
+		function fu_questionWrite(){
+			location.href="<%= request.getContextPath()%>/questionWriteView"
+		}
 		function fn_before(){
 			if(<%= currentPage %> <= 1) {
 				return false;
@@ -162,7 +169,8 @@
 				}
 		   })
 		   $(".update").click(function(){
-			   location.href = "<%= request.getContextPath() %>/updateQuestionView";
+			   let qNo = $(this).parent().prev().children().eq(0).text();
+			   location.href = "<%= request.getContextPath() %>/updateQuestionView?qNo=" + qNo;
 			   
 		   })
 		})
