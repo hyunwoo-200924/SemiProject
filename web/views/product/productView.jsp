@@ -263,7 +263,7 @@ Member loginMember2 = (Member)request.getSession().getAttribute("loginMember");
                                          <input type="text" class="product-nember" name="cQty" value="" max="<%=p.getpStock()%>"readonly/> <span class="product_stock">개</span>
                                          <input type="hidden" name="pNo" value="<%=p.getpNo() %>">
                                      </p>
-                                     <p><input type="text" class="product-pricetag" id="total-price" value=""readonly><span>원</span></p>
+                                     <p><input type="text" class="product-pricetag" id="total-price" readonly><span>원</span></input></p>
                                  </form>
                                 		<script>
                                 		         
@@ -320,10 +320,7 @@ Member loginMember2 = (Member)request.getSession().getAttribute("loginMember");
                                 				console.log($tagetTotal.val(total2));
                                 				$tagetTotal2.text(total2+"원");
                                 		});
-                                	<%-- 	$cartQty=$(<%=c.getcQty()%>);
-                                		$cartNum=$(".product-number").val(currentCount);
-                                		$cartQty=$cartNum;
-                                		console.log($cartQty); --%>
+                            
                                 		
                                 	
                                 		</script>
