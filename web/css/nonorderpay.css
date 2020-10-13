@@ -1,8 +1,37 @@
 @charset "UTF-8";
+@charset "UTF-8";
 /* 결제창 block */
+*{
+	    margin: 3px;
+}
 .present-section-container-block{
 	padding: 20px;
 }
+.present-section-container{
+	    display: grid;
+    grid-template-columns: auto auto;
+}
+.inputOrder{
+	display: block;
+	padding: 10px;
+}
+.odImage{
+	display: inline;
+}
+
+.odProduct{
+	position: relative;
+	border: 2px black solid;
+	width: 600px;
+	height: 200px;
+	margin: 10px;
+}
+.odImage{
+	position: absolute;
+	top: 20px;
+	left: 20px;
+}
+
 .present-section-group3{
     width: 550px;
     height:660px;
@@ -14,6 +43,18 @@
     
    
 }
+.present-items-img-text{
+	position:  absolute;
+	display: inline;
+	top: 20px;
+	left: 250px;
+}
+.totalPrice{
+	position:  absolute;
+	display: inline;
+	bottom: 20px;
+	right: 20px;
+}
 .pay-items{
     width: auto;
     padding: 10px;
@@ -23,6 +64,13 @@
     display: grid;
     grid-template-columns: repeat(1,400px 100px 1fr);   
 }
+.present-section-container-group1{
+	
+	
+	
+}
+
+
 .pay-items-text-right{
     text-align: right;
 }
