@@ -14,7 +14,6 @@ href="<%=request.getContextPath() %>/css//member/memberFindId.css">
 			<section>
              	<div class="findIdText">
                  	<h1>등록되지 않은 회원 입니다.</h1>
-                	<div><h1>고객님께서 입력하신 정보가 정확한지 확인 해 주세요.</h1> </div>
                 	<input type="submit" value="회원가입" onclick="location.replace('<%=request.getContextPath()%>/memberjoin.do')">
              	</div>
     		</section>

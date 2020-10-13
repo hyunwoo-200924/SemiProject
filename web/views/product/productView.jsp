@@ -334,7 +334,7 @@
                                     <a href=""><img src="<%=request.getContextPath() %>/images/product/hart40px.jpg" alt="찜" class="jjim"></a>
                                    	<a href="/cart/cart.jsp"><span class="jjim" style="font-size: 40px;width: 40px; height="40px;">♥</span></a>
                                  </div>
-                                 <input type="button" class="cart-botton-items" id="buybtn()" onclick="location.replace('<%=request.getContextPath() %>/views/cart/cartViewServlet?pNo=<%=p.getpNo() %>')" value="장바구니">
+                                 <input type="button" class="cart-botton-items" id="buybtn()" onclick="location.relace('<%=request.getContextPath() %>/views/cart/cartViewServlet?pNo=<%=p.getpNo() %>')" value="장바구니">
                          </div>
                      </div>
              </form>
