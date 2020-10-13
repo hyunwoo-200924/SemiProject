@@ -18,7 +18,7 @@ IMP.init('imp14973248'); // 'iamport' 대신 부여받은 "가맹점 식별코�
 
 <%
 	
-	List list = (List)request.getSession().getAttribute("nonCartList");
+	List<Product> list = (List)request.getSession().getAttribute("nonCartList");
 	
 %>
 
@@ -82,34 +82,32 @@ IMP.init('imp14973248'); // 'iamport' 대신 부여받은 "가맹점 식별코�
 					<%
 						int oAmount = 0;
 					Date oDeliveryEDate = null;
-						for( p : list){
-							oDeliveryEDate = p.getoDeliveryEDate();
-						}
+						
 					%>
 					
-						<input class="info-title" id="oDeliveryEDate" name="oDeliveryEDate" value="<%=oDeliveryEDate %>"><%=oDeliveryEDate %>도착예정
-						<%for(Cart c : clist) { %>
+						<input class="info-title" id="oDeliveryEDate" name="oDeliveryEDate" value="">도착예정
+						<%for(Product p : list) { %>
 						</h3>
 						<div class="present-items-imggroup">
 							<img
-								src="<%=request.getContextPath() %>/upload/product/<%=c.getProduct().getpImage1() %>"
+								src="<%=request.getContextPath() %>/upload/product/<%=p.getpImage1() %>"
 								alt="상품이미지" class="items-img"
 								style="width: 200px; height: 150px">
 							<div class="present-items-img-text">
 								<p class=preset-items-title>
-									상품명:<span class="items-payitems"><%=c.getProduct().getpName() %></span>
+									상품명:<span class="items-payitems"><%=p.getpName() %></span>
 								</p>
 								<p class="present-items-title">
-									가격:<span class="items-payitems"><%=c.getProduct().getpPrice() %><span>원</span>
+									가격:<span class="items-payitems"><%=p.getpPrice() %><span>원</span>
 								</p>
 								<p class="present-items-title">
-									수량:<input class="items-payitems" id="odQty" name="odQty" value="<%=c.getcQty() %>"><%=c.getcQty() %>개
+									수량:<input type="text" class="items-payitems" id="odQty" name="odQty" value="<%=p.getpCount() %>" style="border:none" readonly>개
 								</p>
 							</div>
 						</div>
 
 						<div>
-							<%int total = c.getProduct().getpPrice()*c.getcQty();%>
+							<%int total = p.getpPrice()*p.getpCount();%>
 							<p>
 								총액 :<%=total %></p>
 						</div>
@@ -121,7 +119,7 @@ IMP.init('imp14973248'); // 'iamport' 대신 부여받은 "가맹점 식별코�
 						
 						/* String oAm = Integer.toString(oAmount); */
 						%>
-						<input type="hidden" name="oAmount" value="<%=oAmount %>">
+						<input type="hidden" name="oAmount" value="<%=oAmount %>" style="border:none" readonly>
 					</div>
 				</div>
 
@@ -150,7 +148,8 @@ IMP.init('imp14973248'); // 'iamport' 대신 부여받은 "가맹점 식별코�
 				<div class="orderway">
 					<p>결제수단 선택</p>
 					<!-- 여기서 선택한 결제수단을 속성 pg의 값에 담기 -->
-					<input type="text" id="oPayway" name="oPayway" value="html5_inicis"> 
+					<input type="text" name="oPayway" value="">
+					<input type="hidden" id="oPayway" value="html5_inicis"> 
 				</div>
 			</div>
 
@@ -172,8 +171,8 @@ IMP.init('imp14973248'); // 'iamport' 대신 부여받은 "가맹점 식별코�
 							<p class="pay-items-text-left middle">총상품금액</p>
 							<%
                         	int alltotal =  0;
-                        	for(Cart c : clist ){
-                        		alltotal =+ (c.getProduct().getpPrice()*c.getcQty());
+                        	for(Product p : list ){
+                        		alltotal += (p.getpPrice()*p.getpCount());
                         	}
                         	
                         %>
@@ -188,14 +187,14 @@ IMP.init('imp14973248'); // 'iamport' 대신 부여받은 "가맹점 식별코�
 							</p>
 
 						</div>
-						<div class="pay-items1">
+						<!-- <div class="pay-items1">
 							<h3>할인 금액</h3>
 							<div class="pay-items-small">
-								<!-- <div class="pay-items">
+								<div class="pay-items">
                                 <p class="pay-items-text-left middle">상품할인</p>
                                 <p class="pay-items-text-right">1000<span>원</span></p>
 
-                            </div> -->
+                            </div>
 								<div class="pay-items">
 									<p class="pay-items-text-left middle">쿠폰할인</p>
 									<p class="pay-items-text-right">
@@ -212,13 +211,13 @@ IMP.init('imp14973248'); // 'iamport' 대신 부여받은 "가맹점 식별코�
 								0<span class="middle">Point</span>
 							</p>
 
-						</div>
+						</div> -->
 
 
 						<div class="pay-items">
 							<p class="pay-items-text-left middle">결제 금액</p>
 							<%int oPayment = alltotal+3000; %>
-							<input class="pay-items-text-right" id="oPayment" name="oPayment" value="<%=oPayment %>"/><%=oPayment %><span>원</span>
+							<input class="pay-items-text-right" id="oPayment" name="oPayment" value="<%=oPayment %>" style="border:none" readonly/><span>원</span>
 							
 
 						</div>
@@ -230,7 +229,7 @@ IMP.init('imp14973248'); // 'iamport' 대신 부여받은 "가맹점 식별코�
 							<!-- 결제하기 버튼을 누르면, 1. 걸제 api실행
                     2. 카트에 담긴 데이터와 그와 연결된 product데이터와 위에 입력한 배송정보를 orders와 orderdetail에 insert -->
 							<input type="button" id="pay" value="결제하기" class="pay-deside-button btn" style="width: 550px; height: 50px; justify-content: center; margin: 20px 0;">
-							<input type="button" onclick="fn_dd();" value="결제완료 확인">
+							<input type="button" id="orderCheak" style="display:none;" onclick="fn_dd();" value="결제완료 확인">
 						</div>
 					</div>
 				</div>
@@ -361,6 +360,7 @@ function fn_address(){
 			}
 		});
 		$("#pay").css("display", "none");
+		 $("#orderCheak").css("display","block")
 	})
 </script>
 
