@@ -23,19 +23,19 @@ public class ReviewService {
 		return r;
 	}
 
-	public int insertReview(Review r) {
+	public int insertReview(Review r, int odoNo, int odpNo, String pName, int mNo) {
 		Connection conn=getConnection();
-		int result=dao.insertReview(conn,r);
+		int result=dao.insertReview(conn,r, odoNo, odpNo, pName, mNo);
 		if(result>0) commit(conn);
 		else rollback(conn);
 		close(conn);
 		return result;	
 	}
 
-	public List<Review> reviewList(int cPage, int numPerPage) {
+	public List<Review> reviewList(int cPage, int numPerPage, int mNo) {
 		// TODO Auto-generated method stub
 		Connection conn=getConnection();
-		List<Review> list=dao.reviewList(conn,cPage,numPerPage);
+		List<Review> list=dao.reviewList(conn,cPage,numPerPage, mNo);
 		close(conn);
 		return list;
 	}
@@ -47,11 +47,13 @@ public class ReviewService {
 		return count;
 	}
 	
-//	public int[] pullReview(int mNo) {
-//		//p_no o_no 가져오기
-//		Connection conn = getConnection();
-//		int[] nResult = dao.pullReview(conn,mNo);
-//		close(conn);
-//		return nResult;
-//	}
+	public List<Review> reviewPullList(int cPage, int numPerPage, int mNo) {
+		//p_no o_no 가져오기
+		Connection conn = getConnection();
+		System.out.println("service : " + mNo);
+		
+		List<Review> list = dao.reviewPullList(conn,cPage,numPerPage, mNo);
+		close(conn);
+		return list;
+	}
 }
