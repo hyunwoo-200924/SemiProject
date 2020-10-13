@@ -44,7 +44,13 @@ public class ReviewListServlet extends HttpServlet {
 		}
 		int numPerPage=5;
 		
-		List<Review> list=new ReviewService().reviewList(cPage,numPerPage);
+		Member m = (Member)request.getSession().getAttribute("loginMember");
+		int mNo = m.getmNo();
+		
+		System.out.println("list : " + mNo);
+		
+		List<Review> list=new ReviewService().reviewPullList(cPage,numPerPage,mNo);
+		List<Review> list2=new ReviewService().reviewList(cPage,numPerPage, mNo);
 		int totalData=new ReviewService().reviewCount();
 		
 		int totalPage=(int)Math.ceil((double)totalData/numPerPage);
@@ -75,6 +81,7 @@ public class ReviewListServlet extends HttpServlet {
 			pageBar+="<a href='"+request.getContextPath()+"/review/reviewList?cPage="+pageNo+"'>[다음]</a>";
 		}
 		request.setAttribute("list",list);
+		request.setAttribute("list2",list2);
 		request.setAttribute("pageBar", pageBar);
 		
 		request.getRequestDispatcher("/views/review/reviewList.jsp").forward(request,response);
