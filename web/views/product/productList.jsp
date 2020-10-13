@@ -127,13 +127,13 @@
                         <!-- 찜 페이지 -->
                             <a href="<%=request.getContextPath()%>/views/cart/jjim.jsp">
 
-                                <img src="<%=request.getContextPath() %>/images/product/hart40px.jpg" alt="찜" class="hart--img" onclick="hart();"></img>
+                                <img src="<%=request.getContextPath() %>/images/product/hart40px.jpg" alt="찜" class="hart--img" onclick="hart();">
                             </a>
                             <!-- 장바구니페이지 -->
                             <a href="<%=request.getContextPath() %>/cartView.do">
                             <a href="<%=request.getContextPath() %>/views/cart/cartViewServlet?pNo=<%=p.getpNo() %>" id="cartBtn" name="cartBtn">
 
-                                <img src="<%=request.getContextPath() %>/images/product/cart40px.jpg" alt="장바구니" class="cart--img" onclick="cartInsert()"></img>
+                                <img src="<%=request.getContextPath() %>/images/product/cart40px.jpg" alt="장바구니" class="cart--img" onclick="cartInsert()">
                             </a>
                         </ul>
                     </div>

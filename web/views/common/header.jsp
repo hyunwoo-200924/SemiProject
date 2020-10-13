@@ -55,8 +55,9 @@ href="<%=request.getContextPath() %>/css/hayong.css">
             <%} %>
             <!-- 메인메뉴 -->
             <nav id="menu">
-                <a href="<%=request.getContextPath() %>/mainview.do"><img id="headerlogo" src="<%=request.getContextPath()%>/images/mainImages/logo.png" alt="" width="150px" height="45px" herf=""></a><!--로고-->
+                <a href="<%=request.getContextPath() %>/mainview.do"><img id="headerlogo" src="<%=request.getContextPath()%>/images/mainImages/logo.png" alt="" width="150px" height="45px" style="margin: 20px 0;" herf=""></a><!--로고-->
 
+				<div>
                 <%if(loginMember != null && loginMember.getmId().equals("admin")){ %>
 
 	                <ul>
@@ -74,5 +75,6 @@ href="<%=request.getContextPath() %>/css/hayong.css">
 	                </ul>
                 <a href="<%=request.getContextPath()%>/views/cart/cartViewServlet"><img id="headerB" src="<%=request.getContextPath() %>/images/mainImages/shopping-cart-solid.svg" alt="" width="30px" height="30px"></a><!-- 장바구니 -->
                 <%} %>
+                </div>
             </nav>
         </header>

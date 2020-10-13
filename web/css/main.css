@@ -19,6 +19,7 @@ div#container {
 /*top메뉴 스타일*/
 header {
 	padding: 0px;
+	border-bottom: #10101059 0.5px solid;
 }
 header #blacktop {
 	background-color: #ffffff;
@@ -45,19 +46,24 @@ header #blacktop ul {
 
 /*메인메뉴 스타일*/
 header nav {
-	background-color: #ffffff;
-	width: 100%;
-	height: 100px;
-	display: flex;
-	position: relative;
-	letter-spacing: 5px;
+    display: grid;
+    background-color: #ffffff;
+    width: 100%;
+    height: 100px;
+    /* display: flex; */
+    /* position: relative; */
+    letter-spacing: 5px;
+    grid-template-rows: auto a;
+    justify-items: center;
+    align-items: center;
+    height: 200px;
 }
 
-nav#menu img#headerlogo {
+/* nav#menu img#headerlogo {
 	position: absolute;
 	top: 15px;
 	left: 20px;
-}
+} */
 
 nav#menu ul {
 	display: table;

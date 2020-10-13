@@ -456,6 +456,5 @@ tr.name{
 </section>
 
 <section class="fixed">
-	
 </section>
 <%@ include file="views/common/footer.jsp" %>

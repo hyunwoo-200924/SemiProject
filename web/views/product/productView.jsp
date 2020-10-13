@@ -54,7 +54,7 @@
                  </div>
             </div>
         </div>
-        <form class="text-container" name="form" method="get" action="">
+        <form class="text-container" name="form" method="post" action="">
             <div class="text-container2">
                 <div class="text-group">
                   <img src="<%=request.getContextPath() %>/images/product/new64.png" alt="new" id="new">
@@ -72,10 +72,10 @@
                              <li class="text-menu"><%=p.getpTaste() %></li>
                          </ul>
                          <dl class="text-items">판매가
-                             <dd class="price text-right" name="pPrice" id="ppPrice"><%=p.getpPrice() %><span>원</span></dd>
+                             <dd class="price text-right" name="pPrice" value="<%=p.getpPrice() %>" id="pPrice"><%=p.getpPrice() %><span>원</span></dd>
                          </dl>
                          <dl class="text-items">할인가
-                             <dd class="price text-right" name="pDiscount"id="ppDiscount"><%=p.getpDiscount() %><span>원</span></dd>
+                             <dd class="price text-right" name="pDiscount" value="<%=p.getpDiscount() %>" id="pDiscount"><span>원</span></dd>
                          </dl>
                          <dl class="text-items">포인트적립
                              <dd  class="text-right" name="" id="pPoint" value="<%=p.getpDiscount() %>"><img src="<%=request.getContextPath() %>/images/product/mul.png" alt="정보" class="info-img"></dd>
@@ -90,7 +90,7 @@
                          <div class="container-wrap">
                              <div class="button-container">
                                  <!-- 날짜선택시 품목명 갯수 선택할 박스  생성. -->
-                                 <label ><input type="radio" class="botton-group" name="choice-radio" id="cartPut();" checked>장바구니</input></label>
+                                 <label ><input type="radio" class="botton-group" name="choice-radio" id="cartPut();"checked>장바구니</input></label>
                                  <label ><input type="radio" class="botton-group" name="choice-radio" id="presentbtn();">선물하기</input></label>
                              </div>
                              <div class="etc_txt" id="cart_txt" style="display:block;">
@@ -206,34 +206,34 @@
 										 */						
                              //// 날짜 출력
                              function gdate(){
-							var sImg = "<IMG SRC=http://www.blueb.co.kr/SRC/javascript/image7/date/";
-							var eImg = ".gif BORDER=0>";
-							var now = new Date();
-							var month = (now.getMonth() + 1);
-							var date = now.getDate();
-							var year = now.getYear();
-								now = null;     month += "";     date += "";     year += "";
-							var text = "";
-							text += "<TABLE BGCOLOR=#000000 CELLPADDING=4><TR><TD>"; 
-						
-							for (var i = 0; i < year.length; ++i) {
-								text += sImg + year.charAt(i) + eImg;
-							}
-								text += sImg + "slash" + eImg;
-						
-							for (var i = 0; i < month.length; ++i) {
-								text += sImg + month.charAt(i) + eImg;
-							}
-								text += sImg + "slash" + eImg;
-						
-							for (var i = 0; i < date.length; ++i) {
-								text += sImg + date.charAt(i) + eImg;
-							}
-							text += "</TD></TR></TABLE>";
-							document.write(text);
-							
-							
-						}
+					var sImg = "<IMG SRC=http://www.blueb.co.kr/SRC/javascript/image7/date/";
+					var eImg = ".gif BORDER=0>";
+					var now = new Date();
+					var month = (now.getMonth() + 1);
+					var date = now.getDate();
+					var year = now.getYear();
+						now = null;     month += "";     date += "";     year += "";
+					var text = "";
+					text += "<TABLE BGCOLOR=#000000 CELLPADDING=4><TR><TD>"; 
+				
+					for (var i = 0; i < year.length; ++i) {
+						text += sImg + year.charAt(i) + eImg;
+					}
+						text += sImg + "slash" + eImg;
+				
+					for (var i = 0; i < month.length; ++i) {
+						text += sImg + month.charAt(i) + eImg;
+					}
+						text += sImg + "slash" + eImg;
+				
+					for (var i = 0; i < date.length; ++i) {
+						text += sImg + date.charAt(i) + eImg;
+					}
+					text += "</TD></TR></TABLE>";
+					document.write(text);
+					
+					
+				}
 
                             
                          /*      
@@ -279,31 +279,21 @@
                                     
 
                                      
-                                     <input type="hidden" class="product-price" value="" readonly><span id="price">원<span></p>
+                                     <input type="hidden" class="product-price" name="sum"  value="" id="price" readonly><span>원<span></p>
                                      </div>
                                 </div>
                                 
                                  <!-- 날짜선택시 박스생성끝 -->
                                  <div class="product-price-number-group">
                                      <p class="producttextinput">수량
-                                         <input type="text" class="product-nember" name="" value="1" max="<%=p.getpStock()%>"readonly> <span class="product_stock">개</span></input>
+                                         <input type="text" class="product-nember" name="" value="1" max="<%=p.getpStock()%>"readonly> <span>개</span></input>
                                          
                                      </p>
                                      <p><input type="text" class="product-pricetag" id="total-price" ><span>원</span></input></p>
                                  </div>
                                 		<script>
-                                		
-                                		var $oorderPrice=parseInt($('#ppPrice').text());//상품 가격 string값이라서 형변환해줌
-                                		var $DDiscountPrice=parseInt($('#ppDiscount').text());//할인률
-                                		$tdprice=$oorderPrice-($oorderPrice/$DDiscountPrice);
-                                		console.log("정가:"+$oorderPrice);
-                                		console.log("할인률"+$DDiscountPrice);
-                                		console.log("할인가격된가격: "+$tdprice);
-                                		
-                                		//상품
-                 
                                 		//상품수량가격변경하기
-                                		var $input2=$('.producttextinput'),//감싸고잇는 div tag
+                                		var $input2=$('.producttextinput'),
                                 		$qytInput2=$input2.find('input');
                                 		var $quantity=$('#quantity'),
                                 		$unitprice= $quantity.attr('data-unitprice'),
@@ -311,7 +301,7 @@
                                 		$qytInput=$quantity.find('input'),
                               
                                 		$tagetTotal=$('#total-price'),
-                                		$tagetTotal2=$('.product-price');
+                                		$tagetTotal1=$('.product-price');
                                 		
                                 		//$atybtn클릭하면 그요소가 class명 prev있다면 참이고 (플러스를 클릭햇으면)
 										//aytinput value 기존값에서 1증가 거짓이면 (마이너스를 클릭햇으면 $qyinput value 기존값에서 1차감) 
@@ -331,16 +321,10 @@
                                 				}
                                 			}
                                 				 //수량단가 변수 total에 저정하고 그걸 .price값으로 변경
-                                				 console.log("curren값 :"+currentCount);
-                                				 var total2= (parseInt(currentCount)) * $tdprice;
-                                				 console.log("갯수x가격="+total2);
-                                				 console.log(currentCount);
-                                				$tagetTotal.val(""+total2+"원"); 
-                                				console.log($tagetTotal.val(total2+"원"));
-                                				$tagetTotal2.val(total2+"원");
+                                				 var total2= currentCount * $unitprice;
+                                				$tagetTotal.text(total2+"원"); 
+                                				$tagetTotal1.text(total2+"원");
                                 		});
-                                		
-                                	
                                 		</script>
                                 
                                 
@@ -348,14 +332,9 @@
                                  
                                  <div class="jjim-btn-container">
                                     <a href=""><img src="<%=request.getContextPath() %>/images/product/hart40px.jpg" alt="찜" class="jjim"></a>
-                                   <a href="/cart/cart.jsp"><span class="jjim" style="font-size: 40px;width: 40px; height="40px;">♥</span></a>
-                                    
-                                    
-                                    
-                                    <button type="submit" class="cart-botton-items" id="buybtn()" onclick="location.relace('<%=request.getContextPath()%>/cartView.do')">장바구니</button>
-                                    
+                                   	<a href="/cart/cart.jsp"><span class="jjim" style="font-size: 40px;width: 40px; height="40px;">♥</span></a>
                                  </div>
-                             
+                                 <input type="button" class="cart-botton-items" id="buybtn()" onclick="location.replace('<%=request.getContextPath() %>/views/cart/cartViewServlet?pNo=<%=p.getpNo() %>')" value="장바구니">
                          </div>
                      </div>
              </form>

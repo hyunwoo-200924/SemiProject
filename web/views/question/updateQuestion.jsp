@@ -47,7 +47,10 @@
 			#inquiry .inquiry_form span{
    				text-align: center;
 			}
-			
+		.file_box {
+		    display: grid;
+		    grid-template-columns: 140px 350px 15px 37px auto;
+		}
 		</style>
 	
 		<section class="container">
@@ -138,11 +141,15 @@
 										</ul>
 									</div>
 								</div>
-								<div class="question_box">
+								<div class="file_box">
 									<p>첨부파일</p>
 								<!--<p class="file">+</p> -->
 									<input type="file" name="file">
-									<img src="<%= request.getContextPath() %>/upload/question/<%= q.getqFile() %>" style="width:80px; height:80px; grid-column: 2;">
+									<%if(q.getqFile() != null){ %>
+									<input type="checkbox" name="imgDelete" style="height: auto; margin-top: 2px;"><span class="imgSpan">삭제</span>
+									<img src="<%= request.getContextPath() %>/upload/question/<%= q.getqFile() %>" style="width:80px; height:80px" >
+									<input type="hidden" id="originFile">
+									<%} %>
 									<!-- <p class="file-note">*최대 5장 등록 (PNG, JPEG, JPG, GIF 포맷)</p> -->
 								</div>
 								<div class="question_box">
@@ -202,6 +209,12 @@
 					}
 				})
 				
+				$('input:file').change(function(){
+					$('img').css('display','none');
+					$('input:checkbox[name="imgDelete"]').css('display','none');
+					$('.imgSpan').css('display','none');
+				})
+				
 			})
 		
 			
@@ -217,6 +230,9 @@
 		 	function fn_submit(){
 		 		if($('input:checkbox[name="emailAnswer"]').is(':checked') == false) {
 		 			$('input[name="answer"]').val("");
+		 		}
+		 		if($('input:checkbox[name="imgDelete"]').is(':checked') == false) {
+		 			$('#originFile').val('<%= q.getqFile() %>');
 		 		}
 		 	}
 		 	
