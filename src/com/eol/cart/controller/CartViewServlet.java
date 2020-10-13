@@ -37,10 +37,20 @@ public class CartViewServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// 1.회원 정보 가져오기(로그인, 비로그인)
-
+		System.out.println("왜널이야"+request.getParameter("cQty"));
+		Cart c= new Cart();
+		c.setpNo(Integer.parseInt(request.getParameter("pNo")));
+		c.setcQty(Integer.parseInt(request.getParameter("cQty")));
+		
+		
+		System.out.println("서블릿 :"+c);
+		int result= new CartService().insertCart(c);
+		
+		
+		
 		Member m = (Member)request.getAttribute("loginMember"); //회원 정보 가져오기
 		int pNo = Integer.parseInt(request.getParameter("pNo"));
-		System.out.println(pNo);
+		System.out.println("pNo널:"+pNo);
 		if(m ==null) {
 			//비회원 일때 리스트에 카트 정보를 담기
 //			List<Cart> list = new CartService().nonlistCart();

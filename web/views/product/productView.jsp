@@ -1,9 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@page import="com.eol.product.model.vo.Product" %>
+<%@ page import="com.eol.product.model.vo.Product" %>
+<%@ page import ="java.util.List" %>
+<%@ page import ="com.eol.cart.model.vo.Cart" %>
+<%@ page import="com.eol.member.model.vo.Member"%>
 
 <%
 	Product p=(Product)request.getAttribute("Product");
+Member loginMember2 = (Member)request.getSession().getAttribute("loginMember");
+	Cart c=(Cart)request.getAttribute("Cart");
+	
 %>
 <%@ include file="/views/common/header.jsp"%>
 <link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/css/menu.css">  
@@ -18,7 +24,7 @@
 
 	
 	  <!-- <section -->
-    <section  class="menu-container-group" onload="init();">
+    <section  class="menu-container-group">
         <div class="menu-section">
       
             <div class="menu-container">
@@ -54,7 +60,7 @@
                  </div>
             </div>
         </div>
-        <form class="text-container" name="form" method="get" action="">
+        <div class="text-container" >
             <div class="text-container2">
                 <div class="text-group">
                   <img src="<%=request.getContextPath() %>/images/product/new64.png" alt="new" id="new">
@@ -66,16 +72,16 @@
                      </h2>
                          <h3 class="h3-text">원산지: 상품정보 참조</h3>
                          <ul class="text-menu-group ">
-                             <li class="text-menu"><%=p.getpServing() %></li>
-                             <li class="text-menu"><%=p.getpCooktime() %></li>
-                             <li class="text-menu"><%=p.getpReadytime() %><img src="<%=request.getContextPath() %>/images/product/mul.png" alt="상세설명"></li>
+                             <li class="text-menu"><%=p.getpServing() %>인분</li>
+                             <li class="text-menu"><%=p.getpCooktime() %>분</li>
+                             <li class="text-menu"><%=p.getpReadytime() %>분<img src="<%=request.getContextPath() %>/images/product/mul.png" alt="상세설명"></li>
                              <li class="text-menu"><%=p.getpTaste() %></li>
                          </ul>
                          <dl class="text-items">판매가
-                             <dd class="price text-right" name="pPrice" id="ppPrice"><%=p.getpPrice() %><span>원</span></dd>
+                             <dd class="price text-right" name="pPrice" id="ppPrice"><%=p.getpPrice() %>원</dd>
                          </dl>
-                         <dl class="text-items">할인가
-                             <dd class="price text-right" name="pDiscount"id="ppDiscount"><%=p.getpDiscount() %><span>원</span></dd>
+                         <dl class="text-items">할인률
+                             <dd class="price text-right" name="pDiscount" id="ppDiscount"><%=p.getpDiscount() %></dd>
                          </dl>
                          <dl class="text-items">포인트적립
                              <dd  class="text-right" name="" id="pPoint" value="<%=p.getpDiscount() %>"><img src="<%=request.getContextPath() %>/images/product/mul.png" alt="정보" class="info-img"></dd>
@@ -90,13 +96,19 @@
                          <div class="container-wrap">
                              <div class="button-container">
                                  <!-- 날짜선택시 품목명 갯수 선택할 박스  생성. -->
-                                 <label ><input type="radio" class="botton-group" name="choice-radio" id="cartPut();" checked>장바구니</input></label>
-                                 <label ><input type="radio" class="botton-group" name="choice-radio" id="presentbtn();">선물하기</input></label>
+                                 <label ><input type="radio" class="botton-group" name="choice-radio" onclick="cartPut();" checked>장바구니</input></label>
+                                 <label ><input type="radio" class="botton-group" name="choice-radio" onclick="presentbtn();">선물하기</input></label>
                              </div>
                              <div class="etc_txt" id="cart_txt" style="display:block;">
                                  <span>주문 마감시간 오전 7시</span>
                               </div>
+                              <script>
+                             
+                              </script>
+                             
                               
+                              
+                            
                               <!-- $("#order-date option:selected").val(); -->
                               
                            <!-- 여러개 선택시 Select box ID로 접근하여 여러 개 Value 값 가져오기.
@@ -165,46 +177,8 @@
                            //클릭시 창이 사라짐
                              function removeblock(e){
                                  $(e.target).parent().parent().remove();
-                             }
-							/* 	//+_ 연산자
-								var sell_price;
-								var amount;
-								
-								function init () {
-									sell_price = document.form.sell_price.value;
-									amount = document.form.amount.value;
-									document.form.sum.value = sell_price;
-									change();
-								}
-								
-								function add () {
-									hm = document.form.amount;
-									sum = document.form.sum;
-									hm.value ++ ;
-								
-									sum.value = parseInt(hm.value) * sell_price;
-								}
-								
-								function del () {
-									hm = document.form.amount;
-									sum = document.form.sum;
-										if (hm.value > 1) {
-											hm.value -- ;
-											sum.value = parseInt(hm.value) * sell_price;
-										}
-								}
-								
-								function change () {
-									hm = document.form.amount;
-									sum = document.form.sum;
-								
-										if (hm.value < 0) {
-											hm.value = 0;
-										}
-									sum.value = parseInt(hm.value) * sell_price;
-								}  
-										 */						
-                             //// 날짜 출력
+                             }		
+ /*                             //// 날짜 출력
                              function gdate(){
 	var sImg = "<IMG SRC=http://www.blueb.co.kr/SRC/javascript/image7/date/";
 	var eImg = ".gif BORDER=0>";
@@ -230,10 +204,10 @@
 		text += sImg + date.charAt(i) + eImg;
 	}
 	text += "</TD></TR></TABLE>";
-	document.write(text);
+	document.write(text); */
 	
 	
-}
+
 
                             
                          /*      
@@ -279,26 +253,33 @@
                                     
 
                                      
-                                     <input type="hidden" class="product-price" value="" readonly><span id="price">원<span></p>
+                                     <p type="" class="product-price" readonly><span id="price">원<span></p>
                                      </div>
                                 </div>
                                 
                                  <!-- 날짜선택시 박스생성끝 -->
-                                 <div class="product-price-number-group">
+                                 <form class="product-price-number-group" name="form" method="post" action="<%=request.getContextPath()%>/views/cart/cartViewServlet">
                                      <p class="producttextinput">수량
-                                         <input type="text" class="product-nember" name="" value="1" max="<%=p.getpStock()%>"readonly> <span class="product_stock">개</span></input>
-                                         
+                                         <input type="text" class="product-nember" name="cQty" value="" max="<%=p.getpStock()%>"readonly/> <span class="product_stock">개</span>
+                                         <input type="hidden" name="pNo" value="<%=p.getpNo() %>">
                                      </p>
-                                     <p><input type="text" class="product-pricetag" id="total-price" ><span>원</span></input></p>
-                                 </div>
+                                     <p><input type="text" class="product-pricetag" id="total-price" value=""readonly><span>원</span></p>
+                                 </form>
                                 		<script>
+                                		         
+                                		//상품수량가격변경하기
+                                		var $input2=$('.producttextinput'),//감싸고잇는 div tag
+                                		$qytInput2=$input2.find('input');
+                                		var $quantity=$('#quantity'),
+                                		$unitprice= $quantity.attr('data-unitprice'),
+                                		$qtyBtn=$quantity.find('span'),
+                                		$qytInput=$quantity.find('input'),
+                              
+                                		$tagetTotal=$('#total-price'),
+                                		$tagetTotal2=$('.product-price');
                                 		
-                                		var $oorderPrice=parseInt($('#ppPrice').text());//상품 가격 string값이라서 형변환해줌
-                                		var $DDiscountPrice=parseInt($('#ppDiscount').text());//할인률
-                                		$tdprice=$oorderPrice-($oorderPrice/$DDiscountPrice);
-                                		console.log("정가:"+$oorderPrice);
-                                		console.log("할인률"+$DDiscountPrice);
-                                		console.log("할인가격된가격: "+$tdprice);
+                                		//$atybtn클릭하면 그요소가 class명 prev있다면 참이고 (플러스를 클릭햇으면)
+										//aytinput value 기존값에서 1증가 거짓이면 (마이너
                                 		
                                 		//상품
                  
@@ -335,10 +316,14 @@
                                 				 var total2= (parseInt(currentCount)) * $tdprice;
                                 				 console.log("갯수x가격="+total2);
                                 				 console.log(currentCount);
-                                				$tagetTotal.val(""+total2+"원"); 
-                                				console.log($tagetTotal.val(total2+"원"));
-                                				$tagetTotal2.val(total2+"원");
+                                				$tagetTotal.val(""+total2); 
+                                				console.log($tagetTotal.val(total2));
+                                				$tagetTotal2.text(total2+"원");
                                 		});
+                                	<%-- 	$cartQty=$(<%=c.getcQty()%>);
+                                		$cartNum=$(".product-number").val(currentCount);
+                                		$cartQty=$cartNum;
+                                		console.log($cartQty); --%>
                                 		
                                 	
                                 		</script>
@@ -347,18 +332,34 @@
                                  <!-- 찜 이미지 및 버튼 재배치함 9-26 -->
                                  
                                  <div class="jjim-btn-container">
+                                 
+                                 
                                     <a href=""><img src="<%=request.getContextPath() %>/images/product/hart40px.jpg" alt="찜" class="jjim"></a>
-                                   <a href="/cart/cart.jsp"><span class="jjim" style="font-size: 40px;width: 40px; height="40px;">♥</span></a>
+                                   <a href=""><span class="jjim" style="font-size: 40px;width: 40px; height="40px;">♥</span></a>
                                     
                                     
                                     
-                                    <button type="submit" class="cart-botton-items" id="buybtn()" onclick="location.relace('<%=request.getContextPath()%>/cartView.do')">장바구니</button>
-                                    
+                             	<script>
+                             		const basket1=(function cartPut(){
+                             			$("input:radio[name='choice-radio']").attr("checked",true);
+                             			 location.replace('<%=p.getpName()%><%=request.getContextPath()%>/views/cart/cartViewServlet');
+                             		});
+                             		 const basket2=(function presentbtn(){
+                             			$("input:radio[name='choice-radio']").attr("checked",true);
+                             			 location.replace('<%=p.getpName()%><%=request.getContextPath()%>/views/cart/cartViewServlet');
+                             		});
+                             		function submitCart(){
+                             			document.form.submit();
+                             		}
+                             	</script>
+                             	
+
+                                    <button type="button" class="cart-botton-items" id="buybtn" onclick="document.form.submit();">장바구니</buttton>
                                  </div>
-                             
+                          		
                          </div>
                      </div>
-             </form>
+             </div>
            
              <div class="etc_info_wrap">
                  <div class="review_btn_wrap">

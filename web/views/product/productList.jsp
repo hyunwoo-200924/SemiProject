@@ -88,11 +88,10 @@
                     <div class="menu--img-group2">
                        <div class="menu--img-items-group"> 
                             <div class="menu--img-items">
-<<<<<<< HEAD
-=======
+
                             
-                            <div name="pNo"><%=p.getpNo()%></div>
->>>>>>> branch 'master' of https://github.com/hyunwoo-200924/SemiProject.git
+                            <div name="pNo" Style="display:none;"><%=p.getpNo()%></div>
+
                                 <!-- 메뉴상세페이지로이동 -->
                                 <a href="<%=request.getContextPath()%>/product/productView?pNo=<%=p.getpNo()%>" name="plz">
 									<%if(p.getpImage1()!=null) {%>
@@ -113,7 +112,11 @@
                                 </a>
                                 <!-- 리뷰페이지로 ~ -->
                                 <a  href="<%=request.getContextPath() %>/review/review" class="menu--text-group">
+                                <div>
+                                
                                     <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+                                
+                                </div>
 
                                    
                                 </a>
@@ -132,11 +135,11 @@
                                 <img src="<%=request.getContextPath() %>/images/product/hart40px.jpg" alt="찜" class="hart--img" onclick="hart();"></img>
                             </a>
                             <!-- 장바구니페이지 -->
-<<<<<<< HEAD
-                            <a href="<%=request.getContextPath() %>/cartView.do">
-=======
+
+                            <a href="<%=request.getContextPath() %>/views/cart/cartViewServlet">
+
                             <a href="<%=request.getContextPath() %>/views/cart/cartViewServlet?pNo=<%=p.getpNo() %>" id="cartBtn" name="cartBtn">
->>>>>>> branch 'master' of https://github.com/hyunwoo-200924/SemiProject.git
+
 
                                 <img src="<%=request.getContextPath() %>/images/product/cart40px.jpg" alt="장바구니" class="cart--img" onclick="cartInsert()"></img>
                             </a>
