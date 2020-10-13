@@ -10,12 +10,13 @@
 .loginContainer{
     /* 로그인 파트 */
     width: 100%;
-    height: 300px;
+    height: 200px;
     text-align: center;
 }
 .joinBtnContainer{
-	display : flex;
 	width: 100%;
+	height: 100px;
+	text-align: center;
 	
 }
 h1{

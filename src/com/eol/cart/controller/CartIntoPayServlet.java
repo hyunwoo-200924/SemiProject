@@ -35,7 +35,7 @@ public class CartIntoPayServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		Member m = (Member)request.getSession().getAttribute("loginMember");
-		if(m!=null) {
+		if(m!=null) {//회원이 장바구니에 담긴 상품을 결제할 경우
 			List<Cart> list = new CartService().cartintopay(m.getmNo());
 			
 			for(Cart c : list ) {
@@ -44,11 +44,12 @@ public class CartIntoPayServlet extends HttpServlet {
 			}
 			
 			request.setAttribute("cartList", list);
+			request.getRequestDispatcher("views/order/orderpay.jsp").forward(request, response);
 			
-		}else {
+		}else {//비회원이 장바구니에 담긴 상품 결제할 경우
 			
+			request.getRequestDispatcher("views/order/nonorderpay.jsp").forward(request, response);
 		}
-		request.getRequestDispatcher("views/order/orderpay.jsp").forward(request, response);
 	}
 
 	/**

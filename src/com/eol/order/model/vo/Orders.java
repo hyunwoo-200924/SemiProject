@@ -13,7 +13,7 @@ public class Orders {
 	private String oAddress;//받는사람 주소
 	private Date oDeliveryDate;//배송시작날짜
 	private int oAmount;//주문하는 상품의 종류 수
-	private int oPayment;//결제할 금액(배송비까지 포함)
+	private int oPayment;//결제한 금액(배송비까지 포함)
 	private String oPw;//비회원 주문 비밀번호 - 회원은 null
 	private String oStatus;//결제 상태 : 결제완료, 취소신청, 취소완료
 	private Date oPayDate;//결제하기 완료 날짜

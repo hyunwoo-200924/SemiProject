@@ -35,6 +35,12 @@
 		color: white;
 		cursor: none;
 	}
+	.user_request_list .list_form .contentBox2{
+		background: rgb(224, 224, 224);
+	    margin-top: 18px;
+	    word-break: break-all;
+	    padding: 30px 67px;
+	}
 </style>
     
 <%@ include file="/views/common/header.jsp"%>
@@ -48,7 +54,7 @@
 				</div>
 				<div class="user_request">
 					<div class="inline">
-						<p style="padding-right:20px">1:1 문의 작성</p>
+						<p style="padding-right:20px" onclick="fu_questionWrite();">1:1 문의 작성</p>
 						<p class="active">1:1 문의 내역</p>
 					</div>
 					<%if(list.isEmpty()) {%>
@@ -61,7 +67,8 @@
 						<% for(Qna q : list) { %>
 						
 						<div class="list_form">
-							<div><span style="display:none;"><%=q.getqNo() %></span>
+							<div>
+								<span style="display:none;"><%=q.getqNo() %></span>
 							<%if(q.getqStatus().equals("N")){ %>
 								<span id="no">답변대기</span>
 							<%} else { %>
@@ -72,10 +79,25 @@
 								<span class="list"><%=q.getqRdate() %></span>
 							</div>
                      		<div class="contentBox" style="display:none">
+                     			<%-- <div> 여기 추가 할꺼면 update함수, delete함수 수정해야함
+                     			<img src="<%= request.getContextPath() %>/upload/question/<%= q.getqFile() %>">
+                     			</div> --%>
+                     			<!-- <div> -->
                      			<div><%=q.getqContent() %></div>
+                     			<%if(!q.getqStatus().equals("Y")){ %> <!-- 답변  안 달렸다면 -->
                      			<button class="update">수정</button>
                      			<button class="delete">삭제</button>
+                     			<%} else { %>
+                     			<button class="delete" style="grid-column-start: 3;">삭제</button>
+                     			<%} %>
+                     			<!-- </div> -->
                      		</div>
+                     		<%if(q.getqStatus().equals("Y")){ %>
+                     		<div class="contentBox2" style="display:none">
+                     			<div><%= q.getAnswerResult() %></div>
+                     			
+                     		</div>
+                     		<%} %>
 						</div>
 						<% } %>
 					</div>
@@ -102,6 +124,9 @@
 			</div>
 		</section>
 		<script>
+		function fu_questionWrite(){
+			location.href="<%= request.getContextPath()%>/questionWriteView"
+		}
 		function fn_before(){
 			if(<%= currentPage %> <= 1) {
 				return false;
@@ -121,8 +146,8 @@
 			      $(this).parents('.list_form').find('div:eq(1)').slideToggle('fast');
 			   }) */
 		   $('.list').click(function() {
-			   $(".list").not($(this)).parent().next().slideUp('fast');
-		      $(this).parent().next().slideToggle('fast');
+			   $(".list").not($(this)).parent().nextAll().slideUp('fast');
+		      $(this).parent().nextAll().slideToggle('fast');
 		   })
 		   $('.delete').click(function(){
 			   	let qNo = $(this).parent().prev().children().eq(0).text();
@@ -142,6 +167,11 @@
 						}
 					})
 				}
+		   })
+		   $(".update").click(function(){
+			   let qNo = $(this).parent().prev().children().eq(0).text();
+			   location.href = "<%= request.getContextPath() %>/updateQuestionView?qNo=" + qNo;
+			   
 		   })
 		})
 		</script>

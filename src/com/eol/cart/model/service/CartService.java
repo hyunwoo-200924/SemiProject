@@ -1,7 +1,9 @@
 package com.eol.cart.model.service;
 
 import static com.eol.common.JDBCTemplate.close;
+import static com.eol.common.JDBCTemplate.commit;
 import static com.eol.common.JDBCTemplate.getConnection;
+import static com.eol.common.JDBCTemplate.rollback;
 
 import java.sql.Connection;
 import java.util.List;
@@ -28,20 +30,25 @@ public class CartService {
 		close(conn);
 		return p;
 	}
-
-
-	public List<Cart> nonlistCart(){
+	
+	public int insertCart(Cart c) {
 		Connection conn =getConnection();
-		List<Cart> list = dao.nonlistCart(conn);
+		int result = dao.insertCart(conn, c);
+		if(result > 0) commit(conn);
+		else rollback(conn);
 		close(conn);
-		return list;
+		return result;
 	}
 	
-	public Product nonCartProduct(int pNo) {
+	public int updateCartNum(int mNo, int pNo) {
 		Connection conn = getConnection();
-		Product p = dao.selectnonCartProduct(conn,pNo);
+		int result = dao.updateCartNum(conn , mNo, pNo);
+		if(result > 0) commit(conn);
+		else rollback(conn);
 		close(conn);
-		return p;
-	}
+		return result;
 
+		
+		
+	}
 }

@@ -6,6 +6,8 @@ import static com.eol.common.JDBCTemplate.getConnection;
 import java.sql.Connection;
 import java.util.List;
 
+import com.eol.cart.model.vo.Cart;
+import com.eol.member.model.vo.Member;
 import com.eol.order.model.dao.OrderDao;
 import com.eol.order.model.vo.OrderDetail;
 import com.eol.order.model.vo.Orders;
@@ -83,6 +85,47 @@ public class OrderService {
 	}
 	
 	
+	//결제 완료 후 주문내역 DB에 담기
+	public int orderinsert(Member m, Orders o) {
+		Connection conn = getConnection();
+		int result = dao.orderinsert(conn, m, o);
+		close(conn);
+		return result;
+	}
+	
+	//회원이 결제완료 후 주문내역의 상세내역 DB에 담기
+	public int odinsert(Cart c, int oNo) {
+		Connection conn = getConnection();
+		int result = dao.odinsert(conn, c, oNo);
+		close(conn);
+		return result;
+	}
+	
+	//회원이 갓 주문해서 주문정보를 인서트 할 때 부여받은 주문번호 가져오기
+	public int selectoNo(int mNo) {
+		Connection conn = getConnection();
+		int oNo = dao.selectoNo(conn, mNo);
+		close(conn);
+		return oNo;
+	}
+	
+	
+	//비회원이 갓 주문해서 주문정보를 인서트 할 떄 부여받은 주문번호 가져오기
+	public int noMemberselectoNo(String oPw, String oName, String oPhone) {
+		Connection conn = getConnection();
+		int oNo = dao.noMemberselectoNo(conn, oPw, oName, oPhone);
+		close(conn);
+		return oNo;
+		}
+	
+	
+	//비회원이 결제완료 후  주문내역의 상세내역 DB에 담기
+	public int noMemberodinsert(Product p, int oNo) {
+		Connection conn = getConnection();
+		int result = dao.nonodinsert(conn, p, oNo);
+		close(conn);
+		return result;
+	}
 	
 	
 	

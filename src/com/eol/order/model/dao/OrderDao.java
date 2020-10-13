@@ -12,6 +12,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
 
+import com.eol.cart.model.vo.Cart;
+import com.eol.member.model.vo.Member;
 import com.eol.order.model.vo.OrderDetail;
 import com.eol.order.model.vo.Orders;
 import com.eol.product.model.vo.Product;
@@ -260,6 +262,120 @@ public class OrderDao {
 		}
 		System.out.println(pName);
 		return pName;
+	}
+	
+	
+	//결제완료 후 주문내역 DB orders테이블에 담기
+	public int orderinsert(Connection conn, Member m, Orders o) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		try {
+			if(m!=null) {//회원일 때 첫번쨰 ?에 회원번호 컬럼				
+				pstmt = conn.prepareStatement(prop.getProperty("insertOrder"));
+				//insertOrder=INSERT INTO ORDERS VALUES(ORD_SEQ.NEXTVAL,?,NULL,?,?,?,SYSDATE-2,?,?,?,SYSDATE,NULL,NULL,?,?,?)
+				pstmt.setInt(1, o.getmNo());
+			}else {//비회원일 때 첫번째 ?가 주문비밀번호 컬럼
+				pstmt = conn.prepareStatement(prop.getProperty("noMemberinsertOrder"));
+				//noMemberinsertOrder=INSERT INTO ORDERS VALUES(ORD_SEQ.NEXTVAL, NULL,?,?,?,?,SYSDATE-2,?,?,?,SYSDATE,NULL,NULL,?,?,?)
+				pstmt.setString(1, o.getoPw());
+			}
+			pstmt.setString(2,o.getoName());
+			pstmt.setString(3, o.getoPhone());
+			pstmt.setString(4, o.getoAddress());
+			pstmt.setInt(5, o.getoAmount());
+			pstmt.setInt(6, o.getoPayment());
+			pstmt.setString(7, o.getoStatus());
+			pstmt.setString(8, o.getoPayWays());
+			pstmt.setString(9, o.getoToName());
+			pstmt.setString(10,o.getoToPhone());
+			result = pstmt.executeUpdate();
+			
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}return result;
+	}
+	
+	//결제완료 후 주문내역의 상세내역 DB orderDetail테이블에 담기
+	public int odinsert(Connection conn, Cart c, int oNo) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		try {
+			pstmt = conn.prepareStatement(prop.getProperty("odinsert"));
+			//odinsert=INSERT INTO ORDERDETAIL VALUES(ORDD_SEQ.NEXTVAL,?,?,?)
+			pstmt.setInt(1, oNo);
+			pstmt.setInt(2, c.getpNo());
+			pstmt.setInt(3, c.getcQty());
+			result = pstmt.executeUpdate();
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}return result;
+	}
+	
+	//회원이 지금 막 주문해서 부여받은 주문번호 가져오기
+	public int selectoNo(Connection conn,int mNo) {
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		int oNo = 0;
+		try {
+			pstmt = conn.prepareStatement(prop.getProperty("selectoNo"));
+			//selectoNo=SELECT MAX(O_NO) FROM ORDERS WHERE M_NO=?
+			pstmt.setInt(1, mNo);
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				oNo = rs.getInt(1);
+			}
+			
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rs);
+			close(pstmt);
+		}return oNo;
+	}
+	
+	//비회원이 지금 막 주문해서 부여받은 주문번호 가져오기
+	public int noMemberselectoNo(Connection conn, String oPw, String oName, String oPhone) {
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		int oNo = 0;
+		try {
+			pstmt = conn.prepareStatement(prop.getProperty("nonMemberselectoNo"));
+			//nonMemberselectoNo=SELECT MAX(O_NO) FROM ORDERS WHERE O_PW=? AND O_NAME=? AND O_PHONE=?
+			pstmt.setString(1, oPw);
+			pstmt.setString(2, oName);
+			pstmt.setString(3, oPhone);
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				oNo = rs.getInt(1);
+			}
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rs);
+			close(pstmt);
+		}return oNo;
+	}
+	
+	//비회원이 결제완료 후 주문 생세내역 DB에 담기
+	public int nonodinsert(Connection conn, Product p, int oNo) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		try {
+			pstmt = conn.prepareStatement(prop.getProperty("odinsert"));
+			//odinsert=INSERT INTO ORDERDETAIL VALUES(ORDD_SEQ.NEXTVAL,?,?,?)
+			pstmt.setInt(1, oNo);
+			pstmt.setInt(2, p.getpNo());
+			pstmt.setInt(3, p.getpCount());
+			result = pstmt.executeUpdate();
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}return result;
 	}
 
 }

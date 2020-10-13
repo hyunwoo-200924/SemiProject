@@ -1,133 +1,50 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<link rel="stylesheet" type="text/css" href="/css/menu.css">    
-<script>
-//menu menubar scroll 영역///
-
-$(window).scroll(function(event){
-    if($(window).scrollTop() > $(".sns-btn-wrap-items-group").offset().top){
-
-        $(".sns-btn-wrap-items").css("position","fixed");
-    }
-    else if(($(window).scrollTop)){
-        $(".sns-btn-wrap-items").css("position","static");
-    }
-});
-
-// <!-- $("#order-date option:selected").val(); -->
-                          
-// <!-- 여러개 선택시 Select box ID로 접근하여 여러 개 Value 값 가져오기.
-$("#userListSB option:selected").attr('value2');
-//value2에 userNumber 데이터
-$("#userListSB option:selected").attr('value3');
-//value3에 userPK 데이터 -->
-
-// <!-- 텍스트읽어오기
-// $("#userListSB option:selected").text(); -->
-     
-//------------------menugroup 날짜 선택시 출력하는 자바스크립트-----//
-// $(window).event(function(event){
-//     if($(window).click((e)=>{
-        
-
-//     })
-
-// });
-
-//------? img클릭시 상세정보창 표시 mouseDown을 이용해서 
-
-
-
-
-// 날짜 선택창선택시 hidden에서 static으로 바뀌어 나타나게함.
-$(".order_check_day").click(e=>{
-    $(".order_check_day").toggle().css("transition",".5");
-});
-    // 목록 복사하는 자바스크립트
-   function mouseClick(){
-       $(".menu-title-choice-wrap").show().clone().insertAfter();
-   }
-   function mouseClick1(){
-       $(".menu-title-choice-wrap").show().clone().insertAfter();
-   }
-   function mouseClick2(){
-       $(".menu-title-choice-wrap").show().clone();
-   }
-   function mouseClick3(){
-       $(".menu-title-choice-wrap").show().clone();
-   }
-   function mouseClick4(){
-       $(".menu-title-choice-wrap").show().clone();
-   }
-
-//클릭시 창이 사라짐
-function removeblock(e){
-    $(e.target).parent().parent().remove();
-}
-
-//별점표시, 점수주기
-$(function(){
-const rating = $('.start_group');
-
-rating.each(function(){
-    const targetScore =$(this).attr('data-rate');
-    console.log(targetScore);
-    // $(this).find('img:nth-child(-n+'+targetScore+')').css({color:'red'});
-    $(this).find('a:nth-child(-n+'+targetScore+')').css({color:'red'});
-    
-    
-});
-});
-//gotoMainMenu();
-function gotoMainMenu(){
-	//페이지를 전환시켜주는명령어 실행
-	location.replace("<%=request.getContextPath()%>/product/productList.jsp");
-};
-
-</script>
-
 <%@page import="com.eol.product.model.vo.Product" %>
 
 <%
-
-
 	Product p=(Product)request.getAttribute("Product");
-	
-	
-
 %>
 <%@ include file="/views/common/header.jsp"%>
+<link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/css/menu.css">  
+
+<script defer>
+
+
+
+
+
+</script>
+
 	
 	  <!-- <section -->
-    <section  class="menu-container-group">
+    <section  class="menu-container-group" onload="init();">
         <div class="menu-section">
-         <%-- <%if(m.getmId()!=null && m.getmId().equals("admin")){ %> --%>
-        <button type="button" onclick="gotoMainMenu();">목록</button>
-        <%-- <%} %>  --%>
+      
             <div class="menu-container">
                 
                 <div class="img">
-                   <iframe class="big_img" width="600" height="500" src="<%=request.getContextPath() %>/product/productFileDownload?fileName=<%=p.getpVideo() %>" frameborder="0" allow="accelerometer; autoplay;  picture-in-picture" allowfullscreen></iframe>
+                   <iframe class="big_img" width="600" height="500" src="<%=request.getContextPath() %>/upload/product/<%=p.getpVideo() %>" frameborder="0" allow="accelerometer; autoplay;  picture-in-picture" allowfullscreen></iframe>
                    <div class="img-parents">
                      <div class="img-container">
                          <ul class="slideshow-container">
                              <li class="myslides1 fade">
-                                 <iframe  data-target="" width="50" height="50" src="<%=request.getContextPath() %>/product/productFileDownload?fileName=<%=p.getpVideo() %>" frameborder="0" allow="accelerometer; gyroscope; picture-in-picture" allowfullscreen class="img-img-small" alt="동영상"></iframe>
+                                 <iframe  data-target="" width="50" height="50" src="<%=request.getContextPath() %>/upload/product/<%=p.getpVideo() %>" frameborder="0" allow="accelerometer; gyroscope; picture-in-picture" allowfullscreen class="img-img-small0" alt="동영상"></iframe>
                                
                              </li>
-                             <li class="myslides1 fade">
+                             <li class="active myslides1 fade">
                              
-                                 <img src="<%=request.getContextPath() %>/product/productFileDownload?fileName=<%=p.getpImage1() %>"  data-target="cheeze-resipy-medium.gif" alt="이미지1" style="width: 50px; height: 50px;" class="img-img-small">
+                                 <img src="<%=request.getContextPath() %>/upload/product/<%=p.getpImage1() %>"  data-target="cheeze-resipy-medium.gif" alt="이미지1" style="width: 50px; height: 50px;" class="img-img-small1">
                                
                              </li>
                              <li class="myslides1 fade">
                                
-                                 <img src="<%=request.getContextPath() %>/product/productFileDownload?fileName=<%=p.getpImage2() %>" data-target="cheesechic.jpg" alt="이미지2" style="width: 50px; height: 50px;" class="img-img-small">
+                                 <img src="<%=request.getContextPath() %>/upload/product/<%=p.getpImage2() %>" data-target="cheesechic.jpg" alt="이미지2" style="width: 50px; height: 50px;" class="img-img-small2">
                                  
                              </li>
                              <li class="myslides1 fade">
                  
-                                 <img src="<%=request.getContextPath() %>/product/productFileDownload?fileName=<%=p.getpImage3() %>" data-target="cheezemenu.jpg" alt="이미지3" style="width: 50px; height: 50px;" class="img-img-small">
+                                 <img src="<%=request.getContextPath() %>/upload/product/<%=p.getpImage3() %>" data-target="cheezemenu.jpg" alt="이미지3" style="width: 50px; height: 50px;" class="img-img-small3">
                                 
                              </li>
                          </ul>
@@ -137,7 +54,7 @@ function gotoMainMenu(){
                  </div>
             </div>
         </div>
-        <div class="text-container">
+        <form class="text-container" name="form" method="post" action="">
             <div class="text-container2">
                 <div class="text-group">
                   <img src="<%=request.getContextPath() %>/images/product/new64.png" alt="new" id="new">
@@ -151,17 +68,17 @@ function gotoMainMenu(){
                          <ul class="text-menu-group ">
                              <li class="text-menu"><%=p.getpServing() %></li>
                              <li class="text-menu"><%=p.getpCooktime() %></li>
-                             <li class="text-menu"><%=p.getpReadytime() %><img src="<%=request.getContextPath() %>/images/mul.png" alt="상세설명"></li>
+                             <li class="text-menu"><%=p.getpReadytime() %><img src="<%=request.getContextPath() %>/images/product/mul.png" alt="상세설명"></li>
                              <li class="text-menu"><%=p.getpTaste() %></li>
                          </ul>
                          <dl class="text-items">판매가
-                             <dd class="price text-right" name="P_"><%=p.getpPrice() %><span>원</span></dd>
+                             <dd class="price text-right" name="pPrice" value="<%=p.getpPrice() %>" id="pPrice"><%=p.getpPrice() %><span>원</span></dd>
                          </dl>
                          <dl class="text-items">할인가
-                             <dd class="price text-right"><%=p.getpPrice() %><span>원</span></dd>
+                             <dd class="price text-right" name="pDiscount" value="<%=p.getpDiscount() %>" id="pDiscount"><span>원</span></dd>
                          </dl>
                          <dl class="text-items">포인트적립
-                             <dd  class="text-right"><%=p.getpPrice() %>0.5% <img src="<%=request.getContextPath() %>/images/mul.png" alt="정보" class="info-img"></dd>
+                             <dd  class="text-right" name="" id="pPoint" value="<%=p.getpDiscount() %>"><img src="<%=request.getContextPath() %>/images/product/mul.png" alt="정보" class="info-img"></dd>
                          </dl>
                          <dl class="text-items">배송방법 :
                                  <dd class="delivery text-right">선택배송</dd>
@@ -173,8 +90,8 @@ function gotoMainMenu(){
                          <div class="container-wrap">
                              <div class="button-container">
                                  <!-- 날짜선택시 품목명 갯수 선택할 박스  생성. -->
-                                 <a src="<%=request.getContextPath()%>/cart/jjim.jsp"><input type="radio" class="botton-group" name="choice-radio" id="cartPut();" checked>장바구니</input></a>
-                                 <a src="<%=request.getContextPath()%>/cartView.do"><input type="radio" class="botton-group" name="choice-radio" id="presentbtn();">선물하기</input></a>
+                                 <label ><input type="radio" class="botton-group" name="choice-radio" id="cartPut();"checked>장바구니</input></label>
+                                 <label ><input type="radio" class="botton-group" name="choice-radio" id="presentbtn();">선물하기</input></label>
                              </div>
                              <div class="etc_txt" id="cart_txt" style="display:block;">
                                  <span>주문 마감시간 오전 7시</span>
@@ -194,28 +111,149 @@ function gotoMainMenu(){
                              </div>
                              
                              <!-- 제이쿼리 사용시 nextAll()로 이용하여 클릭하세요hidden을 static으로 -->
-                             <a type="" name="order-date" id="order-date">
+                             <a  name="order-date" id="order-date">
                                  
-                                 <div value="order-date01" class="order_check_day">    배송을  원하는 날짜를 고르세요. <span  style="display:hidden; font-size:25px;">√</span></div>
+                                 <div value="order-date01" class="order_check_day" id="selected_stock">    배송을  원하는 날짜를 고르세요. <span  style="display:hidden; font-size:25px;">√</span></div>
                                  
                                  <!-- 갯수를 30개로 가정하고 시작하자! -->
-                                 <div value="order-date00" class="order_check_day" style="display: none;">    배송을  원하는 날짜를 고르세요. <img src="#" alt="체크" hidden></div>
-                                 <div value="order-date01" class="order_check_day" id="order_check_day1" style="display:none;" onclick="mouseClick();">      9월 22일(화)
-                                     <span></span><span alt="체크" style="displa:none; font-size:25px; bold: 1000;">√</span>
-                                 </div>
-                                 <div value="order-date02" class="order_check_day" id="order_check_day2" style="display: none;" onclick="mouseClick1();">      9월 23일(수)
-                                     <span>5개!</span><span alt="체크" style="displa:none; font-size:25px; bold: 1000;">√</span>
-                                 </div>
-                                 <div value="order-date03"class="order_check_day" id="order_check_day3" style="display: none;" onclick="mouseClick2();">       9월 24일(목)
-                                     <span>2개!</span><span alt="체크" style="displa:none; font-size:25px; bold: 1000;">√</span>
-                                 </div>
-                                 <div value="order-date04" class="order_check_day" id="order_check_day4" style="display: none;" onclick="mouseClick3();">      9월 25일(금)
-                                     <span>0개!</span><span alt="체크" style="displa:none; font-size:25px; bold: 1000;">√</span>
-                                 </div>
-                                 <div value="order-date05" class="order_check_day" id="order_check_day5" style="display: none;" onclick="mouseClick4();">      9월 26일(토)
-                                     <span>2개</span ><span alt="체크" style="displa:none; font-size:25px; bold: 1000;">√</span>
+	                                
+	                                 <div name="pOderday1" value="order-date01" class="order_check_day" id="order_check_day1" style="display:none;" onclick="mouseClick();">      9월 22일(화)
+	                                     <span></span><span alt="체크" style="displa:none; font-size:25px; bold: 1000;" style="display:none;">√</span>
+	                                 </div>
+	                                 <div  name="pOderday1" value="order-date02" class="order_check_day" id="order_check_day2" style="display: none;" onclick="mouseClick1();">      9월 23일(수)
+	                                     <span>개</span><span alt="체크" style="displa:none; font-size:25px; bold: 1000;" style="display:none;">√</span>
+	                                 </div>
+	                                 <div name="pOderday1" value="order-date03"class="order_check_day" id="order_check_day3" style="display: none;" onclick="mouseClick2();">       9월 24일(목)
+	                                     <span>개</span><span alt="체크" style="displa:none; font-size:25px; bold: 1000;" style="display:none;">√</span>
+	                                 </div>
+	                                 <div name="pOderday1" value="order-date04" class="order_check_day" id="order_check_day4" style="display: none;" onclick="mouseClick3();">      9월 25일(금)
+	                                     <span>개</span><span alt="체크" style="displa:none; font-size:25px; bold: 1000;" style="display:none;">√</span>
+	                                 </div>
+	                                 <div name="pOderday1" value="order-date05" class="order_check_day" id="order_check_day5" style="display: none;" onclick="mouseClick4();">      9월 26일(토)
+	                                     <span>개</span ><span alt="체크" style="displa:none; font-size:25px; bold: 1000;" style="display:none;">√</span>
                                  </div>
                              </a>
+                             
+                             <script>
+                            //클릭시 슬라이드바 
+                             $(function(){
+                            	 $("#selected_stock").click(function(){
+                            		 $(this).nextAll().attr("display","none").slideToggle(500);
+                            		
+                            	 
+                             });
+                            	 
+                             });
+                            	 
+                             // 목록 복사하는 자바스크립트
+                             function mouseClick(){
+                              
+                                 $(".menu-title-choice-wrap").show().clone().insertAfter();
+                             }
+                             function mouseClick1(){
+                                 $(".menu-title-choice-wrap").show().clone().insertAfter();
+                             }
+                             function mouseClick2(){
+                                 $(".menu-title-choice-wrap").show().clone().insertAfter();
+                             }
+                             function mouseClick3(){
+                                 $(".menu-title-choice-wrap").show().clone().insertAfter();
+                             }
+                             function mouseClick4(){
+                                 $(".menu-title-choice-wrap").show().clone().insertAfter();
+                             }
+                           //클릭시 창이 사라짐
+                             function removeblock(e){
+                                 $(e.target).parent().parent().remove();
+                             }
+							/* 	//+_ 연산자
+								var sell_price;
+								var amount;
+								
+								function init () {
+									sell_price = document.form.sell_price.value;
+									amount = document.form.amount.value;
+									document.form.sum.value = sell_price;
+									change();
+								}
+								
+								function add () {
+									hm = document.form.amount;
+									sum = document.form.sum;
+									hm.value ++ ;
+								
+									sum.value = parseInt(hm.value) * sell_price;
+								}
+								
+								function del () {
+									hm = document.form.amount;
+									sum = document.form.sum;
+										if (hm.value > 1) {
+											hm.value -- ;
+											sum.value = parseInt(hm.value) * sell_price;
+										}
+								}
+								
+								function change () {
+									hm = document.form.amount;
+									sum = document.form.sum;
+								
+										if (hm.value < 0) {
+											hm.value = 0;
+										}
+									sum.value = parseInt(hm.value) * sell_price;
+								}  
+										 */						
+                             //// 날짜 출력
+                             function gdate(){
+					var sImg = "<IMG SRC=http://www.blueb.co.kr/SRC/javascript/image7/date/";
+					var eImg = ".gif BORDER=0>";
+					var now = new Date();
+					var month = (now.getMonth() + 1);
+					var date = now.getDate();
+					var year = now.getYear();
+						now = null;     month += "";     date += "";     year += "";
+					var text = "";
+					text += "<TABLE BGCOLOR=#000000 CELLPADDING=4><TR><TD>"; 
+				
+					for (var i = 0; i < year.length; ++i) {
+						text += sImg + year.charAt(i) + eImg;
+					}
+						text += sImg + "slash" + eImg;
+				
+					for (var i = 0; i < month.length; ++i) {
+						text += sImg + month.charAt(i) + eImg;
+					}
+						text += sImg + "slash" + eImg;
+				
+					for (var i = 0; i < date.length; ++i) {
+						text += sImg + date.charAt(i) + eImg;
+					}
+					text += "</TD></TR></TABLE>";
+					document.write(text);
+					
+					
+				}
+
+                            
+                         /*      
+                           //별점표시, 점수주기
+                             $(function(){
+                             const rating = $('.start_group');
+
+                             rating.each(function(){
+                                 const targetScore =$(this).attr('data-rate');
+                                 console.log(targetScore);
+                                 // $(this).find('img:nth-child(-n+'+targetScore+')').css({color:'red'});
+                                 $(this).find('a:nth-child(-n+'+targetScore+')').css({color:'red'});
+                                 
+                                 
+                             })
+                             }); */
+                             </script>
+                             
+                             
+                             
                              <!-- 날짜선택시 박스생성  
                                  display:none;을 주게되면 화면에 자리잡고있던 영역이 없어지면서 화면상에서 사라짐
                                  visibility:hidden은  확실히 요소는 보이지 않지만, 
@@ -226,41 +264,80 @@ function gotoMainMenu(){
                                      <div class="menu-date-text">
                                          날짜 출력
                                      </div>
-                                     <button class="menu-delivery-delete-btn" onclick="removeblock(event);">x</button>
+                                     <button type="button" class="menu-delivery-delete-btn" onclick="removeblock(event);">x</button>
                                  </div>
                                  <div class="menu-date-container-box2">
-                                     <div class="menu-date-text">
-                                         돼지맥적구이
+                                     <div class="menu-date-text" value=""><%=p.getpName()%>
+                        
                                      </div>
-                                     <div class="product-number-group">
-                                         <input type="button" value="－" class="product-minus">
-                                         <p value="0" class="product-number">0</p>
-                                         <input type="button" value="＋" class="product-plus">
+                                     <div class="product-number-group" id="quantity" data-unitprice="2800" value=<%=p.getpPrice() %>>
+                                    
+                                         <span type="button" value="－" class="product-minus" id="plus">-</span>
+                                         <input type="text" value="1" class="product-number" readonly>
+                                         <span type="button" value="＋" class="product-plus" id="minus">+</span>
                                      </div>
+                                    
+
                                      
-                                     <p class="product-price"><%=p.getpPrice() %><span>원<span></p>
+                                     <input type="hidden" class="product-price" name="sum"  value="" id="price" readonly><span>원<span></p>
                                      </div>
                                 </div>
+                                
                                  <!-- 날짜선택시 박스생성끝 -->
                                  <div class="product-price-number-group">
-                                     <p>수량
-                                         <span class="product-nember"><%=p.getpStock() %> <span>개</span></span>
+                                     <p class="producttextinput">수량
+                                         <input type="text" class="product-nember" name="" value="1" max="<%=p.getpStock()%>"readonly> <span>개</span></input>
                                          
                                      </p>
-                                     <p><span class="product-pricetag"><%=p.getpStock() %><span>원</span></span></p>
+                                     <p><input type="text" class="product-pricetag" id="total-price" ><span>원</span></input></p>
                                  </div>
+                                		<script>
+                                		//상품수량가격변경하기
+                                		var $input2=$('.producttextinput'),
+                                		$qytInput2=$input2.find('input');
+                                		var $quantity=$('#quantity'),
+                                		$unitprice= $quantity.attr('data-unitprice'),
+                                		$qtyBtn=$quantity.find('span'),
+                                		$qytInput=$quantity.find('input'),
+                              
+                                		$tagetTotal=$('#total-price'),
+                                		$tagetTotal1=$('.product-price');
+                                		
+                                		//$atybtn클릭하면 그요소가 class명 prev있다면 참이고 (플러스를 클릭햇으면)
+										//aytinput value 기존값에서 1증가 거짓이면 (마이너스를 클릭햇으면 $qyinput value 기존값에서 1차감) 
+                                		
+                                		$qtyBtn.click(function(){
+                                				var currentCount=$qytInput.val();//input의 값을 가져와서
+                                			if($(this).hasClass('product-plus')){
+                                				currentCount++;
+                                				$qytInput.val(currentCount);
+                                				$qytInput2.val(currentCount);
+                                			}else{
+                                				if(currentCount > 1){//최소한개는 사게 만들어준다.
+                                					
+        										currentCount--;//값이 true면 마이너스해라
+        										$qytInput.val(currentCount);//다시 input에 값을 집어넣는다.
+        										$qytInput2.val(currentCount);
+                                				}
+                                			}
+                                				 //수량단가 변수 total에 저정하고 그걸 .price값으로 변경
+                                				 var total2= currentCount * $unitprice;
+                                				$tagetTotal.text(total2+"원"); 
+                                				$tagetTotal1.text(total2+"원");
+                                		});
+                                		</script>
+                                
+                                
                                  <!-- 찜 이미지 및 버튼 재배치함 9-26 -->
                                  
                                  <div class="jjim-btn-container">
-                                    <a href=""><img src="<%=request.getContextPath() %>/images/product/hart.jpg" alt="찜" class="jjim"></a>
-                                   <a href="/cart/cart.jsp"><span class="jjim">♥</span></a>
-                                    <button class="cart-botton-items" id="buybtn()">장바구니</button>
-                                    
+                                    <a href=""><img src="<%=request.getContextPath() %>/images/product/hart40px.jpg" alt="찜" class="jjim"></a>
+                                   	<a href="/cart/cart.jsp"><span class="jjim" style="font-size: 40px;width: 40px; height="40px;">♥</span></a>
                                  </div>
-                             
+                                 <input type="button" class="cart-botton-items" id="buybtn()" onclick="location.replace('<%=request.getContextPath() %>/views/cart/cartViewServlet?pNo=<%=p.getpNo() %>')" value="장바구니">
                          </div>
                      </div>
-             </div>
+             </form>
            
              <div class="etc_info_wrap">
                  <div class="review_btn_wrap">

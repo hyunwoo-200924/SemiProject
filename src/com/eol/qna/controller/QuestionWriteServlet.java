@@ -52,8 +52,9 @@ public class QuestionWriteServlet extends HttpServlet {
 		
 		
 		Qna q = new Qna();
-		System.out.println(mr.getParameter("category"));
-		q.setqCategory(mr.getParameter("category"));
+		
+		System.out.println("이거확인" + mr.getParameter("qnaCategory"));
+		q.setqCategory(mr.getParameter("qnaCategory"));
 		q.setqTitle(mr.getParameter("title"));
 		String oNo = mr.getParameter("o_no");
 		System.out.println(oNo);
@@ -66,8 +67,8 @@ public class QuestionWriteServlet extends HttpServlet {
 			q.setqAnswer(mr.getParameter("answer"));
 		}
 		System.out.println(mr.getParameter("answer"));
-		q.setmNo(1);//아래줄 대신 확인용
-		//q.setmNo(((Member)request.getSession().getAttribute("loginMember")).getmNo());
+		//q.setmNo(1);//아래줄 대신 확인용
+		q.setmNo(((Member)request.getSession().getAttribute("loginMember")).getmNo());
 		System.out.println("이거다음");
 		System.out.println(q);
 		int result = new QnaService().insertQna(q);

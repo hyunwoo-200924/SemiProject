@@ -10,7 +10,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.eol.order.model.service.OrderService;
+import com.eol.order.model.vo.OrderDetail;
 import com.eol.order.model.vo.Orders;
+import com.eol.product.model.vo.Product;
 
 /**
  * Servlet implementation class NoneMemberOrderNumberListView
@@ -37,10 +39,18 @@ public class NoneMemberOrderNumberListView extends HttpServlet {
 		System.out.println(nMONum + pw);
 		Orders o = new OrderService().nMOrderList(nMONum, pw);
 		System.out.println(o);
+		List<OrderDetail> list = new OrderService().orderdetailList(o);
+		for(OrderDetail od : list) {
+			Product p = new OrderService().odproduct(od);
+			od.setOdproduct(p);
+		}
+		
+		
 		
 		if(o!=null) {
 			
 			request.setAttribute("nMOrder",o);
+			request.setAttribute("odlist", list);
 			request.getRequestDispatcher("/views/nonemember/noneMemberOrderDelivery.jsp").forward(request, response);
 			
 		}else {

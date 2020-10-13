@@ -13,6 +13,7 @@ import java.util.List;
 import java.util.Properties;
 
 import com.eol.cart.model.vo.Cart;
+import com.eol.member.model.vo.Member;
 import com.eol.product.model.vo.Product;
 
 public class CartDao {
@@ -44,6 +45,7 @@ public class CartDao {
 				c.setmNo(rs.getInt("m_no"));
 				c.setpNo(rs.getInt("p_no"));
 				c.setcQty(rs.getInt("c_qty"));
+				c.setoDeliveryEDate(rs.getString("o_deliveryedate"));
 				list.add(c);
 			}
 			
@@ -79,87 +81,40 @@ public class CartDao {
 		}return p;
 	}
 	
-	
-	
-	
-	
-
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	//리스트에 카트 정보 담기
-	public List<Cart> nonlistCart(Connection conn){
+	public int insertCart(Connection conn, Cart c) {
 		PreparedStatement pstmt = null;
-		ResultSet rs = null;
-		List<Cart> list = new ArrayList<Cart>();
+		int result = 0;
+		
 		try {
-			pstmt = conn.prepareStatement(prop.getProperty("nonselectCart"));
-			rs = pstmt.executeQuery();
-			
-			while(rs.next()) {
-				Cart c = new Cart();
-				c.setcNo(rs.getInt("c_no"));
-				c.setmNo(rs.getInt("p_no"));
-				c.setcQty(rs.getInt("c_qty"));
-				
-				list.add(c);
-				}
-			
-			}catch(SQLException e) {
-				e.printStackTrace();
-			}finally {
-				close(rs);
-				close(pstmt);
-			}return list;
-	}
-	
-	//카트의 상품  p 에 리스트 내용 담기
-	public Product selectnonCartProduct(Connection conn, int pNo) {
-		PreparedStatement pstmt = null;
-		ResultSet rs = null;
-		Product p = null;
-		try {
-			pstmt = conn.prepareStatement(prop.getProperty("nonselectCartProduct"));
-			//selectCartProduct=SELECT * FROM PRODUCT WHERE P_NO=?
-			pstmt.setInt(1, pNo);
-			rs = pstmt.executeQuery();
-			if(rs.next()) {
-				p = new Product();
-				p.setpNo(rs.getInt("p_no"));
-				p.setpName(rs.getString("p_name"));
-				p.setpPrice(rs.getInt("p_price"));
-				p.setpImage1(rs.getString("p_image1"));
-			}
+			pstmt = conn.prepareStatement(prop.getProperty("insertCart"));
+			pstmt.setInt(1, c.getmNo());
+			pstmt.setInt(2, c.getpNo());
+			pstmt.setInt(3, c.getcQty());
+			pstmt.setString(4, c.getoDeliveryEDate());
+			result = pstmt.executeUpdate();
 		}catch(SQLException e) {
 			e.printStackTrace();
 		}finally {
-			close(rs);
 			close(pstmt);
-		}return p;
+		}return result;
 	}
 	
+	public int updateCartNum(Connection conn , int mNo, int pNo) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		System.out.println("6666666");
+		
+		try {
+			pstmt = conn.prepareStatement(prop.getProperty("updateCartNum"));
+			//System.out.println("돌아가나??" + pCount);
+			pstmt.setInt(1, mNo);
+			pstmt.setInt(2, pNo);
+			result = pstmt.executeUpdate();
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}return result;
+	}
 	
-	
-
 }
