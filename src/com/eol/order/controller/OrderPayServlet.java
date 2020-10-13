@@ -75,6 +75,7 @@ public class OrderPayServlet extends HttpServlet {
 					odresult = new OrderService().odinsert(c, o.getoNo());
 					
 				}
+				request.setAttribute("order",o);
 			}else {//비회원일 때 
 				o.setoNo(new OrderService().noMemberselectoNo(o.getoPw(), o.getoName(), o.getoPhone()));//비회원일 때 지금 바로 주문 완료한 주문번호 들고오기
 				List<Product> list = (List)request.getSession().getAttribute("nonCartList");
@@ -85,6 +86,7 @@ public class OrderPayServlet extends HttpServlet {
 					odresult = new OrderService().noMemberodinsert(p, o.getoNo());
 			
 					}
+				request.setAttribute("order", o);
 				}
 			
 			if(odresult > 0) {
