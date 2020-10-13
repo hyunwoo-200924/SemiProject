@@ -11,7 +11,7 @@ public class Cart {
 	private int pNo;
 	private int cQty;
 	private Product product;
-	private Date oDeliveryEDate;
+	private String oDeliveryEDate;
 	
 	public Cart() {
 		// TODO Auto-generated constructor stub
@@ -22,7 +22,7 @@ public class Cart {
 
 
 
-	public Cart(int cNo, int mNo, int pNo, int cQty, Product product, Date oDeliveryEDate) {
+	public Cart(int cNo, int mNo, int pNo, int cQty, Product product, String oDeliveryEDate) {
 		super();
 		this.cNo = cNo;
 		this.mNo = mNo;
@@ -86,7 +86,7 @@ public class Cart {
 
 
 
-	public Date getoDeliveryEDate() {
+	public String getoDeliveryEDate() {
 		return oDeliveryEDate;
 	}
 
@@ -95,7 +95,7 @@ public class Cart {
 
 
 
-	public void setoDeliveryEDate(Date oDeliveryEDate) {
+	public void setoDeliveryEDate(String oDeliveryEDate) {
 		this.oDeliveryEDate = oDeliveryEDate;
 	}
 	
