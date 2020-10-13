@@ -33,6 +33,7 @@ public class QnaDao {
 	public int insertQna(Connection conn, Qna q) {
 		PreparedStatement pstmt = null;
 		int result = 0;
+		System.out.println("dao"+q);
 		
 		try {
 			if(q.getoNo() == 0) { //주문번호 선택 안했을 때
@@ -211,6 +212,81 @@ public class QnaDao {
 		}
 		
 		return answer;
+	}
+
+	//1:1 문의 수정할 때  수정정보 가져오기
+	public Qna selectQuestionView(Connection conn, int qNo) {
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		Qna q = null;
+		
+		try {
+			pstmt = conn.prepareStatement(prop.getProperty("selectQuestionView"));
+			pstmt.setInt(1, qNo);
+			
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				q = new Qna();
+				
+				q.setqNo(rs.getInt("q_no"));
+				q.setoNo(rs.getInt("o_no"));
+				q.setqCategory(rs.getString("q_category"));
+				q.setqTitle(rs.getString("q_title"));
+				q.setqContent(rs.getString("q_content"));
+				q.setqFile(rs.getString("q_file"));
+				q.setqRdate(rs.getDate("q_rdate"));
+				q.setmNo(rs.getInt("m_no"));
+				q.setqAnswer(rs.getString("q_answer"));
+				q.setqStatus(rs.getString("q_status"));
+				
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rs);
+			close(pstmt);
+		}
+		
+		return q;
+	}
+
+	//1:1문의 수정하기
+	public int updateQuestion(Connection conn, Qna q) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		
+		try {
+			if(q.getoNo() == 0) { //주문번호 선택 안했을 때
+				System.out.println("선택ㄴㄴ");
+				pstmt = conn.prepareStatement(prop.getProperty("updateQuestion_order_no"));
+				pstmt.setString(1, q.getqCategory());
+				pstmt.setString(2, q.getqTitle());
+				pstmt.setString(3, q.getqContent());
+				pstmt.setString(4, q.getqFile());
+				pstmt.setString(5, q.getqAnswer());
+				pstmt.setInt(6, q.getqNo());
+			} else {
+				System.out.println("선택ㅇㅇ");
+				pstmt = conn.prepareStatement(prop.getProperty("updateQuestion_order_yes"));
+				pstmt.setInt(1, q.getoNo());
+				pstmt.setString(2, q.getqCategory());
+				pstmt.setString(3, q.getqTitle());
+				pstmt.setString(4, q.getqContent());
+				pstmt.setString(5, q.getqFile());
+				pstmt.setString(6, q.getqAnswer());
+				pstmt.setInt(7, q.getqNo());
+			}
+			result = pstmt.executeUpdate();
+			System.out.println("dao"+result);
+		} catch (SQLException e) {
+			
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+		return result;		
 	}
 	
 	

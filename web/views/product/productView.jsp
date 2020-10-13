@@ -60,7 +60,10 @@ Member loginMember2 = (Member)request.getSession().getAttribute("loginMember");
                  </div>
             </div>
         </div>
+
         <div class="text-container" >
+
+
             <div class="text-container2">
                 <div class="text-group">
                   <img src="<%=request.getContextPath() %>/images/product/new64.png" alt="new" id="new">
@@ -82,7 +85,6 @@ Member loginMember2 = (Member)request.getSession().getAttribute("loginMember");
                          </dl>
                          <dl class="text-items">할인률
                              <dd class="price text-right" name="pDiscount" id="ppDiscount"><%=p.getpDiscount() %></dd>
-                         </dl>
                          <dl class="text-items">포인트적립
                              <dd  class="text-right" name="" id="pPoint" value="<%=p.getpDiscount() %>"><img src="<%=request.getContextPath() %>/images/product/mul.png" alt="정보" class="info-img"></dd>
                          </dl>
@@ -96,8 +98,10 @@ Member loginMember2 = (Member)request.getSession().getAttribute("loginMember");
                          <div class="container-wrap">
                              <div class="button-container">
                                  <!-- 날짜선택시 품목명 갯수 선택할 박스  생성. -->
-                                 <label ><input type="radio" class="botton-group" name="choice-radio" onclick="cartPut();" checked>장바구니</input></label>
-                                 <label ><input type="radio" class="botton-group" name="choice-radio" onclick="presentbtn();">선물하기</input></label>
+
+                                 <label ><input type="radio" class="botton-group" name="choice-radio" id="cartPut();"checked>장바구니</input></label>
+                                 <label ><input type="radio" class="botton-group" name="choice-radio" id="presentbtn();">선물하기</input></label>
+
                              </div>
                              <div class="etc_txt" id="cart_txt" style="display:block;">
                                  <span>주문 마감시간 오전 7시</span>
@@ -180,6 +184,7 @@ Member loginMember2 = (Member)request.getSession().getAttribute("loginMember");
                              }		
  /*                             //// 날짜 출력
                              function gdate(){
+<<<<<<< HEAD
 	var sImg = "<IMG SRC=http://www.blueb.co.kr/SRC/javascript/image7/date/";
 	var eImg = ".gif BORDER=0>";
 	var now = new Date();
@@ -205,8 +210,34 @@ Member loginMember2 = (Member)request.getSession().getAttribute("loginMember");
 	}
 	text += "</TD></TR></TABLE>";
 	document.write(text); */
-	
-	
+			/* 		var sImg = "<IMG SRC=http://www.blueb.co.kr/SRC/javascript/image7/date/";
+					var eImg = ".gif BORDER=0>";
+					var now = new Date();
+					var month = (now.getMonth() + 1);
+					var date = now.getDate();
+					var year = now.getYear();
+						now = null;     month += "";     date += "";     year += "";
+					var text = "";
+					text += "<TABLE BGCOLOR=#000000 CELLPADDING=4><TR><TD>"; 
+				
+					for (var i = 0; i < year.length; ++i) {
+						text += sImg + year.charAt(i) + eImg;
+					}
+						text += sImg + "slash" + eImg;
+				
+					for (var i = 0; i < month.length; ++i) {
+						text += sImg + month.charAt(i) + eImg;
+					}
+						text += sImg + "slash" + eImg;
+				
+					for (var i = 0; i < date.length; ++i) {
+						text += sImg + date.charAt(i) + eImg;
+					}
+					text += "</TD></TR></TABLE>";
+					document.write(text);
+					
+					
+				} */
 
 
                             
@@ -253,19 +284,23 @@ Member loginMember2 = (Member)request.getSession().getAttribute("loginMember");
                                     
 
                                      
+
                                      <p type="" class="product-price" readonly><span id="price">원<span></p>
+
                                      </div>
                                 </div>
                                 
                                  <!-- 날짜선택시 박스생성끝 -->
-                                 <form class="product-price-number-group" name="form" method="post" action="<%=request.getContextPath()%>/views/cart/cartViewServlet">
+                                 <form class="product-price-number-group" name="form" method="post" action="<%=request.getContextPath()%>/views/cart/cartViewServlet?pNo=<%p.getpNo()%>">
                                      <p class="producttextinput">수량
-                                         <input type="text" class="product-nember" name="cQty" value="" max="<%=p.getpStock()%>"readonly/> <span class="product_stock">개</span>
+
+                                         <input type="text" class="product-nember" name="pCount" value="" max="<%=p.getpStock()%>"readonly/> <span class="product_stock">개</span>
                                          <input type="hidden" name="pNo" value="<%=p.getpNo() %>">
                                      </p>
                                      <p><input type="text" class="product-pricetag" id="total-price" readonly><span>원</span></input></p>
                                  </form>
                                 		<script>
+
                                 		         
                                 		//상품수량가격변경하기
                                 		var $input2=$('.producttextinput'),//감싸고잇는 div tag
@@ -283,8 +318,9 @@ Member loginMember2 = (Member)request.getSession().getAttribute("loginMember");
                                 		
                                 		//상품
                  
+
                                 		//상품수량가격변경하기
-                                		var $input2=$('.producttextinput'),//감싸고잇는 div tag
+                                		var $input2=$('.producttextinput'),
                                 		$qytInput2=$input2.find('input');
                                 		var $quantity=$('#quantity'),
                                 		$unitprice= $quantity.attr('data-unitprice'),
@@ -292,7 +328,7 @@ Member loginMember2 = (Member)request.getSession().getAttribute("loginMember");
                                 		$qytInput=$quantity.find('input'),
                               
                                 		$tagetTotal=$('#total-price'),
-                                		$tagetTotal2=$('.product-price');
+                                		$tagetTotal1=$('.product-price');
                                 		
                                 		//$atybtn클릭하면 그요소가 class명 prev있다면 참이고 (플러스를 클릭햇으면)
 										//aytinput value 기존값에서 1증가 거짓이면 (마이너스를 클릭햇으면 $qyinput value 기존값에서 1차감) 
@@ -319,10 +355,8 @@ Member loginMember2 = (Member)request.getSession().getAttribute("loginMember");
                                 				$tagetTotal.val(""+total2); 
                                 				console.log($tagetTotal.val(total2));
                                 				$tagetTotal2.text(total2+"원");
+
                                 		});
-                            
-                                		
-                                	
                                 		</script>
                                 
                                 
@@ -332,6 +366,7 @@ Member loginMember2 = (Member)request.getSession().getAttribute("loginMember");
                                  
                                  
                                     <a href=""><img src="<%=request.getContextPath() %>/images/product/hart40px.jpg" alt="찜" class="jjim"></a>
+
                                    <a href=""><span class="jjim" style="font-size: 40px;width: 40px; height="40px;">♥</span></a>
                                     
                                     
@@ -352,8 +387,9 @@ Member loginMember2 = (Member)request.getSession().getAttribute("loginMember");
                              	
 
                                     <button type="button" class="cart-botton-items" id="buybtn" onclick="document.form.submit();">장바구니</buttton>
+
                                  </div>
-                          		
+
                          </div>
                      </div>
              </div>

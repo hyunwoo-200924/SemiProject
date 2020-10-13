@@ -28,8 +28,8 @@
 							<input type="text" name="id" id="id" maxlength="20" autocomplete="off" required>
 							<input type="button" value="중복확인" onclick="idCk();">
 							<div id="idCkMSg" style="display:none;  grid-column-start: 2;">
-								<span id="id1" style="display: block;color:black;">6자 이상의 영문과 숫자를 조합</span>
-								<span id="id2" style="display: block;color:black;">아이디 중복확인</span>
+								<span id="id1" style="display: block;color:red;">6자 이상의 영문과 숫자를 조합</span>
+								<span id="id2" style="display: block;color:red;">아이디 중복확인</span>
 							</div>
 						</div>
 						<div class="form_box">

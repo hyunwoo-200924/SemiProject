@@ -1,9 +1,26 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8" import="com.eol.qna.model.vo.Qna"%>
 
 <%
 	Member m = (Member)request.getSession().getAttribute("loginMember");
+	Qna q = (Qna)request.getAttribute("q");
+	
+	String[] category = new String[7];
+	if(q.getqCategory() != null){
+		switch(q.getqCategory()){
+			case "배송": category[0] = "selected"; break;
+			case "주문/결제": category[1] = "selected"; break;
+			case "취소/반품": category[2] = "selected"; break;
+			case "상품": category[3] = "selected"; break;
+			case "회원/포인트": category[4] = "selected"; break;
+			case "이벤트": category[5] = "selected"; break;
+			case "기타": category[6] = "selected"; break;
+		}
+	}
 %>
+<style>
+	
+</style>
     
 
 <%@ include file="/views/common/header.jsp"%>
@@ -30,7 +47,10 @@
 			#inquiry .inquiry_form span{
    				text-align: center;
 			}
-			
+		.file_box {
+		    display: grid;
+		    grid-template-columns: 140px 350px 15px 37px auto;
+		}
 		</style>
 	
 		<section class="container">
@@ -65,12 +85,22 @@
 						<p style="padding-left:20px;" onclick="fu_questionList();">1:1 문의 내역</p>
 					</div>
 					<div class="qeustion_context" style="margin-top: 50px;">
-						<form method="post" action="<%= request.getContextPath() %>/questionWrite.do" enctype="multipart/form-data" onsubmit="return fn_submit();">
+						<form method="post" action="<%= request.getContextPath() %>/updateQuestion?qNo=<%=q.getqNo() %>" enctype="multipart/form-data" onsubmit="return fn_submit();">
 							<div class="question_context_form">
 								<div class="question_box col3" style="grid-template-columns: 140px 120px auto;">
 									<p>제목</p>
-									<select name="category">
+									<select name="qnaCategory">
+									<% if(q.getqCategory() != null){ %>
 										<option value="">선택해주세요.</option>
+										<option value="배송" <%= category[0] %>>배송</option>
+										<option value="주문/결제" <%= category[1] %>>주문/결제</option>
+										<option value="취소/반품" <%= category[2] %>>취소/반품</option>
+										<option value="상품" <%= category[3] %>>상품</option>
+										<option value="회원/포인트" <%= category[4] %>>회원/포인트</option>
+										<option value="이벤트" <%= category[5] %>>이벤트</option>
+										<option value="기타" <%= category[6] %>>기타</option>
+									<%} else {%>
+									 	<option value="">선택해주세요.</option>
 										<option value="배송">배송</option>
 										<option value="주문/결제">주문/결제</option>
 										<option value="취소/반품">취소/반품</option>
@@ -78,12 +108,17 @@
 										<option value="회원/포인트">회원/포인트</option>
 										<option value="이벤트">이벤트</option>
 										<option value="기타">기타</option>
+									<%} %>
 									</select>
-									<input style="margin-left:20px;" type="text" name="title">
+									<input style="margin-left:20px;" type="text" name="title" value="<%= q.getqTitle() %>">
 								</div>
 								<div class="question_box col3">
 									<p>주문/상품 선택</p>
-									<input type="text" id="o_no" name="o_no" readonly >
+									<%if(q.getoNo() != 0){ %>
+									<input type="text" id="o_no" name="o_no"  readonly value="<%= q.getoNo() %>">
+									<%}else{ %>
+									<input type="text" id="o_no" name="o_no"  readonly value="">
+									<%} %>
 									<input type="button" value="조회" onclick="fn_inquiry();">
 									<div id="inquiry">
 										<div class="inquiry_form">
@@ -98,7 +133,7 @@
 								</div>
 								<div class="question_box">
 									<p>문의내용</p>
-									<textarea name="content" cols="30" rows="10" style="resize: none;" placeholder="문의 내용을 입력해주세요."></textarea>
+									<textarea name="content" cols="30" rows="10" style="resize: none;"><%= q.getqContent() %></textarea>
 									<div class="note">
 										<ul>
 											<li>고객님의 개인정보(이름,핸드폰 번호, 계좌번호 등) 입력 시 관리자에 의해 임의 삭제될 수 있습니다.</li>
@@ -106,16 +141,21 @@
 										</ul>
 									</div>
 								</div>
-								<div class="question_box">
+								<div class="file_box">
 									<p>첨부파일</p>
 								<!--<p class="file">+</p> -->
-									<input type="file" name="file" multiple>
-									<p class="file-note">*최대 5장 등록 (PNG, JPEG, JPG, GIF 포맷)</p>
+									<input type="file" name="file">
+									<%if(q.getqFile() != null){ %>
+									<input type="checkbox" name="imgDelete" style="height: auto; margin-top: 2px;"><span class="imgSpan">삭제</span>
+									<img src="<%= request.getContextPath() %>/upload/question/<%= q.getqFile() %>" style="width:80px; height:80px" >
+									<input type="hidden" id="originFile">
+									<%} %>
+									<!-- <p class="file-note">*최대 5장 등록 (PNG, JPEG, JPG, GIF 포맷)</p> -->
 								</div>
 								<div class="question_box">
 									<p>답변알림</p>
 									<div style="display: grid;grid-template-columns: 283px auto;">
-										<input type="text" name="answer" <%-- value="<%= m.getmEmail() %>" --%>>
+										<input type="text" name="answer" value="<%= m.getmEmail() %>" readonly>
 										<p class="check" style="margin-left:10px">
 											<label>
 												<input type="checkbox" name="emailAnswer">답변수신을 이메일로 받겠습니다.
@@ -133,7 +173,7 @@
 									</div>
 								</div>
 							</div>
-							<input type="submit" value="저장">
+							<input type="submit" value="수정">
 						</form>
 					</div>
 				</div>
@@ -169,6 +209,12 @@
 					}
 				})
 				
+				$('input:file').change(function(){
+					$('img').css('display','none');
+					$('input:checkbox[name="imgDelete"]').css('display','none');
+					$('.imgSpan').css('display','none');
+				})
+				
 			})
 		
 			
@@ -184,6 +230,9 @@
 		 	function fn_submit(){
 		 		if($('input:checkbox[name="emailAnswer"]').is(':checked') == false) {
 		 			$('input[name="answer"]').val("");
+		 		}
+		 		if($('input:checkbox[name="imgDelete"]').is(':checked') == false) {
+		 			$('#originFile').val('<%= q.getqFile() %>');
 		 		}
 		 	}
 		 	

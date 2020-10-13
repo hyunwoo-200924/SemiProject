@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.apache.tomcat.util.http.fileupload.servlet.ServletFileUpload;
 
+import com.eol.member.model.vo.Member;
 import com.eol.review.model.service.ReviewService;
 import com.eol.review.model.vo.Review;
 import com.oreilly.servlet.MultipartRequest;
@@ -33,6 +34,7 @@ public class ReviewWriteEndServlet extends HttpServlet {
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
+    
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 
@@ -71,11 +73,18 @@ public class ReviewWriteEndServlet extends HttpServlet {
 		//n.setFilePath(request.getParameter("upload")
 //		r.setFilePath(mr.getFilesystemName("upload"));//리네임된 파일명을 가져옴
 		
-		int result=new ReviewService().insertReview(r);
+		int odoNo = Integer.parseInt(request.getParameter("odoNo").trim());
+		int odpNo = Integer.parseInt(request.getParameter("odpNo").trim());
+		String pName = request.getParameter("pName");
+		
+		Member m = (Member)request.getSession().getAttribute("loginMember");
+		int mNo = m.getmNo();
+		
+		int result=new ReviewService().insertReview(r, odoNo, odpNo, pName, mNo);
 		
 		String msg="";
 		String loc="/review/reviewList";
-		msg=result>0?"공지사항등록성공":"공지사항등록실패";
+		msg=result>0?"리뷰등록성공":"리뷰등록실패";
 		request.setAttribute("msg", msg);
 		request.setAttribute("loc",loc);
 		request.getRequestDispatcher("/views/common/msg.jsp").forward(request, response);

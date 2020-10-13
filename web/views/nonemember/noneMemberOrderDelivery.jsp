@@ -1,9 +1,10 @@
-<%-- <%@ page language="java" contentType="text/html; charset=UTF-8"
+<%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ page import="com.eol.order.model.vo.Orders" %>
+<%@ page import="com.eol.order.model.vo.*, java.util.List" %>
 
 <%
 	Orders o=(Orders)request.getAttribute("nMOrder");
+	List<OrderDetail> list = (List)request.getAttribute("odlist");
 %>
 
 <%@ include file="/views/common/header.jsp"%>
@@ -71,15 +72,17 @@ href="<%=request.getContextPath() %>/css/noneoderDelivery.css">
                         <p><%=o.getoPayDate() %> (<%=o.getoNo() %>)</p>
                     </div>
                     <div class="productView">
+                    <%for(OrderDetail od : list) {%>
                         <div class="orderproduct">
                             <div class="order_pro_img">
-                                <img src="<%=request.getContextPath() %>/images/mainImages/gogi.jpg" alt="" width="100" height="100">
+                                <img src="<%=request.getContextPath() %>/upload/product/<%=od.getOdproduct().getpImage1() %>" alt="" width="100" height="100">
                             </div>
                             <div class="order_pro_name">
                                 <h3>상품명</h3>
                                 <p>가격 / 수량</p>
                             </div>
                         </div>
+                        <%} %>
                         <div class="ordernotice">
                             <p>도착일, 배송지변경 및 주문취소는<br>
                                 주문마감기한인 <%=o.getoDeliveryDate() %> 07:00 까지 가능합니다.</p>
@@ -102,23 +105,19 @@ href="<%=request.getContextPath() %>/css/noneoderDelivery.css">
                     <h1 class="cont_title">결제정보</h1>
                     <table class="cont_content">
                         <tr>
-                            <td>결제수단 신용카드(신용카드/일시불)</td>
-                            <td>총 상품금액 : <%=o.getoPayment() %> </td>
+                            <td>결제수단 : <%=o.getoPayWays() %></td>
+                            <td>총 상품금액 : <%=o.getoPayment()-3000 %>원 </td>
                         </tr>
                         <tr>
                             <td></td>
                             <td>총 배송비 : 3,000원</td>
                         </tr>
                         <tr>
-                            <td><button>결제수단 변경</button></td>
                             <td></td>
-                        </tr>
-                        <tr>
-                            <td></td>
-                            <td>총결제금액 </td>
+                            <td>총결제금액 <%=o.getoPayment() %> </td>
                         </tr>
                     </table>
                 </div>
             </div>
         </section>
-<%@ include file="/views/common/footer.jsp"%> --%>
+<%@ include file="/views/common/footer.jsp"%>

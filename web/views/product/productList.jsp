@@ -3,8 +3,8 @@
 <link rel="stylesheet" type="text/css" herf="<%=request.getContextPath()%>/css/menu.css">
 
 
-<%@ include file="/views/common/header.jsp"%>
 <%@ page import="java.util.List,com.eol.product.model.vo.Product, com.eol.member.model.vo.Member" %>
+<%@ include file="/views/common/header.jsp"%>
 <%
 	List<Product> list=(List)request.getAttribute("list");
 	String pageBar=(String)request.getAttribute("pageBar");
@@ -90,10 +90,10 @@
                             <div class="menu--img-items">
 
                             
-                            <div name="pNo" Style="display:none;"><%=p.getpNo()%></div>
+                            <div name="pNo"><%=p.getpNo()%></div>
 
                                 <!-- 메뉴상세페이지로이동 -->
-                                <a href="<%=request.getContextPath()%>/product/productView?pNo=<%=p.getpNo()%>" name="plz">
+                                <a href="<%=request.getContextPath()%>/product/productView?pNo=<%=p.getpNo()%>" name="">
 									<%if(p.getpImage1()!=null) {%>
                                     <img type="file" src="<%=request.getContextPath() %>/product/productFileDownload?fileName=<%=p.getpImage1() %>" alt="menu" class="menu-click1">
                                     <%} %>
@@ -112,11 +112,7 @@
                                 </a>
                                 <!-- 리뷰페이지로 ~ -->
                                 <a  href="<%=request.getContextPath() %>/review/review" class="menu--text-group">
-                                <div>
-                                
                                     <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
-                                
-                                </div>
 
                                    
                                 </a>
@@ -135,10 +131,7 @@
                                 <img src="<%=request.getContextPath() %>/images/product/hart40px.jpg" alt="찜" class="hart--img" onclick="hart();"></img>
                             </a>
                             <!-- 장바구니페이지 -->
-
-                            <a href="<%=request.getContextPath() %>/views/cart/cartViewServlet">
-
-                            <a href="<%=request.getContextPath() %>/views/cart/cartViewServlet?pNo=<%=p.getpNo() %>" id="cartBtn" name="cartBtn">
+                            <a href="<%=request.getContextPath() %>/views/cart/cartViewServlet?pNo=<%=p.getpNo() %>" id="cartBtn" name="">
 
 
                                 <img src="<%=request.getContextPath() %>/images/product/cart40px.jpg" alt="장바구니" class="cart--img" onclick="cartInsert()"></img>

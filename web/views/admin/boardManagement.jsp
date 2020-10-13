@@ -79,10 +79,14 @@
 	}
 	.answeranswer{
 	   display: grid;
-    grid-template-columns: auto auto;
-    padding: 10px;
+	    grid-template-columns: auto auto;
+	    padding: 10px;
 	
-	} 
+	}
+	.title_nobottom{
+	    margin-bottom: 50px;
+    	padding-bottom: 5px;
+	}
 </style>
    
     
@@ -102,7 +106,7 @@
 			
 			<div class="user_content_form_wrap">
 				
-				<div class="title">
+				<div class="title_nobottom">
 					<h1>1:1 문의</h1>
 				</div>
 				<div class="admin_request">
