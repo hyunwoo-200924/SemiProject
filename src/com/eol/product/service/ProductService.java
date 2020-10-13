@@ -74,6 +74,13 @@ public class ProductService {
 		return result;
 	}
 
+	//메인페이지 광고화면에 보여줄 상품정보 list받아오기
+	public List<Product> slidePlist(){
+		Connection conn = getConnection();
+		List<Product> list = dao.slidePlist(conn);
+		close(conn);
+		return list;
+	}
 
 
 
