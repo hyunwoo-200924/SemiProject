@@ -4,14 +4,6 @@
     /* margin-top:20px ; */
 
 }
-.reviews-section-group{
-    margin: 40px;
-    display: grid;
-    grid-template-columns: repeat(1, 300px 800px);
-    grid-template-rows: repeat(300px);
-    column-gap: 50px;
-    padding: 30px 0;
-}
 
 .reviews-h1{
     margin-bottom: 30px;
@@ -54,11 +46,11 @@
 }
 table{
     height: auto;
-    border-top: 1px solid #000;
 }
 
 #reviewtitle{
     margin-bottom: 20px;
+    border-bottom: 1px solid #000;
 }
 
 .reviews-table{
@@ -66,7 +58,6 @@ table{
     display: block;
     margin: 10px 0;
     border-bottom: 1px solid #000;
-    
 }
 .reviews-guide{
     margin: 10px 0;
@@ -105,3 +96,5 @@ th,td{
    position: relative;
    margin-left : 20px;
 }
+
+

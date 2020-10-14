@@ -1,12 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     
-<%@ page import="com.eol.member.model.vo.*" %>
+<%@ page import="com.eol.member.model.vo.*, com.eol.order.model.vo.Orders" %>
 <%@ include file="/views/common/header.jsp" %>
 <link rel="stylesheet" type="text/css"
 	href="<%=request.getContextPath() %>/css/memberJoinEnd.css">
 	
-	<% Member m = (Member)request.getSession().getAttribute("loginMember"); %>
+	<% 
+		Member m = (Member)request.getSession().getAttribute("loginMember");
+		Orders o = (Orders)request.getAttribute("order");
+	%>
 <section>
         <div class="mainDiv">
            <div id="joinhead" style="border: red 1px solid;">
@@ -24,7 +27,7 @@
                 </div> -->
             </div>
             <div id="content">
-                <h2 align="center" style="margin-top:100px">주문이 정상처리가 되었습니다.</h2>
+                <h2 align="center" style="margin-top:100px">주문번호(<%=o.getoNo() %>)<br>주문이 정상처리가 되었습니다.</h2>
                 <div id="button">
                     <button><a href="<%=request.getContextPath() %>/mainview.do">메인화면으로 이동</a></button>
                     <%if(m!=null){ %>

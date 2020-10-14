@@ -15,13 +15,21 @@ public class Review {
 	private Date rRdate;
 	private int rStarScore;
 	private String FilePath;
+	private int odNo;
+	private int mNo;
+	private String pName;
+	private String odpName;
+	private int odoNo;
+	private int odpNo;
+	private String mName;
 	
 	public Review() {
 		// TODO Auto-generated constructor stub
 	}
 
 	public Review(int rNo, int pNo, int oNo, String rWriter, String rTitle, String rContent, String rPhoto1,
-			String rPhoto2, String rPhoto3, Date rRdate, int rStarScore, String filePath) {
+			String rPhoto2, String rPhoto3, Date rRdate, int rStarScore, String filePath, int odNo, int mNo,
+			String pName, int odoNo, int odpNo, String odpName, String mName) {
 		super();
 		this.rNo = rNo;
 		this.pNo = pNo;
@@ -35,6 +43,13 @@ public class Review {
 		this.rRdate = rRdate;
 		this.rStarScore = rStarScore;
 		FilePath = filePath;
+		this.odNo = odNo;
+		this.mNo = mNo;
+		this.pName = pName;
+		this.odoNo = odoNo;
+		this.odpNo = odpNo;
+		this.odpName = odpName;
+		this.mName = mName;
 	}
 
 	public int getrNo() {
@@ -133,5 +148,58 @@ public class Review {
 		FilePath = filePath;
 	}
 
+	public int getodNo() {
+		return odNo;
+	}
+
+	public void setodNo(int odNo) {
+		this.odNo = odNo;
+	}
+
+	public int getmNo() {
+		return mNo;
+	}
+
+	public void setmNo(int mNo) {
+		this.mNo = mNo;
+	}
+
+	public String getpName() {
+		return pName;
+	}
+
+	public void setpName(String pName) {
+		this.pName = pName;
+	}
 	
+	public int getodoNo() {
+		return odoNo;
+	}
+	
+	public void setodoNo(int odoNo) {
+		this.odoNo = odoNo;
+	}
+	
+	public int getodpNo() {
+		return odpNo;
+	}
+	
+	public void setodpNo(int odpNo) {
+		this.odpNo = odpNo;
+	}
+	
+	public String getodpName() {
+		return odpName;
+	}
+
+	public void setodpName(String odpName) {
+		this.odpName = odpName;
+	}
+	public String getmName() {
+		return mName;
+	}
+	
+	public void setmName(String mName) {
+		this.mName = mName;
+	}
 }

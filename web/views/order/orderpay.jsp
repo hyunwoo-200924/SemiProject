@@ -84,9 +84,6 @@ IMP.init('imp14973248'); // 'iamport' 대신 부여받은 "가맹점 식별코�
 					<%
 						int oAmount = 0;
 					Date oDeliveryEDate = null;
-						for(Cart c : clist){
-							oDeliveryEDate = c.getoDeliveryEDate();
-						}
 					%>
 					
 						<input type="text" class="info-title" id="oDeliveryEDate" name="oDeliveryEDate" value="<%=oDeliveryEDate %>" readonly>도착예정

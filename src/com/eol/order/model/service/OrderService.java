@@ -1,7 +1,9 @@
 package com.eol.order.model.service;
 
 import static com.eol.common.JDBCTemplate.close;
+import static com.eol.common.JDBCTemplate.commit;
 import static com.eol.common.JDBCTemplate.getConnection;
+import static com.eol.common.JDBCTemplate.rollback;
 
 import java.sql.Connection;
 import java.util.List;
@@ -89,6 +91,8 @@ public class OrderService {
 	public int orderinsert(Member m, Orders o) {
 		Connection conn = getConnection();
 		int result = dao.orderinsert(conn, m, o);
+		if(result>0)commit(conn);
+		else rollback(conn);
 		close(conn);
 		return result;
 	}
@@ -97,6 +101,8 @@ public class OrderService {
 	public int odinsert(Cart c, int oNo) {
 		Connection conn = getConnection();
 		int result = dao.odinsert(conn, c, oNo);
+		if(result>0)commit(conn);
+		else rollback(conn);
 		close(conn);
 		return result;
 	}
@@ -123,6 +129,8 @@ public class OrderService {
 	public int noMemberodinsert(Product p, int oNo) {
 		Connection conn = getConnection();
 		int result = dao.nonodinsert(conn, p, oNo);
+		if(result>0)commit(conn);
+		else rollback(conn);
 		close(conn);
 		return result;
 	}

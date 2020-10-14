@@ -52,7 +52,7 @@ href="<%=request.getContextPath() %>/css/orderviewlist.css">
 			<% for(OrderDetail od : o.getDetails()){ %>
 			<div class="productView">
 				<div class="order_pro_img">
-					<img src="<%=request.getContextPath() %>/images/product/<%=od.getOdproduct().getpImage1() %>" alt="" width="100" height="100">
+					<img src="<%=request.getContextPath() %>/upload/product/<%=od.getOdproduct().getpImage1() %>" alt="" width="100" height="100">
 				</div>
 				<div class="order_pro_name">
 					<h3><%=od.getOdproduct().getpName() %></h3>

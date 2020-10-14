@@ -1,13 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ page import="com.eol.product.model.vo.Product, java.util.List " %>
+<%@ page import="com.eol.product.model.vo.Product, java.util.List, com.eol.product.service.ProductService " %>
 <%@ include file ="views/common/header.jsp" %>
 <%
 	//List<Product> slidePlist = request.getAttribute("slidePlist");
 	//List<Product> bestPlist = request.getAttribute("bestPlist");
 	//List<Product> hotdealPlist = request.getAttribute("hotdealPlist");
 %>
-
+<%
+	List<Product> slidePlist = (List)new ProductService().slidePlist();
+%>
 <style>
 /*section.main style*/
 .section {
@@ -21,6 +23,10 @@
     margin: 0;
     padding: 0; 
     list-style: none;
+}
+
+.slider-title{
+	background-color: white;
 }
 
 #slider-wrap {
@@ -249,17 +255,18 @@ tr.name{
 
 	<div id="slider-wrap">
         <ul id="slider">
-        <%-- <% for( Product p : list ) {%>
+        <% for( Product p : slidePlist ) {
+        	System.out.println(p.getpImage1());%>
             <li>
-                <div>
+                <div class="slider-title">
                     <h3><%=p.getpName() %></h3>
-                    <span><%=p.getpPrice() %> / <%=p.getpServing() %></span>
+                    <span><%=p.getpPrice() %>원 / <%=p.getpServing() %>인분</span>
                 </div>
-                <img src="<%=request.getContextPath()%>/upload/product/<%=p.getImage1()%>">
+                <img src="<%=request.getContextPath()%>/upload/product/<%=p.getpImage1()%>">
             </li>
-    	<%} %> --%>
-    	<li>
-                <div>
+    	<%} %>
+    	<%-- <li>
+                <div class="slider-title">
                     <h3>상품명</h3>
                     <span>상품가격 / 상품인분</span>
                 </div>
@@ -279,7 +286,7 @@ tr.name{
                     <span>Sub-title #3</span>
                 </div>
                 <img src="https://fakeimg.pl/350x200/FF607F/000?text=33333">
-            </li>
+            </li> --%>
     
            
         </ul>

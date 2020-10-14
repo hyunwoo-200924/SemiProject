@@ -36,10 +36,14 @@ public class CartViewServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// 1.회원 정보 가져오기(로그인, 비로그인)
+		
+		
+		System.out.println(request.getParameter("pCount"));
+		System.out.println(request.getParameter("pNo"));
+
 		Member m = (Member)request.getSession().getAttribute("loginMember"); //회원 정보 가져오기
 		System.out.println(m);
-		int pNo = Integer.parseInt(request.getParameter("pNo"));
-		
+		int pNo=Integer.parseInt(request.getParameter("pNo"));
 		String pCountStr = request.getParameter("pCount");
 		int pCount = 0;
 		List a = new ArrayList();
@@ -50,6 +54,7 @@ public class CartViewServlet extends HttpServlet {
 			pCount = 1;
 		} else {
 			pCount = Integer.parseInt(request.getParameter("pCount"));
+
 		}
 		
 		if(m == null) {
