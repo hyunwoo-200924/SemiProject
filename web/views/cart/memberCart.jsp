@@ -5,11 +5,13 @@
     pageEncoding="UTF-8"%>
     
 <%@
-	page import="java.util.List,java.util.ArrayList,com.eol.product.model.vo.Product"
+	page import="java.util.List,java.util.ArrayList,com.eol.cart.model.vo.Cart"
+
  %>
  <%
  		
- 		List<Product> list = (List)request.getSession().getAttribute("nonCartList");
+ 		List<Cart> list = (List)request.getAttribute("memberCart");
+ 		
  %>
     
 <link rel="stylesheet" type="text/css" 
@@ -19,17 +21,17 @@ href="<%=request.getContextPath() %>/css/cart.css">
 <div class="cart-section-container">
     <h2 class="cart-head-text"> 장바구니 </h2>
     <section class="cart-section-block">
-	        <%for(Product p : list){%>
+	        <%for(Cart c : list){%>
            		<div class="cart-section-body-group2">
             	<div class="kkk">
-               	<img src="<%=request.getContextPath() %>/upload/product/<%=p.getpImage1() %>" alt="상품이미지" style="width:200px;height:150px;">
+               	<img src="<%=request.getContextPath() %>/upload/product/<%=c.getProduct().getpImage1()%>" alt="상품이미지" style="width:200px;height:150px;">
                 </div>
                 <div>
-                <p><%=p.getpName() %></p>
-                <p class="cart-pricetext"><%=p.getpPrice() %><span>원</span></p>
+                <p><%=c.getProduct().getpName()%></p>
+                <p class="cart-pricetext"><%=c.getProduct().getpPrice()%><span>원</span></p>
              	<p class="producttextinput">수량</p>
               	<span type="button" value="－" class="product-minus" id="plus">-</span>
-               	<input style="border: none;" type="text" value="<%=p.getpCount() %>" class="product-number" readonly >
+               	<input style="border: none;" type="text" value="<%=c.getProduct().getpCount()%>" class="product-number" readonly >
                 <span type="button" value="＋" class="product-plus" id="minus">+</span>
                 <span>개</span>
                 </div>
