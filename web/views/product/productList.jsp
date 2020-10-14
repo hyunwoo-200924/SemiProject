@@ -143,7 +143,7 @@
       		<input type="button" class="product-register" id="updateProduct" onclick="location.assign('<%=request.getContextPath() %>/product/productUpdate?pNo=<%=p.getpNo() %>')" value="수정">
       		<input type="button" class="product-register" id="deleteProduct" onclick="location.assign('<%=request.getContextPath() %>/product/productDelete?pNo=<%=p.getpNo() %>')" value="삭제">
            
-            	
+            	<!--버튼 위치 수정  -->
             	</div>
               <%}%> 
          </div>
