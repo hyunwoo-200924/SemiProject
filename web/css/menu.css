@@ -486,8 +486,8 @@ th, td{
 } */
 .head-right,.head-left{
      display:flex;
-     flex-wrap:wrap; 
-
+     flex-wrap:wrap;
+	
   margin-bottom: 10px;
 }
 .head-left, .head-head{
@@ -516,9 +516,14 @@ th, td{
     height: 20px;
     width: 100px;
     margin: 0 10px;
-  
-  
 }
+
+.head-right-items2 .btnnone{
+	border:none;
+	background-color: white;
+	font-size:18; 
+}
+
 .head-right-items2:nth-last-child(1){
     border-right:none;
 }

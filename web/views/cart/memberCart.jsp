@@ -17,7 +17,7 @@
 <link rel="stylesheet" type="text/css" 
 href="<%=request.getContextPath() %>/css/cart.css">
 <%@include file="/views/common/header.jsp" %>
-
+<%if(!memberCart.isEmpty()){ %>
 <div class="cart-section-container">
     <h2 class="cart-head-text"> 장바구니 </h2>
     <div class="btnClass">
@@ -28,7 +28,7 @@ href="<%=request.getContextPath() %>/css/cart.css">
 	        <%for(Cart c : memberCart){%>
            		<div class="cart-section-body-group2">
             	<div class="kkk">
-               	<img src="<%=request.getContextPath() %>/upload/practice/1.jpg" alt="상품이미지" style="width:200px;height:150px;">
+               	<img src="<%=request.getContextPath() %>/upload/product/<%c.getpImage1(); %>" alt="상품이미지" style="width:200px;height:150px;">
                 </div>
                 <div>
                 <p><%=c.getpName()%></p>
@@ -80,7 +80,9 @@ href="<%=request.getContextPath() %>/css/cart.css">
 		<%} %>
     </section>
 </div>
-<script>
-
-</script>
+<%}else{ %>
+	<div class="cart-section-container">
+    	<h2 class="cart-head-text"> 장바구니 </h2>
+    </div>
+<%} %>
 <%@include file="/views/common/footer.jsp" %>

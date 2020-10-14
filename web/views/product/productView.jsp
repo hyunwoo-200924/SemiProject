@@ -108,9 +108,17 @@ function day(){
                          <h3 class="h3-text">원산지: 상품정보 참조</h3>
                          <ul class="text-menu-group ">
                              <li class="text-menu"><%=p.getpServing() %>인분</li>
-                             <li class="text-menu"><%=p.getpCooktime() %>분</li>
-                             <li class="text-menu"><%=p.getpReadytime() %>분<img src="" alt=""></li>
-                             <li class="text-menu"><%=p.getpTaste() %></li>
+                             <li class="text-menu">&nbsp;조리 <%=p.getpCooktime() %>분</li>
+                             <li class="text-menu">&nbsp;준비 <%=p.getpReadytime() %>분<img src="" alt=""></li>
+                             <%if(p.getpTaste()==1){ %>
+                             	<li class="text-menu">보통 매운맛</li>
+                             <%} else if(p.getpTaste()==2){ %>
+                             	<li class="text-menu">약간 매운맛</li>
+                             <%} else if(p.getpTaste()==3){ %>
+                             	<li class="text-menu">적당히 매운맛</li>
+                             <%} else if(p.getpTaste()==4){ %>
+                             	<li class="text-menu">아주 매운맛</li>
+                             <%} %>
                          </ul>
                          <dl class=".menuview-text-items">
                          	판매가

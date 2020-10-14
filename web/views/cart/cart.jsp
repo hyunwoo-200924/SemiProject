@@ -25,8 +25,12 @@ href="<%=request.getContextPath() %>/css/cart.css">
     	</form>
     </div>
    <div class="btnClass">
-   <button class="btn" onclick="inputproduct();">상품결제</button>
+   <%if(list.isEmpty()){ %>
+   	
+   <%}else{ %>
+   <button class="btn" onclick="location.replace('<%=request.getContextPath()%>/cartintopay.do')">상품결제</button>
    <button class="btn">삭제</button>
+   <%} %>
    </div>
    <section class="cart-section-block">
 	        <%for(Product p : list){%>
