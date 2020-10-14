@@ -147,5 +147,21 @@ public class CartDao {
 		}return result;
 	}
 	
+	//회원이 결제하고 나서 장바구니 자동으로 비우는거
+	public int deleteCart(Connection conn, int mNo) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		try {
+			pstmt=conn.prepareStatement(prop.getProperty("deleteCart"));
+			//deleteCart=DELETE FROM CART WHERE M_NO=?;
+			pstmt.setInt(1, mNo);
+			result = pstmt.executeUpdate();
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}return result;
+	}
+	
 
 }

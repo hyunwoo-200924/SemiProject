@@ -49,4 +49,14 @@ public class CartService {
 		return result;
 
 	}
+	
+	//결제 후 결제한 상품 회원의 장바구니 비우기
+	public int deleteCart(int mNo) {
+		Connection conn = getConnection();
+		int result = dao.deleteCart(conn, mNo);
+		if(result > 0) commit(conn);
+		else rollback(conn);
+		close(conn);
+		return result;
+	}
 }

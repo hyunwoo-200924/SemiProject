@@ -140,15 +140,16 @@ IMP.init('imp14973248'); // 'iamport' 대신 부여받은 "가맹점 식별코�
 							<p>쿠폰 적용</p>
 
 							<p class="right">
-								<span>2000</span><span>원 할인쿠폰</span>
+								<span>00</span><span>원 할인쿠폰</span>
 							</p>
 
 						</div>
 						<div class="present-items">
 							<p>포인트적용</p>
-							<!-- 포인트적용후 차감되는 자바스크립트 -->
+							<p>현재 가용 포인트 : <input type="text" id="possablemPoint" value="<%=m.getmPonint() %>"></p>
+						
 							<p class="right">
-								<span>0</span>point
+								<input type="text" id="usePoint" name="usePoint" value="0" onkeyup='p_use()'><span>point</span>
 							</p>
 						</div>
 					</div>
@@ -217,9 +218,9 @@ IMP.init('imp14973248'); // 'iamport' 대신 부여받은 "가맹점 식별코�
 						</div>
 						<div class="pay-items">
 							<p class="pay-items-text-left middle">포인트사용</p>
-							<p class="pay-items-text-right">
-								0<span class="middle">Point</span>
-							</p>
+							<div class="pay-items-text-right" id="checkPoint">
+								
+							</div><span class="middle">Point</span>
 
 						</div>
 
@@ -227,19 +228,20 @@ IMP.init('imp14973248'); // 'iamport' 대신 부여받은 "가맹점 식별코�
 						<div class="pay-items">
 							<p class="pay-items-text-left middle">결제 금액</p>
 							<%int oPayment = alltotal+3000; %>
-							<input type="text" class="pay-items-text-right" id="oPayment" name="oPayment" value="<%=oPayment %>" style="border:none" readonly/><span>원</span>
+							<input type="hidden" value="<%=oPayment %>" id="beforpay">
+							<input type="text" class="pay-items-text-right" id="oPayment" name="oPayment" value="<%=oPayment%>" style="border:none" readonly/><span>원</span>
 							
 
 						</div>
 						<div class="info-agreed">
-							<input type="checkbox" class="info-agreed">
+							<label><input type="checkbox" class="info-agreed" id="agree" value="동의">이용약관에 동의합니다.</label>
 							<textarea style="width: 500px; height: 80px; overflow: scroll"><p>개인정보및 배송지제출에 동의하시겠습니까?</p></textarea>
 						</div>
 						<div class="pay-button">
 							<!-- 결제하기 버튼을 누르면, 1. 걸제 api실행
                     2. 카트에 담긴 데이터와 그와 연결된 product데이터와 위에 입력한 배송정보를 orders와 orderdetail에 insert -->
-							<input type="button" id="pay" value="결제하기" class="pay-deside-button btn" style="width: 500px; height: 50px; justify-content: center; margin: 20px 0;">
-							<input type="button" id="orderCheak" style="display:none;" onclick="fn_dd();" value="결제완료 확인">
+							<input type="button" id="pay" value="결제하기" class="pay-deside-button" style="width: 500px; height: 50px; justify-content: center; margin: 20px 0;">
+							<input type="button" id="orderCheak" class="pay-deside-button" style="display:none; width: 500px; height: 50px; justify-content: center; margin: 20px 0;" onclick="fn_dd();" value="결제완료 확인">
 						</div>
 					</div>
 				</div>
@@ -256,6 +258,15 @@ IMP.init('imp14973248'); // 'iamport' 대신 부여받은 "가맹점 식별코�
 
 
 <script>
+//사용포인트
+function p_use(){
+	const usep = document.getElementById('usePoint').value;
+	  document.getElementById("checkPoint").innerText = usep;
+	  const befor = document.getElementById('beforpay').value;
+	  const pay = Number(befor)-Number(usep);
+	  document.getElementById("oPayment").value = pay;
+	  
+}
 //주소찾기 api
 function fn_address(){
 			new daum.Postcode({
@@ -299,11 +310,18 @@ $("#pay").click(function () {
 		alert('받는사람의 주소를 입력해주세요.')
 		return false;
 	}
+	if(Number($('#possablemPoint').val()) < Number($("#usePoint").val())){
+		alert('포인트는 가용포인트 내에서 사용이 가능합니다.')
+		return false;
+	}
 	if($('#oPayway').val()==='') {
 		alert('결제수단을 선택해주세요.')
 		return false;
 	}
-	
+	if($('#agree').is(":checked") == false){
+		alert('이용약관에 동의해주세요.')
+		return false;
+	}
 	
       IMP.request_pay({
          pg: 'html5_inicis', // 위에서 선택한 결제수단이 여기 값으로 들어와야함
