@@ -46,6 +46,9 @@ public class MemberDeleteServlet extends HttpServlet {
 		if(result > 0) {
 			msg = "탈퇴 되었습니다. 그동안 이용해주셔서 감사합니다.";
 			System.out.println("탈퇴성공"); 
+			if(request.getSession(false) != null) {
+				request.getSession(false).invalidate();
+			}
 			
 		} else {
 			msg = "탈퇴에 실패하였습니다. 서비스센터로 문의바랍니다.";

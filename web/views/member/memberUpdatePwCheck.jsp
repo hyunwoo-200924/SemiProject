@@ -2,9 +2,9 @@
     pageEncoding="UTF-8"  import="com.eol.member.model.vo.Member" %>
 
 <%
-	Member m1 = new Member("asdfasdf8");//이거 확인용 로직
+	//Member m1 = new Member("asdfasdf8");//이거 확인용 로직
 	//session1.setMaxInactiveInterval(2);
-	request.getSession().setAttribute("loginMember", m1);//이거 확인용 로직
+	//request.getSession().setAttribute("loginMember", m1);//이거 확인용 로직
 	Member m = (Member)request.getSession().getAttribute("loginMember");
 %>
 
@@ -21,6 +21,17 @@
 .button input{
 	width: 20%;
  	height: 50px;
+}
+.buttonStyle{
+	height: 40px;
+    width: 176px;
+    background-color: #333;
+    border: none;
+    color: white;
+}
+.buttonStyle:hover{
+	cursor:pointer;
+	background-color: black;
 }
 </style>
 
@@ -63,7 +74,7 @@
 						</div>
 					</div>
 					<div class="button">
-						<input type="submit" value="확인" onclick="return fn_pwck();">
+						<input class="buttonStyle" type="submit" value="확인" onclick="return fn_pwck();">
 					</div>
 				</form>
 			</div>

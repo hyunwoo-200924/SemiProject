@@ -3,9 +3,10 @@
 	*{
 	  	box-sizing: border-box;
 	  }
-	a:active {
-		color:inherit;	
-	}
+	/* a:active {color:inherit;} */
+	a:link { color: black; text-decoration: none; !important}
+	a:visited { color: black; text-decoration: none; !important}
+	a:hover { color: black; text-decoration: none; !important}
 	li{
 		list-style:none;
 	}
