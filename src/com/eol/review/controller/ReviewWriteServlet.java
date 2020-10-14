@@ -39,8 +39,6 @@ public class ReviewWriteServlet extends HttpServlet {
 		request.setAttribute("pName", pName);
 		request.setAttribute("mName", mName);
 		
-		System.out.println("이름 : " + request.getParameter("pName"));
-		
 		request.getRequestDispatcher("/views/review/reviewWrite.jsp").forward(request, response);
 	}
 

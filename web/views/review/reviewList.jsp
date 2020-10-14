@@ -120,6 +120,7 @@
 		</div>
 		<div class="reviews-container">
 			<form class="reviews-container-group1" href="" method="post">
+			</form>
 				<table class="reviews-table">
 					<tr class="reviews-table-group">
 						<th>제목</th>
@@ -139,11 +140,11 @@
 									<td><%=r.getpName() %></td>
 									<td><%=m.getmName()%></td>
 									<td><%=r.getrRdate()%></td>
+									<%-- <td><button onclick="location.replace('<%=request.getContextPath()%>/review/reviewDelete?oNo=<%=r.getoNo()%>&pNo=<%=r.getpNo()%>')">삭제하기</button></td> --%>
 								</tr>
 							<%} %>
 					<%} %>
 				</table>
-			</form>
 		</div>
 	</div>
 
