@@ -128,7 +128,7 @@ public class CartDao {
 		}return result;
 	}
 	
-	public int updateCartNum(Connection conn , int mNo, int pNo) {
+	public int updateCartNum(Connection conn , int mNo, int pNo, String oDeliveryEDate) {
 		PreparedStatement pstmt = null;
 		int result = 0;
 		System.out.println("6666666");
@@ -136,8 +136,9 @@ public class CartDao {
 		try {
 			pstmt = conn.prepareStatement(prop.getProperty("updateCartNum"));
 			//System.out.println("돌아가나??" + pCount);
-			pstmt.setInt(1, mNo);
-			pstmt.setInt(2, pNo);
+			pstmt.setString(1, oDeliveryEDate);
+			pstmt.setInt(2, mNo);
+			pstmt.setInt(3, pNo);
 			result = pstmt.executeUpdate();
 		}catch(SQLException e) {
 			e.printStackTrace();

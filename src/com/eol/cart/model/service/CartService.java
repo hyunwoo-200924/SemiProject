@@ -40,9 +40,9 @@ public class CartService {
 		return result;
 	}
 	
-	public int updateCartNum(int mNo, int pNo) {
+	public int updateCartNum(int mNo, int pNo, String oDeliveryEDate) {
 		Connection conn = getConnection();
-		int result = dao.updateCartNum(conn , mNo, pNo);
+		int result = dao.updateCartNum(conn , mNo, pNo, oDeliveryEDate);
 		if(result > 0) commit(conn);
 		else rollback(conn);
 		close(conn);
