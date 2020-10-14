@@ -124,8 +124,6 @@ public class ReviewDao {
 		ResultSet rs = null;
 		List<Review> list = new ArrayList();
 		
-		System.out.println("dao : " + mNo);
-		
 		try {
 			pstmt = conn.prepareStatement(prop.getProperty("pullReview"));
 			pstmt.setInt(1, mNo);
@@ -168,4 +166,15 @@ public class ReviewDao {
 		}
 		return result;
 	}
+	
+	/*
+	 * public int reviewDelete(Connection conn, Review r, int oNo, int pNo) {
+	 * PreparedStatement pstmt = null; ResultSet rs=null; int result = 0; try {
+	 * pstmt=conn.prepareStatement(prop.getProperty("reviewDelete"));
+	 * r.setoNo(rs.getInt("O_NO")); r.setpNo(rs.getInt("P_NO")); pstmt.setInt(1,
+	 * r.getoNo()); pstmt.setInt(2, r.getpNo());
+	 * 
+	 * result = pstmt.executeUpdate(); }catch(Exception e) { e.printStackTrace();
+	 * }finally { close(pstmt); } return result; }
+	 */
 }

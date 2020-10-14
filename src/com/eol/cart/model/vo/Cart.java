@@ -12,15 +12,13 @@ public class Cart {
 	private int cQty;
 	private Product product;
 	private String oDeliveryEDate;
+	private String pName;
+	private String pPrice;
+	private String pImage1;
 	
 	public Cart() {
 		// TODO Auto-generated constructor stub
 	}
-
-	
-
-
-
 
 	public Cart(int cNo, int mNo, int pNo, int cQty, Product product, String oDeliveryEDate) {
 		super();
@@ -97,6 +95,36 @@ public class Cart {
 
 	public void setoDeliveryEDate(String oDeliveryEDate) {
 		this.oDeliveryEDate = oDeliveryEDate;
+	}
+
+	public String getpName() {
+		return pName;
+	}
+
+	public void setpName(String pName) {
+		this.pName = pName;
+	}
+
+	public String getpPrice() {
+		return pPrice;
+	}
+
+	public void setpPrice(String pPrice) {
+		this.pPrice = pPrice;
+	}
+
+	public String getpImage1() {
+		return pImage1;
+	}
+
+	public void setpImage1(String pImage1) {
+		this.pImage1 = pImage1;
+	}
+
+	@Override
+	public String toString() {
+		return "Cart [cNo=" + cNo + ", mNo=" + mNo + ", pNo=" + pNo + ", cQty=" + cQty + ", product=" + product
+				+ ", oDeliveryEDate=" + oDeliveryEDate + "]";
 	}
 	
 	
