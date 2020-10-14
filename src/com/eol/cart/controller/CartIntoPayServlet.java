@@ -35,6 +35,7 @@ public class CartIntoPayServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		Member m = (Member)request.getSession().getAttribute("loginMember");
+	
 		if(m!=null) {//회원이 장바구니에 담긴 상품을 결제할 경우
 			List<Cart> list = new CartService().cartintopay(m.getmNo());
 			

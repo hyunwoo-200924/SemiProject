@@ -50,10 +50,16 @@ public class ReviewService {
 	public List<Review> reviewPullList(int cPage, int numPerPage, int mNo) {
 		//p_no o_no 가져오기
 		Connection conn = getConnection();
-		System.out.println("service : " + mNo);
-		
 		List<Review> list = dao.reviewPullList(conn,cPage,numPerPage, mNo);
 		close(conn);
 		return list;
 	}
+	
+	/*
+	 * public int reviewDelete(Review r, int oNo, int pNo) { Connection conn =
+	 * getConnection(); int result = dao.reviewDelete(conn, r, oNo, pNo);
+	 * if(result>0) commit(conn); else rollback(conn); close(conn); return result; }
+	 */
+	
+	
 }
