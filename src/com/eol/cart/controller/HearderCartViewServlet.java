@@ -37,10 +37,8 @@ public class HearderCartViewServlet extends HttpServlet {
 		Member m =(Member) request.getSession().getAttribute("loginMember");
 		
 		if(m != null) {
-			System.out.println("멤버 확인"+m);
 			List<Cart> list = new CartService().cartintopay(m.getmNo()); 
 			request.getSession().setAttribute("memberCart", list);
-			System.out.println("memberCart확인  :" + list);
 			request.getRequestDispatcher("/views/cart/memberCart.jsp").forward(request, response);
 		}else{
 			List<Product> list = (List)request.getSession().getAttribute("nonCartList");

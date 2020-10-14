@@ -143,7 +143,8 @@ public class CartViewServlet extends HttpServlet {
 				System.out.println(list);
 				String msg ="상품이 장바구니에 담겼습니다.";
 				
-				request.getSession().setAttribute("memberCart", list);
+				List<Cart> list1 = new CartService().cartintopay(m.getmNo());
+				request.getSession().setAttribute("memberCart", list1);
 				
 				request.setAttribute("msg",msg);
 				request.setAttribute("loc", "/views/cart/memberCart.jsp");
