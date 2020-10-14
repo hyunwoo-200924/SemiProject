@@ -10,6 +10,17 @@
 	li{
 		list-style:none;
 	}
+	.buttonStyle{
+		height: 40px;
+	    width: 176px;
+	    background-color: #333;
+	    border: none;
+	    color: white;
+	}
+	.buttonStyle:hover{
+		cursor:pointer;
+		background-color: black;
+	}
 	.linkArrow:after {
 	    content: '';
 	    border-right: 1px solid;
