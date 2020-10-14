@@ -100,6 +100,34 @@ public class ProductService {
 		return list;
 	}
 
-
+	//////////////현우 추가
+	public List<Product> newMenuList(int cPage, int numPerPage) {
+		Connection conn=getConnection();
+		List<Product> list=dao.newMenuList(conn, cPage,numPerPage);
+		close(conn);
+		System.out.println("list 갓다옴");
+		return list;
+	}
+	public List<Product> hotMenuList(int cPage, int numPerPage) {
+		Connection conn=getConnection();
+		List<Product> list=dao.hotMenuList(conn, cPage,numPerPage);
+		close(conn);
+		System.out.println("list 갓다옴");
+		return list;
+	}
+	public List<Product> lowPriceMenuList(int cPage, int numPerPage) {
+		Connection conn=getConnection();
+		List<Product> list=dao.lowPriceMenuList(conn, cPage,numPerPage);
+		close(conn);
+		System.out.println("list 갓다옴");
+		return list;
+	}
+	public List<Product> highPriceMenuList(int cPage, int numPerPage) {
+		Connection conn=getConnection();
+		List<Product> list=dao.highPriceMenuList(conn, cPage,numPerPage);
+		close(conn);
+		System.out.println("list 갓다옴");
+		return list;
+	}
 
 }

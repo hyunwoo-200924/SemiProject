@@ -1,3 +1,4 @@
+<%@page import="javax.tools.DocumentationTool.Location"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/menu.css">
@@ -9,7 +10,7 @@
 	List<Product> list=(List)request.getAttribute("list");
 	String pageBar=(String)request.getAttribute("pageBar");
 	Member loginMember1 = (Member)request.getSession().getAttribute("loginMember");
-	
+	String change = (String)request.getAttribute("change");
 %>
 
 
@@ -55,15 +56,12 @@
                         <div class="head-left">
                             <h5>뚝딱kit의 주문마감은 <span class="date-change">9월 25일(금)</span> 오전7시입니다.</h5>
                         </div>
-                        <form>
-                        <ul class="head-right">
-                            <li class="head-right-items2"><a href="">신메뉴</a></li>
-                            <li class="head-right-items2"><a href="">인기메뉴</a></li>
-                            <li class="head-right-items2"><a href="">가격높은순</a></li>
-                            <li class="head-right-items2"><a href="">가격낮은순</a></li>
-
-                        </ul>
-                        <form>
+	                        <ul class="head-right">
+	                            <li class="head-right-items2"><%change="new"; %><button class="btnnone" onclick="location.replace('<%=request.getContextPath()%>/product/productSort?change=<%=change %>')">신메뉴</button></li>
+	                            <li class="head-right-items2"><%change="hot"; %><button class="btnnone" onclick="location.replace('<%=request.getContextPath()%>/product/productSort?change=<%=change %>')">인기메뉴</button></li>
+	                            <li class="head-right-items2"><%change="low"; %><button class="btnnone" onclick="location.replace('<%=request.getContextPath()%>/product/productSort?change=<%=change %>')">높은가격순</button></li>
+	                            <li class="head-right-items2"><%change="high"; %><button class="btnnone" onclick="location.replace('<%=request.getContextPath()%>/product/productSort?change=<%=change %>')">낮은가격순</button></li>
+	                        </ul>
                     </div>
                 </div>
             </div>
