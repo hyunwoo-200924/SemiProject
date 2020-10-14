@@ -313,7 +313,7 @@ public class ProductDao {
 				p.setpName(rs.getString("p_name"));
 				p.setpPrice(rs.getInt("p_price"));
 				p.setpServing(rs.getInt("p_serving"));
-				p.setpImage1(rs.getString("p_image1"));
+				p.setpImage1(rs.getString("p_image2"));
 				list.add(p);
 			}
 		}catch(SQLException e) {

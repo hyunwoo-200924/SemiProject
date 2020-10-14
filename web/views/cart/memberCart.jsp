@@ -6,7 +6,7 @@
     
 <%@
 	page import="java.util.List,java.util.ArrayList,com.eol.product.model.vo.Product"
- %>
+%>
  <%
  		
  		List<Product> list = (List)request.getSession().getAttribute("nonCartList");

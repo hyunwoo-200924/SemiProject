@@ -525,15 +525,18 @@ th, td{
 /* 메뉴 나열되는part */
 
 .section-menu-group-container1{
-    display: block;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content:space-between;
+    align-content:center;
     height: auto;
-    width: auto;
+    width:auto;
     margin: 50px 20px;
 }
 .menu-group-section1{
     width: auto;
     display: flex;
-    
+    flex-wrap:wrap;
     justify-content: space-between;
   /*   grid-template-columns: repeat(3,300px);
     justify-content: space-evenly;

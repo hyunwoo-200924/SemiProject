@@ -122,7 +122,7 @@
                                 <!-- 메뉴상세페이지로이동 -->
                                 <a href="<%=request.getContextPath()%>/product/productView?pNo=<%=p.getpNo()%>" name="">
 									<%if(p.getpImage1()!=null) {%>
-                                    <img type="file" src="<%=request.getContextPath() %>/product/productFileDownload?fileName=<%=p.getpImage1() %>" alt="menu" class="menu-click1">
+                                    <img type="file" src="<%=request.getContextPath() %>/product/productFileDownload?fileName=<%=p.getpImage1() %>" style="width:268px; height: 320px;" alt="menu" class="menu-click1">
                                     <%} %>
                                     <ul class="menu--text-group">
                                         <div class="new">
@@ -161,7 +161,9 @@
                             <a href="<%=request.getContextPath() %>/views/cart/cartViewServlet?pNo=<%=p.getpNo() %>" id="cartBtn" name="">
 
 
-                                <img src="<%=request.getContextPath() %>/images/mainImages/shopping-cart-solid.svg" alt="" width="30px" height="30px"  class="cart--img" onclick="cartInsert()"></img>
+
+                                <img src="<%=request.getContextPath() %>/images/mainImages/shopping-cart-solid.svg" style="width: 30px; height: 30px;" alt="장바구니" class="cart--img" onclick="cartInsert()"></img>
+
                             </a>
                         </ul>
                     </div>
