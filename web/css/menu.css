@@ -114,7 +114,7 @@ a:hover{
     
 }
 .h2-text,.h3-text{
-	text-align: center;
+   text-align: center;
     margin-bottom: 30px;
 }
 .text-menu-group {
@@ -132,7 +132,7 @@ a:hover{
    
 }
 .text-menu{
-	justify-content:space-around;
+   justify-content:space-around;
     text-align: center;
     margin-top: 5px;
     font-size: 18px;
@@ -300,12 +300,12 @@ margin: 50px;
     justify-items:end;
   }
 .product-number{
-	border: none;
-	width: 30px;
-	color:#ff5912;
-	font-weight: 600;
-	text-align: center;
-	font-size:18px;
+   border: none;
+   width: 30px;
+   color:#ff5912;
+   font-weight: 600;
+   text-align: center;
+   font-size:18px;
 }
 
 
@@ -455,21 +455,21 @@ th, td{
 
 /* section && Mainmenupage head part */
 .menu-group-container{
-	display: block;
+   display: block;
     width: auto;
     margin: 50px;
     height: auto;
 }
 .head-text{
-	display: flex;
-	justify-content:space-between;
-	
+   display: flex;
+   justify-content:space-between;
+   
     height: 70px;
 }
 .head-text1{
-	display:flex;
-	justify-content: space-between;
-	text-align: right;
+   display:flex;
+   justify-content: space-between;
+   text-align: right;
 
 }
 .h2{
@@ -484,14 +484,14 @@ th, td{
     text-align: center;
 } */
 .head-right,.head-left{
-	  display:flex;
-	  flex-wrap:wrap; 
+     display:flex;
+     flex-wrap:wrap; 
 
   margin-bottom: 10px;
 }
 .head-left, .head-head{
-	display: flex;
-	
+   display: flex;
+   
     font-size: 20px;
     font-weight: 300;
   
@@ -579,4 +579,3 @@ th, td{
       padding:20px;
   }
  
-
