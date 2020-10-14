@@ -4,24 +4,16 @@
 <%@ page import ="java.util.List" %>
 <%@ page import ="com.eol.cart.model.vo.Cart" %>
 <%@ page import="com.eol.member.model.vo.Member"%>
-
+<%@ page import="com.eol.review.model.vo.Review" %>
 <%
 	Product p=(Product)request.getAttribute("Product");
 Member loginMember2 = (Member)request.getSession().getAttribute("loginMember");
 	Cart c=(Cart)request.getAttribute("Cart");
+Review r=(Review)request.getAttribute("Review");
 	
 %>
 <%@ include file="/views/common/header.jsp"%>
 <link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/css/menu.css">  
-
-<script defer>
-
-
-
-
-
-</script>
-
 	
 	  <!-- <section -->
     <section  class="menu-container-group">
@@ -80,21 +72,26 @@ Member loginMember2 = (Member)request.getSession().getAttribute("loginMember");
                              <li class="text-menu"><%=p.getpReadytime() %>분<img src="<%=request.getContextPath() %>/images/product/mul.png" alt="상세설명"></li>
                              <li class="text-menu"><%=p.getpTaste() %></li>
                          </ul>
-                         <dl class="text-items">판매가
+                         <dl class=".menuview-text-items">
+                         	판매가
                              <dd class="price text-right" name="pPrice" id="ppPrice"><%=p.getpPrice() %>원</dd>
                          </dl>
-                         <dl class="text-items">할인률
+                         <dl class=".menuview-text-items">
+                      		할인율
                              <dd class="price text-right" name="pDiscount" id="ppDiscount"><%=p.getpDiscount() %></dd>
-                         <dl class="text-items">포인트적립
-                             <dd  class="text-right" name="" id="pPoint" value="<%=p.getpDiscount() %>"><img src="<%=request.getContextPath() %>/images/product/mul.png" alt="정보" class="info-img"></dd>
+                         <dl class=".menuview-text-items">
+                         		포인트적립
+                             <dd  class="text-right" name="" id="pPoint" value="<%=p.getpDiscount() %>"><%=p.getpDiscount() %><img src="<%=request.getContextPath() %>/images/product/mul.png" alt="정보" class="info-img"></dd>
                          </dl>
-                         <dl class="text-items">배송방법 :
+                         <dl class=".menuview-text-items">
+                        		 배송방법 :
                                  <dd class="delivery text-right">선택배송</dd>
                              </dl>
-                         <dl class="text-items">배송비:
+                         <dl class=".menuview-text-items">
+                     			    배송비 :
                              <dd class="delivery" class="text-right">3000원    4만원이상 무료 </dd>
                          </dl>
-                         </div>
+                   </div>
                          <div class="container-wrap">
                              <div class="button-container">
                                  <!-- 날짜선택시 품목명 갯수 선택할 박스  생성. -->
@@ -106,23 +103,7 @@ Member loginMember2 = (Member)request.getSession().getAttribute("loginMember");
                              <div class="etc_txt" id="cart_txt" style="display:block;">
                                  <span>주문 마감시간 오전 7시</span>
                               </div>
-                              <script>
-                             
-                              </script>
-                             
-                              
-                              
-                            
-                              <!-- $("#order-date option:selected").val(); -->
-                              
-                           <!-- 여러개 선택시 Select box ID로 접근하여 여러 개 Value 값 가져오기.
-                             $("#userListSB option:selected").attr('value2');
-                             //value2에 userNumber 데이터
-                             $("#userListSB option:selected").attr('value3');
-                             //value3에 userPK 데이터 -->
-                             
-                             <!-- 텍스트읽어오기
-                                 $("#userListSB option:selected").text(); -->
+                  
                                 
                              </div>
                              
@@ -182,79 +163,12 @@ Member loginMember2 = (Member)request.getSession().getAttribute("loginMember");
                              function removeblock(e){
                                  $(e.target).parent().parent().remove();
                              }		
- /*                             //// 날짜 출력
-                             function gdate(){
-<<<<<<< HEAD
-	var sImg = "<IMG SRC=http://www.blueb.co.kr/SRC/javascript/image7/date/";
-	var eImg = ".gif BORDER=0>";
-	var now = new Date();
-	var month = (now.getMonth() + 1);
-	var date = now.getDate();
-	var year = now.getYear();
-		now = null;     month += "";     date += "";     year += "";
-	var text = "";
-	text += "<TABLE BGCOLOR=#000000 CELLPADDING=4><TR><TD>"; 
 
-	for (var i = 0; i < year.length; ++i) {
-		text += sImg + year.charAt(i) + eImg;
-	}
-		text += sImg + "slash" + eImg;
-
-	for (var i = 0; i < month.length; ++i) {
-		text += sImg + month.charAt(i) + eImg;
-	}
-		text += sImg + "slash" + eImg;
-
-	for (var i = 0; i < date.length; ++i) {
-		text += sImg + date.charAt(i) + eImg;
-	}
-	text += "</TD></TR></TABLE>";
-	document.write(text); */
-			/* 		var sImg = "<IMG SRC=http://www.blueb.co.kr/SRC/javascript/image7/date/";
-					var eImg = ".gif BORDER=0>";
-					var now = new Date();
-					var month = (now.getMonth() + 1);
-					var date = now.getDate();
-					var year = now.getYear();
-						now = null;     month += "";     date += "";     year += "";
-					var text = "";
-					text += "<TABLE BGCOLOR=#000000 CELLPADDING=4><TR><TD>"; 
-				
-					for (var i = 0; i < year.length; ++i) {
-						text += sImg + year.charAt(i) + eImg;
-					}
-						text += sImg + "slash" + eImg;
-				
-					for (var i = 0; i < month.length; ++i) {
-						text += sImg + month.charAt(i) + eImg;
-					}
-						text += sImg + "slash" + eImg;
-				
-					for (var i = 0; i < date.length; ++i) {
-						text += sImg + date.charAt(i) + eImg;
-					}
-					text += "</TD></TR></TABLE>";
-					document.write(text);
-					
-					
-				} */
 
 
                             
-                         /*      
-                           //별점표시, 점수주기
-                             $(function(){
-                             const rating = $('.start_group');
-
-                             rating.each(function(){
-                                 const targetScore =$(this).attr('data-rate');
-                                 console.log(targetScore);
-                                 // $(this).find('img:nth-child(-n+'+targetScore+')').css({color:'red'});
-                                 $(this).find('a:nth-child(-n+'+targetScore+')').css({color:'red'});
-                                 
-                                 
-                             })
-                             }); */
+                              
+             
                              </script>
                              
                              
@@ -272,7 +186,7 @@ Member loginMember2 = (Member)request.getSession().getAttribute("loginMember");
                                      <button type="button" class="menu-delivery-delete-btn" onclick="removeblock(event);">x</button>
                                  </div>
                                  <div class="menu-date-container-box2">
-                                     <div class="menu-date-text" value=""><%=p.getpName()%>
+                                     <div class="menu-date-text" value=""><%=p.getpDetailMain()%><%=p.getpName()%>
                         
                                      </div>
                                      <div class="product-number-group" id="quantity" data-unitprice="2800" value=<%=p.getpPrice() %>>
@@ -291,10 +205,10 @@ Member loginMember2 = (Member)request.getSession().getAttribute("loginMember");
                                 </div>
                                 
                                  <!-- 날짜선택시 박스생성끝 -->
-                                 <form class="product-price-number-group" name="form" method="post" action="<%=request.getContextPath()%>/views/cart/cartViewServlet?pNo=<%p.getpNo()%>">
-                                     <p class="producttextinput">수량
+                                 <form class="product-price-number-group" name="form" method="post" action="<%=request.getContextPath()%>/views/cart/cartViewServlet?pNo=<%=p.getpNo()%>">
+                                     <p class="producttextinput" name="">수량
 
-                                         <input type="text" class="product-nember" name="pCount" value="" max="<%=p.getpStock()%>"readonly/> <span class="product_stock">개</span>
+                                         <input type="hidden" class="product-nember" name="pCount" value="currentCount" max="<%=p.getpStock()%>"readonly/>0개
                                          <input type="hidden" name="pNo" value="<%=p.getpNo() %>">
                                      </p>
                                      <p><input type="text" class="product-pricetag" id="total-price" readonly><span>원</span></input></p>
@@ -302,22 +216,11 @@ Member loginMember2 = (Member)request.getSession().getAttribute("loginMember");
                                 		<script>
 
                                 		         
-                                		//상품수량가격변경하기
-                                		var $input2=$('.producttextinput'),//감싸고잇는 div tag
-                                		$qytInput2=$input2.find('input');
-                                		var $quantity=$('#quantity'),
-                                		$unitprice= $quantity.attr('data-unitprice'),
-                                		$qtyBtn=$quantity.find('span'),
-                                		$qytInput=$quantity.find('input'),
-                              
-                                		$tagetTotal=$('#total-price'),
-                                		$tagetTotal2=$('.product-price');
-                                		
-                                		//$atybtn클릭하면 그요소가 class명 prev있다면 참이고 (플러스를 클릭햇으면)
-										//aytinput value 기존값에서 1증가 거짓이면 (마이너
-                                		
-                                		//상품
-                 
+                                	
+                                		 var tdprice1=(parseInt(<%=p.getpPrice()%>));
+                                		 var discount=(parseInt(<%=p.getpDiscount()%>));
+                                		var $tdprice= tdprice1-(tdprice1/discount);
+                                		 console.log("#ppPrice");
 
                                 		//상품수량가격변경하기
                                 		var $input2=$('.producttextinput'),
@@ -328,7 +231,7 @@ Member loginMember2 = (Member)request.getSession().getAttribute("loginMember");
                                 		$qytInput=$quantity.find('input'),
                               
                                 		$tagetTotal=$('#total-price'),
-                                		$tagetTotal1=$('.product-price');
+                                		$tagetTotal2=$('.product-price');
                                 		
                                 		//$atybtn클릭하면 그요소가 class명 prev있다면 참이고 (플러스를 클릭햇으면)
 										//aytinput value 기존값에서 1증가 거짓이면 (마이너스를 클릭햇으면 $qyinput value 기존값에서 1차감) 
@@ -337,7 +240,7 @@ Member loginMember2 = (Member)request.getSession().getAttribute("loginMember");
                                 				var currentCount=$qytInput.val();//input의 값을 가져와서
                                 			if($(this).hasClass('product-plus')){
                                 				currentCount++;
-                                				$qytInput.val(currentCount);
+                                				$qytInput.val(currentCount).prepend("텍스트 표시  안되나"+currentCount);
                                 				$qytInput2.val(currentCount);
                                 			}else{
                                 				if(currentCount > 1){//최소한개는 사게 만들어준다.
@@ -401,7 +304,7 @@ Member loginMember2 = (Member)request.getSession().getAttribute("loginMember");
                          <div class="rating_wrap">
                              <span class="rating_star">
                                  <span class="star">
-                                     <a class="start_group" data-rate="6">
+                                     <a class="start_group" data-rate="10" >
                                          <span  alt="별모양" id="star1">★</span> 
                                          <span  alt="별모양" id="star1" >★</span>
                                          <span  alt="별모양" id="star1" >★</span>
@@ -410,9 +313,35 @@ Member loginMember2 = (Member)request.getSession().getAttribute("loginMember");
                                      
                                          <span style="width:95.39999%;">
                                              <span class="hide">별점</span>
-                                             <span class="num">0</span>
+                                             <span class="num" alt=""></span>
                                          </span>
+                                         
                                      </a>
+                                     <script>
+                                     //별점표시, 점수주기
+                                    $(function(){
+                                     const rating = $('.num').text();
+                                     console.log(rating);
+
+                                     $(".start_group").each(function(){
+                                         const targetScore = (parseInt($(this).attr('data-rate')));//형변환해주고 
+                                         console.log(targetScore);//여기서 프리트해서 값확인
+                                         $(".num").text(targetScore);//별점 출력
+                                         //정수인지 아닌지 확인
+                                         if(($(this).attr('data-rate'))!==targetScore){
+                                        	 console.log("정수:참");
+                                         }else console.log("문자열:거짓");
+                                         // $(this).find('img:nth-child(-n+'+targetScore+')').css({color:'red'});
+                                        $(this).find('a:nth-child(-n+'+targetScore+')').css({color:'#f00'});
+                                        	console.log(('a:nth-child(-n+'+targetScore+')'));
+											console.log($(this).find('a:nth-child(-n+'+targetScore+')'));
+										 })
+                                     }); 
+                                     
+
+                                     </script>
+                                     
+                                     
                                      <!-- 백그라운드 커스텀 영역 -->
                                      <!-- background image활성화영역 20%에 한개씩 점수가 채워짐 -->
                                  </span>
