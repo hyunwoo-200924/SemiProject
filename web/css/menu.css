@@ -124,8 +124,8 @@ a:hover{
 }
 
 .menuview-text-items{
-    display:inli ;
-    justify-content:space-between;
+    display:gird ;
+    grid-template-columns: auto auto auto;
    
     padding: 5px 15px;
     border-bottom: 0.5px solid #333;
@@ -218,7 +218,8 @@ margin: 50px;
 .resipy-img-group{
     margin: 50px;
     display: grid;
-    grid-template-columns: repeat(3,380px);
+    grid-template-columns: auto auto auto;
+    justify-content: space-around;
     gap: 30px 50px;
 }
 .resipy-img{
@@ -243,10 +244,10 @@ margin: 50px;
 .resipy-imag-group-container-group{
 
     display: grid;
-    grid-template-columns: repeat(1, 380px 380px);
-    grid-template-rows: repeat(2, 400px);
-    justify-content: start;
-    gap: 100px;
+       grid-template-columns: auto auto;
+    grid-template-rows: auto auto;
+    justify-content: space-around;
+    gap: 80px;
     margin: 30px;
  
     
@@ -575,7 +576,10 @@ th, td{
   }
   dd{
       display: grid;
-      align-content: center;
+      
       padding:20px;
+  }
+  #total-price{
+  border: none;
   }
  
