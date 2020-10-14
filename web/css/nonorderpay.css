@@ -1,5 +1,4 @@
 @charset "UTF-8";
-@charset "UTF-8";
 /* 결제창 block */
 *{
 	    margin: 3px;
@@ -39,7 +38,7 @@
     padding: 20px 20px;
     display: block;
     border-radius: 10px;
-    background: rgba(128,128,128,.2);
+    background:  #0382a4;
     
    
 }

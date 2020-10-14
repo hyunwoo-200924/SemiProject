@@ -14,6 +14,13 @@
 	}
 %>
 
+<style>
+.filsu2 p:after{
+	content:'*';
+	color: #ee6a7b;	
+}
+</style>
+
 <%@ include file="/views/common/header.jsp"%>
 
 		<section class="container">
@@ -98,16 +105,16 @@
 							<p>생년월일</p>
 							<input type="date" id="birth" name="birth" value="<%= m.getmBirth() %>">
 						</div>
-						<div class="form_box">
-							<p>선택약관동의</p>
-							<label>
-							<input type="checkbox" value="Y">개인정보방침 동의<span class="choice">(선택)</span>
-							</label>
-						</div>
-						<div class="form_box">
+						<div class="form_box filsu2">
 							<p>이용약관동의</p>
 							<label>
-							<input type="checkbox" value="Y">개인정보방침 동의<span class="choice">(선택)</span>
+							<input type="checkbox" id="useAgree" value="Y">이용약관 동의<span class="choice">(필수)</span>
+							</label>
+						</div>
+						<div class="form_box" style="padding-bottom: 20px;">
+							<p>선택약관동의</p>
+							<label>
+							<input type="checkbox" id="choiceAgree" value="Y">선택약관 동의<span class="choice">(선택)</span>
 							</label>
 						</div>
 						
@@ -200,6 +207,10 @@
 				}
 				if(!pwCkMsg){
 					alert('동일한 비밀번호를 입력해 주세요.')
+					return false;
+				}
+				if($("#useAgree").is(':checked') == false){
+					alert('이용약관 동의 체크를 해주세요.');
 					return false;
 				}
 				

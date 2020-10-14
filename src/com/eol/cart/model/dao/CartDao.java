@@ -128,7 +128,7 @@ public class CartDao {
 		}return result;
 	}
 	
-	public int updateCartNum(Connection conn , int mNo, int pNo) {
+	public int updateCartNum(Connection conn , int mNo, int pNo, String oDeliveryEDate) {
 		PreparedStatement pstmt = null;
 		int result = 0;
 		System.out.println("6666666");
@@ -136,8 +136,25 @@ public class CartDao {
 		try {
 			pstmt = conn.prepareStatement(prop.getProperty("updateCartNum"));
 			//System.out.println("돌아가나??" + pCount);
+			pstmt.setString(1, oDeliveryEDate);
+			pstmt.setInt(2, mNo);
+			pstmt.setInt(3, pNo);
+			result = pstmt.executeUpdate();
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}return result;
+	}
+	
+	//회원이 결제하고 나서 장바구니 자동으로 비우는거
+	public int deleteCart(Connection conn, int mNo) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		try {
+			pstmt=conn.prepareStatement(prop.getProperty("deleteCart"));
+			//deleteCart=DELETE FROM CART WHERE M_NO=?;
 			pstmt.setInt(1, mNo);
-			pstmt.setInt(2, pNo);
 			result = pstmt.executeUpdate();
 		}catch(SQLException e) {
 			e.printStackTrace();

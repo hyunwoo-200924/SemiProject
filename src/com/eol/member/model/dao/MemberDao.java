@@ -5,7 +5,6 @@ import static com.eol.common.JDBCTemplate.close;
 import java.io.FileReader;
 import java.io.IOException;
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -292,6 +291,22 @@ public class MemberDao {
 			close(rs);
 			close(pstmt);
 		}return m;
+	}
+	
+	public int updatePoint(Connection conn, Member m) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		try {
+			pstmt = conn.prepareStatement(prop.getProperty("updatePoint"));
+			//updatePoint=UPDATE MEMBER SET M_POINT=? WHERE M_NO=?
+			pstmt.setInt(1, m.getmPonint());
+			pstmt.setInt(2, m.getmNo());
+			result = pstmt.executeUpdate();
+		}catch(SQLException e){
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}return result;
 	}
 
 }

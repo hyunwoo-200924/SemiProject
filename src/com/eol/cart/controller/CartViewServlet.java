@@ -1,7 +1,9 @@
 package com.eol.cart.controller;
 
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -43,13 +45,22 @@ public class CartViewServlet extends HttpServlet {
 		System.out.println(request.getParameter("날짜가 널이냐?"+"OderDay"));
 
 		Member m = (Member)request.getSession().getAttribute("loginMember"); //회원 정보 가져오기
-		System.out.println(m);
 		int pNo=Integer.parseInt(request.getParameter("pNo"));
+		
+		String oDeliveryEDate = request.getParameter("OderDay");
+		
+		if(oDeliveryEDate == null) {
+			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+			Date today = new Date();
+			oDeliveryEDate = sdf.format(today);
+		}
+		
+		System.out.println(oDeliveryEDate);
+		
 		String pCountStr = request.getParameter("pCount");
 		int pCount = 0;
-		List a = new ArrayList();
 		
-		
+		List a = new ArrayList();//상품번호 담을 리스트
 		
 		if(pCountStr == null) {
 			pCount = 1;
@@ -63,10 +74,12 @@ public class CartViewServlet extends HttpServlet {
 			List<Product> nonCartList = (ArrayList)request.getSession().getAttribute("nonCartList");
 			
 			if(nonCartList.size() == 0) {
+				
 				System.out.println("장바구니에 아무것도 안담겼다");
 				Product p = new ProductService().selectOneProduct(pNo);
 				p.setpCount(pCount);
-//				p.setDelivery("20/10/12");
+				p.setDelivery(oDeliveryEDate);
+				
 				nonCartList.add(p);
 				
 			} else {
@@ -74,11 +87,10 @@ public class CartViewServlet extends HttpServlet {
 				for(int ii = 0; ii < nonCartList.size(); ii++) {
 					
 					for(int i = 0; i < nonCartList.size(); i++) {
-						
 						a.add(nonCartList.get(i).getpNo());
 					}
-					
 					System.out.println(a);
+					
 					if(a.contains(pNo)) {
 						
 						System.out.println("같은상품 들어왔어");
@@ -99,6 +111,8 @@ public class CartViewServlet extends HttpServlet {
 						System.out.println("처음 들어온 상품" + p1.getpCount());
 						System.out.println(pCount);
 						p1.setpCount(pCount);
+						p1.setDelivery(oDeliveryEDate);
+						
 						System.out.println(p1.getpCount());
 						nonCartList.add(p1);
 						break;
@@ -115,8 +129,10 @@ public class CartViewServlet extends HttpServlet {
 			Cart c = new Cart();
 			c.setmNo(m.getmNo());
 			c.setpNo(pNo);
+			c.setoDeliveryEDate(oDeliveryEDate);
 			
 			int result = 0;
+			
 			List<Cart> list = new CartService().cartintopay(m.getmNo()); 
 			
 			a = new ArrayList();
@@ -128,7 +144,7 @@ public class CartViewServlet extends HttpServlet {
 			if(a.contains(pNo)) {
 				//같은 상품 들어올때
 				System.out.println("수량 :"+pCount);
-				result = new CartService().updateCartNum(m.getmNo(),pNo);
+				result = new CartService().updateCartNum(m.getmNo(),pNo,oDeliveryEDate);
 				System.out.println("같은 상품"+result);
 				
 				
@@ -139,12 +155,13 @@ public class CartViewServlet extends HttpServlet {
 				System.out.println("다른 상품"+result);
 			}
 			
-			c.setoDeliveryEDate(request.getParameter("oDelivertEDate"));
+			
 			if(result>0) {
 				System.out.println(list);
 				String msg ="상품이 장바구니에 담겼습니다.";
 				
-				request.getSession().setAttribute("memberCart", list);
+				List<Cart> list1 = new CartService().cartintopay(m.getmNo());
+				request.getSession().setAttribute("memberCart", list1);
 				
 				request.setAttribute("msg",msg);
 				request.setAttribute("loc", "/views/cart/memberCart.jsp");

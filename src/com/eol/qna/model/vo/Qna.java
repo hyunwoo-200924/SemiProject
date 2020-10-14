@@ -16,6 +16,7 @@ public class Qna {
 	private String qStatus;
 	private String mId;
 	private String answerResult;
+	private String answerDate;
 	
 	public Qna() {
 		// TODO Auto-generated constructor stub
@@ -130,6 +131,14 @@ public class Qna {
 
 	public void setAnswerResult(String answerResult) {
 		this.answerResult = answerResult;
+	}
+
+	public String getAnswerDate() {
+		return answerDate;
+	}
+
+	public void setAnswerDate(String answerDate) {
+		this.answerDate = answerDate;
 	}
 
 	@Override

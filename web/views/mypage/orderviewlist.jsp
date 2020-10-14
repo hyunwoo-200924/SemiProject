@@ -19,7 +19,7 @@ href="<%=request.getContextPath() %>/css/orderviewlist.css">
 	
 	<div class="content">
 		<h1>주문 / 배송조회</h1>
-		<form action="" name="orderView" id="orderView" method="post">
+		<!-- <form action="" name="orderView" id="orderView" method="post">
 			<select name="year" id="year">
 				<option value="2019">2019년</option>
 				<option value="2020">2020년</option>
@@ -37,7 +37,7 @@ href="<%=request.getContextPath() %>/css/orderviewlist.css">
 				<option value="11">11월</option>
 				<option value="12">12월</option>
 			</select> <input type="button" id="orderdate" value="조회">
-		</form>
+		</form> -->
 		
 		<%if(olist.isEmpty()){ %>
 		<div class="detail">
@@ -47,9 +47,11 @@ href="<%=request.getContextPath() %>/css/orderviewlist.css">
 		<div class="detail">
 		<% for(Orders o : olist){ %>
 			<div class="orderNumber">
-				<p> <%=o.getoPayDate() %> (<%=o.getoNo() %>)</p>
+			<span><%=o.getoPayDate() %> (<%=o.getoNo() %>)</span><button class="deliverybtn" onclick="#">배송조회</button>
+			
 			</div>
 			<% for(OrderDetail od : o.getDetails()){ %>
+			<div class="odview">
 			<div class="productView">
 				<div class="order_pro_img">
 					<img src="<%=request.getContextPath() %>/upload/product/<%=od.getOdproduct().getpImage1() %>" alt="" width="100" height="100">
@@ -59,7 +61,6 @@ href="<%=request.getContextPath() %>/css/orderviewlist.css">
 					<p><%=od.getOdproduct().getpPrice() %> / <%=od.getOdQty() %></p>
 				</div>
 			</div>
-			<%} %>
 			<div class="orderButton">
 				<div class="arriveDate">
 					<p><%=o.getoDeliveryStatus() %></p>
@@ -67,26 +68,23 @@ href="<%=request.getContextPath() %>/css/orderviewlist.css">
 					<p><%=o.getoDeliveryEDate() %> 도착예정</p>
 				</div>
 				<ul class="Button">
-					<li><button>
-							<a href="">배송조회</a>
-						</button></li>
-					<li><button>
-							<a href="">교환신청</a>
-						</button></li>
-					<li><button>
-							<a href="">반품신청</a>
-						</button></li>
-					<li><button>
-							<a href="">리뷰쓰기</a>
-						</button></li>
+					<%-- <form action="<%=request.getContextPath() %>/cancel.do" name="cancel" id="cancel" method="">
+					<input type="hidden" value="<%=o.getoNo() %>" name="canceloNo">
+					</form> --%>
+					<li><button onclick="">취소신청</button></li>
+					<li><button>환불신청</button></li>
+					<li><button>리뷰쓰기</button></li>
 				</ul>
 			</div>
+			</div>
+			<%} %>
 			<%} %>
 		</div>
 		<%} %>
 </section>
 
 <script>
+$("#cancel").submit();
 $("#orderdate").click()
 </script>
 

@@ -3,12 +3,42 @@
 <%
 	
 %>
+<style>
+	.buttonStyle{
+		height: 40px;
+	    width: 176px;
+	    background-color: #333;
+	    border: none;
+	    color: white;
+	}
+	.buttonStyle:hover{
+		cursor:pointer;
+		background-color: black;
+	}
+	.can{
+	    height: 40px;
+    position: absolute;
+    bottom: 250px;
+    left: 440px;
+	}
+	.del{
+	    height: 40px;
+    position: absolute;
+    bottom: 250px;
+    right: 440px;
+	}
+	.filsu2 p:after{
+	content:'*';
+	color: #ee6a7b;	
+	}
+</style>
 <%@ include file="/views/common/header.jsp"%>
 
-		<section class="container2">
-			<div class="user_content_form_wrap">
-				<div class="title">
+		<section class="container2" style="height: 1200px;">
+			<div class="user_content_form_wrap" style="border-bottom: 1px solid black;  padding-bottom: 30px;">
+				<div class="title" style="padding-bottom: 40px;">
 					<h1 style="text-align:center">회원 탈퇴</h1>
+					<p style="position: absolute; right: 105px; top: 360px;"><span style="color: #ee6a7b;">*</span>필수입력사항</p>
 				</div>
 				<div class="user_delete_form">
 					<div class="form_box_delete" style="line-height: 30px;">
@@ -33,8 +63,8 @@
 						<p>비밀번호 확인</p>
 						<input type="password" id="pw" style="width: 350px; height: 40px;">
 					</div>
-					<div class="form_box_delete">
-						<p>무엇이 불편하셨나요?</p>
+					<div class="form_box_delete filsu2">
+						<p>탈퇴 사유</p>
 						<div class="checkbox_container">
 							<div class="checkbox">
 								<label for="d_reson0"><input type="checkbox" name="d_reason" id="d_reson0" value="comple_service">고객서비스(상담,포장 등)불만</label>
@@ -49,13 +79,12 @@
 						</div>
 					</div>
 					<div class="form_box_delete">
-						<textarea cols="30" rows="10"></textarea>
-					</div>
-					<div class="button col2">
-							<input type="button" value="취소" onclick="history.go(-1);">
-							<input type="button" value="탈퇴" onclick="memberDelete()">
+						<p>무엇이 불편하셨나요?</p>
+						<textarea cols="30" rows="10" placeholder="고객님의 충고 부탁드립니다."></textarea>
 					</div>
 				</div>
+					<input type="button" class="buttonStyle can" style="height: 40px;" value="취소" onclick="history.go(-1);">
+					<input type="button" class="buttonStyle del" style="height: 40px;" value="탈퇴" onclick="memberDelete()">
 			</div>
 		</section>
 		
@@ -64,6 +93,10 @@
 				//비밀번호 빈칸일 때
 				if($("#pw").val().trim() == "") {
 					alert("비밀번호를 입력해주세요.");
+					return;
+				}
+				if($("input[name='d_reason']").is(':checked') == false){
+					alert("탈퇴 사유를 선택해주세요.");
 					return;
 				}
  				$.ajax({
