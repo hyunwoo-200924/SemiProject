@@ -40,20 +40,11 @@ href="<%=request.getContextPath() %>/css/cart.css">
                 <span>개</span>
                 </div>
                 <div class="btnClass">
-	            <button class="btn" onclick="inputproduct();">상품결제</button>
+	            <button class="btn" onclick="location.replace('<%=request.getContextPath()%>/cartintopay.do')">상품결제</button>
 	            <button class="btn">삭제</button>
             	</div>
             	</div>
-            	<form id="inputpNo" action="<%=request.getContextPath()%>/cartintopay.do" method="post">
-            	<input type="hidden" name="pNo" value="<%=p.getpNo()%>">
-            	</form>
             <script>
-            
-            	function inputproduct(){
-            		$('#inputpNo').submit();
-            	}
-            
-            	
            		//상품수량가격변경하기
            		var $input2=$('.producttextinput'),
            		$qytInput2=$input2.find('input');

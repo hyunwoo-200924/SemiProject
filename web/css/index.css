@@ -209,7 +209,7 @@
 }
 
 
-.best-container h1{
+h1{
 	font-size: 40px;
 	letter-spacing: 2px;
 	padding: 30px;
@@ -217,17 +217,39 @@
 }
 
 .main-best {
-	margin: auto;
+	width: 100%;
+	margin: 10px;
 	text-align: center;
 }
 .main-best td img{
-	width: 300px;
-	height: 300px;
+	width: 400px;
+    height: 400px;
 	
 }
 
 tr.name{
-	font-size: 20px;
+	font-size: 30px;
+	font-weight: bolder;
+}
+
+.main-best td a{
+	text-decoration: none;
+	color: black;
+}
+
+.main-hot {
+	width: 100%;
+	margin: 10px;
+	text-align: center;
+}
+.main-hot td img{
+	width: 400px;
+    height: 400px;
+	
+}
+
+td.name{
+	font-size: 30px;
 	font-weight: bolder;
 }
 
