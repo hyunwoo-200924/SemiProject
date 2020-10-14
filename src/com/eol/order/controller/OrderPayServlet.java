@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.eol.cart.model.service.CartService;
 import com.eol.cart.model.vo.Cart;
+import com.eol.member.model.service.MemberService;
 import com.eol.member.model.vo.Member;
 import com.eol.order.model.service.OrderService;
 import com.eol.order.model.vo.Orders;
@@ -43,11 +44,16 @@ public class OrderPayServlet extends HttpServlet {
 		Orders o = new Orders();
 		int result = 0;
 		int odresult = 0;
+		int getPoint = 0;
+		int gpresult = 0;
 		
 		if(m!=null) {		//회원이 주문결제 했을 경우	
 			o.setmNo(m.getmNo());
 			o.setoName(m.getmName());
 			o.setoPhone(m.getmPhone());
+			getPoint=m.getmPonint()+(Integer.parseInt(request.getParameter("oAmount")))/10;
+			m.setmPonint(getPoint);
+			gpresult = new MemberService().updatePoint(m);
 		}else {//비회원이 주문했을경우
 			o.setoPw(request.getParameter("oPw"));
 			o.setoName(request.getParameter("oName"));
