@@ -105,9 +105,14 @@
                 
             <%for(Product p : list) {%>
             	<% if(loginMember1!=null&&(loginMember1.getmId().equals("admin"))){%>
+            	<div>
+            	
                             <div id="pNo" style="display:none;"><%=p.getpNo()%></div>
       		<input type="button" class="product-register" id="updateProduct" onclick="location.assign('<%=request.getContextPath() %>/product/productUpdate?pNo=<%=p.getpNo() %>')" value="수정">
       		<input type="button" class="product-register" id="deleteProduct" onclick="location.assign('<%=request.getContextPath() %>/product/productDelete?pNo=<%=p.getpNo() %>')" value="삭제">
+           
+            	
+            	</div>
               <%}%> 
 					              
               <div class="menu-img-group">
