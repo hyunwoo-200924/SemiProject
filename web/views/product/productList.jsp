@@ -1,13 +1,17 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/css/menu.css">  
-
+<%@page import ="java.util.Date" %>
 <%@ page import="java.util.List,com.eol.product.model.vo.Product, com.eol.member.model.vo.Member" %>
 <%@ include file="/views/common/header.jsp"%>
 <%
 	List<Product> list=(List)request.getAttribute("list");
 	String pageBar=(String)request.getAttribute("pageBar");
 	Member loginMember1 = (Member)request.getSession().getAttribute("loginMember");
+	 Date now = new Date();
+	/*  SimpleDateFormat sf = new SimpleDateFormat("yyyy년MM월dd일 E요일 a hh:mm:ss"); */
+	 
+	 /* String today = sf.format(now); */
 %>
 
 
@@ -34,7 +38,7 @@
                         <!-- hover를 줘서 클릭하게되면 동그란색안에 숫자가 표현되게해야함 -->
                         <ul class="head-right">
                         
-                            <li class="head-right-items1">화<p class="week-day">25</p></li>
+                            <li id="nextday" class="head-right-items1">화<p class="week-day">25</p></li>
                             <li class="head-right-items1">수<p class="week-day">26</p></li>
                             <li class="head-right-items1">목<p class="week-day">27</p></li>
                             <li class="head-right-items1">금<p class="week-day">28</p></li>
@@ -43,15 +47,39 @@
                         </ul>
                     </div>
                 </div>
+                <script >
+                	//설정 날짜 기준일 setday , 기준일 전날 yesterday, 기준일다음날 tomorrow 기준일 다다음날 next day
+                	$(document).ready(function(){
+                		
+                	var orderdate= new date();
+                	var year=date.getFullYear();
+                	var month= date.getMonth()+1;
+                	var day= date.getDate();
+                	
+                	var dayoftheweek = date.getDay();
+                	
+                	if(month< 10){
+                		month ="0"+ month;
+                	}
+                		
+                		if(day<10){
+                			day="0"+day;//앞에 00이런식으로 나오기위해 스트링값을 더해줌.
+                		}
+                		$('.setday').append(year+"년"+month+"월"+day);
+                		console.log($('.setday').append(year+"년"+month+"월"+day));
+                	});
+                	
+                </script>
+                
                 <div class="head-text-group">
                     <div class="head-text border-top">
 
-                        <h2 class="h2"><span class="change_date_print">9월 22일 화요일</span>배송가능한 메뉴입니다.</h2>
+                        <h2 class="h2"><span class="setday">9월 22일 화요일</span>배송가능한 메뉴입니다.</h2>
                     </div>
                     <div class="head-text1">
 
                         <div class="head-left">
-                            <h5>뚝딱kit의 주문마감은 <span class="date-change">9월 25일(금)</span> 오전7시입니다.</h5>
+                            <h5>뚝딱kit의 주문마감은 <span class="setday">9월 25일(금)</span> 오전7시입니다.</h5>
                         </div>
                         <ul class="head-right">
                             <li class="head-right-items2"><a href="">신메뉴</a></li>
@@ -110,7 +138,7 @@
                                     </ul>
                                 </a>
                                 <!-- 리뷰페이지로 ~ -->
-                                <a  href="<%=request.getContextPath() %>/review/review" class="menu--text-group">
+                                <a  href="<%=request.getContextPath() %>/review/reviewList" class="menu--text-group">
                                     <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
 
                                    
@@ -133,7 +161,7 @@
                             <a href="<%=request.getContextPath() %>/views/cart/cartViewServlet?pNo=<%=p.getpNo() %>" id="cartBtn" name="">
 
 
-                                <img src="<%=request.getContextPath() %>/images/product/cart40px.jpg" alt="장바구니" class="cart--img" onclick="cartInsert()"></img>
+                                <img src="<%=request.getContextPath() %>/images/mainImages/shopping-cart-solid.svg" alt="" width="30px" height="30px"  class="cart--img" onclick="cartInsert()"></img>
                             </a>
                         </ul>
                     </div>
