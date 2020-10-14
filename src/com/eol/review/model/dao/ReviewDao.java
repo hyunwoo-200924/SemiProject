@@ -167,14 +167,22 @@ public class ReviewDao {
 		return result;
 	}
 	
-	/*
-	 * public int reviewDelete(Connection conn, Review r, int oNo, int pNo) {
-	 * PreparedStatement pstmt = null; ResultSet rs=null; int result = 0; try {
-	 * pstmt=conn.prepareStatement(prop.getProperty("reviewDelete"));
-	 * r.setoNo(rs.getInt("O_NO")); r.setpNo(rs.getInt("P_NO")); pstmt.setInt(1,
-	 * r.getoNo()); pstmt.setInt(2, r.getpNo());
-	 * 
-	 * result = pstmt.executeUpdate(); }catch(Exception e) { e.printStackTrace();
-	 * }finally { close(pstmt); } return result; }
-	 */
+	
+	public int reviewDelete(Connection conn, Review r, int oNo, int pNo) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		try {
+			pstmt = conn.prepareStatement(prop.getProperty("reviewDelete"));
+			pstmt.setInt(1, oNo);
+			pstmt.setInt(2, pNo);
+
+			result=pstmt.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		return result;
+	}
+
 }

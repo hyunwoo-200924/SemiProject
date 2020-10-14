@@ -588,3 +588,7 @@ th, td{
   border: none;
   }
  
+ #star{
+ 	position : relative;
+ 	margin-left : 40px;
+ }

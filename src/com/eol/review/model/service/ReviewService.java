@@ -55,11 +55,17 @@ public class ReviewService {
 		return list;
 	}
 	
-	/*
-	 * public int reviewDelete(Review r, int oNo, int pNo) { Connection conn =
-	 * getConnection(); int result = dao.reviewDelete(conn, r, oNo, pNo);
-	 * if(result>0) commit(conn); else rollback(conn); close(conn); return result; }
-	 */
+	
+	public int reviewDelete(Review r, int oNo, int pNo) {
+		Connection conn = getConnection();
+		int result = dao.reviewDelete(conn, r, oNo, pNo);
+		if (result > 0)
+			commit(conn);
+		else
+			rollback(conn);
+		close(conn);
+		return result;
+	} 
 	
 	
 }

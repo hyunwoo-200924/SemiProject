@@ -14,6 +14,8 @@
 
 <link rel="stylesheet" type="text/css"
 	href="<%=request.getContextPath()%>/css/review.css">
+	
+<%@ include file="/views/mypage/common/mypagenav.jsp" %>
 
 <script>
 	$(function(){
@@ -43,7 +45,7 @@
 		<table>
 			<%if (list.isEmpty()) {%>
 				<tr>
-					<td colspan="3"><p style="text-align: center">작성 가능한 게시글이
+					<td colspan="3"><p style="text-align: center">작성 가능한 리뷰가
 							없습니다.</p></td>
 				</tr>
 			<%} else { %>
@@ -140,7 +142,7 @@
 									<td><%=r.getpName() %></td>
 									<td><%=m.getmName()%></td>
 									<td><%=r.getrRdate()%></td>
-									<%-- <td><button onclick="location.replace('<%=request.getContextPath()%>/review/reviewDelete?oNo=<%=r.getoNo()%>&pNo=<%=r.getpNo()%>')">삭제하기</button></td> --%>
+									<td><button onclick="location.replace('<%=request.getContextPath()%>/review/reviewDelete?oNo=<%=r.getoNo()%>&pNo=<%=r.getpNo()%>')">삭제하기</button></td>
 								</tr>
 							<%} %>
 					<%} %>

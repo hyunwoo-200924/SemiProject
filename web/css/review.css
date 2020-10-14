@@ -2,7 +2,6 @@
 #reviews-container{
     display: block;
     /* margin-top:20px ; */
-
 }
 
 .reviews-h1{
@@ -96,5 +95,3 @@ th,td{
    position: relative;
    margin-left : 20px;
 }
-
-

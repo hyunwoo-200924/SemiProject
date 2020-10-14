@@ -240,7 +240,8 @@ Review r=(Review)request.getAttribute("Review");
                                 	
                                 		 var tdprice1=(parseInt(<%=p.getpPrice()%>));
                                 		 var discount=(parseInt(<%=p.getpDiscount()%>));
-                                		var $tdprice= tdprice1-(tdprice1/discount);
+                                		var $tdprice= tdprice1-(tdprice1 * discount/100);
+                                		
                                 		 console.log("#ppPrice");
 
                                 		//상품수량가격변경하기
