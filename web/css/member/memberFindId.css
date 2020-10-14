@@ -1,7 +1,7 @@
 @charset "UTF-8";
 
 h1{
-	font-size: 39px;
+	font-size: 47px;
 	margin: 150px;
 }
 .findIdContainer{
@@ -15,6 +15,8 @@ h1{
 .findIdText{
     text-align: center;
     margin-top: 100px;
+    margin-bottom: 238px;
+}
 }
 .bTn{
 	background: black;

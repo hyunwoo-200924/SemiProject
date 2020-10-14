@@ -17,7 +17,7 @@
 <link rel="stylesheet" type="text/css" 
 href="<%=request.getContextPath() %>/css/cart.css">
 <%@include file="/views/common/header.jsp" %>
-
+<%if(!memberCart.isEmpty()){ %>
 <div class="cart-section-container">
     <h2 class="cart-head-text"> 장바구니 </h2>
     <div class="btnClass">
@@ -80,7 +80,9 @@ href="<%=request.getContextPath() %>/css/cart.css">
 		<%} %>
     </section>
 </div>
-<script>
-
-</script>
+<%}else{ %>
+	<div class="cart-section-container">
+    	<h2 class="cart-head-text"> 장바구니 </h2>
+    </div>
+<%} %>
 <%@include file="/views/common/footer.jsp" %>

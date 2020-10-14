@@ -49,8 +49,9 @@ public class MemberFindPwEndServlet extends HttpServlet {
 			
 			String msg ="이메일을 다시 확인해 주세요!";
 			request.setAttribute("msg",msg);
-			request.setAttribute("loc", "/");
+			request.setAttribute("loc", "/views/member/MemberFindPw.jsp");
 			request.getRequestDispatcher("/views/common/msg.jsp").forward(request, response);
+			request.getRequestDispatcher("/views/member/MemberFindPw.jsp").forward(request, response);
 		}else {
 			
 			// naver mail server 설정
