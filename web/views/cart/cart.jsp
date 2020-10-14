@@ -43,17 +43,15 @@ href="<%=request.getContextPath() %>/css/cart.css">
                 <span type="button" value="＋" class="product-plus" id="minus">+</span>
                 <span>개</span>
                 </div>
+<<<<<<< HEAD
+=======
+                <div class="btnClass">
+	            <button class="btn" onclick="location.replace('<%=request.getContextPath()%>/cartintopay.do')">상품결제</button>
+	            <button class="btn">삭제</button>
             	</div>
-            	<form id="inputpNo" action="<%=request.getContextPath()%>/cartintopay.do" method="post">
-            	<input type="hidden" name="pNo" value="<%=p.getpNo()%>">
-            	</form>
+>>>>>>> branch 'master' of https://github.com/hyunwoo-200924/SemiProject.git
+            	</div>
             <script>
-            
-            	function inputproduct(){
-            		$('#inputpNo').submit();
-            	}
-            
-            	
            		//상품수량가격변경하기
            		var $input2=$('.producttextinput'),
            		$qytInput2=$input2.find('input');
