@@ -48,7 +48,5 @@ public class CartService {
 		close(conn);
 		return result;
 
-		
-		
 	}
 }

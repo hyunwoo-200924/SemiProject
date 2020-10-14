@@ -14,56 +14,78 @@
     text-align: center;
     line-height: 30px;
 }
+#enrollBtn{
+	
+    height: 40px;
+    width: 176px;
+    background-color: #333;
+    border: none;
+    color: white;
+}
+.filsu2 p:after{
+	content:'*';
+	color: #ee6a7b;	
+}
+.dupli,#addressButton,#enrollBtn:hover{
+	cursor:pointer;
+}
+#enrollBtn:hover{
+	background-color: black;
+}
+#useAgree, #choiceAgree, #birth:hover{
+cursor:pointer;
+}
 </style>
 
 		<section class="container2">
 			<div class="user_content_form_wrap">
-				<div class="title">
-					<h1 style="text-align:center">회원가입</h1>
+				<div class="title" style="border-bottom: none;">
+					<h1 style="text-align:center; padding-bottom: 0px;">회원가입</h1>
+					<p style="position: relative; left: 718px; top: 48px;font-size: 11px;"><span style="color: #ee6a7b;">*</span>필수입력사항</p>
 				</div>
 				<form id="memberFrm" method="post" action="<%=request.getContextPath()%>/memberEnroll.do">
-					<div class="user_update_form">
-						<div class="form_box col3">
+					<div class="user_update_form" style="border-top: 1px solid; padding-top: 20px;">
+						<div class="form_box col3 filsu2">
 							<p>아이디</p>
-							<input type="text" name="id" id="id" maxlength="20" autocomplete="off" required>
-							<input type="button" value="중복확인" onclick="idCk();">
-							<div id="idCkMSg" style="display:none;  grid-column-start: 2;">
+							<input type="text" name="id" id="id" maxlength="20" autocomplete="off" required placeholder="6자 이상의 영문과 숫자를 조합">
+							<input type="button" class="dupli" value="중복확인" onclick="idCk();">
+							<div id="idCkMSg" style="display:none;  grid-column-start: 2; font-size: 13px;">
 								<span id="id1" style="display: block;color:red;">6자 이상의 영문과 숫자를 조합</span>
 								<span id="id2" style="display: block;color:red;">아이디 중복확인</span>
 							</div>
 						</div>
-						<div class="form_box">
+						<div class="form_box filsu2">
 							<p>비밀번호</p>
-							<input type="password" name="pw" id="pw" maxlength="20" required>
-							<div id="pwMsg" style="display:none;  grid-column-start: 2;">
+							<input type="password" name="pw" id="pw" maxlength="20" required placeholder="비밀번호를 입력해주세요">
+							<div id="pwMsg" style="display:none;  grid-column-start: 2;  font-size: 13px;">
 								<span id="pw1" style="display: block;color:red;">최소 10자 이상 입력</span>
 								<span id="pw2" style="display: block;color:red;">영문/숫자/특수문자(공백제외)만 허용하며, 2개 이상 조합</span>
 							</div>
 						</div>
-						<div class="form_box">
+						<div class="form_box filsu2">
 							<p>비밀번호 확인</p>
-							<input type="password" id="pwck" maxlength="20" required>
-							<div id="pwCkMsg" style="display:none;  grid-column-start: 2;">
+							<input type="password" id="pwck" maxlength="20" required placeholder="비밀번호를 한번 더 입력해주세요">
+							<div id="pwCkMsg" style="display:none;  grid-column-start: 2;  font-size: 13px;">
 								<span id="pw3" style="display: block;color:red;">동일한 비밀번호를 입력해주세요.</span>
 							</div>
 						</div>
-						<div class="form_box">
+						<div class="form_box filsu2">
 							<p>이름</p>
-							<input type="text" id="name" name="name" autocomplete="off" required>
+							<input type="text" id="name" name="name" autocomplete="off" required placeholder="이름을 입력해주세요">
 						</div>
-						<div class="form_box col3">
+						<div class="form_box col3 filsu2">
 							<p>이메일</p>
-							<input type="email"  id="email" name="email" autocomplete="off" required>
-							<input type="button" value="중복확인" onclick="emailCk();" >
-							<div id="emailCkMsg" style="display:none;  grid-column-start: 2;">
+							<input type="email"  id="email" name="email" autocomplete="off" required placeholder="예:ddukddakcook@ddukddak.com">
+							<input type="button" class="dupli" value="중복확인" onclick="emailCk();" >
+							<div id="emailCkMsg" style="display:none;  grid-column-start: 2;  font-size: 13px;">
 								<span id="email1" style="display: block;color:red;">이메일 중복확인</span>
 							</div>
 						</div>
-						<div class="form_box">
+						<div class="form_box filsu2">
 							<p>휴대폰</p>
-							<input type="text" id="phone" name="phone" autocomplete="off" required>
+							<input type="text" id="phone" name="phone" autocomplete="off" required placeholder="숫자만 입력해주세요">
 						</div>
-						<div class="form_box">
+						<div class="form_box filsu2">
 							<p>주소</p>
 							<input type="button" id="addressButton" onclick="fn_address();" value="주소검색">
 							<input type="text" id="address" name="address1" style="display: none; grid-column-start: 2;" readonly  >
@@ -85,25 +107,25 @@
 								</label>
 							</div>
 						</div>
-						<div class="form_box">
+						<div class="form_box ">
 							<p>생년월일</p>
 							<input type="date" id="birth" name="birth">
 						</div>
-						<div class="form_box">
-							<p>선택약관동의</p>
-							<label>
-							<input type="checkbox" value="Y">개인정보방침 동의<span class="choice">(선택)</span>
-							</label>
-						</div>
-						<div class="form_box">
+						<div class="form_box filsu2">
 							<p>이용약관동의</p>
 							<label>
-							<input type="checkbox" value="Y">개인정보방침 동의<span class="choice">(선택)</span>
+							<input type="checkbox" id="useAgree" value="Y">이용약관 동의<span class="choice">(필수)</span>
+							</label>
+						</div>
+						<div class="form_box" style="padding-bottom: 20px;">
+							<p>선택약관동의</p>
+							<label>
+							<input type="checkbox" id="choiceAgree" value="Y">선택약관 동의<span class="choice">(선택)</span>
 							</label>
 						</div>
 						
-						<div class="button">
-							<input type="submit" value="가입하기" onclick=" return check();">
+						<div class="button" style="text-align: center; border-top: 1px solid;">
+							<input type="submit" id='enrollBtn' value="가입하기"  style="margin: 44px 0 50px;" onclick=" return check();">
 						</div>
 					</div>
 				</form>
@@ -330,8 +352,12 @@
 				alert('성별을 체크해주세요.')
 				return false;
 			} */
-			if($('#birth').val()==='') {
+			/* if($('#birth').val()==='') {
 				alert('생년월일을 입력해주세요.')
+				return false;
+			} */
+			if($("#useAgree").is(':checked') == false){
+				alert('이용약관 동의 체크를 해주세요.');
 				return false;
 			}
 		}

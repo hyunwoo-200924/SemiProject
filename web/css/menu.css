@@ -126,8 +126,8 @@ a:hover{
     
 }
 
-.text-items{
-    display: grid;
+.menuview-text-items{
+    display: flex;
     grid-template-columns: repeat(1,250px 1fr);
     margin: 5px;
     padding: 5px 15px;
@@ -316,7 +316,7 @@ margin: 50px;
     /* 별점 */
 #star1{
     font-size: 50px;
-color: black;
+
 
 }
 
@@ -456,43 +456,50 @@ th, td{
 }
 
 /* section && Mainmenupage head part */
-
 .menu-group-container{
+	display: block;
     width: auto;
     margin: 50px;
     height: auto;
 }
 .head-text{
+	display: flex;
+	justify-content:space-between;
+	
     height: 70px;
-    display: grid;
-    grid-template-columns: repeat(2, 50%);
-    grid-template: "head-text . head-text";
+}
+.head-text1{
+	display:flex;
+	justify-content: space-between;
+	text-align: right;
 
 }
 .h2{
     margin: 20px 0;
 }
 .border-top{
-    border-top: 2px solid #6E6E6E;
+   /*  border-top: 2px solid #6E6E6E; */
 }
-.head-left{
+/* .head-left{
     display: flex;
     justify-content: flex-start;
     text-align: center;
+} */
+.head-right,.head-left{
+	  display:flex;
+	  flex-wrap:wrap; 
+
+  margin-bottom: 10px;
 }
 .head-left, .head-head{
+	display: flex;
+	
     font-size: 20px;
     font-weight: 300;
-    grid-template-columns: auto;
   
 }
 .head-left-title{
     padding-right: 20px;
-}
-.head-right{
-  display:flex;
-  flex-flow: row;
-  margin-bottom: 10px;
 }
 .head-right-items1{
     width: 50px;
@@ -510,7 +517,7 @@ th, td{
     height: 20px;
     width: 100px;
     margin: 0 10px;
-    border-right:2px solid #6E6E6E ;
+  
   
 }
 .head-right-items2:nth-last-child(1){
@@ -519,18 +526,21 @@ th, td{
 
 /* 메뉴 나열되는part */
 
-.section-menu-group-container{
+.section-menu-group-container1{
     display: block;
     height: auto;
+    width: auto;
     margin: 50px 20px;
 }
 .menu-group-section1{
     width: auto;
-    display: grid;
-    grid-template-columns: repeat(3,300px);
+    display: flex;
+    
+    justify-content: space-between;
+  /*   grid-template-columns: repeat(3,300px);
     justify-content: space-evenly;
     column-gap: 110px;
-
+ */
 }
 /* new 이미지 추가 */
 .new{

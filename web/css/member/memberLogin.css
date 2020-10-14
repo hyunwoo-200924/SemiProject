@@ -1,5 +1,95 @@
 @charset "UTF-8";
+.first_login_form {
+    display: grid;
+    grid-template-rows: auto auto;
+    justify-items: center;
+    width: 800px;
+    /* margin: auto; */
+    height: 500px;
+    /* margin: 5px 5px; */
+   margin: 80px auto 160px;
+    
+}
+
+.second_login_form {
+    display: grid;
+    grid-auto-rows: auto auto auto;
+    align-items: center;
+    justify-items: center;
+    height: 384px;
+}
+
 .loginTxtFrm{
+        display: grid;
+    grid-template-columns: auto auto;
+    justify-self: baseline;
+}
+.loginTxtFrm > h1{
+	margin: 20px;
+}
+.loginTxtFrm span{
+	font-size: 22px;
+	cursor: pointer;
+}
+.loginContainer{
+	display: grid;
+    justify-items: center;
+	
+}
+.loginContainer > input{
+	    width: 400px;
+    height: 35px;
+    margin: 5px 0;
+}
+.saveId_box{
+    display: grid;
+    grid-template-columns: 23px 220px auto auto;
+    align-items: center;
+    margin: 12px 0;
+}
+#loginBtn{
+	    width: 400px;
+  height: 38px;
+    margin: 28px 0px;
+    background: #333;
+    color: white;
+    border: none;
+}
+#joinBtn{
+    background: white;
+    border: 1px solid black;
+    margin-top: 16px;
+    width: 100px;
+}
+.noUserLogin-Container{
+	    display: grid;
+    width: 400px;
+}
+.noUserLogin-Container input{
+	    width: 400px;
+    height: 35px;
+    margin: 5px 0;
+}
+.non_msg{
+    width: 400px;
+    background: #f7f7f7;
+    height: 130px;
+    font-size: 12px;
+    padding: 11px;
+    display: grid;
+    grid-template-rows: auto auto auto;
+}
+.non_msg span:before {
+    content: '';
+    display: inline-block;
+    width: 4px;
+    height: 4px;
+    background: black;
+    border-radius: 50%;
+    margin-right: 5px;
+}
+
+/* .loginTxtFrm{
 	width: 100%;
 	height: 100px;
 	text-align: center;
@@ -8,7 +98,7 @@
 	display : flex;
 }
 .loginContainer{
-    /* 로그인 파트 */
+    로그인 파트
     width: 100%;
     height: 200px;
     text-align: center;
@@ -20,17 +110,17 @@
 	
 }
 h1{
-    /* 텍스트 */
+    텍스트
     colir:#606060;
 }
 h1:hover {
-	/* 텍스트 hover */
+	텍스트 hover
 	text-decoration: underline;
 	color:#101010;
 }
 .noUserLogin-Container{
-    /* 비회원 로그인 파트 */
+    비회원 로그인 파트
     width: 100%;
     height: 300px;
     text-align: center;
-}
+} */

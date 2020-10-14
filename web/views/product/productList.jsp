@@ -1,15 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<link rel="stylesheet" type="text/css" herf="<%=request.getContextPath()%>/css/menu.css">
+<link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/css/menu.css">  
 
-
-<%@ include file="/views/common/header.jsp"%>
 <%@ page import="java.util.List,com.eol.product.model.vo.Product, com.eol.member.model.vo.Member" %>
+<%@ include file="/views/common/header.jsp"%>
 <%
 	List<Product> list=(List)request.getAttribute("list");
 	String pageBar=(String)request.getAttribute("pageBar");
 	Member loginMember1 = (Member)request.getSession().getAttribute("loginMember");
-	
 %>
 
 
@@ -50,7 +48,7 @@
 
                         <h2 class="h2"><span class="change_date_print">9월 22일 화요일</span>배송가능한 메뉴입니다.</h2>
                     </div>
-                    <div class="head-text">
+                    <div class="head-text1">
 
                         <div class="head-left">
                             <h5>뚝딱kit의 주문마감은 <span class="date-change">9월 25일(금)</span> 오전7시입니다.</h5>
@@ -89,10 +87,12 @@
                     <div class="menu--img-group2">
                        <div class="menu--img-items-group"> 
                             <div class="menu--img-items">
+
                             
-                            <div name="pNo"><%=p.getpNo()%></div>
+                            <div name="pNo" style="display:none;"><%=p.getpNo()%></div>
+
                                 <!-- 메뉴상세페이지로이동 -->
-                                <a href="<%=request.getContextPath()%>/product/productView?pNo=<%=p.getpNo()%>" name="plz">
+                                <a href="<%=request.getContextPath()%>/product/productView?pNo=<%=p.getpNo()%>" name="">
 									<%if(p.getpImage1()!=null) {%>
                                     <img type="file" src="<%=request.getContextPath() %>/product/productFileDownload?fileName=<%=p.getpImage1() %>" alt="menu" class="menu-click1">
                                     <%} %>
@@ -100,7 +100,7 @@
                                         <div class="new">
                                             <p>NEW</p>
                                         </div>
-                                        <span class="menu--text"><%=p.getpServing()%></span><span class="menu--text"><%=p.getpCooktime() %></span>
+                                        <span class="menu--text"><%=p.getpServing()%>인분</span><span class="menu--text">조리시간<%=p.getpCooktime() %>분</span>
                                     </ul>
                                     <ul class="menu--text-group">
                                         <h4 class="menu--text--title"><%=p.getpDetailMain() %></h4>
@@ -125,14 +125,15 @@
                     <div class="cart-hart">
                         <ul class="hart">
                         <!-- 찜 페이지 -->
-                            <a href="<%=request.getContextPath()%>/views/cart/jjim.jsp">
+                            <a href="<%=request.getContextPath()%>/views/cart/jjim">
 
-                                <img src="<%=request.getContextPath() %>/images/product/hart40px.jpg" alt="찜" class="hart--img" onclick="hart();">
+                                <img src="<%=request.getContextPath() %>/images/product/hart40px.jpg" alt="찜" class="hart--img" onclick="hart();"></img>
                             </a>
                             <!-- 장바구니페이지 -->
-                            <a href="<%=request.getContextPath() %>/views/cart/cartViewServlet?pNo=<%=p.getpNo() %>" id="cartBtn" name="cartBtn">
+                            <a href="<%=request.getContextPath() %>/views/cart/cartViewServlet?pNo=<%=p.getpNo() %>" id="cartBtn" name="">
 
-                                <img src="<%=request.getContextPath() %>/images/product/cart40px.jpg" alt="장바구니" class="cart--img" onclick="cartInsert()">
+
+                                <img src="<%=request.getContextPath() %>/images/mainImages/shopping-cart-solid.svg" style="width: 30px; height: 30px;" alt="장바구니" class="cart--img" onclick="cartInsert()"></img>
                             </a>
                         </ul>
                     </div>
