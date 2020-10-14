@@ -315,6 +315,7 @@ public class ProductDao {
 				p.setpPrice(rs.getInt("p_price"));
 				p.setpServing(rs.getInt("p_serving"));
 				p.setpImage1(rs.getString("p_image2"));
+				p.setpDetailMain(rs.getString("p_detailmain"));
 				list.add(p);
 			}
 		}catch(SQLException e) {
