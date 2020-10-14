@@ -3,11 +3,23 @@
 	*{
 	  	box-sizing: border-box;
 	  }
-	a:active {
-		color:inherit;	
-	}
+	/* a:active {color:inherit;} */
+	a:link { color: black; text-decoration: none; !important}
+	a:visited { color: black; text-decoration: none; !important}
+	a:hover { color: black; text-decoration: none; !important}
 	li{
 		list-style:none;
+	}
+	.buttonStyle{
+		height: 40px;
+	    width: 176px;
+	    background-color: #333;
+	    border: none;
+	    color: white;
+	}
+	.buttonStyle:hover{
+		cursor:pointer;
+		background-color: black;
 	}
 	.linkArrow:after {
 	    content: '';

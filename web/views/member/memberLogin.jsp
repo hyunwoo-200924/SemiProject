@@ -85,7 +85,7 @@ href="<%=request.getContextPath() %>/css/member/memberLogin.css">
 		<div class="welcom_join">
 	   		<h3>뚝딱쿳 회원이 아니신가요?</h3>
 			<p>뚝딱쿡 회원으로 가입하시면 다양한 서비스를 이용하실 수 있습니다.</p>
-	           <input type="submit" name="joinBtn" id="joinBtn" value="회원가입" onclick="location.replace('<%=request.getContextPath()%>/memberEnrollCheckedView.jsp')">
+	        <input type="submit" name="joinBtn" id="joinBtn" value="회원가입" onclick="location.replace('<%=request.getContextPath()%>/memberjoin.do')">
 	   	</div>
 	   	
 	    <div class="non_msg" style="display:none">

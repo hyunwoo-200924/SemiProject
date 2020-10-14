@@ -3,6 +3,7 @@ package com.eol.product.controller;
 import java.io.File;
 import java.io.IOException;
 
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -35,6 +36,7 @@ public class ProductWriteServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 	
+
 		//페이지전환용
 	request.getRequestDispatcher("/views/product/productRegister.jsp")
 		.forward(request, response);		

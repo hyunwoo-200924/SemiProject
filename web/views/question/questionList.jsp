@@ -25,21 +25,39 @@
 	    margin: 0 -3px;
 }
 	}
-	.paging span:hover{
-		background: black;
-		color: white;
-		cursor: pointer;
-	}
-	#choosen{
-		background: black;
-		color: white;
-		cursor: none;
-	}
+/* 	#choosen{ */
+/* 		background: black; */
+/* 		color: white; */
+/* 		cursor: none; */
+/* 	} */
 	.user_request_list .list_form .contentBox2{
 		background: rgb(224, 224, 224);
 	    margin-top: 18px;
 	    word-break: break-all;
 	    padding: 30px 67px;
+	}
+	.list:hover{
+		cursor:pointer;
+	}
+	.paging > span:hover{
+		cursor:pointer;
+		background: black;
+		color: white;
+	}
+	.list_form .contentBox2{
+	    margin-top: 10px;
+	
+	padding: 24px 166px 24px 78px;
+    color: #101010;
+    font-size: 14px;
+    line-height: 22px;
+    font-weight: 500;
+    background-color: #f7f7f7;
+	}
+	.imgSize{
+		width: auto; height: auto;
+	    max-width: 200px;
+	    max-height: 200px;
 	}
 </style>
     
@@ -67,7 +85,7 @@
 						<% for(Qna q : list) { %>
 						
 						<div class="list_form">
-							<div>
+							<div class="list">
 								<span style="display:none;"><%=q.getqNo() %></span>
 							<%if(q.getqStatus().equals("N")){ %>
 								<span id="no">답변대기</span>
@@ -75,14 +93,17 @@
 								<span id="yes">답변완료</span>
 							<%} %>
 								<span>[<%=q.getqCategory() %>]</span>
-								<span><%=q.getqTitle() %></span>
-								<span class="list"><%=q.getqRdate() %></span>
+								<span><%=q.getqTitle() %>
+								<%if(q.getqFile() != null){ %>
+								<img src="<%=request.getContextPath() %>/images/fileImage.jpg" style="width:15px; height:15px;">
+								<%} %>
+								</span>
+								<span><%=q.getqRdate() %></span>
 							</div>
-                     		<div class="contentBox" style="display:none">
-                     			<%-- <div> 여기 추가 할꺼면 update함수, delete함수 수정해야함
-                     			<img src="<%= request.getContextPath() %>/upload/question/<%= q.getqFile() %>">
-                     			</div> --%>
-                     			<!-- <div> -->
+							<div class="contentBox" style="display:none">
+							<%if(q.getqFile() != null){ %>
+                     			<img class="imgSize" src="<%= request.getContextPath() %>/upload/question/<%= q.getqFile() %>" style="grid-column: 1/4;">
+                     		<%} %>
                      			<div><%=q.getqContent() %></div>
                      			<%if(!q.getqStatus().equals("Y")){ %> <!-- 답변  안 달렸다면 -->
                      			<button class="update">수정</button>
@@ -92,9 +113,27 @@
                      			<%} %>
                      			<!-- </div> -->
                      		</div>
+                     		<%-- <div class="contentBox" style="display:none">
+                     			<div> 여기 추가 할꺼면 update함수, delete함수 수정해야함
+                     			<img src="<%= request.getContextPath() %>/upload/question/<%= q.getqFile() %>">
+                     			</div>
+                     			<!-- <div> -->
+                     			<div><%=q.getqContent() %></div>
+                     			<%if(!q.getqStatus().equals("Y")){ %> <!-- 답변  안 달렸다면 -->
+                     			<button class="update">수정</button>
+                     			<button class="delete">삭제</button>
+                     			<%} else { %>
+                     			<button class="delete" style="grid-column-start: 3;">삭제</button>
+                     			<%} %>
+                     			<!-- </div> -->
+                     		</div> --%>
                      		<%if(q.getqStatus().equals("Y")){ %>
                      		<div class="contentBox2" style="display:none">
-                     			<div><%= q.getAnswerResult() %></div>
+                     			<div>
+                     				<%= q.getAnswerResult() %>
+                     				<br>
+                     				<%= q.getAnswerDate()  %>
+                     			</div>
                      			
                      		</div>
                      		<%} %>
@@ -106,7 +145,7 @@
 						<span id="before" onclick="fn_before();">&lt;</span>
 						<%for(int p = startPage; p <= endPage; p++) { %>
 							<%if(p == currentPage) { %>
-							<span id="choosen"><%= p %></span>
+							<span id="choosen" style="background: black; color: white; cursor: none;"><%= p %></span>
 							<%} else { %>
 								<span class="numBtn" onclick="location.href='<%= request.getContextPath()%>/questionList?currentPage=<%= p %>'"><%= p %></span>
 							<%} %>
@@ -127,6 +166,7 @@
 		function fu_questionWrite(){
 			location.href="<%= request.getContextPath()%>/questionWriteView"
 		}
+		//페이징
 		function fn_before(){
 			if(<%= currentPage %> <= 1) {
 				return false;
@@ -141,13 +181,18 @@
 		}
 		
 		$(function(){
-			   /* $('.list').click(function() {
-			      $('.list').not($(this)).parents('.list_form').find('div:eq(1)').slideUp('fast');
-			      $(this).parents('.list_form').find('div:eq(1)').slideToggle('fast');
-			   }) */
-		   $('.list').click(function() {
+		  /*  $('.list').click(function() {
 			   $(".list").not($(this)).parent().nextAll().slideUp('fast');
 		      $(this).parent().nextAll().slideToggle('fast');
+		   }) */
+		   $('.list').click(function() {
+			   $(".list").not($(this)).nextAll().slideUp('fast');
+		      $(this).nextAll().slideToggle('fast');
+		   })
+		   $('.list').mouseenter(function() {
+				$(this).children().css('font-weight','600');
+		   }).mouseleave(function(){
+			   $(this).children().css('font-weight','normal');
 		   })
 		   $('.delete').click(function(){
 			   	let qNo = $(this).parent().prev().children().eq(0).text();

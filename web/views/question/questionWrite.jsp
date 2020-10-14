@@ -29,7 +29,11 @@
 			#inquiry .inquiry_form span{
    				text-align: center;
 			}
-			
+			.buttonStyle{
+			position: relative;
+		    left: 300px;
+		    margin: 50px 0;
+			}
 		</style>
 	
 		<section class="container">
@@ -82,7 +86,7 @@
 								</div>
 								<div class="question_box col3">
 									<p>주문/상품 선택</p>
-									<input type="text" id="o_no" name="o_no" readonly >
+									<input type="text" id="o_no" name="o_no" style="margin-right: 20px;" readonly >
 									<input type="button" value="조회" onclick="fn_inquiry();">
 									<div id="inquiry">
 										<div class="inquiry_form">
@@ -132,7 +136,7 @@
 									</div>
 								</div>
 							</div>
-							<input type="submit" value="저장">
+							<input type="submit" class="buttonStyle" value="저장">
 						</form>
 					</div>
 				</div>
