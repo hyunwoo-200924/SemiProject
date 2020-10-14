@@ -81,6 +81,15 @@ public class ProductService {
 		close(conn);
 		return list;
 	}
+	
+	
+	//메인페이지에 실시간 베스트 보여줄 상품정보 list받아오기
+	public List<Product> bestPlist(){
+		Connection conn = getConnection();
+		List<Product> list = dao.bestPlist(conn);
+		close(conn);
+		return list;
+	}
 
 
 
