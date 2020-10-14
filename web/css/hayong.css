@@ -224,6 +224,9 @@
 	    font-weight: 600;
 	    padding-bottom: 6px;
 	}
+	.user_request .inline .hover{
+		cursor: pointer;
+	}
 	 .user_request_list .list_form {
       padding: 13px 10px;
       border-bottom: 1px solid #e0e0e0;
