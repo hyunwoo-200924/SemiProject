@@ -8,11 +8,11 @@
 <%@ page import="java.util.Date" %>
 <%@ page import="java.text.SimpleDateFormat" %>
 <%
-	Product p=(Product)request.getAttribute("Product");
+   Product p=(Product)request.getAttribute("Product");
 Member loginMember2 = (Member)request.getSession().getAttribute("loginMember");
-	Cart c=(Cart)request.getAttribute("Cart");
+   Cart c=(Cart)request.getAttribute("Cart");
 Review r=(Review)request.getAttribute("Review");
-	
+   
 Date now = new Date();
 Date day1=new Date(now.getTime()+(1000*60*60*24*-1));//어제 
 Date day2 = new Date(now.getTime()+(1000*60*60*24*+1));//내일
@@ -28,34 +28,34 @@ String today =(String)sf.format(now);
 %>
 <script>
 function day(){
-	
-	$(document).ready(function(){
-		var date= new Date();
-		
-		var year= date.getFullYear();
-		var month = date.getMonth()+1;
-		var day= date.getDate();
-		
-		var dayoftheweek= date.getDay();
-		
-		if(month<10){
-			month="0"+month;
-		}
-		
-		if(day<10){
-			day="0"+day;
-		}
-	console.log($('#Wednesday').append(date.getMonth()+"월"+(date.get()-1)+"일"));
-	console.log(date.getMonth()+"요일");
-	});
+   
+   $(document).ready(function(){
+      var date= new Date();
+      
+      var year= date.getFullYear();
+      var month = date.getMonth()+1;
+      var day= date.getDate();
+      
+      var dayoftheweek= date.getDay();
+      
+      if(month<10){
+         month="0"+month;
+      }
+      
+      if(day<10){
+         day="0"+day;
+      }
+   console.log($('#Wednesday').append(date.getMonth()+"월"+(date.get()-1)+"일"));
+   console.log(date.getMonth()+"요일");
+   });
 };
 
 </script>
 
 <%@ include file="/views/common/header.jsp"%>
 <link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/css/menu.css">  
-	
-	  <!-- <section -->
+   
+     <!-- <section -->
     <section  class="menu-container-group">
         <div class="menu-section">
       
@@ -113,32 +113,32 @@ function day(){
                              <li class="text-menu">&nbsp;조리 <%=p.getpCooktime() %>분</li>
                              <li class="text-menu">&nbsp;준비 <%=p.getpReadytime() %>분<img src="" alt=""></li>
                              <%if(p.getpTaste()==1){ %>
-                             	<li class="text-menu">보통 매운맛</li>
+                                <li class="text-menu">보통 매운맛</li>
                              <%} else if(p.getpTaste()==2){ %>
-                             	<li class="text-menu">약간 매운맛</li>
+                                <li class="text-menu">약간 매운맛</li>
                              <%} else if(p.getpTaste()==3){ %>
-                             	<li class="text-menu">적당히 매운맛</li>
+                                <li class="text-menu">적당히 매운맛</li>
                              <%} else if(p.getpTaste()==4){ %>
-                             	<li class="text-menu">아주 매운맛</li>
+                                <li class="text-menu">아주 매운맛</li>
                              <%} %>
                          </ul>
                          <dl class=".menuview-text-items">
-                         	판매가
+                            판매가
                              <dt class="price text-right" name="pPrice" id="ppPrice"><%=p.getpPrice() %>원</dt>
                          </dl>
                          <dl class=".menuview-text-items">
-                      		할인율
+                            할인율
                              <dt class="price text-right" name="pDiscount" id="ppDiscount"><%=p.getpDiscount() %>%</dt>
                          <dl class=".menuview-text-items">
-                         		포인트적립
+                               포인트적립
                              <dt  class="text-right" name="" id="pPoint">10%</dt>
                          </dl>
                          <dl class=".menuview-text-items">
-                        		 배송방법 :
+                               배송방법 :
                                  <dt class="delivery text-right">선택배송</dt>
                              </dl>
                          <dl class=".menuview-text-items">
-                     			    배송비 :
+                                  배송비 :
                              <dt class="delivery" class="text-right">3000원    4만원이상 무료 </dt>
                          </dl>
                    </div>
@@ -153,9 +153,9 @@ function day(){
                              <div class="etc_txt" id="cart_txt" style="display:block;">
                                  <span>주문 마감시간 오전 7시</span>
                               </div>
-                  				<script>
-                  					
-                  				</script>
+                              <script>
+                                 
+                              </script>
                                 
                              </div>
 
@@ -165,6 +165,7 @@ function day(){
                                  <div value="order-date01" class="order_check_day" id="selected_stock">    배송을  원하는 날짜를 고르세요. <span  style="display:hidden; font-size:25px;"></span></div>
                                  
                                  <!-- 갯수를 30개로 가정하고 시작하자! -->
+
 	                                
 	                                 <div name="oDeliveryEDate1" value="<%=Wednesday%>" class="order_check_day" id="Tuesday" style="display:none;" onclick="mouseClick();"><%=Wednesday%>
 	                                  <input type="radio" name="orderDay" style="displa:none; font-size:25px; bold: 1000;" style="display:none;" value="<%=Wednesday%>"></span>
@@ -182,8 +183,13 @@ function day(){
 	                                     <input type="radio" name="orderDay" style="displa:none; font-size:25px; bold: 1000;" style="display:none;"value="<%=Saturday%>"></span>
                                  </div>
                              </div>
+
+                                   
+    
+                          
                              
                              <script>
+
                    			const day11=$("#Tuesday").prop("checked",true);
                    			const day22=$("#Wednesday").prop("checked",true);
                    			const day33=$("#Tursday").prop("checked",true);
@@ -192,7 +198,6 @@ function day(){
                    	  	 
                             // 목록 복사하는 자바스크립트
                             function mouseClick(){
-                             
                                 $(".menu-title-choice-wrap").show().clone().insertAfter();
                                 $(".menu-date-text").val("<%=Wednesday%>");
                                 $(".OderDay").val("<%=Wednesday%>");
@@ -222,37 +227,17 @@ function day(){
                                 $(e.target).parent().parent().remove();
                             }		
 
-                   		<%-- 	if(day11===true){
-                   				console.log("1번이참");
-                   				 $(".menu-date-text").val("<%=Wednesday%>").text("<%=Wednesday%>");
-                   			}else if(day22===true){
-                   				console.log("2번이참");
-                   				$(".menu-date-text").val("<%=today%>");
-                   			
-                   			}else if(day33===true){
-                   				console.log("3번이참");
-                   				$(".menu-date-text").val("<%=Friday%>");
-                   			
-                   			}else if(day44===true){
-                   				console.log("4번이참");
-                   				$(".menu-date-text").val("<%=today%>");
-                   			
-                   			}else(day55===true)
-                   				console.log("5번이참");
-                   				$(".menu-date-text").val("<%=Saturday%>");
-                   			 --%>
-                   		
-                            
-                   			
+                                             			
                             //클릭시 슬라이드바 
                              $(function(){
-                            	 $("#selected_stock").click(function(){
-                            		 $(this).nextAll().attr("display","none").slideToggle(500);
-                            		
-                            	 
+                                $("#selected_stock").click(function(){
+                                   $(this).nextAll().attr("display","none").slideToggle(500);
+                                  
+                                
                              });
-                            	 
+                                
                              });
+
                              </script>
                              <!-- 날짜선택시 박스생성  
                                  display:none;을 주게되면 화면에 자리잡고있던 영역이 없어지면서 화면상에서 사라짐
@@ -294,6 +279,7 @@ function day(){
                                      </p>
                                      <p><input type="text" class="product-pricetag" id="total-price" readonly><span>원</span></input></p>
                                  </form>
+
                                 		<script>
 										///슬라이드바 효과
 										
@@ -323,7 +309,7 @@ function day(){
                                 		$unitprice= $quantity.attr('data-unitprice'),
                                 		$qtyBtn=$quantity.find('span'),
                                 		$qytInput=$quantity.find('input'),
-                              
+
                                 		$tagetTotal=$('#total-price'),
                                 		$tagetTotal2=$('.product-price');
                                 		
@@ -366,10 +352,8 @@ function day(){
                                 				$tagetTotal.val(""+total2); 
                                 				console.log($tagetTotal.val(total2));
                                 				$tagetTotal2.text(total2+"원");
-                                				
 
-                                		});
-                                		</script>
+                                      </script>
                                 
                                 
                                  <!-- 찜 이미지 및 버튼 재배치함 9-26 -->
@@ -379,10 +363,6 @@ function day(){
                                  
                                     <a href=""><img src="<%=request.getContextPath() %>/images/product/hart40px.jpg" alt="찜" class="jjim"></a>
 
-                                   
-                                    
-                                    
-                                    
                              	<script>
                              		const basket1=(function cartPut(){
                              			$("input:radio[name='choice-radio']").attr("checked",true);
@@ -395,11 +375,11 @@ function day(){
                              		function submitCart(){
                              			document.form.submit();
                              		}
-                             	</script>
-                             	
-									<%-- <%if( currentCount!=0) {%> --%>
+                         
+ 
+	</script>
                                     <button type="button" class="cart-botton-items" id="buybtn" onclick="document.form.submit();">장바구니</buttton>
-							
+
                                  </div>
 
                          </div>
@@ -438,13 +418,13 @@ function day(){
                                          $(".num").text(targetScore);//별점 출력
                                          //정수인지 아닌지 확인
                                          if(($(this).attr('data-rate'))!==targetScore){
-                                        	 console.log("정수:참");
+                                            console.log("정수:참");
                                          }else console.log("문자열:거짓");
                                          // $(this).find('img:nth-child(-n+'+targetScore+')').css({color:'red'});
                                         $(this).find('a:nth-child(-n+'+targetScore+')').css({color:'#f00'});
-                                        	console.log(('a:nth-child(-n+'+targetScore+')'));
-											console.log($(this).find('a:nth-child(-n+'+targetScore+')'));
-										 })
+                                           console.log(('a:nth-child(-n+'+targetScore+')'));
+                                 console.log($(this).find('a:nth-child(-n+'+targetScore+')'));
+                               })
                                      }); 
                                      
 
@@ -570,6 +550,6 @@ function day(){
                  </div>
           </div>
     </div>
-	
+   
 
 <%@ include file="/views/common/footer.jsp"%>
