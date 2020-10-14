@@ -157,8 +157,8 @@
 /**********************************************/
 /*추천메뉴 스타일*/
 .recommend-container { /*추천메뉴의 전체적인 <div>부분*/
-	max-width: 1260px;
-	height: 500px;
+	max-width: 1200px;
+	height: 550px;
 	cursor: pointer;
 	overflow: hidden;
 	position: relative; 
@@ -176,10 +176,13 @@
 }
 
 .recommend-img {
-	width: 450px;
-	height: 450px;
+	width: 1200px;
+	height: 550px;
 	margin: auto;
 	padding: 40px;
+	background-repeat: no-repeat;
+	background-size: 100% 100%;
+	
 }
 
 .recommend-content {
