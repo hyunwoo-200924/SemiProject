@@ -96,7 +96,7 @@
                                         <div class="new">
                                             <p>NEW</p>
                                         </div>
-                                        <span class="menu--text"><%=p.getpServing()%></span><span class="menu--text"><%=p.getpCooktime() %></span>
+                                        <span class="menu--text"><%=p.getpServing()%>인분</span><span class="menu--text">조리시간<%=p.getpCooktime() %>분</span>
                                     </ul>
                                     <ul class="menu--text-group">
                                         <h4 class="menu--text--title"><%=p.getpDetailMain() %></h4>
