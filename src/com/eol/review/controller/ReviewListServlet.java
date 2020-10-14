@@ -47,8 +47,6 @@ public class ReviewListServlet extends HttpServlet {
 		Member m = (Member)request.getSession().getAttribute("loginMember");
 		int mNo = m.getmNo();
 		
-		System.out.println("list : " + mNo);
-		
 		List<Review> list=new ReviewService().reviewPullList(cPage,numPerPage,mNo);
 		List<Review> list2=new ReviewService().reviewList(cPage,numPerPage, mNo);
 		int totalData=new ReviewService().reviewCount();

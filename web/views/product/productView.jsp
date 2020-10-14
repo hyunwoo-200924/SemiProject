@@ -69,7 +69,7 @@ Review r=(Review)request.getAttribute("Review");
                          <ul class="text-menu-group ">
                              <li class="text-menu"><%=p.getpServing() %>인분</li>
                              <li class="text-menu"><%=p.getpCooktime() %>분</li>
-                             <li class="text-menu"><%=p.getpReadytime() %>분<img src="<%=request.getContextPath() %>/images/product/mul.png" alt="상세설명"></li>
+                             <li class="text-menu"><%=p.getpReadytime() %>분<img src="" alt=""></li>
                              <li class="text-menu"><%=p.getpTaste() %></li>
                          </ul>
                          <dl class=".menuview-text-items">
@@ -208,7 +208,7 @@ Review r=(Review)request.getAttribute("Review");
                                  <form class="product-price-number-group" name="form" method="post" action="<%=request.getContextPath()%>/views/cart/cartViewServlet?pNo=<%=p.getpNo()%>">
                                      <p class="producttextinput" name="">수량
 
-                                         <input type="hidden" class="product-nember" name="pCount" value="currentCount" max="<%=p.getpStock()%>"readonly/>0개
+                                         <input type="hidden" class="product-nember" name="pCount" value="currentCount" max="<%=p.getpStock()%>"readonly/>개
                                          <input type="hidden" name="pNo" value="<%=p.getpNo() %>">
                                      </p>
                                      <p><input type="text" class="product-pricetag" id="total-price" readonly><span>원</span></input></p>
@@ -240,7 +240,7 @@ Review r=(Review)request.getAttribute("Review");
                                 				var currentCount=$qytInput.val();//input의 값을 가져와서
                                 			if($(this).hasClass('product-plus')){
                                 				currentCount++;
-                                				$qytInput.val(currentCount).prepend("텍스트 표시  안되나"+currentCount);
+                                				$qytInput.val(currentCount);
                                 				$qytInput2.val(currentCount);
                                 			}else{
                                 				if(currentCount > 1){//최소한개는 사게 만들어준다.
@@ -258,6 +258,7 @@ Review r=(Review)request.getAttribute("Review");
                                 				$tagetTotal.val(""+total2); 
                                 				console.log($tagetTotal.val(total2));
                                 				$tagetTotal2.text(total2+"원");
+                                				
 
                                 		});
                                 		</script>
@@ -407,7 +408,7 @@ Review r=(Review)request.getAttribute("Review");
         <div class="resipy-menu-detail-text-group">
          <div class="resipy-h3-text">
              <h2 class="resipy-h3-text-legft">이렇게 요리하세요</h2>
-                <h2 class="resipy-h3-text-right"><img src="<%=request.getContextPath() %>/images/product/time30px.jpg" alt="조리시간"><%=p.getpCooktime() %></h2>
+                <h2 class="resipy-h3-text-right"><img src="<%=request.getContextPath() %>/images/product/time30px.jpg" alt="조리시간">조리시간<%=p.getpCooktime() %>분</h2>
  
          </div>  
          <div class="resipy-imag-group-container-group">

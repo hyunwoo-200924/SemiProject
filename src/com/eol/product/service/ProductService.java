@@ -90,7 +90,15 @@ public class ProductService {
 		close(conn);
 		return list;
 	}
+	
+	//메인페이지에 핫딜에 보여줄 상품정보 리스트받아오기 : 할인율이 가장 높은 순으로 상품 정렬
 
+	public List<Product> hotdealPlist(){
+		Connection conn = getConnection();
+		List<Product> list = dao.hotdealPlist(conn);
+		close(conn);
+		return list;
+	}
 
 
 
