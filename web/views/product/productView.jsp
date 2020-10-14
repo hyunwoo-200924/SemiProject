@@ -164,31 +164,37 @@ function day(){
                                  
                                  <!-- 갯수를 30개로 가정하고 시작하자! -->
 	                                
-	                                 <input name="oDeliveryEDate1" value="<%=Wednesday%>" class="order_check_day" id="Tuesday" style="display:none;" onclick="mouseClick();">
+	                                 <div name="oDeliveryEDate1" value="<%=Wednesday%>" class="order_check_day" id="Tuesday" style="display:none;" onclick="mouseClick();"><%=Wednesday%>
 	                                  <span alt="체크" style="displa:none; font-size:25px; bold: 1000;" style="display:none;"></span>
-	                                 </input>
-	                                 <input  name="oDeliveryEDate2" value="<%=today%>" class="order_check_day" id="Wednesday" style="display: none;" onclick="mouseClick1();">     
+	                                 </div>
+	                                 <div  name="oDeliveryEDate2" value="<%=today%>" class="order_check_day" id="Wednesday" style="display: none;" onclick="mouseClick1();"><%=today%>    
 	                                     <span alt="체크" style="displa:none; font-size:25px; bold: 1000;" style="display:none;"></span>
 	                                 </div>
-	                                 <input name="oDeliveryEDate3" value="<%=Thursday%>"class="order_check_day" id="Tursday" style="display: none;" onclick="mouseClick2();">    
+	                                 <div name="oDeliveryEDate3" value="<%=Thursday%>"class="order_check_day" id="Tursday" style="display: none;" onclick="mouseClick2();"><%=Thursday%>    
 	                                   <span alt="체크" style="displa:none; font-size:25px; bold: 1000;" style="display:none;"></span>
-	                                 </input>
-	                                 <input name="oDeliveryEDate4" value="<%=Friday%>" class="order_check_day" id="Friday" style="display: none;" onclick="mouseClick3();">    
+	                                 </div>
+	                                 <div name="oDeliveryEDate4" value="<%=Friday%>" class="order_check_day" id="Friday" style="display: none;" onclick="mouseClick3();"><%=Friday%>   
 	                                     <span alt="체크" style="displa:none; font-size:25px; bold: 1000;" style="display:none;"></span>
-	                                 </input>
-	                                 <input name="oDeliveryEDate5" value="<%=Saturday%>" class="order_check_day" id="Saturday" style="display: none;" onclick="mouseClick4();"><%=Saturday%>    
+	                                 </div>
+	                                 <div name="oDeliveryEDate5" value="<%=Saturday%>" class="order_check_day" id="Saturday" style="display: none;" onclick="mouseClick4();"><%=Saturday%>    
 	                                     <span alt="체크" style="displa:none; font-size:25px; bold: 1000;" style="display:none;"></span>
-                                 </input>
+                                 </div>
                              </a>
                              
                              <script>
-                            document.ready(function(){
-                            	
-                          	if($('#Tuesday').click()
-                            	
-                            })
-                          
-                             
+                   		<%-- 	function orderday($(document).click(e){
+                   				switch(e){
+                        	 case $('#Tuesday'): $('.menu-date-text').val(<%=Wednesday%>);break;
+                        	 case $('#Wednesday'): $('.menu-date-text').val(<%=today%>);break;
+                        	 case $('#Tursday'): $('.menu-date-text').val(<%=Thursday%>);break;
+                        	 case $('#Friday'): $('.menu-date-text').val(<%=Friday%>);break;
+                        	 case $('#Saturday'): $('.menu-date-text').val(<%=Saturday%>);break;
+                       
+                   				
+                   				}
+                   			});
+                   			console.log(orderday);
+                        		  --%>
                              
                             //클릭시 슬라이드바 
                              $(function(){
@@ -238,9 +244,9 @@ function day(){
  
                              <div class="menu-title-choice-wrap" style="display:none;">
                                  <div class="menu-date-container-box1">
-                                     <div class="menu-date-text">
-                                         날짜 출력
-                                     </div>
+                                     <input class="menu-date-text" name="" value="">
+                                   <!--       날짜 출력 -->
+                                     </input>
                                      <button type="button" class="menu-delivery-delete-btn" onclick="removeblock(event);">x</button>
                                  </div>
                                  <div class="menu-date-container-box2">
@@ -360,9 +366,9 @@ function day(){
                              		}
                              	</script>
                              	
-									<%if( currentCount!=0) {%>
+									<%-- <%if( currentCount!=0) {%> --%>
                                     <button type="button" class="cart-botton-items" id="buybtn" onclick="document.form.submit();">장바구니</buttton>
-									<% }%>
+							
                                  </div>
 
                          </div>

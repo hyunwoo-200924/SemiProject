@@ -11,15 +11,15 @@
 	List<Product> list=(List)request.getAttribute("list");
 	String pageBar=(String)request.getAttribute("pageBar");
 	Member loginMember1 = (Member)request.getSession().getAttribute("loginMember");
-<<<<<<< HEAD
+
 	
 	Date now = new Date();
 	SimpleDateFormat sf = new SimpleDateFormat("MM월dd일 E요일");
 
 	String today =(String)sf.format(now);
-=======
+
 	String change = (String)request.getAttribute("change");
->>>>>>> branch 'master' of https://github.com/hyunwoo-200924/SemiProject.git
+
 %>
 
 <script>
