@@ -140,12 +140,14 @@ public class CartViewServlet extends HttpServlet {
 			
 			c.setoDeliveryEDate(request.getParameter("oDelivertEDate"));
 			if(result>0) {
+				System.out.println(list);
 				String msg ="상품이 장바구니에 담겼습니다.";
+				
+				request.setAttribute("memberCart", list);
+				
 				request.setAttribute("msg",msg);
 				request.setAttribute("loc", "/views/cart/memberCart.jsp");
 				request.getRequestDispatcher("/views/common/msg.jsp").forward(request, response);
-				request.setAttribute("memberCart", list);
-				request.getRequestDispatcher("/views/cart/memberCart.jsp").forward(request, response);
 			}
 		}
 		
