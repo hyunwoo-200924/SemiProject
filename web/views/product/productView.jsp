@@ -68,28 +68,36 @@ Review r=(Review)request.getAttribute("Review");
                          <h3 class="h3-text">원산지: 상품정보 참조</h3>
                          <ul class="text-menu-group ">
                              <li class="text-menu"><%=p.getpServing() %>인분</li>
-                             <li class="text-menu"><%=p.getpCooktime() %>분</li>
-                             <li class="text-menu"><%=p.getpReadytime() %>분<img src="<%=request.getContextPath() %>/images/product/mul.png" alt="상세설명"></li>
-                             <li class="text-menu"><%=p.getpTaste() %></li>
+                             <li class="text-menu">&nbsp;조리 <%=p.getpCooktime() %>분</li>
+                             <li class="text-menu">&nbsp;준비 <%=p.getpReadytime() %>분<img src="" alt=""></li>
+                             <%if(p.getpTaste()==1){ %>
+                             	<li class="text-menu">보통 매운맛</li>
+                             <%} else if(p.getpTaste()==2){ %>
+                             	<li class="text-menu">약간 매운맛</li>
+                             <%} else if(p.getpTaste()==3){ %>
+                             	<li class="text-menu">적당히 매운맛</li>
+                             <%} else if(p.getpTaste()==4){ %>
+                             	<li class="text-menu">아주 매운맛</li>
+                             <%} %>
                          </ul>
                          <dl class=".menuview-text-items">
                          	판매가
-                             <dd class="price text-right" name="pPrice" id="ppPrice"><%=p.getpPrice() %>원</dd>
+                             <dt class="price text-right" name="pPrice" id="ppPrice"><%=p.getpPrice() %>원</dt>
                          </dl>
                          <dl class=".menuview-text-items">
                       		할인율
-                             <dd class="price text-right" name="pDiscount" id="ppDiscount"><%=p.getpDiscount() %></dd>
+                             <dt class="price text-right" name="pDiscount" id="ppDiscount"><%=p.getpDiscount() %>%</dt>
                          <dl class=".menuview-text-items">
                          		포인트적립
-                             <dd  class="text-right" name="" id="pPoint" value="<%=p.getpDiscount() %>"><%=p.getpDiscount() %><img src="<%=request.getContextPath() %>/images/product/mul.png" alt="정보" class="info-img"></dd>
+                             <dt  class="text-right" name="" id="pPoint" value="<%=p.getpDiscount() %>"><%=p.getpDiscount() %>%</dt>
                          </dl>
                          <dl class=".menuview-text-items">
                         		 배송방법 :
-                                 <dd class="delivery text-right">선택배송</dd>
+                                 <dt class="delivery text-right">선택배송</dt>
                              </dl>
                          <dl class=".menuview-text-items">
                      			    배송비 :
-                             <dd class="delivery" class="text-right">3000원    4만원이상 무료 </dd>
+                             <dt class="delivery" class="text-right">3000원    4만원이상 무료 </dt>
                          </dl>
                    </div>
                          <div class="container-wrap">
@@ -110,24 +118,24 @@ Review r=(Review)request.getAttribute("Review");
                              <!-- 제이쿼리 사용시 nextAll()로 이용하여 클릭하세요hidden을 static으로 -->
                              <a  name="order-date" id="order-date">
                                  
-                                 <div value="order-date01" class="order_check_day" id="selected_stock">    배송을  원하는 날짜를 고르세요. <span  style="display:hidden; font-size:25px;">√</span></div>
+                                 <div value="order-date01" class="order_check_day" id="selected_stock">    배송을  원하는 날짜를 고르세요. <span  style="display:hidden; font-size:25px;"></span></div>
                                  
                                  <!-- 갯수를 30개로 가정하고 시작하자! -->
 	                                
 	                                 <div name="pOderday1" value="order-date01" class="order_check_day" id="order_check_day1" style="display:none;" onclick="mouseClick();">      9월 22일(화)
-	                                     <span></span><span alt="체크" style="displa:none; font-size:25px; bold: 1000;" style="display:none;">√</span>
+	                                     <span></span><span alt="체크" style="displa:none; font-size:25px; bold: 1000;" style="display:none;"></span>
 	                                 </div>
 	                                 <div  name="pOderday1" value="order-date02" class="order_check_day" id="order_check_day2" style="display: none;" onclick="mouseClick1();">      9월 23일(수)
-	                                     <span>개</span><span alt="체크" style="displa:none; font-size:25px; bold: 1000;" style="display:none;">√</span>
+	                                     <span>개</span><span alt="체크" style="displa:none; font-size:25px; bold: 1000;" style="display:none;"></span>
 	                                 </div>
 	                                 <div name="pOderday1" value="order-date03"class="order_check_day" id="order_check_day3" style="display: none;" onclick="mouseClick2();">       9월 24일(목)
-	                                     <span>개</span><span alt="체크" style="displa:none; font-size:25px; bold: 1000;" style="display:none;">√</span>
+	                                     <span>개</span><span alt="체크" style="displa:none; font-size:25px; bold: 1000;" style="display:none;"></span>
 	                                 </div>
 	                                 <div name="pOderday1" value="order-date04" class="order_check_day" id="order_check_day4" style="display: none;" onclick="mouseClick3();">      9월 25일(금)
-	                                     <span>개</span><span alt="체크" style="displa:none; font-size:25px; bold: 1000;" style="display:none;">√</span>
+	                                     <span>개</span><span alt="체크" style="displa:none; font-size:25px; bold: 1000;" style="display:none;"></span>
 	                                 </div>
 	                                 <div name="pOderday1" value="order-date05" class="order_check_day" id="order_check_day5" style="display: none;" onclick="mouseClick4();">      9월 26일(토)
-	                                     <span>개</span ><span alt="체크" style="displa:none; font-size:25px; bold: 1000;" style="display:none;">√</span>
+	                                     <span>개</span ><span alt="체크" style="displa:none; font-size:25px; bold: 1000;" style="display:none;"></span>
                                  </div>
                              </a>
                              
@@ -186,7 +194,7 @@ Review r=(Review)request.getAttribute("Review");
                                      <button type="button" class="menu-delivery-delete-btn" onclick="removeblock(event);">x</button>
                                  </div>
                                  <div class="menu-date-container-box2">
-                                     <div class="menu-date-text" value=""><%=p.getpDetailMain()%><%=p.getpName()%>
+                                     <div class="menu-date-text" value=""><%=p.getpName()%>
                         
                                      </div>
                                      <div class="product-number-group" id="quantity" data-unitprice="2800" value=<%=p.getpPrice() %>>
@@ -208,12 +216,25 @@ Review r=(Review)request.getAttribute("Review");
                                  <form class="product-price-number-group" name="form" method="post" action="<%=request.getContextPath()%>/views/cart/cartViewServlet?pNo=<%=p.getpNo()%>">
                                      <p class="producttextinput" name="">수량
 
-                                         <input type="hidden" class="product-nember" name="pCount" value="currentCount" max="<%=p.getpStock()%>"readonly/>0개
+                                         <input type="hidden" class="product-nember" name="pCount" value="currentCount" max="<%=p.getpStock()%>"readonly/>개
                                          <input type="hidden" name="pNo" value="<%=p.getpNo() %>">
                                      </p>
                                      <p><input type="text" class="product-pricetag" id="total-price" readonly><span>원</span></input></p>
                                  </form>
                                 		<script>
+										///슬라이드바 효과
+										
+								$(window).scroll(function(event){
+								    if($(window).scrollTop() > $(".sns-btn-wrap-items-group").offset().top){
+								
+								       /*  $(".sns-btn-wrap-items").css("position","fixed"); */
+								        $(".sns-btn-wrap-items").css({position:"fixed"});
+								    }
+								    else if(($(window).scrollTop)){
+								     /*    $(".sns-btn-wrap-items").css("position","static"); */
+								    	 $(".sns-btn-wrap-items").css({position:"static"});
+								    }
+								});
 
                                 		         
                                 	
@@ -240,7 +261,7 @@ Review r=(Review)request.getAttribute("Review");
                                 				var currentCount=$qytInput.val();//input의 값을 가져와서
                                 			if($(this).hasClass('product-plus')){
                                 				currentCount++;
-                                				$qytInput.val(currentCount).prepend("텍스트 표시  안되나"+currentCount);
+                                				$qytInput.val(currentCount);
                                 				$qytInput2.val(currentCount);
                                 			}else{
                                 				if(currentCount > 1){//최소한개는 사게 만들어준다.
@@ -252,12 +273,13 @@ Review r=(Review)request.getAttribute("Review");
                                 			}
                                 				 //수량단가 변수 total에 저정하고 그걸 .price값으로 변경
                                 				 console.log("curren값 :"+currentCount);
-                                				 var total2= (parseInt(currentCount)) * $tdprice;
+                                				 var total2=(parseInt((parseInt(currentCount)) * $tdprice));
                                 				 console.log("갯수x가격="+total2);
                                 				 console.log(currentCount);
                                 				$tagetTotal.val(""+total2); 
                                 				console.log($tagetTotal.val(total2));
                                 				$tagetTotal2.text(total2+"원");
+                                				
 
                                 		});
                                 		</script>
@@ -270,7 +292,7 @@ Review r=(Review)request.getAttribute("Review");
                                  
                                     <a href=""><img src="<%=request.getContextPath() %>/images/product/hart40px.jpg" alt="찜" class="jjim"></a>
 
-                                   <a href=""><span class="jjim" style="font-size: 40px;width: 40px; height="40px;">♥</span></a>
+                                   
                                     
                                     
                                     
@@ -407,7 +429,7 @@ Review r=(Review)request.getAttribute("Review");
         <div class="resipy-menu-detail-text-group">
          <div class="resipy-h3-text">
              <h2 class="resipy-h3-text-legft">이렇게 요리하세요</h2>
-                <h2 class="resipy-h3-text-right"><img src="<%=request.getContextPath() %>/images/product/time30px.jpg" alt="조리시간"><%=p.getpCooktime() %></h2>
+                <h2 class="resipy-h3-text-right"><img src="<%=request.getContextPath() %>/images/product/time30px.jpg" alt="조리시간">조리시간<%=p.getpCooktime() %>분</h2>
  
          </div>  
          <div class="resipy-imag-group-container-group">

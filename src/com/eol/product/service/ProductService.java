@@ -81,8 +81,61 @@ public class ProductService {
 		close(conn);
 		return list;
 	}
+	
+	
+	//메인페이지에 실시간 베스트 보여줄 상품정보 list받아오기
+	public List<Product> bestPlist(){
+		Connection conn = getConnection();
+		List<Product> list = dao.bestPlist(conn);
+		close(conn);
+		return list;
+	}
+	
+	//메인페이지에 핫딜에 보여줄 상품정보 리스트받아오기 : 할인율이 가장 높은 순으로 상품 정렬
 
+	public List<Product> hotdealPlist(){
+		Connection conn = getConnection();
+		List<Product> list = dao.hotdealPlist(conn);
+		close(conn);
+		return list;
+	}
+	
+	//오늘의 메뉴
+	public Product todayPro() {
+		Connection conn = getConnection();
+		Product p = dao.todayPro(conn);
+		close(conn);
+		return p;
+	}
 
-
+	//////////////현우 추가
+	public List<Product> newMenuList(int cPage, int numPerPage) {
+		Connection conn=getConnection();
+		List<Product> list=dao.newMenuList(conn, cPage,numPerPage);
+		close(conn);
+		System.out.println("list 갓다옴");
+		return list;
+	}
+	public List<Product> hotMenuList(int cPage, int numPerPage) {
+		Connection conn=getConnection();
+		List<Product> list=dao.hotMenuList(conn, cPage,numPerPage);
+		close(conn);
+		System.out.println("list 갓다옴");
+		return list;
+	}
+	public List<Product> lowPriceMenuList(int cPage, int numPerPage) {
+		Connection conn=getConnection();
+		List<Product> list=dao.lowPriceMenuList(conn, cPage,numPerPage);
+		close(conn);
+		System.out.println("list 갓다옴");
+		return list;
+	}
+	public List<Product> highPriceMenuList(int cPage, int numPerPage) {
+		Connection conn=getConnection();
+		List<Product> list=dao.highPriceMenuList(conn, cPage,numPerPage);
+		close(conn);
+		System.out.println("list 갓다옴");
+		return list;
+	}
 
 }

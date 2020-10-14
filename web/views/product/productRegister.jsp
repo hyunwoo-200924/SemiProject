@@ -257,6 +257,10 @@
                     <textarea value="" name="pRecipeContent4" id="pRecipeContent4" cols="20" rows="3"></textarea>
                </p>
           </li> 
+          
+          <li>
+          	HIT~다 !Hit !!<input type="text" name="pHit" id="pHit">
+          </li>
         
 
        </ul>

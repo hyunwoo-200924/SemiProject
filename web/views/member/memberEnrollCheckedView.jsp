@@ -7,7 +7,7 @@ href="<%=request.getContextPath() %>/css/member/memberEnrollCheckedView.css">
 	<form class="enroll-container" action="<%=request.getContextPath() %>/memberEnrollCheck.do" method="post" >
 	<!--memberEnrollCheckedEndServlet으로 넘어감  -->
         <div class="joinText"> 
-            <p>'회원관리 여부 확인'</p>
+            <h1>회원관리 여부 확인</h1>
         </div>
         <div class="join1">
         		<div class="NameCheckForm">
@@ -22,7 +22,7 @@ href="<%=request.getContextPath() %>/css/member/memberEnrollCheckedView.css">
             			<span id="email1" style="display:block; color:red;">이메일을 입력해 주세요</span>
 					</div>            	
         		</div>
-            		<input type="submit" name="ckJoin" id="ckJoin" value="가입여부 확인" onclick="return ck();">
+            		<input class="ckJoin" type="submit" name="ckJoin" id="ckJoin" value="가입여부 확인" onclick="return ck();">
         </div>
      </form>
 </section>

@@ -109,8 +109,8 @@ public class CartViewServlet extends HttpServlet {
 			System.out.println("여기확인" + nonCartList);
 			response.sendRedirect(request.getContextPath() +"/views/cart/cart.jsp");
 		}else {
-			
 			//회원 일때
+			System.out.println("회원일때");
 			Cart c = new Cart();
 			c.setmNo(m.getmNo());
 			c.setpNo(pNo);
@@ -128,20 +128,26 @@ public class CartViewServlet extends HttpServlet {
 				//같은 상품 들어올때
 				System.out.println("수량 :"+pCount);
 				result = new CartService().updateCartNum(m.getmNo(),pNo);
+				System.out.println("같은 상품"+result);
 				
 				
 			} else {
 				//다른 상품 들어올때
 				c.setcQty(pCount);
 				result = new CartService().insertCart(c);
+				System.out.println("다른 상품"+result);
 			}
 			
 			c.setoDeliveryEDate(request.getParameter("oDelivertEDate"));
 			if(result>0) {
-				String msg = "장바구니에 상품이 담겼습니다!";
+				System.out.println(list);
+				String msg ="상품이 장바구니에 담겼습니다.";
+				
+				request.getSession().setAttribute("memberCart", list);
+				
 				request.setAttribute("msg",msg);
-//				request.setAttribute("loc", "/views/member/memberLogin.jsp");
-				request.getRequestDispatcher("/views/cart/memberCart.jsp").forward(request, response);
+				request.setAttribute("loc", "/views/cart/memberCart.jsp");
+				request.getRequestDispatcher("/views/common/msg.jsp").forward(request, response);
 			}
 		}
 		

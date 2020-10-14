@@ -150,6 +150,7 @@ public class ProductDao {
 			pstmt.setNString(26, p.getpRecipeContent2());
 			pstmt.setNString(27, p.getpRecipeContent3());
 			pstmt.setNString(28, p.getpRecipeContent4());
+			pstmt.setInt(29, p.getpHit());
 
 			result=pstmt.executeUpdate();
 			
@@ -314,6 +315,7 @@ public class ProductDao {
 				p.setpPrice(rs.getInt("p_price"));
 				p.setpServing(rs.getInt("p_serving"));
 				p.setpImage1(rs.getString("p_image2"));
+				p.setpDetailMain(rs.getString("p_detailmain"));
 				list.add(p);
 			}
 		}catch(SQLException e) {
@@ -323,4 +325,347 @@ public class ProductDao {
 			close(pstmt);
 		}return list;
 	}
+	
+	public List<Product> bestPlist(Connection conn){
+		PreparedStatement pstmt = null;
+		ResultSet rs =null;
+		List<Product> list = new ArrayList();
+		try {
+			pstmt = conn.prepareStatement(prop.getProperty("bestPlist"));
+			//bestPlist=SELECT * FROM (SELECT * FROM PRODUCT ORDER BY P_HIT DESC) WHERE ROWNUM <= 3
+			rs = pstmt.executeQuery();
+			while(rs.next()) {
+				Product p = new Product();
+				p.setpNo(rs.getInt("p_no"));
+				p.setpName(rs.getString("p_name"));
+				p.setpPrice(rs.getInt("p_price"));
+				p.setpServing(rs.getInt("p_serving"));
+				p.setpImage1(rs.getString("p_image2"));
+				list.add(p);
+			}
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rs);
+			close(pstmt);
+		}return list;
+	}
+	
+	public List<Product> hotdealPlist(Connection conn){
+		PreparedStatement pstmt = null;
+		ResultSet rs =null;
+		List<Product> list = new ArrayList();
+		try {
+			pstmt = conn.prepareStatement(prop.getProperty("hotdealPlist"));
+			//hotdealPlist=SELECT * FROM PRODUCT ORDER BY P_HIT DESC
+			rs = pstmt.executeQuery();
+			while(rs.next()) {
+				Product p = new Product();
+				p.setpNo(rs.getInt("p_no"));
+				p.setpName(rs.getString("p_name"));
+				p.setpPrice(rs.getInt("p_price"));
+				p.setpServing(rs.getInt("p_serving"));
+				p.setpImage1(rs.getString("p_image1"));
+				p.setpDiscount(rs.getInt("p_discount"));
+				p.setpDetailMain(rs.getString("p_detailmain"));
+				list.add(p);
+			}
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rs);
+			close(pstmt);
+		}return list;
+	}
+	
+	///////////////////////////////현우 추가
+	public List<Product> newMenuList(Connection conn, int cPage, int numPerPage) {
+		PreparedStatement pstmt=null;
+		ResultSet rs=null;
+		List<Product> list=new ArrayList();
+		
+		try {
+			pstmt=conn.prepareStatement(prop.getProperty("newMenuList"));
+			pstmt.setInt(1, (cPage-1)*numPerPage+1);
+			pstmt.setInt(2, cPage*numPerPage);
+			rs=pstmt.executeQuery();
+			while(rs.next()) {
+				Product p=new Product();
+				p.setpNo(rs.getInt("p_no"));
+				p.setpName(rs.getNString("p_name"));
+				p.setpPrice(rs.getInt("p_price"));
+				p.setpDiscount(rs.getInt("p_Discount"));
+				p.setpStock(rs.getInt("p_Stock"));
+				p.setpServing(rs.getInt("p_Serving"));
+				p.setpCooktime(rs.getInt("p_Cooktime"));
+				p.setpReadytime(rs.getInt("p_Readytime"));
+				p.setpTaste(rs.getInt("p_Taste"));
+				
+				p.setpImage1(rs.getNString("p_Image1"));
+				p.setpImage2(rs.getNString("p_Image2"));
+				p.setpImage3(rs.getNString("p_Image3"));
+				p.setpVideo(rs.getNString("p_Video"));
+				
+				p.setpDetailImage1(rs.getNString("p_DetailImage1"));
+				p.setpDetailImage2(rs.getNString("p_DetailImage2"));
+				p.setpDetailImage3(rs.getNString("p_DetailImage3"));
+				p.setpDetailTitle1(rs.getNString("p_DetailTitle1"));
+				p.setpDetailTitle2(rs.getNString("p_DetailTitle2"));
+				p.setpDetailMain(rs.getNString("p_DetailMain"));
+				
+				p.setpDetailContent1(rs.getNString("p_DetailContent1"));
+				p.setpDetailContent2(rs.getNString("p_DetailContent2"));
+				
+				p.setpRecipeImage1(rs.getNString("p_RecipeImage1"));
+				p.setpRecipeImage2(rs.getNString("p_RecipeImage2"));
+				p.setpRecipeImage3(rs.getNString("p_RecipeImage3"));
+				
+				p.setpRecipeImage4(rs.getNString("p_RecipeImage4"));
+				
+				
+				p.setpRecipeContent1(rs.getNString("p_RecipeContent1"));
+				p.setpRecipeContent2(rs.getNString("p_RecipeContent2"));
+				p.setpRecipeContent3(rs.getNString("p_RecipeContent3"));
+				p.setpRecipeContent4(rs.getNString("p_RecipeContent4"));
+				p.setpRdate(rs.getDate("p_Rdate"));
+				p.setpHit(rs.getInt("p_Hit"));
+				p.setpSell(rs.getInt("p_Sell"));
+				//p를담아준다
+				list.add(p);
+			}
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rs);
+			close(pstmt);
+		}
+		return list;
+		
+	}
+	
+	public List<Product> hotMenuList(Connection conn, int cPage, int numPerPage) {
+		PreparedStatement pstmt=null;
+		ResultSet rs=null;
+		List<Product> list=new ArrayList();
+		
+		try {
+			pstmt=conn.prepareStatement(prop.getProperty("hotMenuList"));
+			pstmt.setInt(1, (cPage-1)*numPerPage+1);
+			pstmt.setInt(2, cPage*numPerPage);
+			rs=pstmt.executeQuery();
+			while(rs.next()) {
+				Product p=new Product();
+				p.setpNo(rs.getInt("p_no"));
+				p.setpName(rs.getNString("p_name"));
+				p.setpPrice(rs.getInt("p_price"));
+				p.setpDiscount(rs.getInt("p_Discount"));
+				p.setpStock(rs.getInt("p_Stock"));
+				p.setpServing(rs.getInt("p_Serving"));
+				p.setpCooktime(rs.getInt("p_Cooktime"));
+				p.setpReadytime(rs.getInt("p_Readytime"));
+				p.setpTaste(rs.getInt("p_Taste"));
+				
+				p.setpImage1(rs.getNString("p_Image1"));
+				p.setpImage2(rs.getNString("p_Image2"));
+				p.setpImage3(rs.getNString("p_Image3"));
+				p.setpVideo(rs.getNString("p_Video"));
+				
+				p.setpDetailImage1(rs.getNString("p_DetailImage1"));
+				p.setpDetailImage2(rs.getNString("p_DetailImage2"));
+				p.setpDetailImage3(rs.getNString("p_DetailImage3"));
+				p.setpDetailTitle1(rs.getNString("p_DetailTitle1"));
+				p.setpDetailTitle2(rs.getNString("p_DetailTitle2"));
+				p.setpDetailMain(rs.getNString("p_DetailMain"));
+				
+				p.setpDetailContent1(rs.getNString("p_DetailContent1"));
+				p.setpDetailContent2(rs.getNString("p_DetailContent2"));
+				
+				p.setpRecipeImage1(rs.getNString("p_RecipeImage1"));
+				p.setpRecipeImage2(rs.getNString("p_RecipeImage2"));
+				p.setpRecipeImage3(rs.getNString("p_RecipeImage3"));
+				
+				p.setpRecipeImage4(rs.getNString("p_RecipeImage4"));
+				
+				
+				p.setpRecipeContent1(rs.getNString("p_RecipeContent1"));
+				p.setpRecipeContent2(rs.getNString("p_RecipeContent2"));
+				p.setpRecipeContent3(rs.getNString("p_RecipeContent3"));
+				p.setpRecipeContent4(rs.getNString("p_RecipeContent4"));
+				p.setpRdate(rs.getDate("p_Rdate"));
+				p.setpHit(rs.getInt("p_Hit"));
+				p.setpSell(rs.getInt("p_Sell"));
+				//p를담아준다
+				list.add(p);
+			}
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rs);
+			close(pstmt);
+		}
+		System.out.println(list);
+		System.out.println("db갓다와서 출력햇음");
+		return list;
+		
+	}
+	
+	public List<Product> lowPriceMenuList(Connection conn, int cPage, int numPerPage) {
+		PreparedStatement pstmt=null;
+		ResultSet rs=null;
+		List<Product> list=new ArrayList();
+		
+		try {
+			pstmt=conn.prepareStatement(prop.getProperty("lowPriceMenuList"));
+			pstmt.setInt(1, (cPage-1)*numPerPage+1);
+			pstmt.setInt(2, cPage*numPerPage);
+			rs=pstmt.executeQuery();
+			while(rs.next()) {
+				Product p=new Product();
+				p.setpNo(rs.getInt("p_no"));
+				p.setpName(rs.getNString("p_name"));
+				p.setpPrice(rs.getInt("p_price"));
+				p.setpDiscount(rs.getInt("p_Discount"));
+				p.setpStock(rs.getInt("p_Stock"));
+				p.setpServing(rs.getInt("p_Serving"));
+				p.setpCooktime(rs.getInt("p_Cooktime"));
+				p.setpReadytime(rs.getInt("p_Readytime"));
+				p.setpTaste(rs.getInt("p_Taste"));
+				
+				p.setpImage1(rs.getNString("p_Image1"));
+				p.setpImage2(rs.getNString("p_Image2"));
+				p.setpImage3(rs.getNString("p_Image3"));
+				p.setpVideo(rs.getNString("p_Video"));
+				
+				p.setpDetailImage1(rs.getNString("p_DetailImage1"));
+				p.setpDetailImage2(rs.getNString("p_DetailImage2"));
+				p.setpDetailImage3(rs.getNString("p_DetailImage3"));
+				p.setpDetailTitle1(rs.getNString("p_DetailTitle1"));
+				p.setpDetailTitle2(rs.getNString("p_DetailTitle2"));
+				p.setpDetailMain(rs.getNString("p_DetailMain"));
+				
+				p.setpDetailContent1(rs.getNString("p_DetailContent1"));
+				p.setpDetailContent2(rs.getNString("p_DetailContent2"));
+				
+				p.setpRecipeImage1(rs.getNString("p_RecipeImage1"));
+				p.setpRecipeImage2(rs.getNString("p_RecipeImage2"));
+				p.setpRecipeImage3(rs.getNString("p_RecipeImage3"));
+				
+				p.setpRecipeImage4(rs.getNString("p_RecipeImage4"));
+				
+				
+				p.setpRecipeContent1(rs.getNString("p_RecipeContent1"));
+				p.setpRecipeContent2(rs.getNString("p_RecipeContent2"));
+				p.setpRecipeContent3(rs.getNString("p_RecipeContent3"));
+				p.setpRecipeContent4(rs.getNString("p_RecipeContent4"));
+				p.setpRdate(rs.getDate("p_Rdate"));
+				p.setpHit(rs.getInt("p_Hit"));
+				p.setpSell(rs.getInt("p_Sell"));
+				//p를담아준다
+				list.add(p);
+			}
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rs);
+			close(pstmt);
+		}
+		System.out.println(list);
+		System.out.println("db갓다와서 출력햇음");
+		return list;
+		
+	}
+	
+	public List<Product> highPriceMenuList(Connection conn, int cPage, int numPerPage) {
+		PreparedStatement pstmt=null;
+		ResultSet rs=null;
+		List<Product> list=new ArrayList();
+		
+		try {
+			pstmt=conn.prepareStatement(prop.getProperty("highPriceMenuList"));
+			pstmt.setInt(1, (cPage-1)*numPerPage+1);
+			pstmt.setInt(2, cPage*numPerPage);
+			rs=pstmt.executeQuery();
+			while(rs.next()) {
+				Product p=new Product();
+				p.setpNo(rs.getInt("p_no"));
+				p.setpName(rs.getNString("p_name"));
+				p.setpPrice(rs.getInt("p_price"));
+				p.setpDiscount(rs.getInt("p_Discount"));
+				p.setpStock(rs.getInt("p_Stock"));
+				p.setpServing(rs.getInt("p_Serving"));
+				p.setpCooktime(rs.getInt("p_Cooktime"));
+				p.setpReadytime(rs.getInt("p_Readytime"));
+				p.setpTaste(rs.getInt("p_Taste"));
+				
+				p.setpImage1(rs.getNString("p_Image1"));
+				p.setpImage2(rs.getNString("p_Image2"));
+				p.setpImage3(rs.getNString("p_Image3"));
+				p.setpVideo(rs.getNString("p_Video"));
+				
+				p.setpDetailImage1(rs.getNString("p_DetailImage1"));
+				p.setpDetailImage2(rs.getNString("p_DetailImage2"));
+				p.setpDetailImage3(rs.getNString("p_DetailImage3"));
+				p.setpDetailTitle1(rs.getNString("p_DetailTitle1"));
+				p.setpDetailTitle2(rs.getNString("p_DetailTitle2"));
+				p.setpDetailMain(rs.getNString("p_DetailMain"));
+				
+				p.setpDetailContent1(rs.getNString("p_DetailContent1"));
+				p.setpDetailContent2(rs.getNString("p_DetailContent2"));
+				
+				p.setpRecipeImage1(rs.getNString("p_RecipeImage1"));
+				p.setpRecipeImage2(rs.getNString("p_RecipeImage2"));
+				p.setpRecipeImage3(rs.getNString("p_RecipeImage3"));
+				
+				p.setpRecipeImage4(rs.getNString("p_RecipeImage4"));
+				
+				
+				p.setpRecipeContent1(rs.getNString("p_RecipeContent1"));
+				p.setpRecipeContent2(rs.getNString("p_RecipeContent2"));
+				p.setpRecipeContent3(rs.getNString("p_RecipeContent3"));
+				p.setpRecipeContent4(rs.getNString("p_RecipeContent4"));
+				p.setpRdate(rs.getDate("p_Rdate"));
+				p.setpHit(rs.getInt("p_Hit"));
+				p.setpSell(rs.getInt("p_Sell"));
+				//p를담아준다
+				list.add(p);
+			}
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rs);
+			close(pstmt);
+		}
+		System.out.println(list);
+		System.out.println("db갓다와서 출력햇음");
+		return list;
+		
+	}
+
+	public Product todayPro(Connection conn) {
+		PreparedStatement pstmt = null;
+		ResultSet rs =null;
+		Product p = null;
+		try {
+			pstmt = conn.prepareStatement(prop.getProperty("todayPro"));
+			//todayPro=SELECT * FROM PRODUCT WHERE P_NO=521
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				p = new Product();
+				p.setpNo(rs.getInt("p_no"));
+				p.setpName(rs.getString("p_name"));
+				p.setpPrice(rs.getInt("p_price"));
+				p.setpServing(rs.getInt("p_serving"));
+				p.setpImage1(rs.getString("p_image2"));
+				p.setpDiscount(rs.getInt("p_discount"));
+				p.setpDetailMain(rs.getString("p_detailmain"));
+			}
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rs);
+			close(pstmt);
+		}return p;
+		
+	}
+	
 }

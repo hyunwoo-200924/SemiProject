@@ -1,13 +1,16 @@
+<%@page import="javax.tools.DocumentationTool.Location"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/css/menu.css">  
+<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/menu.css">
 
-<%@ page import="java.util.List,com.eol.product.model.vo.Product, com.eol.member.model.vo.Member" %>
+
 <%@ include file="/views/common/header.jsp"%>
+<%@ page import="java.util.List,com.eol.product.model.vo.Product, com.eol.member.model.vo.Member" %>
 <%
 	List<Product> list=(List)request.getAttribute("list");
 	String pageBar=(String)request.getAttribute("pageBar");
 	Member loginMember1 = (Member)request.getSession().getAttribute("loginMember");
+	String change = (String)request.getAttribute("change");
 %>
 
 
@@ -48,18 +51,17 @@
 
                         <h2 class="h2"><span class="change_date_print">9월 22일 화요일</span>배송가능한 메뉴입니다.</h2>
                     </div>
-                    <div class="head-text1">
+                    <div class="head-text">
 
                         <div class="head-left">
                             <h5>뚝딱kit의 주문마감은 <span class="date-change">9월 25일(금)</span> 오전7시입니다.</h5>
                         </div>
-                        <ul class="head-right">
-                            <li class="head-right-items2"><a href="">신메뉴</a></li>
-                            <li class="head-right-items2"><a href="">인기메뉴</a></li>
-                            <li class="head-right-items2"><a href="">가격높은순</a></li>
-                            <li class="head-right-items2"><a href="">가격낮은순</a></li>
-
-                        </ul>
+	                        <ul class="head-right">
+	                            <li class="head-right-items2"><%change="new"; %><button class="btnnone" onclick="location.replace('<%=request.getContextPath()%>/product/productSort?change=<%=change %>')">신메뉴</button></li>
+	                            <li class="head-right-items2"><%change="hot"; %><button class="btnnone" onclick="location.replace('<%=request.getContextPath()%>/product/productSort?change=<%=change %>')">인기메뉴</button></li>
+	                            <li class="head-right-items2"><%change="low"; %><button class="btnnone" onclick="location.replace('<%=request.getContextPath()%>/product/productSort?change=<%=change %>')">높은가격순</button></li>
+	                            <li class="head-right-items2"><%change="high"; %><button class="btnnone" onclick="location.replace('<%=request.getContextPath()%>/product/productSort?change=<%=change %>')">낮은가격순</button></li>
+	                        </ul>
                     </div>
                 </div>
             </div>
@@ -76,31 +78,25 @@
             <section class="menu-group-section1">
                 
             <%for(Product p : list) {%>
-            	<% if(loginMember1!=null&&(loginMember1.getmId().equals("admin"))){%>
-                            <div id="pNo" style="display:none;"><%=p.getpNo()%></div>
-      		<input type="button" class="product-register" id="updateProduct" onclick="location.assign('<%=request.getContextPath() %>/product/productUpdate?pNo=<%=p.getpNo() %>')" value="수정">
-      		<input type="button" class="product-register" id="deleteProduct" onclick="location.assign('<%=request.getContextPath() %>/product/productDelete?pNo=<%=p.getpNo() %>')" value="삭제">
-              <%}%> 
+         	 <div>
 					              
               <div class="menu-img-group">
                 <div class="menu-img-group-wrap">
                     <div class="menu--img-group2">
                        <div class="menu--img-items-group"> 
                             <div class="menu--img-items">
-
                             
                             <div name="pNo" style="display:none;"><%=p.getpNo()%></div>
-
                                 <!-- 메뉴상세페이지로이동 -->
-                                <a href="<%=request.getContextPath()%>/product/productView?pNo=<%=p.getpNo()%>" name="">
+                                <a href="<%=request.getContextPath()%>/product/productView?pNo=<%=p.getpNo()%>" name="plz" >
 									<%if(p.getpImage1()!=null) {%>
-                                    <img type="file" src="<%=request.getContextPath() %>/product/productFileDownload?fileName=<%=p.getpImage1() %>" alt="menu" class="menu-click1">
+                                    <img type="file" src="<%=request.getContextPath() %>/product/productFileDownload?fileName=<%=p.getpImage1() %>" style="width: 268px;height: 320px;" alt="menu" class="menu-click1">
                                     <%} %>
                                     <ul class="menu--text-group">
                                         <div class="new">
                                             <p>NEW</p>
                                         </div>
-                                        <span class="menu--text"><%=p.getpServing()%>인분</span><span class="menu--text">조리시간<%=p.getpCooktime() %>분</span>
+                                        <span class="menu--text"><%=p.getpServing()%>인분&nbsp;&nbsp;&nbsp;</span><span class="menu--text">조리시간<%=p.getpCooktime() %>분</span>
                                     </ul>
                                     <ul class="menu--text-group">
                                         <h4 class="menu--text--title"><%=p.getpDetailMain() %></h4>
@@ -125,20 +121,32 @@
                     <div class="cart-hart">
                         <ul class="hart">
                         <!-- 찜 페이지 -->
-                            <a href="<%=request.getContextPath()%>/views/cart/jjim">
+                            <a href="<%=request.getContextPath()%>/views/cart/jjim.jsp">
 
-                                <img src="<%=request.getContextPath() %>/images/product/hart40px.jpg" alt="찜" class="hart--img" onclick="hart();"></img>
+                                <img src="<%=request.getContextPath() %>/images/product/hart40px.jpg" alt="찜" class="hart--img" onclick="hart();">
                             </a>
                             <!-- 장바구니페이지 -->
-                            <a href="<%=request.getContextPath() %>/views/cart/cartViewServlet?pNo=<%=p.getpNo() %>" id="cartBtn" name="">
+                            <a href="<%=request.getContextPath() %>/cartView.do">
+                            <a href="<%=request.getContextPath() %>/views/cart/cartViewServlet?pNo=<%=p.getpNo() %>" id="cartBtn" name="cartBtn">
 
-
-                                <img src="<%=request.getContextPath() %>/images/mainImages/shopping-cart-solid.svg" style="width: 30px; height: 30px;" alt="장바구니" class="cart--img" onclick="cartInsert()"></img>
+                                <img src="<%=request.getContextPath() %>/images/product/cart40px.jpg" alt="장바구니" class="cart--img" onclick="cartInsert()">
                             </a>
                         </ul>
                     </div>
                     </div>
                 </div>
+                
+                            	<% if(loginMember1!=null&&(loginMember1.getmId().equals("admin"))){%>
+            	<div>
+            	
+                            <div id="pNo" style="display:none;"><%=p.getpNo()%></div>
+      		<input type="button" class="product-register" id="updateProduct" onclick="location.assign('<%=request.getContextPath() %>/product/productUpdate?pNo=<%=p.getpNo() %>')" value="수정">
+      		<input type="button" class="product-register" id="deleteProduct" onclick="location.assign('<%=request.getContextPath() %>/product/productDelete?pNo=<%=p.getpNo() %>')" value="삭제">
+           
+            	<!--버튼 위치 수정  -->
+            	</div>
+              <%}%> 
+         </div>
                 <%} %>
             </section>
         </div>
