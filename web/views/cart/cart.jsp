@@ -43,13 +43,7 @@ href="<%=request.getContextPath() %>/css/cart.css">
                 <span type="button" value="＋" class="product-plus" id="minus">+</span>
                 <span>개</span>
                 </div>
-<<<<<<< HEAD
-=======
-                <div class="btnClass">
-	            <button class="btn" onclick="location.replace('<%=request.getContextPath()%>/cartintopay.do')">상품결제</button>
-	            <button class="btn">삭제</button>
-            	</div>
->>>>>>> branch 'master' of https://github.com/hyunwoo-200924/SemiProject.git
+
             	</div>
             <script>
            		//상품수량가격변경하기
