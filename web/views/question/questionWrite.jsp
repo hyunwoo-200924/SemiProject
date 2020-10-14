@@ -60,8 +60,8 @@
 				</div>
 				<div class="user_request">
 					<div class="inline">
-						<p class="active">1:1 문의 작성</p>
-						<p style="padding-left:20px;" onclick="fu_questionList();">1:1 문의 내역</p>
+						<p class="active hover">1:1 문의 작성</p>
+						<p style="padding-left:20px;" class="hover" onclick="fu_questionList();">1:1 문의 내역</p>
 					</div>
 					<div class="qeustion_context" style="margin-top: 50px;">
 						<form method="post" action="<%= request.getContextPath() %>/questionWrite.do" enctype="multipart/form-data" onsubmit="return fn_submit();">
@@ -109,7 +109,7 @@
 									<p>첨부파일</p>
 								<!--<p class="file">+</p> -->
 									<input type="file" name="file" multiple>
-									<p class="file-note">*최대 5장 등록 (PNG, JPEG, JPG, GIF 포맷)</p>
+									<!-- <p class="file-note">*최대 5장 등록 (PNG, JPEG, JPG, GIF 포맷)</p> -->
 								</div>
 								<div class="question_box">
 									<p>답변알림</p>

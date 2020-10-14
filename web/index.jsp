@@ -9,6 +9,8 @@
 %>
 <%
 	List<Product> slidePlist = (List)new ProductService().slidePlist();
+	List<Product> bestPlist = (List)new ProductService().bestPlist();
+
 %>
 <style>
 /*section.main style*/
@@ -418,19 +420,19 @@ tr.name{
 		<div class="best-table">
 			<table class="main-best">
 				<tr>
-					<td><img src="<%=request.getContextPath()%>/images/mainImages/gim.jpg" alt="" width="" height="" ></td>
-					<td><img src="<%=request.getContextPath()%>/images/mainImages/gogi.jpg" alt="" width="" height="" ></td>
-					<td><img src="<%=request.getContextPath()%>/images/mainImages/pasta.jpg" alt="" width="" height="" ></td>
+				<% for(Product p : bestPlist){%>
+					<td><img src="<%=request.getContextPath()%>/upload/product/<%=p.getpImage2() %>" alt="" width="" height="" ></td>
+				<%} %>
 				</tr>
 				<tr class="name">
-					<td><a href="">상품명1</a></td>
-					<td><a href="">상품명2</a></td>
-					<td><a href="">상품명3</a></td>
+				<%for(Product p : bestPlist) {%>
+					<td><a href=""><%=p.getpName() %></a></td>
+				<%} %>
 				</tr>
 				<tr>
-					<td><a href="">가격/인분</a></td>
-					<td><a href="">가격/인분</a></td>
-					<td><a href="">가격/인분</a></td>
+				<%for(Product p : bestPlist) {%>
+					<td><a href=""><%=p.getpPrice() %>원 / <%=p.getpServing() %>인분</a></td>
+				<%} %>
 				</tr>
 			</table>
 		</div>
