@@ -55,7 +55,7 @@ href="<%=request.getContextPath() %>/css/hayong.css">
             <%} %>
             <!-- 메인메뉴 -->
             <nav id="menu">
-                <a href="<%=request.getContextPath() %>/mainview.do"><img id="headerlogo" src="<%=request.getContextPath()%>/images/mainImages/logo.png" alt="" width="150px" height="45px" style="margin: 20px 0;" herf=""></a><!--로고-->
+                <a href="<%=request.getContextPath() %>/mainview.do"><img id="headerlogo" src="<%=request.getContextPath()%>/images/mainImages/logo.png" alt="" width="240px" height="75px" style="margin: 20px 0;" herf=""></a><!--로고-->
 
 				<div>
                 <%if(loginMember != null && loginMember.getmId().equals("admin")){ %>

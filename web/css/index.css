@@ -14,7 +14,12 @@
 }
 
 .slider-title{
-	background-color: white;
+	border: 10px solid;
+    background-color: #D63919;
+    padding: 30px;
+}
+.slider-title h3{
+	padding: 10px;
 }
 
 #slider-wrap {
@@ -256,8 +261,8 @@ tr.name{
 	text-align: center;
 }
 .main-hot td img{
-	width: 400px;
-    height: 400px;
+	width: 200px;
+    height: 200px;
 	
 }
 
@@ -269,4 +274,10 @@ td.name{
 .main-best td a{
 	text-decoration: none;
 	color: black;
+}
+
+.discount{
+	color: #FD2B00;
+	font-size: 20px;
+	background: #FCDE02;
 }

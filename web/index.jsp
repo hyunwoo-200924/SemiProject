@@ -200,7 +200,7 @@ href="<%=request.getContextPath() %>/css/index.css">
 			<table class="main-best">
 				<tr>
 				<% for(Product p : bestPlist){%>
-					<td><img src="<%=request.getContextPath()%>/upload/product/<%=p.getpImage2() %>" alt="" width="" height="" ></td>
+					<td><img src="<%=request.getContextPath()%>/upload/product/<%=p.getpImage1() %>" alt="" width="" height="" ></td>
 				<%} %>
 				</tr>
 				<tr class="name">
@@ -227,8 +227,8 @@ href="<%=request.getContextPath() %>/css/index.css">
 				if(p.getpDiscount()!=0){%>
 				<tr>
 					<td><img src="<%=request.getContextPath()%>/upload/product/<%=p.getpImage1() %>" alt="" width="" height="" ></td>
-					<td class="name"><a href=""><%=p.getpName() %></a></td>
-					<td><a href=""><%=p.getpPrice() %>원 / <%=p.getpServing() %>인분</a></td>	
+					<td class="name"><%=p.getpDetailMain()%><br><%=p.getpName() %></td>
+					<td><%=p.getpPrice() %>원 / <%=p.getpServing() %>인분</td>	
 					<td><p class="discount"><%=p.getpDiscount() %>% 에누리</td>
 				</tr>
 				<%}
