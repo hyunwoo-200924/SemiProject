@@ -298,4 +298,29 @@ public class ProductDao {
 		}
 		return result;
 	}
+	
+	public List<Product> slidePlist(Connection conn){
+		PreparedStatement pstmt = null;
+		ResultSet rs =null;
+		List<Product> list = new ArrayList();
+		try {
+			pstmt = conn.prepareStatement(prop.getProperty("slidePlist"));
+			//slidePlist=SELECT * FROM PRODUCT WHERE ROWNUM <= 3
+			rs = pstmt.executeQuery();
+			while(rs.next()) {
+				Product p = new Product();
+				p.setpNo(rs.getInt("p_no"));
+				p.setpName(rs.getString("p_name"));
+				p.setpPrice(rs.getInt("p_price"));
+				p.setpServing(rs.getInt("p_serving"));
+				p.setpImage1(rs.getString("p_image1"));
+				list.add(p);
+			}
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rs);
+			close(pstmt);
+		}return list;
+	}
 }
