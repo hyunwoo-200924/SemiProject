@@ -28,6 +28,7 @@ href="<%=request.getContextPath() %>/css/index.css">
                 <div class="slider-title">
                     <h3><%=p.getpName() %></h3>
                     <span><%=p.getpPrice() %>원 / <%=p.getpServing() %>인분</span>
+                    <p><%=p.getpDetailMain() %></p>
                 </div>
                 <img src="<%=request.getContextPath()%>/upload/product/<%=p.getpImage1()%>">
             </li>
@@ -155,7 +156,7 @@ href="<%=request.getContextPath() %>/css/index.css">
 
 	<!-- 추천메뉴 -->
 	<div class="recommend-container" >
-	<h1>오늘의 추천</h1>
+	<h1>오늘의 추천메뉴</h1>
 		<!-- <div class="taste-select">
 			<form action="">
 				<select name="taste-category" class="taste-cate">
@@ -184,7 +185,8 @@ href="<%=request.getContextPath() %>/css/index.css">
 			<div class="recommend-name">
 				<h2 style="margin-top: 20px;"><%=pro.getpName() %></h2>
 				<p><%=pro.getpPrice() %>원 / <%=pro.getpServing() %>인분</p>
-				<p><%=pro.getpDetailMain() %></p>
+				<br><br>
+				<p class="dmain"><%=pro.getpDetailMain() %></p>
 			</div>
 			<div class="cart">
 				<img src="<%=request.getContextPath() %>/images/mainImages/shopping-cart-solid.svg" alt="">
@@ -198,7 +200,7 @@ href="<%=request.getContextPath() %>/css/index.css">
 			<table class="main-best">
 				<tr>
 				<% for(Product p : bestPlist){%>
-					<td><img src="<%=request.getContextPath()%>/upload/product/<%=p.getpImage2() %>" alt="" width="" height="" ></td>
+					<td><img src="<%=request.getContextPath()%>/upload/product/<%=p.getpImage1() %>" alt="" width="" height="" ></td>
 				<%} %>
 				</tr>
 				<tr class="name">
@@ -225,8 +227,8 @@ href="<%=request.getContextPath() %>/css/index.css">
 				if(p.getpDiscount()!=0){%>
 				<tr>
 					<td><img src="<%=request.getContextPath()%>/upload/product/<%=p.getpImage1() %>" alt="" width="" height="" ></td>
-					<td class="name"><a href=""><%=p.getpName() %></a></td>
-					<td><a href=""><%=p.getpPrice() %>원 / <%=p.getpServing() %>인분</a></td>	
+					<td class="name"><%=p.getpDetailMain()%><br><%=p.getpName() %></td>
+					<td><%=p.getpPrice() %>원 / <%=p.getpServing() %>인분</td>	
 					<td><p class="discount"><%=p.getpDiscount() %>% 에누리</td>
 				</tr>
 				<%}

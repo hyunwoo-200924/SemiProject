@@ -14,7 +14,12 @@
 }
 
 .slider-title{
-	background-color: white;
+	border: 10px solid;
+    background-color: #D63919;
+    padding: 30px;
+}
+.slider-title h3{
+	padding: 10px;
 }
 
 #slider-wrap {
@@ -158,11 +163,15 @@
 /*추천메뉴 스타일*/
 .recommend-container { /*추천메뉴의 전체적인 <div>부분*/
 	max-width: 1200px;
-	height: 550px;
+	height: 600px;
 	cursor: pointer;
 	overflow: hidden;
 	position: relative; 
 	margin: auto; /*가운데로 잘 자리잡게 해줌*/
+}
+
+.recommend-container h1{
+	text-align:center;
 }
 
 .taste-select {
@@ -176,22 +185,28 @@
 }
 
 .recommend-img {
-	width: 1200px;
-	height: 550px;
+	width: 1150px;
+    height: 500px;
 	margin: auto;
 	padding: 40px;
 	background-repeat: no-repeat;
 	background-size: 100% 100%;
+	border: 10px solid #AC0F0F;
 	
 }
 
 .recommend-content {
 	position: absolute;
-	right: 200px;
-	top: 20%;	
+	right: 150px;
+	top: 30%;	
 }
 .recommend-name{
-	font-size: 50px;
+	font-size: 30px;
+	color: #664506;
+	text-align:center;
+}
+.dmain{
+	color: black;
 }
 .recommend-content .cart {
 	position: absolute;
@@ -246,8 +261,8 @@ tr.name{
 	text-align: center;
 }
 .main-hot td img{
-	width: 400px;
-    height: 400px;
+	width: 200px;
+    height: 200px;
 	
 }
 
@@ -259,4 +274,10 @@ td.name{
 .main-best td a{
 	text-decoration: none;
 	color: black;
+}
+
+.discount{
+	color: #FD2B00;
+	font-size: 20px;
+	background: #FCDE02;
 }
