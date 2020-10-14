@@ -55,6 +55,7 @@
                         <div class="head-left">
                             <h5>뚝딱kit의 주문마감은 <span class="date-change">9월 25일(금)</span> 오전7시입니다.</h5>
                         </div>
+                        <form>
                         <ul class="head-right">
                             <li class="head-right-items2"><a href="">신메뉴</a></li>
                             <li class="head-right-items2"><a href="">인기메뉴</a></li>
@@ -62,6 +63,7 @@
                             <li class="head-right-items2"><a href="">가격낮은순</a></li>
 
                         </ul>
+                        <form>
                     </div>
                 </div>
             </div>
@@ -96,7 +98,7 @@
                                         <div class="new">
                                             <p>NEW</p>
                                         </div>
-                                        <span class="menu--text"><%=p.getpServing()%>인분</span><span class="menu--text">조리시간<%=p.getpCooktime() %>분</span>
+                                        <span class="menu--text"><%=p.getpServing()%>인분&nbsp;&nbsp;&nbsp;</span><span class="menu--text">조리시간<%=p.getpCooktime() %>분</span>
                                     </ul>
                                     <ul class="menu--text-group">
                                         <h4 class="menu--text--title"><%=p.getpDetailMain() %></h4>
