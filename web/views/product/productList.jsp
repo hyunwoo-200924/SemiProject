@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<link rel="stylesheet" type="text/css" herf="<%=request.getContextPath()%>/css/menu.css">
+<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/menu.css">
 
 
 <%@ include file="/views/common/header.jsp"%>
@@ -78,16 +78,7 @@
             <section class="menu-group-section1">
                 
             <%for(Product p : list) {%>
-            	<% if(loginMember1!=null&&(loginMember1.getmId().equals("admin"))){%>
-            	<div>
-            	
-                            <div id="pNo" style="display:none;"><%=p.getpNo()%></div>
-      		<input type="button" class="product-register" id="updateProduct" onclick="location.assign('<%=request.getContextPath() %>/product/productUpdate?pNo=<%=p.getpNo() %>')" value="수정">
-      		<input type="button" class="product-register" id="deleteProduct" onclick="location.assign('<%=request.getContextPath() %>/product/productDelete?pNo=<%=p.getpNo() %>')" value="삭제">
-           
-            	
-            	</div>
-              <%}%> 
+         	 <div>
 					              
               <div class="menu-img-group">
                 <div class="menu-img-group-wrap">
@@ -95,11 +86,11 @@
                        <div class="menu--img-items-group"> 
                             <div class="menu--img-items">
                             
-                            <div name="pNo"><%=p.getpNo()%></div>
+                            <div name="pNo" style="display:none;"><%=p.getpNo()%></div>
                                 <!-- 메뉴상세페이지로이동 -->
-                                <a href="<%=request.getContextPath()%>/product/productView?pNo=<%=p.getpNo()%>" name="plz">
+                                <a href="<%=request.getContextPath()%>/product/productView?pNo=<%=p.getpNo()%>" name="plz" >
 									<%if(p.getpImage1()!=null) {%>
-                                    <img type="file" src="<%=request.getContextPath() %>/product/productFileDownload?fileName=<%=p.getpImage1() %>" alt="menu" class="menu-click1">
+                                    <img type="file" src="<%=request.getContextPath() %>/product/productFileDownload?fileName=<%=p.getpImage1() %>" style="width: 268px;height: 320px;" alt="menu" class="menu-click1">
                                     <%} %>
                                     <ul class="menu--text-group">
                                         <div class="new">
@@ -144,6 +135,18 @@
                     </div>
                     </div>
                 </div>
+                
+                            	<% if(loginMember1!=null&&(loginMember1.getmId().equals("admin"))){%>
+            	<div>
+            	
+                            <div id="pNo" style="display:none;"><%=p.getpNo()%></div>
+      		<input type="button" class="product-register" id="updateProduct" onclick="location.assign('<%=request.getContextPath() %>/product/productUpdate?pNo=<%=p.getpNo() %>')" value="수정">
+      		<input type="button" class="product-register" id="deleteProduct" onclick="location.assign('<%=request.getContextPath() %>/product/productDelete?pNo=<%=p.getpNo() %>')" value="삭제">
+           
+            	
+            	</div>
+              <%}%> 
+         </div>
                 <%} %>
             </section>
         </div>
