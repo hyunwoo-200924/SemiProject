@@ -60,14 +60,16 @@ function day(){
         <div class="menu-section">
       
             <div class="menu-container">
+            
+            
                 
                 <div class="img">
-                   <iframe class="big_img" width="600" height="500" src="<%=request.getContextPath() %>/upload/product/<%=p.getpVideo() %>" frameborder="0" allow="accelerometer; autoplay;  picture-in-picture" allowfullscreen></iframe>
+                   <iframe class="big_img" width="600" height="500" src="<%=request.getContextPath() %>/upload/product/<%=p.getpVideo() %>" frameborder="0" allow=" autoplay;  picture-in-picture" allowfullscreen></iframe>
                    <div class="img-parents">
                      <div class="img-container">
                          <ul class="slideshow-container">
                              <li class="myslides1 fade">
-                                 <iframe  data-target="" width="50" height="50" src="<%=request.getContextPath() %>/upload/product/<%=p.getpVideo() %>" frameborder="0" allow="accelerometer; gyroscope; picture-in-picture" allowfullscreen class="img-img-small0" alt="동영상"></iframe>
+                                 <img  data-target="" width="50" height="50" src="<%=request.getContextPath() %>/upload/product/<%=p.getpVideo() %>" frameborder="0" allow="accelerometer; gyroscope; picture-in-picture" allowfullscreen class="img-img-small0" alt="이미지"></img>
                                
                              </li>
                              <li class="active myslides1 fade">
@@ -92,7 +94,7 @@ function day(){
                  </div>
             </div>
         </div>
-
+ 
         <div class="text-container" >
 
 
@@ -156,46 +158,92 @@ function day(){
                   				</script>
                                 
                              </div>
-                             
+
                              <!-- 제이쿼리 사용시 nextAll()로 이용하여 클릭하세요hidden을 static으로 -->
-                             <a  name="order-date" id="order-date">
+                             <div  name="order-date" id="order-date">
                                  
                                  <div value="order-date01" class="order_check_day" id="selected_stock">    배송을  원하는 날짜를 고르세요. <span  style="display:hidden; font-size:25px;"></span></div>
                                  
                                  <!-- 갯수를 30개로 가정하고 시작하자! -->
 	                                
 	                                 <div name="oDeliveryEDate1" value="<%=Wednesday%>" class="order_check_day" id="Tuesday" style="display:none;" onclick="mouseClick();"><%=Wednesday%>
-	                                  <span alt="체크" style="displa:none; font-size:25px; bold: 1000;" style="display:none;"></span>
+	                                  <input type="radio" name="orderDay" style="displa:none; font-size:25px; bold: 1000;" style="display:none;" value="<%=Wednesday%>"></span>
 	                                 </div>
 	                                 <div  name="oDeliveryEDate2" value="<%=today%>" class="order_check_day" id="Wednesday" style="display: none;" onclick="mouseClick1();"><%=today%>    
-	                                     <span alt="체크" style="displa:none; font-size:25px; bold: 1000;" style="display:none;"></span>
+	                                     <input type="radio" name="orderDay" style="displa:none; font-size:25px; bold: 1000;" style="display:none;" value="<%=today%>"></span>
 	                                 </div>
 	                                 <div name="oDeliveryEDate3" value="<%=Thursday%>"class="order_check_day" id="Tursday" style="display: none;" onclick="mouseClick2();"><%=Thursday%>    
-	                                   <span alt="체크" style="displa:none; font-size:25px; bold: 1000;" style="display:none;"></span>
+	                                   <input type="radio" name="orderDay" style="displa:none; font-size:25px; bold: 1000;" style="display:none;" value="<%=Thursday%>"></span>
 	                                 </div>
 	                                 <div name="oDeliveryEDate4" value="<%=Friday%>" class="order_check_day" id="Friday" style="display: none;" onclick="mouseClick3();"><%=Friday%>   
-	                                     <span alt="체크" style="displa:none; font-size:25px; bold: 1000;" style="display:none;"></span>
+	                                     <input type="radio" name="orderDay" style="displa:none; font-size:25px; bold: 1000;" style="display:none;" value="<%=Friday%>"></span>
 	                                 </div>
 	                                 <div name="oDeliveryEDate5" value="<%=Saturday%>" class="order_check_day" id="Saturday" style="display: none;" onclick="mouseClick4();"><%=Saturday%>    
-	                                     <span alt="체크" style="displa:none; font-size:25px; bold: 1000;" style="display:none;"></span>
+	                                     <input type="radio" name="orderDay" style="displa:none; font-size:25px; bold: 1000;" style="display:none;"value="<%=Saturday%>"></span>
                                  </div>
-                             </a>
+                             </div>
                              
                              <script>
-                   		<%-- 	function orderday($(document).click(e){
-                   				switch(e){
-                        	 case $('#Tuesday'): $('.menu-date-text').val(<%=Wednesday%>);break;
-                        	 case $('#Wednesday'): $('.menu-date-text').val(<%=today%>);break;
-                        	 case $('#Tursday'): $('.menu-date-text').val(<%=Thursday%>);break;
-                        	 case $('#Friday'): $('.menu-date-text').val(<%=Friday%>);break;
-                        	 case $('#Saturday'): $('.menu-date-text').val(<%=Saturday%>);break;
-                       
-                   				
-                   				}
-                   			});
-                   			console.log(orderday);
-                        		  --%>
+                   			const day11=$("#Tuesday").prop("checked",true);
+                   			const day22=$("#Wednesday").prop("checked",true);
+                   			const day33=$("#Tursday").prop("checked",true);
+                   			const day44=$("#Friday").prop("checked",true);
+                   			const day55=$("#Saturday").prop("checked",true);
+                   	  	 
+                            // 목록 복사하는 자바스크립트
+                            function mouseClick(){
                              
+                                $(".menu-title-choice-wrap").show().clone().insertAfter();
+                                $(".menu-date-text").val("<%=Wednesday%>");
+                                $(".OderDay").val("<%=Wednesday%>");
+                            }
+                            function mouseClick1(){
+                                $(".menu-title-choice-wrap").show().clone().insertAfter();
+                                $(".menu-date-text").val("<%=today%>");
+                                $(".OderDay").val("<%=today%>");
+                            }
+                            function mouseClick2(){
+                                $(".menu-title-choice-wrap").show().clone().insertAfter();
+                                $(".menu-date-text").val("<%=Friday%>");
+                                $(".OderDay").val("<%=Friday%>");
+                            }
+                            function mouseClick3(){
+                                $(".menu-title-choice-wrap").show().clone().insertAfter();
+                                $(".menu-date-text").val("<%=today%>");
+                                $(".OderDay").val("<%=today%>");
+                            }
+                            function mouseClick4(){
+                                $(".menu-title-choice-wrap").show().clone().insertAfter();
+                                $(".menu-date-text").val("<%=Saturday%>");
+                                $(".OderDay").val("<%=Saturday%>");
+                            }
+                          //클릭시 창이 사라짐
+                            function removeblock(e){
+                                $(e.target).parent().parent().remove();
+                            }		
+
+                   		<%-- 	if(day11===true){
+                   				console.log("1번이참");
+                   				 $(".menu-date-text").val("<%=Wednesday%>").text("<%=Wednesday%>");
+                   			}else if(day22===true){
+                   				console.log("2번이참");
+                   				$(".menu-date-text").val("<%=today%>");
+                   			
+                   			}else if(day33===true){
+                   				console.log("3번이참");
+                   				$(".menu-date-text").val("<%=Friday%>");
+                   			
+                   			}else if(day44===true){
+                   				console.log("4번이참");
+                   				$(".menu-date-text").val("<%=today%>");
+                   			
+                   			}else(day55===true)
+                   				console.log("5번이참");
+                   				$(".menu-date-text").val("<%=Saturday%>");
+                   			 --%>
+                   		
+                            
+                   			
                             //클릭시 슬라이드바 
                              $(function(){
                             	 $("#selected_stock").click(function(){
@@ -205,38 +253,7 @@ function day(){
                              });
                             	 
                              });
-                            	 
-                             // 목록 복사하는 자바스크립트
-                             function mouseClick(){
-                              
-                                 $(".menu-title-choice-wrap").show().clone().insertAfter();
-                             }
-                             function mouseClick1(){
-                                 $(".menu-title-choice-wrap").show().clone().insertAfter();
-                             }
-                             function mouseClick2(){
-                                 $(".menu-title-choice-wrap").show().clone().insertAfter();
-                             }
-                             function mouseClick3(){
-                                 $(".menu-title-choice-wrap").show().clone().insertAfter();
-                             }
-                             function mouseClick4(){
-                                 $(".menu-title-choice-wrap").show().clone().insertAfter();
-                             }
-                           //클릭시 창이 사라짐
-                             function removeblock(e){
-                                 $(e.target).parent().parent().remove();
-                             }		
-
-
-
-                            
-                              
-             
                              </script>
-                             
-                             
-                             
                              <!-- 날짜선택시 박스생성  
                                  display:none;을 주게되면 화면에 자리잡고있던 영역이 없어지면서 화면상에서 사라짐
                                  visibility:hidden은  확실히 요소는 보이지 않지만, 
@@ -244,7 +261,7 @@ function day(){
  
                              <div class="menu-title-choice-wrap" style="display:none;">
                                  <div class="menu-date-container-box1">
-                                     <input class="menu-date-text" name="" value="">
+                                     <input class="menu-date-text" type="text" name="ordersDay" value="" style="border:none;" readonly>
                                    <!--       날짜 출력 -->
                                      </input>
                                      <button type="button" class="menu-delivery-delete-btn" onclick="removeblock(event);">x</button>
@@ -269,10 +286,10 @@ function day(){
                                 </div>
                                 
                                  <!-- 날짜선택시 박스생성끝 -->
-                                 <form class="product-price-number-group" name="form" method="post" action="<%=request.getContextPath()%>/views/cart/cartViewServlet?pNo=<%=p.getpNo()%>">
+                                  <form class="product-price-number-group" name="form" method="post" action="<%=request.getContextPath()%>/views/cart/cartViewServlet?pNo=<%=p.getpNo()%>">                   
                                      <p class="producttextinput" name="">수량
-
-                                         <input type="hidden" class="product-nember" name="pCount" value="currentCount" max="<%=p.getpStock()%>"readonly/>개
+										<input type="hidden" name="OderDay" value="" class="OderDay">
+                                         <input type="hidden" class="product-nember" name="pCount" value="currentCount" max="<%=p.getpStock()%>"readonly/>
                                          <input type="hidden" name="pNo" value="<%=p.getpNo() %>">
                                      </p>
                                      <p><input type="text" class="product-pricetag" id="total-price" readonly><span>원</span></input></p>
@@ -296,7 +313,7 @@ function day(){
                                 	
                                 		 var tdprice1=(parseInt(<%=p.getpPrice()%>));
                                 		 var discount=(parseInt(<%=p.getpDiscount()%>));
-                                		var $tdprice= tdprice1-(tdprice1/discount);
+                                		var $tdprice= tdprice1-(tdprice1/(discount*100));
                                 		 console.log("#ppPrice");
 
                                 		//상품수량가격변경하기
@@ -312,17 +329,31 @@ function day(){
                                 		
                                 		//$atybtn클릭하면 그요소가 class명 prev있다면 참이고 (플러스를 클릭햇으면)
 										//aytinput value 기존값에서 1증가 거짓이면 (마이너스를 클릭햇으면 $qyinput value 기존값에서 1차감) 
-                                		
+                                		countNum=1;
+                                		var currentCount=countNum;
+                              			 console.log("curren값 :"+currentCount);
+                                				 var total3=(parseInt((parseInt(currentCount)) * $tdprice));
+                                				 console.log("갯수x가격="+total3);
+                                				 console.log(currentCount);
+                                				$tagetTotal.val(""+total3); 
+                                				console.log($tagetTotal.val(total3));
+                                				$tagetTotal2.text(total3+"원");
+                                				$(".producttextinput").text("수량"+currentCount+"개");
                                 		$qtyBtn.click(function(){
-                                				var currentCount=$qytInput.val();//input의 값을 가져와서
-                                			if($(this).hasClass('product-plus')){
+                                			
+                                			console.log($qytInput.val());
+                                				 currentCount=$qytInput.val();//input의 값을 가져와서
+                                				console.log(currentCount);
+                                				if($(this).hasClass('product-plus')){
                                 				currentCount++;
+                                				$(".producttextinput").text("수량"+currentCount+"개");
                                 				$qytInput.val(currentCount);
                                 				$qytInput2.val(currentCount);
                                 			}else{
                                 				if(currentCount > 1){//최소한개는 사게 만들어준다.
                                 					
         										currentCount--;//값이 true면 마이너스해라
+        										$(".producttextinput").text("수량"+currentCount+"개");
         										$qytInput.val(currentCount);//다시 input에 값을 집어넣는다.
         										$qytInput2.val(currentCount);
                                 				}
@@ -374,7 +405,7 @@ function day(){
                          </div>
                      </div>
              </div>
-           
+           </form>
              <div class="etc_info_wrap">
                  <div class="review_btn_wrap">
                      <a href="#tab03" class="review_btn" id="review_btn" role="button">

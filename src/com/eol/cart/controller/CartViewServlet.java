@@ -40,6 +40,7 @@ public class CartViewServlet extends HttpServlet {
 		
 		System.out.println(request.getParameter("pCount"));
 		System.out.println(request.getParameter("pNo"));
+		System.out.println(request.getParameter("날짜가 널이냐?"+"OderDay"));
 
 		Member m = (Member)request.getSession().getAttribute("loginMember"); //회원 정보 가져오기
 		System.out.println(m);
