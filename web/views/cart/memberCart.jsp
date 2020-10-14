@@ -9,7 +9,8 @@
  %>
  <%
  		
- 		List<Cart> list = (List)request.getAttribute("memberCart");
+ 		List<Cart> memberCart = (List)request.getSession().getAttribute("memberCart");
+ 		
  		
  %>
     
@@ -19,11 +20,15 @@ href="<%=request.getContextPath() %>/css/cart.css">
 
 <div class="cart-section-container">
     <h2 class="cart-head-text"> 장바구니 </h2>
+    <div class="btnClass">
+    <button class="btn" onclick="location.replace('<%=request.getContextPath()%>/cartintopay.do')">상품결제</button>
+    <button class="btn">삭제</button>
+   	</div>
     <section class="cart-section-block">
-	        <%for(Cart c : list){%>
+	        <%for(Cart c : memberCart){%>
            		<div class="cart-section-body-group2">
             	<div class="kkk">
-               	<img src="<%=request.getContextPath() %>/upload/product/<%=c.getpImage1()%>" alt="상품이미지" style="width:200px;height:150px;">
+               	<img src="<%=request.getContextPath() %>/upload/practice/1.jpg" alt="상품이미지" style="width:200px;height:150px;">
                 </div>
                 <div>
                 <p><%=c.getpName()%></p>
@@ -34,10 +39,6 @@ href="<%=request.getContextPath() %>/css/cart.css">
                 <span type="button" value="＋" class="product-plus" id="minus">+</span>
                 <span>개</span>
                 </div>
-                <div class="btnClass">
-	            <button class="btn" onclick="location.replace('<%=request.getContextPath()%>/cartintopay.do')">상품결제</button>
-	            <button class="btn">삭제</button>
-            	</div>
             	</div>
             <script>
            		//상품수량가격변경하기
@@ -79,4 +80,7 @@ href="<%=request.getContextPath() %>/css/cart.css">
 		<%} %>
     </section>
 </div>
+<script>
+
+</script>
 <%@include file="/views/common/footer.jsp" %>
