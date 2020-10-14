@@ -36,10 +36,14 @@ public class CartViewServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// 1.회원 정보 가져오기(로그인, 비로그인)
+		
+		
+		System.out.println(request.getParameter("pCount"));
+		System.out.println(request.getParameter("pNo"));
+
 		Member m = (Member)request.getSession().getAttribute("loginMember"); //회원 정보 가져오기
 		System.out.println(m);
-		int pNo = Integer.parseInt(request.getParameter("pNo"));
-		
+		int pNo=Integer.parseInt(request.getParameter("pNo"));
 		String pCountStr = request.getParameter("pCount");
 		int pCount = 0;
 		List a = new ArrayList();
@@ -50,6 +54,7 @@ public class CartViewServlet extends HttpServlet {
 			pCount = 1;
 		} else {
 			pCount = Integer.parseInt(request.getParameter("pCount"));
+
 		}
 		
 		if(m == null) {
@@ -123,19 +128,23 @@ public class CartViewServlet extends HttpServlet {
 				//같은 상품 들어올때
 				System.out.println("수량 :"+pCount);
 				result = new CartService().updateCartNum(m.getmNo(),pNo);
+				System.out.println("같은 상품"+result);
 				
 				
 			} else {
 				//다른 상품 들어올때
 				c.setcQty(pCount);
 				result = new CartService().insertCart(c);
+				System.out.println("다른 상품"+result);
 			}
 			
 			c.setoDeliveryEDate(request.getParameter("oDelivertEDate"));
 			if(result>0) {
-				String msg = "장바구니에 상품이 담겼습니다!";
+				String msg ="상품이 장바구니에 담겼습니다.";
 				request.setAttribute("msg",msg);
-//				request.setAttribute("loc", "/views/member/memberLogin.jsp");
+				request.setAttribute("loc", "/views/cart/memberCart.jsp");
+				request.getRequestDispatcher("/views/common/msg.jsp").forward(request, response);
+				request.setAttribute("memberCart", list);
 				request.getRequestDispatcher("/views/cart/memberCart.jsp").forward(request, response);
 			}
 		}

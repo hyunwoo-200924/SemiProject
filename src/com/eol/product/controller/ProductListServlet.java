@@ -70,6 +70,8 @@ public class ProductListServlet extends HttpServlet {
 	}else {
 		pageBar+="<a href='"+request.getContextPath()+"/product/productList?cPage="+pageNo+"'>[다음]</a>";
 	}
+	
+	
 	request.setAttribute("list", list);
 	request.setAttribute("pageBar",pageBar);
 	request.getRequestDispatcher("/views/product/productList.jsp").forward(request,response);

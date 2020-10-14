@@ -54,8 +54,8 @@
 				</div>
 				<div class="user_request">
 					<div class="inline">
-						<p style="padding-right:20px" onclick="fu_questionWrite();">1:1 문의 작성</p>
-						<p class="active">1:1 문의 내역</p>
+						<p style="padding-right:20px" class="hover" onclick="fu_questionWrite();">1:1 문의 작성</p>
+						<p class="active hover" >1:1 문의 내역</p>
 					</div>
 					<%if(list.isEmpty()) {%>
 					<div class="_no">

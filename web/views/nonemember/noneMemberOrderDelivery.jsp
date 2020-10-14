@@ -78,8 +78,8 @@ href="<%=request.getContextPath() %>/css/noneoderDelivery.css">
                                 <img src="<%=request.getContextPath() %>/upload/product/<%=od.getOdproduct().getpImage1() %>" alt="" width="100" height="100">
                             </div>
                             <div class="order_pro_name">
-                                <h3>상품명</h3>
-                                <p>가격 / 수량</p>
+                                <h3><%=od.getOdproduct().getpName() %></h3>
+                                <p><%=od.getOdproduct().getpPrice() %> / <%=od.getOdproduct().getpServing() %></p>
                             </div>
                         </div>
                         <%} %>

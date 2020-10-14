@@ -14,7 +14,7 @@ IMP.init('imp14973248'); // 'iamport' 대신 부여받은 "가맹점 식별코�
 </script>
 
 <link rel="stylesheet" type="text/css"
-	href="<%=request.getContextPath() %>/css/orderpay.css">
+	href="<%=request.getContextPath() %>/css/nonorderpay.css">
 
 <%
 	
@@ -37,12 +37,14 @@ IMP.init('imp14973248'); // 'iamport' 대신 부여받은 "가맹점 식별코�
 					<div class="present-items-group1-1">
 						<div class="present-order-person">
 							<h3 class="info-title">주문자</h3>
-							
+							<div class="inputOrder">
 							이름 <input class="order-person-group" id="oName" name="oName" type="text" value=""/>
 							연락처 <input class="order-person-group" id="oPhone" name="oPhone" type="text" value=""/>
+							</div>
+							<div class="inputOrder">
 							주문비밀번호 <input class="order-person-group" id="oPw" name="oPw" type="password" value=""/>
 							비밀번호 확인<input class="order-person-group" id="oPwCheck" type="password" value=""/>
-							
+							</div>
 						</div>
 					</div>
 				</div>
@@ -54,7 +56,7 @@ IMP.init('imp14973248'); // 'iamport' 대신 부여받은 "가맹점 식별코�
 						<!-- <button class="btn-small">기존주소선택</button>
 						<button class="btn-small">배송지추가</button> -->
 						<div class="present-items-img">
-
+						<div class="inputOrder">
 							<!-- 주소창에 입력후에 자동생성되게 자바스크립트 -->
 
 							<div class="persnal-info">
@@ -64,13 +66,13 @@ IMP.init('imp14973248'); // 'iamport' 대신 부여받은 "가맹점 식별코�
 							
 							<div class="persnal-info">
 								<!-- 주소입력 -->
-							<input class="btn-small" type="button" id="addressButton" onclick="fn_address();" value="주소검색">
+							배송지 <input class="btn-small" type="button" id="addressButton" onclick="fn_address();" value="주소검색">
 							<input type="text" class="address-text" id="address" name="address1" style="display: none; width: 300px; height: 25px; margin: 5px 0;" readonly  >
 							<input class="btn-small" type="button" id="addressAgain" style="display:none;" onclick="fn_address();" value="주소재검색">
 							<input type="text" id="addressDetail" name="address2" style="display: none; width: 300px; height: 25px; margin: 5px 0;" placeholder="상세주소를 입력해주세요." >
 
 							</div>
-
+							</div>
 						</div>
 
 					</div>
@@ -85,14 +87,16 @@ IMP.init('imp14973248'); // 'iamport' 대신 부여받은 "가맹점 식별코�
 						
 					%>
 					
-						<input class="info-title" id="oDeliveryEDate" name="oDeliveryEDate" value="">도착예정
+						<input class="info-title" id="oDeliveryEDate" name="oDeliveryEDate" value="" style="border:none" readonly>도착예정
 						<%for(Product p : list) { %>
-						</h3>
+						<div class="odProduct">
 						<div class="present-items-imggroup">
+						<div class="odImage">
 							<img
 								src="<%=request.getContextPath() %>/upload/product/<%=p.getpImage1() %>"
 								alt="상품이미지" class="items-img"
-								style="width: 200px; height: 150px">
+								style="width: 200px; height: 150px; margin:0px;">
+								</div>
 							<div class="present-items-img-text">
 								<p class=preset-items-title>
 									상품명:<span class="items-payitems"><%=p.getpName() %></span>
@@ -106,12 +110,12 @@ IMP.init('imp14973248'); // 'iamport' 대신 부여받은 "가맹점 식별코�
 							</div>
 						</div>
 
-						<div>
-							<%int total = p.getpPrice()*p.getpCount();%>
-							<p>
-								총액 :<%=total %></p>
+							<div class="totalPrice">
+								<%int total = p.getpPrice()*p.getpCount();%>
+								<p>
+									총액 :<%=total %></p>
+							</div>
 						</div>
-						
 						
 						<%
 						oAmount++;
@@ -146,10 +150,10 @@ IMP.init('imp14973248'); // 'iamport' 대신 부여받은 "가맹점 식별코�
 				</div> -->
 
 				<div class="orderway">
-					<p>결제수단 선택</p>
+					<!-- <p>결제수단 선택</p> -->
 					<!-- 여기서 선택한 결제수단을 속성 pg의 값에 담기 -->
-					<input type="text" name="oPayway" value="">
-					<input type="hidden" id="oPayway" value="html5_inicis"> 
+					<!-- <input type="text" name="oPayway" id="oPay" value=""> -->
+					<input type="hidden" id="oPayway" name="oPayway" value="html5_inicis"> 
 				</div>
 			</div>
 
@@ -222,13 +226,13 @@ IMP.init('imp14973248'); // 'iamport' 대신 부여받은 "가맹점 식별코�
 
 						</div>
 						<div class="info-agreed">
-							<input type="checkbox" class="info-agreed">
-							<textarea style="width: 300px; height: 50px; overflow: scroll"><p>개인정보및 배송지제출에 동의하시겠습니까?</p></textarea>
+							<label><input type="checkbox" class="info-agreed" id="agree" value="동의">이용약관에 동의합니다.</label>
+							<textarea style="width: 500px; height: 250px; overflow: scroll"><p>개인정보및 배송지제출에 동의하시겠습니까?</p></textarea>
 						</div>
 						<div class="pay-button">
 							<!-- 결제하기 버튼을 누르면, 1. 걸제 api실행
                     2. 카트에 담긴 데이터와 그와 연결된 product데이터와 위에 입력한 배송정보를 orders와 orderdetail에 insert -->
-							<input type="button" id="pay" value="결제하기" class="pay-deside-button btn" style="width: 550px; height: 50px; justify-content: center; margin: 20px 0;">
+							<input type="button" id="pay" value="결제하기" class="pay-deside-button" style="width: 500px; height: 50px; justify-content: center; margin: 20px 0;">
 							<input type="button" id="orderCheak" style="display:none;" onclick="fn_dd();" value="결제완료 확인">
 						</div>
 					</div>
@@ -305,8 +309,12 @@ function fn_address(){
 			alert('받는사람의 주소를 입력해주세요.')
 			return false;
 		}
-		if ($('#oPayway').val() === '') {
+		if ($('#oPay').val() === '') {
 			alert('결제수단을 선택해주세요.')
+			return false;
+		}
+		if($('#agree').is(":checked") == false){
+			alert('이용약관에 동의해주세요.')
 			return false;
 		}
 		IMP.request_pay({

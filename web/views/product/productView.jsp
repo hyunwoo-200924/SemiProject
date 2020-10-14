@@ -1,24 +1,22 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@page import="com.eol.product.model.vo.Product" %>
-
+<%@ page import="com.eol.product.model.vo.Product" %>
+<%@ page import ="java.util.List" %>
+<%@ page import ="com.eol.cart.model.vo.Cart" %>
+<%@ page import="com.eol.member.model.vo.Member"%>
+<%@ page import="com.eol.review.model.vo.Review" %>
 <%
 	Product p=(Product)request.getAttribute("Product");
+Member loginMember2 = (Member)request.getSession().getAttribute("loginMember");
+	Cart c=(Cart)request.getAttribute("Cart");
+Review r=(Review)request.getAttribute("Review");
+	
 %>
 <%@ include file="/views/common/header.jsp"%>
 <link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/css/menu.css">  
-
-<script defer>
-
-
-
-
-
-</script>
-
 	
 	  <!-- <section -->
-    <section  class="menu-container-group" onload="init();">
+    <section  class="menu-container-group">
         <div class="menu-section">
       
             <div class="menu-container">
@@ -54,7 +52,10 @@
                  </div>
             </div>
         </div>
-        <form class="text-container" name="form" method="post" action="">
+
+        <div class="text-container" >
+
+
             <div class="text-container2">
                 <div class="text-group">
                   <img src="<%=request.getContextPath() %>/images/product/new64.png" alt="new" id="new">
@@ -66,47 +67,43 @@
                      </h2>
                          <h3 class="h3-text">원산지: 상품정보 참조</h3>
                          <ul class="text-menu-group ">
-                             <li class="text-menu"><%=p.getpServing() %></li>
-                             <li class="text-menu"><%=p.getpCooktime() %></li>
-                             <li class="text-menu"><%=p.getpReadytime() %><img src="<%=request.getContextPath() %>/images/product/mul.png" alt="상세설명"></li>
+                             <li class="text-menu"><%=p.getpServing() %>인분</li>
+                             <li class="text-menu"><%=p.getpCooktime() %>분</li>
+                             <li class="text-menu"><%=p.getpReadytime() %>분<img src="" alt=""></li>
                              <li class="text-menu"><%=p.getpTaste() %></li>
                          </ul>
-                         <dl class="text-items">판매가
-                             <dd class="price text-right" name="pPrice" value="<%=p.getpPrice() %>" id="pPrice"><%=p.getpPrice() %><span>원</span></dd>
+                         <dl class=".menuview-text-items">
+                         	판매가
+                             <dd class="price text-right" name="pPrice" id="ppPrice"><%=p.getpPrice() %>원</dd>
                          </dl>
-                         <dl class="text-items">할인가
-                             <dd class="price text-right" name="pDiscount" value="<%=p.getpDiscount() %>" id="pDiscount"><span>원</span></dd>
+                         <dl class=".menuview-text-items">
+                      		할인율
+                             <dd class="price text-right" name="pDiscount" id="ppDiscount"><%=p.getpDiscount() %></dd>
+                         <dl class=".menuview-text-items">
+                         		포인트적립
+                             <dd  class="text-right" name="" id="pPoint" value="<%=p.getpDiscount() %>"><%=p.getpDiscount() %><img src="<%=request.getContextPath() %>/images/product/mul.png" alt="정보" class="info-img"></dd>
                          </dl>
-                         <dl class="text-items">포인트적립
-                             <dd  class="text-right" name="" id="pPoint" value="<%=p.getpDiscount() %>"><img src="<%=request.getContextPath() %>/images/product/mul.png" alt="정보" class="info-img"></dd>
-                         </dl>
-                         <dl class="text-items">배송방법 :
+                         <dl class=".menuview-text-items">
+                        		 배송방법 :
                                  <dd class="delivery text-right">선택배송</dd>
                              </dl>
-                         <dl class="text-items">배송비:
+                         <dl class=".menuview-text-items">
+                     			    배송비 :
                              <dd class="delivery" class="text-right">3000원    4만원이상 무료 </dd>
                          </dl>
-                         </div>
+                   </div>
                          <div class="container-wrap">
                              <div class="button-container">
                                  <!-- 날짜선택시 품목명 갯수 선택할 박스  생성. -->
+
                                  <label ><input type="radio" class="botton-group" name="choice-radio" id="cartPut();"checked>장바구니</input></label>
                                  <label ><input type="radio" class="botton-group" name="choice-radio" id="presentbtn();">선물하기</input></label>
+
                              </div>
                              <div class="etc_txt" id="cart_txt" style="display:block;">
                                  <span>주문 마감시간 오전 7시</span>
                               </div>
-                              
-                              <!-- $("#order-date option:selected").val(); -->
-                              
-                           <!-- 여러개 선택시 Select box ID로 접근하여 여러 개 Value 값 가져오기.
-                             $("#userListSB option:selected").attr('value2');
-                             //value2에 userNumber 데이터
-                             $("#userListSB option:selected").attr('value3');
-                             //value3에 userPK 데이터 -->
-                             
-                             <!-- 텍스트읽어오기
-                                 $("#userListSB option:selected").text(); -->
+                  
                                 
                              </div>
                              
@@ -165,91 +162,13 @@
                            //클릭시 창이 사라짐
                              function removeblock(e){
                                  $(e.target).parent().parent().remove();
-                             }
-							/* 	//+_ 연산자
-								var sell_price;
-								var amount;
-								
-								function init () {
-									sell_price = document.form.sell_price.value;
-									amount = document.form.amount.value;
-									document.form.sum.value = sell_price;
-									change();
-								}
-								
-								function add () {
-									hm = document.form.amount;
-									sum = document.form.sum;
-									hm.value ++ ;
-								
-									sum.value = parseInt(hm.value) * sell_price;
-								}
-								
-								function del () {
-									hm = document.form.amount;
-									sum = document.form.sum;
-										if (hm.value > 1) {
-											hm.value -- ;
-											sum.value = parseInt(hm.value) * sell_price;
-										}
-								}
-								
-								function change () {
-									hm = document.form.amount;
-									sum = document.form.sum;
-								
-										if (hm.value < 0) {
-											hm.value = 0;
-										}
-									sum.value = parseInt(hm.value) * sell_price;
-								}  
-										 */						
-                             //// 날짜 출력
-                             function gdate(){
-					var sImg = "<IMG SRC=http://www.blueb.co.kr/SRC/javascript/image7/date/";
-					var eImg = ".gif BORDER=0>";
-					var now = new Date();
-					var month = (now.getMonth() + 1);
-					var date = now.getDate();
-					var year = now.getYear();
-						now = null;     month += "";     date += "";     year += "";
-					var text = "";
-					text += "<TABLE BGCOLOR=#000000 CELLPADDING=4><TR><TD>"; 
-				
-					for (var i = 0; i < year.length; ++i) {
-						text += sImg + year.charAt(i) + eImg;
-					}
-						text += sImg + "slash" + eImg;
-				
-					for (var i = 0; i < month.length; ++i) {
-						text += sImg + month.charAt(i) + eImg;
-					}
-						text += sImg + "slash" + eImg;
-				
-					for (var i = 0; i < date.length; ++i) {
-						text += sImg + date.charAt(i) + eImg;
-					}
-					text += "</TD></TR></TABLE>";
-					document.write(text);
-					
-					
-				}
+                             }		
+
+
 
                             
-                         /*      
-                           //별점표시, 점수주기
-                             $(function(){
-                             const rating = $('.start_group');
-
-                             rating.each(function(){
-                                 const targetScore =$(this).attr('data-rate');
-                                 console.log(targetScore);
-                                 // $(this).find('img:nth-child(-n+'+targetScore+')').css({color:'red'});
-                                 $(this).find('a:nth-child(-n+'+targetScore+')').css({color:'red'});
-                                 
-                                 
-                             })
-                             }); */
+                              
+             
                              </script>
                              
                              
@@ -267,7 +186,7 @@
                                      <button type="button" class="menu-delivery-delete-btn" onclick="removeblock(event);">x</button>
                                  </div>
                                  <div class="menu-date-container-box2">
-                                     <div class="menu-date-text" value=""><%=p.getpName()%>
+                                     <div class="menu-date-text" value=""><%=p.getpDetailMain()%><%=p.getpName()%>
                         
                                      </div>
                                      <div class="product-number-group" id="quantity" data-unitprice="2800" value=<%=p.getpPrice() %>>
@@ -279,19 +198,30 @@
                                     
 
                                      
-                                     <input type="hidden" class="product-price" name="sum"  value="" id="price" readonly><span>원<span></p>
+
+                                     <p type="" class="product-price" readonly><span id="price">원<span></p>
+
                                      </div>
                                 </div>
                                 
                                  <!-- 날짜선택시 박스생성끝 -->
-                                 <div class="product-price-number-group">
-                                     <p class="producttextinput">수량
-                                         <input type="text" class="product-nember" name="" value="1" max="<%=p.getpStock()%>"readonly> <span>개</span></input>
-                                         
+                                 <form class="product-price-number-group" name="form" method="post" action="<%=request.getContextPath()%>/views/cart/cartViewServlet?pNo=<%=p.getpNo()%>">
+                                     <p class="producttextinput" name="">수량
+
+                                         <input type="hidden" class="product-nember" name="pCount" value="currentCount" max="<%=p.getpStock()%>"readonly/>개
+                                         <input type="hidden" name="pNo" value="<%=p.getpNo() %>">
                                      </p>
-                                     <p><input type="text" class="product-pricetag" id="total-price" ><span>원</span></input></p>
-                                 </div>
+                                     <p><input type="text" class="product-pricetag" id="total-price" readonly><span>원</span></input></p>
+                                 </form>
                                 		<script>
+
+                                		         
+                                	
+                                		 var tdprice1=(parseInt(<%=p.getpPrice()%>));
+                                		 var discount=(parseInt(<%=p.getpDiscount()%>));
+                                		var $tdprice= tdprice1-(tdprice1/discount);
+                                		 console.log("#ppPrice");
+
                                 		//상품수량가격변경하기
                                 		var $input2=$('.producttextinput'),
                                 		$qytInput2=$input2.find('input');
@@ -301,7 +231,7 @@
                                 		$qytInput=$quantity.find('input'),
                               
                                 		$tagetTotal=$('#total-price'),
-                                		$tagetTotal1=$('.product-price');
+                                		$tagetTotal2=$('.product-price');
                                 		
                                 		//$atybtn클릭하면 그요소가 class명 prev있다면 참이고 (플러스를 클릭햇으면)
 										//aytinput value 기존값에서 1증가 거짓이면 (마이너스를 클릭햇으면 $qyinput value 기존값에서 1차감) 
@@ -321,9 +251,15 @@
                                 				}
                                 			}
                                 				 //수량단가 변수 total에 저정하고 그걸 .price값으로 변경
-                                				 var total2= currentCount * $unitprice;
-                                				$tagetTotal.text(total2+"원"); 
-                                				$tagetTotal1.text(total2+"원");
+                                				 console.log("curren값 :"+currentCount);
+                                				 var total2= (parseInt(currentCount)) * $tdprice;
+                                				 console.log("갯수x가격="+total2);
+                                				 console.log(currentCount);
+                                				$tagetTotal.val(""+total2); 
+                                				console.log($tagetTotal.val(total2));
+                                				$tagetTotal2.text(total2+"원");
+                                				
+
                                 		});
                                 		</script>
                                 
@@ -331,13 +267,36 @@
                                  <!-- 찜 이미지 및 버튼 재배치함 9-26 -->
                                  
                                  <div class="jjim-btn-container">
+                                 
+                                 
                                     <a href=""><img src="<%=request.getContextPath() %>/images/product/hart40px.jpg" alt="찜" class="jjim"></a>
-                                   	<a href="/cart/cart.jsp"><span class="jjim" style="font-size: 40px;width: 40px; height="40px;">♥</span></a>
+
+                                   <a href=""><span class="jjim" style="font-size: 40px;width: 40px; height="40px;">♥</span></a>
+                                    
+                                    
+                                    
+                             	<script>
+                             		const basket1=(function cartPut(){
+                             			$("input:radio[name='choice-radio']").attr("checked",true);
+                             			 location.replace('<%=p.getpName()%><%=request.getContextPath()%>/views/cart/cartViewServlet');
+                             		});
+                             		 const basket2=(function presentbtn(){
+                             			$("input:radio[name='choice-radio']").attr("checked",true);
+                             			 location.replace('<%=p.getpName()%><%=request.getContextPath()%>/views/cart/cartViewServlet');
+                             		});
+                             		function submitCart(){
+                             			document.form.submit();
+                             		}
+                             	</script>
+                             	
+
+                                    <button type="button" class="cart-botton-items" id="buybtn" onclick="document.form.submit();">장바구니</buttton>
+
                                  </div>
-                                 <input type="button" class="cart-botton-items" id="buybtn()" onclick="location.replace('<%=request.getContextPath() %>/views/cart/cartViewServlet?pNo=<%=p.getpNo() %>')" value="장바구니">
+
                          </div>
                      </div>
-             </form>
+             </div>
            
              <div class="etc_info_wrap">
                  <div class="review_btn_wrap">
@@ -346,7 +305,7 @@
                          <div class="rating_wrap">
                              <span class="rating_star">
                                  <span class="star">
-                                     <a class="start_group" data-rate="6">
+                                     <a class="start_group" data-rate="10" >
                                          <span  alt="별모양" id="star1">★</span> 
                                          <span  alt="별모양" id="star1" >★</span>
                                          <span  alt="별모양" id="star1" >★</span>
@@ -355,9 +314,35 @@
                                      
                                          <span style="width:95.39999%;">
                                              <span class="hide">별점</span>
-                                             <span class="num">0</span>
+                                             <span class="num" alt=""></span>
                                          </span>
+                                         
                                      </a>
+                                     <script>
+                                     //별점표시, 점수주기
+                                    $(function(){
+                                     const rating = $('.num').text();
+                                     console.log(rating);
+
+                                     $(".start_group").each(function(){
+                                         const targetScore = (parseInt($(this).attr('data-rate')));//형변환해주고 
+                                         console.log(targetScore);//여기서 프리트해서 값확인
+                                         $(".num").text(targetScore);//별점 출력
+                                         //정수인지 아닌지 확인
+                                         if(($(this).attr('data-rate'))!==targetScore){
+                                        	 console.log("정수:참");
+                                         }else console.log("문자열:거짓");
+                                         // $(this).find('img:nth-child(-n+'+targetScore+')').css({color:'red'});
+                                        $(this).find('a:nth-child(-n+'+targetScore+')').css({color:'#f00'});
+                                        	console.log(('a:nth-child(-n+'+targetScore+')'));
+											console.log($(this).find('a:nth-child(-n+'+targetScore+')'));
+										 })
+                                     }); 
+                                     
+
+                                     </script>
+                                     
+                                     
                                      <!-- 백그라운드 커스텀 영역 -->
                                      <!-- background image활성화영역 20%에 한개씩 점수가 채워짐 -->
                                  </span>
@@ -423,7 +408,7 @@
         <div class="resipy-menu-detail-text-group">
          <div class="resipy-h3-text">
              <h2 class="resipy-h3-text-legft">이렇게 요리하세요</h2>
-                <h2 class="resipy-h3-text-right"><img src="<%=request.getContextPath() %>/images/product/time30px.jpg" alt="조리시간"><%=p.getpCooktime() %></h2>
+                <h2 class="resipy-h3-text-right"><img src="<%=request.getContextPath() %>/images/product/time30px.jpg" alt="조리시간">조리시간<%=p.getpCooktime() %>분</h2>
  
          </div>  
          <div class="resipy-imag-group-container-group">

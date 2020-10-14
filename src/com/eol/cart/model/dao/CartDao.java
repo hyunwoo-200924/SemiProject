@@ -4,7 +4,9 @@ import static com.eol.common.JDBCTemplate.close;
 
 import java.io.FileReader;
 import java.io.IOException;
+import java.sql.Array;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -80,6 +82,30 @@ public class CartDao {
 			close(pstmt);
 		}return p;
 	}
+
+//	//
+//	public int insertCart11(Connection conn,Cart c) {
+//		PreparedStatement pstmt=null;
+//		int result= 0;
+//		
+//		
+//		try {
+//			pstmt=conn.prepareStatement(prop.getProperty("insertCart"));
+//			pstmt.setInt(1, c.getpNo());
+//			pstmt.setInt(2, c.getcQty());
+//			
+//			
+//			result=pstmt.executeUpdate();
+//			
+//		}catch(SQLException e) {
+//			e.printStackTrace();
+//		}finally {
+//			close(pstmt);
+//		}
+//		System.out.println("dao :값이 잇냐"+result);
+//		return result;
+//	}
+
 	
 	public int insertCart(Connection conn, Cart c) {
 		PreparedStatement pstmt = null;
@@ -117,4 +143,5 @@ public class CartDao {
 		}return result;
 	}
 	
+
 }
