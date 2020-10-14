@@ -11,6 +11,7 @@
 	List<Product> slidePlist = (List)new ProductService().slidePlist();
 	List<Product> bestPlist = (List)new ProductService().bestPlist();
 	List<Product> hotdealPlist = (List)new ProductService().hotdealPlist();
+	Product pro = new ProductService().todayPro();
 %>
 <link rel="stylesheet" type="text/css" 
 href="<%=request.getContextPath() %>/css/index.css">
@@ -155,8 +156,8 @@ href="<%=request.getContextPath() %>/css/index.css">
 	<!-- 추천메뉴 -->
 	<div class="recommend-container" >
 	<h1>오늘의 추천</h1>
-		<div class="taste-select">
-			<!-- <form action="">
+		<!-- <div class="taste-select">
+			<form action="">
 				<select name="taste-category" class="taste-cate">
 					<option value="새콤한맛">새콤한맛</option>
 					<option value="짭짤한맛">담백한맛</option>
@@ -164,16 +165,26 @@ href="<%=request.getContextPath() %>/css/index.css">
 					<option value="담백한맛">담백한맛</option>
 					<option value="이국적인맛">이국적인맛</option>
 				</select>
-			</form> -->
+			</form>
 			
-		</div>
-		<div class="recommend-img">
-			<img src="<%=request.getContextPath()%>/images/mainImages/gim.jpg" alt="" style="width:100%; height:100%;">
+		</div> -->
+		<div class="recommend-img" style="background: linear-gradient(
+            to right,
+            rgba(255, 255, 255, 0) 10%,
+            rgba(255, 255, 255, 0.25) 25%,
+            rgba(255, 255, 255, 0.5) 50%,
+            rgba(255, 255, 255, 0.75) 75%,
+            rgba(255, 255, 255, 1) 100%
+          ), url(<%=request.getContextPath()%>/upload/product/<%=pro.getpImage1() %>);
+          background-repeat: no-repeat;
+	background-size: 100% 100%;">
+			<%-- <img src="<%=request.getContextPath()%>/images/mainImages/gim.jpg" alt="" style="width:100%; height:100%;"> --%>
 		</div>
 		<div class="recommend-content">
 			<div class="recommend-name">
-				<h2 style="">상품명</h2>
-				<p>가격/인분</p>
+				<h2 style="margin-top: 20px;"><%=pro.getpName() %></h2>
+				<p><%=pro.getpPrice() %>원 / <%=pro.getpServing() %>인분</p>
+				<p><%=pro.getpDetailMain() %></p>
 			</div>
 			<div class="cart">
 				<img src="<%=request.getContextPath() %>/images/mainImages/shopping-cart-solid.svg" alt="">
@@ -210,13 +221,16 @@ href="<%=request.getContextPath() %>/css/index.css">
 		<h1>핫딜상품</h1>
 		<div class="best-table">
 			<table class="main-hot">
-			<%for(Product p : hotdealPlist){ %>
+			<%for(Product p : hotdealPlist){ 
+				if(p.getpDiscount()!=0){%>
 				<tr>
 					<td><img src="<%=request.getContextPath()%>/upload/product/<%=p.getpImage1() %>" alt="" width="" height="" ></td>
 					<td class="name"><a href=""><%=p.getpName() %></a></td>
-					<td><a href=""><%=p.getpPrice() %>원 / <%=p.getpServing() %></a></td>
+					<td><a href=""><%=p.getpPrice() %>원 / <%=p.getpServing() %>인분</a></td>	
+					<td><p class="discount"><%=p.getpDiscount() %>% 에누리</td>
 				</tr>
-			<%} %>
+				<%}
+			} %>
 				<!-- <tr class="name">
 					
 					<td><a href="">상품명2</a></td>

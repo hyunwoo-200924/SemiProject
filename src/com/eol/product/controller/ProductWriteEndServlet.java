@@ -93,12 +93,14 @@ public class ProductWriteEndServlet extends HttpServlet {
 		p.setpRecipeImage2(mr.getFilesystemName("pRecipeImage2"));
 		p.setpRecipeImage3(mr.getFilesystemName("pRecipeImage3"));
 		p.setpRecipeImage4(mr.getFilesystemName("pRecipeImage4"));
+		
 	
 		
 		p.setpRecipeContent1(mr.getParameter("pRecipeContent1"));
 		p.setpRecipeContent2(mr.getParameter("pRecipeContent2"));
 		p.setpRecipeContent3(mr.getParameter("pRecipeContent3"));
 		p.setpRecipeContent4(mr.getParameter("pRecipeContent4"));
+		p.setpHit(Integer.parseInt(mr.getParameter("pHit")));
 	
 		
 		int result = new ProductService().insertProduct(p);
