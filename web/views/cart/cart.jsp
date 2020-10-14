@@ -24,7 +24,11 @@ href="<%=request.getContextPath() %>/css/cart.css">
     	<input type="submit" class="logBtn" value="로그인하기" >
     	</form>
     </div>
-    <section class="cart-section-block">
+   <div class="btnClass">
+   <button class="btn" onclick="inputproduct();">상품결제</button>
+   <button class="btn">삭제</button>
+   </div>
+   <section class="cart-section-block">
 	        <%for(Product p : list){%>
            		<div class="cart-section-body-group2">
             	<div class="kkk">
@@ -39,10 +43,6 @@ href="<%=request.getContextPath() %>/css/cart.css">
                 <span type="button" value="＋" class="product-plus" id="minus">+</span>
                 <span>개</span>
                 </div>
-                <div class="btnClass">
-	            <button class="btn" onclick="inputproduct();">상품결제</button>
-	            <button class="btn">삭제</button>
-            	</div>
             	</div>
             	<form id="inputpNo" action="<%=request.getContextPath()%>/cartintopay.do" method="post">
             	<input type="hidden" name="pNo" value="<%=p.getpNo()%>">

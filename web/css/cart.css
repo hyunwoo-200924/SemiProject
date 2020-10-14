@@ -1,17 +1,17 @@
  @charset "UTF-8";
 
 .btnClass{
-	position: relative;
+	display: flex;
     right: -638px;
     margin-top: 34px;
 } 
  
 .btn{
-	float: right;
+	loat: right;
     background: #2f2d2d;
     color: white;
-	width: 70px;
-    height: 70px;
+    width: 147px;
+    height: 32px;
 }
 .cart-head-text{
 	display: inline-block;

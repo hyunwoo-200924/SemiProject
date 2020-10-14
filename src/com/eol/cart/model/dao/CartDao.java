@@ -49,7 +49,7 @@ public class CartDao {
 				c.setcQty(rs.getInt("c_qty"));
 				c.setoDeliveryEDate(rs.getString("o_deliveryedate"));
 				c.setpName(rs.getString("P_NAME"));
-				c.setpNo(rs.getInt("P_PRICE"));
+				c.setpPrice(rs.getInt("P_PRICE"));
 				c.setpImage1(rs.getString("P_IMAGE1"));
 				list.add(c);
 			}

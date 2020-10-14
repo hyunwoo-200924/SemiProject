@@ -109,8 +109,8 @@ public class CartViewServlet extends HttpServlet {
 			System.out.println("여기확인" + nonCartList);
 			response.sendRedirect(request.getContextPath() +"/views/cart/cart.jsp");
 		}else {
-			
 			//회원 일때
+			System.out.println("회원일때");
 			Cart c = new Cart();
 			c.setmNo(m.getmNo());
 			c.setpNo(pNo);
@@ -143,7 +143,7 @@ public class CartViewServlet extends HttpServlet {
 				System.out.println(list);
 				String msg ="상품이 장바구니에 담겼습니다.";
 				
-				request.setAttribute("memberCart", list);
+				request.getSession().setAttribute("memberCart", list);
 				
 				request.setAttribute("msg",msg);
 				request.setAttribute("loc", "/views/cart/memberCart.jsp");

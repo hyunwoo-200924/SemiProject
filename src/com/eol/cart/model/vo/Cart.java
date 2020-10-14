@@ -13,7 +13,7 @@ public class Cart {
 	private Product product;
 	private String oDeliveryEDate;
 	private String pName;
-	private String pPrice;
+	private int pPrice;
 	private String pImage1;
 	
 	public Cart() {
@@ -105,11 +105,12 @@ public class Cart {
 		this.pName = pName;
 	}
 
-	public String getpPrice() {
+
+	public int getpPrice() {
 		return pPrice;
 	}
 
-	public void setpPrice(String pPrice) {
+	public void setpPrice(int pPrice) {
 		this.pPrice = pPrice;
 	}
 
@@ -124,8 +125,10 @@ public class Cart {
 	@Override
 	public String toString() {
 		return "Cart [cNo=" + cNo + ", mNo=" + mNo + ", pNo=" + pNo + ", cQty=" + cQty + ", product=" + product
-				+ ", oDeliveryEDate=" + oDeliveryEDate + "]";
+				+ ", oDeliveryEDate=" + oDeliveryEDate + ", pName=" + pName + ", pPrice=" + pPrice + ", pImage1="
+				+ pImage1 + "]";
 	}
+
 	
 	
 	
