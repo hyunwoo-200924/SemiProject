@@ -365,6 +365,7 @@ public class ProductDao {
 				p.setpPrice(rs.getInt("p_price"));
 				p.setpServing(rs.getInt("p_serving"));
 				p.setpImage1(rs.getString("p_image1"));
+				p.setpDiscount(rs.getInt("p_discount"));
 				list.add(p);
 			}
 		}catch(SQLException e) {
@@ -373,6 +374,33 @@ public class ProductDao {
 			close(rs);
 			close(pstmt);
 		}return list;
+	}
+	
+	public Product todayPro(Connection conn) {
+		PreparedStatement pstmt = null;
+		ResultSet rs =null;
+		Product p = null;
+		try {
+			pstmt = conn.prepareStatement(prop.getProperty("todayPro"));
+			//todayPro=SELECT * FROM PRODUCT WHERE P_NO=521
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				p = new Product();
+				p.setpNo(rs.getInt("p_no"));
+				p.setpName(rs.getString("p_name"));
+				p.setpPrice(rs.getInt("p_price"));
+				p.setpServing(rs.getInt("p_serving"));
+				p.setpImage1(rs.getString("p_image2"));
+				p.setpDiscount(rs.getInt("p_discount"));
+				p.setpDetailMain(rs.getString("p_detailmain"));
+			}
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rs);
+			close(pstmt);
+		}return p;
+		
 	}
 	
 	
