@@ -133,7 +133,7 @@
                             <a href="<%=request.getContextPath() %>/views/cart/cartViewServlet?pNo=<%=p.getpNo() %>" id="cartBtn" name="">
 
 
-                                <img src="<%=request.getContextPath() %>/images/product/cart40px.jpg" alt="장바구니" class="cart--img" onclick="cartInsert()"></img>
+                                <img src="<%=request.getContextPath() %>/images/mainImages/shopping-cart-solid.svg" style="width: 30px; height: 30px;" alt="장바구니" class="cart--img" onclick="cartInsert()"></img>
                             </a>
                         </ul>
                     </div>
