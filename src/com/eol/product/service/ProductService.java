@@ -99,6 +99,14 @@ public class ProductService {
 		close(conn);
 		return list;
 	}
+	
+	//오늘의 메뉴
+	public Product todayPro() {
+		Connection conn = getConnection();
+		Product p = dao.todayPro(conn);
+		close(conn);
+		return p;
+	}
 
 	//////////////현우 추가
 	public List<Product> newMenuList(int cPage, int numPerPage) {
