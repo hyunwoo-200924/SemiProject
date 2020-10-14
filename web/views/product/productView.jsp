@@ -5,13 +5,53 @@
 <%@ page import ="com.eol.cart.model.vo.Cart" %>
 <%@ page import="com.eol.member.model.vo.Member"%>
 <%@ page import="com.eol.review.model.vo.Review" %>
+<%@ page import="java.util.Date" %>
+<%@ page import="java.text.SimpleDateFormat" %>
 <%
 	Product p=(Product)request.getAttribute("Product");
 Member loginMember2 = (Member)request.getSession().getAttribute("loginMember");
 	Cart c=(Cart)request.getAttribute("Cart");
 Review r=(Review)request.getAttribute("Review");
 	
+Date now = new Date();
+Date day1=new Date(now.getTime()+(1000*60*60*24*-1));//어제 
+Date day2 = new Date(now.getTime()+(1000*60*60*24*+1));//내일
+Date day3= new Date(now.getTime()+1000*60*60*24*+2);//내일모레
+Date day4= new Date(now.getTime()+1000*60*60*24*+3);//3일후
+SimpleDateFormat sf = new SimpleDateFormat("MM월dd일 E요일");
+
+String today =(String)sf.format(now);
+ String Wednesday=sf.format(day1);
+ String Thursday=sf.format(day2);
+ String Friday=sf.format(day3);
+ String Saturday=sf.format(day4);
 %>
+<script>
+function day(){
+	
+	$(document).ready(function(){
+		var date= new Date();
+		
+		var year= date.getFullYear();
+		var month = date.getMonth()+1;
+		var day= date.getDate();
+		
+		var dayoftheweek= date.getDay();
+		
+		if(month<10){
+			month="0"+month;
+		}
+		
+		if(day<10){
+			day="0"+day;
+		}
+	console.log($('#Wednesday').append(date.getMonth()+"월"+(date.get()-1)+"일"));
+	console.log(date.getMonth()+"요일");
+	});
+};
+
+</script>
+
 <%@ include file="/views/common/header.jsp"%>
 <link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/css/menu.css">  
 	
@@ -81,7 +121,7 @@ Review r=(Review)request.getAttribute("Review");
                              <dt class="price text-right" name="pDiscount" id="ppDiscount"><%=p.getpDiscount() %>%</dt>
                          <dl class=".menuview-text-items">
                          		포인트적립
-                             <dt  class="text-right" name="" id="pPoint" value="<%=p.getpDiscount() %>"><%=p.getpDiscount() %>%</dt>
+                             <dt  class="text-right" name="" id="pPoint">10%</dt>
                          </dl>
                          <dl class=".menuview-text-items">
                         		 배송방법 :
@@ -103,7 +143,9 @@ Review r=(Review)request.getAttribute("Review");
                              <div class="etc_txt" id="cart_txt" style="display:block;">
                                  <span>주문 마감시간 오전 7시</span>
                               </div>
-                  
+                  				<script>
+                  					
+                  				</script>
                                 
                              </div>
                              
@@ -114,24 +156,32 @@ Review r=(Review)request.getAttribute("Review");
                                  
                                  <!-- 갯수를 30개로 가정하고 시작하자! -->
 	                                
-	                                 <div name="pOderday1" value="order-date01" class="order_check_day" id="order_check_day1" style="display:none;" onclick="mouseClick();">      9월 22일(화)
-	                                     <span></span><span alt="체크" style="displa:none; font-size:25px; bold: 1000;" style="display:none;"></span>
+	                                 <input name="oDeliveryEDate1" value="<%=Wednesday%>" class="order_check_day" id="Tuesday" style="display:none;" onclick="mouseClick();">
+	                                  <span alt="체크" style="displa:none; font-size:25px; bold: 1000;" style="display:none;"></span>
+	                                 </input>
+	                                 <input  name="oDeliveryEDate2" value="<%=today%>" class="order_check_day" id="Wednesday" style="display: none;" onclick="mouseClick1();">     
+	                                     <span alt="체크" style="displa:none; font-size:25px; bold: 1000;" style="display:none;"></span>
 	                                 </div>
-	                                 <div  name="pOderday1" value="order-date02" class="order_check_day" id="order_check_day2" style="display: none;" onclick="mouseClick1();">      9월 23일(수)
-	                                     <span>개</span><span alt="체크" style="displa:none; font-size:25px; bold: 1000;" style="display:none;"></span>
-	                                 </div>
-	                                 <div name="pOderday1" value="order-date03"class="order_check_day" id="order_check_day3" style="display: none;" onclick="mouseClick2();">       9월 24일(목)
-	                                     <span>개</span><span alt="체크" style="displa:none; font-size:25px; bold: 1000;" style="display:none;"></span>
-	                                 </div>
-	                                 <div name="pOderday1" value="order-date04" class="order_check_day" id="order_check_day4" style="display: none;" onclick="mouseClick3();">      9월 25일(금)
-	                                     <span>개</span><span alt="체크" style="displa:none; font-size:25px; bold: 1000;" style="display:none;"></span>
-	                                 </div>
-	                                 <div name="pOderday1" value="order-date05" class="order_check_day" id="order_check_day5" style="display: none;" onclick="mouseClick4();">      9월 26일(토)
-	                                     <span>개</span ><span alt="체크" style="displa:none; font-size:25px; bold: 1000;" style="display:none;"></span>
-                                 </div>
+	                                 <input name="oDeliveryEDate3" value="<%=Thursday%>"class="order_check_day" id="Tursday" style="display: none;" onclick="mouseClick2();">    
+	                                   <span alt="체크" style="displa:none; font-size:25px; bold: 1000;" style="display:none;"></span>
+	                                 </input>
+	                                 <input name="oDeliveryEDate4" value="<%=Friday%>" class="order_check_day" id="Friday" style="display: none;" onclick="mouseClick3();">    
+	                                     <span alt="체크" style="displa:none; font-size:25px; bold: 1000;" style="display:none;"></span>
+	                                 </input>
+	                                 <input name="oDeliveryEDate5" value="<%=Saturday%>" class="order_check_day" id="Saturday" style="display: none;" onclick="mouseClick4();"><%=Saturday%>    
+	                                     <span alt="체크" style="displa:none; font-size:25px; bold: 1000;" style="display:none;"></span>
+                                 </input>
                              </a>
                              
                              <script>
+                            document.ready(function(){
+                            	
+                          	if($('#Tuesday').click()
+                            	
+                            })
+                          
+                             
+                             
                             //클릭시 슬라이드바 
                              $(function(){
                             	 $("#selected_stock").click(function(){
@@ -302,9 +352,9 @@ Review r=(Review)request.getAttribute("Review");
                              		}
                              	</script>
                              	
-
+									<%if( currentCount!=0) {%>
                                     <button type="button" class="cart-botton-items" id="buybtn" onclick="document.form.submit();">장바구니</buttton>
-
+									<% }%>
                                  </div>
 
                          </div>

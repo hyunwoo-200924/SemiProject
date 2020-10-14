@@ -2,16 +2,58 @@
     pageEncoding="UTF-8"%>
 <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/menu.css">
 
-
-<%@ include file="/views/common/header.jsp"%>
+<%@ page import="java.util.Date" %>
+<%@ page import="java.text.SimpleDateFormat" %>
 <%@ page import="java.util.List,com.eol.product.model.vo.Product, com.eol.member.model.vo.Member" %>
+<%@ include file="/views/common/header.jsp"%>
 <%
 	List<Product> list=(List)request.getAttribute("list");
 	String pageBar=(String)request.getAttribute("pageBar");
 	Member loginMember1 = (Member)request.getSession().getAttribute("loginMember");
 	
+	Date now = new Date();
+	SimpleDateFormat sf = new SimpleDateFormat("MM월dd일 E요일");
+
+	String today =(String)sf.format(now);
 %>
 
+<script>
+	$(document).ready(function(){
+		//생성자에 문자열을 넣어 특정 날짜 생성
+<%-- 	var date= "<%=today%>";
+	console.log(today);//10월 오늘날짜로 출력 --%>
+	var date=new Date();
+	console.log(date);
+	var year= date.getFullYear();
+	var month=date.getMonth()+1;
+	var day = date.getDate();
+	
+	var dayoftheweek=date.getDay();
+	//먼스 00으로 표기
+	if(month<10){
+		month="0"+month;
+		
+	}
+	//10보다 아래면 00이런식으로 표현
+	if(day<10){
+		day="0"+day;
+	}
+	
+	$('#Tuesday').append(date.getDate()-1);
+	$('#Wednesday').append(day);
+	$('#Thursday').append(date.getDate()+1);
+	$('#Friday').append(date.getDate()+2);
+	$('#Saturday').append(date.getDate()+3);
+
+	
+	});
+	
+	
+	
+
+
+
+</script>
 
 
 
@@ -36,11 +78,11 @@
                         <!-- hover를 줘서 클릭하게되면 동그란색안에 숫자가 표현되게해야함 -->
                         <ul class="head-right">
                         
-                            <li class="head-right-items1">화<p class="week-day">25</p></li>
-                            <li class="head-right-items1">수<p class="week-day">26</p></li>
-                            <li class="head-right-items1">목<p class="week-day">27</p></li>
-                            <li class="head-right-items1">금<p class="week-day">28</p></li>
-                            <li class="head-right-items1">토<p class="week-day">29</p></li>
+                            <li class="head-right-items1">화<p class="week-day" id="Tuesday"></p></li>
+                            <li class="head-right-items1">수<p class="week-day" id="Wednesday"></p></li>
+                            <li class="head-right-items1">목<p class="week-day" id="Thursday"></p></li>
+                            <li class="head-right-items1">금<p class="week-day" id="Friday"></p></li>
+                            <li class="head-right-items1">토<p class="week-day" id="Saturday"></p></li>
 
                         </ul>
                     </div>
@@ -48,12 +90,12 @@
                 <div class="head-text-group">
                     <div class="head-text border-top">
 
-                        <h2 class="h2"><span class="change_date_print">9월 22일 화요일</span>배송가능한 메뉴입니다.</h2>
+                        <h2 class="h2"><span class="change_date_print"><%=today %>   </span>부터 배송가능한 메뉴입니다.</h2>
                     </div>
                     <div class="head-text">
 
                         <div class="head-left">
-                            <h5>뚝딱kit의 주문마감은 <span class="date-change">9월 25일(금)</span> 오전7시입니다.</h5>
+                            <h5>뚝딱kit의 주문마감은 <span class="date-change"></span> 오전7시입니다.</h5>
                         </div>
                         <ul class="head-right">
                             <li class="head-right-items2"><a href="">신메뉴</a></li>
