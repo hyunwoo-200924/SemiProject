@@ -60,9 +60,9 @@ public class OrderPayServlet extends HttpServlet {
 		o.setoAmount(Integer.parseInt(request.getParameter("oAmount")));
 		o.setoPayment(Integer.parseInt(request.getParameter("oPayment")));
 		o.setoPayWays(request.getParameter("oPayway"));
-		String date = request.getParameter("oDeliveryEDate");
+		o.setoDeliveryEDate(request.getParameter("oDate"));
 		
-		System.out.println(date);
+	
 
 		result = new OrderService().orderinsert(m, o);//회원이 주문을 했을경우 Member m에 회원정보가 들어간 상태로 가고, 비회원이 주문을 했을경우 Member m이 null이다. 이것을 가지고 dao에서 if문으로 실행될 쿼리문을 결정함!!
 		

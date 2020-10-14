@@ -56,7 +56,7 @@ public class OrderDao {
 				o.setoStatus(rs.getString("o_status"));
 				o.setoPayDate(rs.getDate("o_paydate"));
 				o.setoDeliveryStatus(rs.getString("o_deliverystatus"));
-				o.setoDeliveryEDate(rs.getDate("o_deliveryedate"));
+				o.setoDeliveryEDate(rs.getString("o_deliveryedate"));
 				o.setoPayWays(rs.getString("o_payways"));
 				
 			}
@@ -92,7 +92,7 @@ public class OrderDao {
 				o.setoStatus(rs.getString("o_status"));
 				o.setoPayDate(rs.getDate("o_paydate"));
 				o.setoDeliveryStatus(rs.getString("o_deliverystatus"));
-				o.setoDeliveryEDate(rs.getDate("o_deliveryedate"));
+				o.setoDeliveryEDate(rs.getString("o_deliveryedate"));
 				o.setoPayWays(rs.getString("o_payways"));
 				orderslist.add(o);
 			}
@@ -226,7 +226,7 @@ public class OrderDao {
 				o.setoStatus(rs.getString("o_status"));
 				o.setoPayDate(rs.getDate("o_paydate"));
 				o.setoDeliveryStatus(rs.getString("o_deliverystatus"));
-				o.setoDeliveryEDate(rs.getDate("o_deliveryedate"));
+				o.setoDeliveryEDate(rs.getString("o_deliveryedate"));
 				o.setoPayWays(rs.getString("o_payways"));
 				orderslist.add(o);
 			}
@@ -272,11 +272,11 @@ public class OrderDao {
 		try {
 			if(m!=null) {//회원일 때 첫번쨰 ?에 회원번호 컬럼				
 				pstmt = conn.prepareStatement(prop.getProperty("insertOrder"));
-				//insertOrder=INSERT INTO ORDERS VALUES(ORD_SEQ.NEXTVAL,?,NULL,?,?,?,SYSDATE-2,?,?,?,SYSDATE,NULL,NULL,?,?,?)
+				//insertOrder=INSERT INTO ORDERS VALUES(ORD_SEQ.NEXTVAL,?,NULL,?,?,?,SYSDATE-2,?,?,?,SYSDATE,NULL,?,?,?,?)
 				pstmt.setInt(1, o.getmNo());
 			}else {//비회원일 때 첫번째 ?가 주문비밀번호 컬럼
 				pstmt = conn.prepareStatement(prop.getProperty("noMemberinsertOrder"));
-				//noMemberinsertOrder=INSERT INTO ORDERS VALUES(ORD_SEQ.NEXTVAL, NULL,?,?,?,?,SYSDATE-2,?,?,?,SYSDATE,NULL,NULL,?,?,?)
+				//noMemberinsertOrder=INSERT INTO ORDERS VALUES(ORD_SEQ.NEXTVAL, NULL,?,?,?,?,SYSDATE-2,?,?,?,SYSDATE,NULL,?,?,?,?)
 				pstmt.setString(1, o.getoPw());
 			}
 			pstmt.setString(2,o.getoName());
@@ -285,9 +285,11 @@ public class OrderDao {
 			pstmt.setInt(5, o.getoAmount());
 			pstmt.setInt(6, o.getoPayment());
 			pstmt.setString(7, o.getoStatus());
-			pstmt.setString(8, o.getoPayWays());
-			pstmt.setString(9, o.getoToName());
-			pstmt.setString(10,o.getoToPhone());
+			pstmt.setString(8, o.getoDeliveryEDate());
+			pstmt.setString(9, o.getoPayWays());
+			pstmt.setString(10, o.getoToName());
+			pstmt.setString(11,o.getoToPhone());
+			
 			result = pstmt.executeUpdate();
 			
 		}catch(SQLException e) {

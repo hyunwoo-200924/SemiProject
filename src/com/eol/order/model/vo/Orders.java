@@ -18,7 +18,7 @@ public class Orders {
 	private String oStatus;//결제 상태 : 결제완료, 취소신청, 취소완료
 	private Date oPayDate;//결제하기 완료 날짜
 	private String oDeliveryStatus;//배송상태 : 배송준비중, 배송중, 배송완료, 환불신청, 환불완료
-	private Date oDeliveryEDate;//배송완료날짜
+	private String oDeliveryEDate;//배송완료날짜
 	private String oPayWays;//결제수단
 	private List<OrderDetail> details=new ArrayList();
 	private String orderContent; //"사과 외 3건" 문구담으려고 만든 변수
@@ -33,7 +33,7 @@ public class Orders {
 
 
 	public Orders(int oNo, int mNo, String oName, String oPhone, String oAddress, Date oDeliveryDate, int oAmount,
-			int oPayment, String oPw, String oStatus, Date oPayDate, String oDeliveryStatus, Date oDeliveryEDate,
+			int oPayment, String oPw, String oStatus, Date oPayDate, String oDeliveryStatus, String oDeliveryEDate,
 			String oPayWays, List<OrderDetail> details, String orderContent, String oToName, String oToPhone) {
 		super();
 		this.oNo = oNo;
@@ -186,12 +186,12 @@ public class Orders {
 	}
 
 
-	public Date getoDeliveryEDate() {
+	public String getoDeliveryEDate() {
 		return oDeliveryEDate;
 	}
 
 
-	public void setoDeliveryEDate(Date oDeliveryEDate) {
+	public void setoDeliveryEDate(String oDeliveryEDate) {
 		this.oDeliveryEDate = oDeliveryEDate;
 	}
 

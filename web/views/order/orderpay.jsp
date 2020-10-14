@@ -83,17 +83,24 @@ IMP.init('imp14973248'); // 'iamport' 대신 부여받은 "가맹점 식별코�
 					<div class="present-items-group4-4">
 					<%
 						int oAmount = 0;
-					Date oDeliveryEDate = null;
+						String oDate = "";
+						
+						for(Cart c : clist){
+							oDate = c.getoDeliveryEDate();
+						}
+						
 					%>
 					
-						<input type="text" class="info-title" id="oDeliveryEDate" name="oDeliveryEDate" value="<%=oDeliveryEDate %>" readonly>도착예정
+						<input type="text" class="info-title" id="oDeliveryEDate" name="oDeliveryEDate" value="<%=oDate %>" style="border:none;"readonly>도착예정
 						<%for(Cart c : clist) { %>
-						</h3>
+						<div class="odProduct">
 						<div class="present-items-imggroup">
+						<div class="odImage">
 							<img
 								src="<%=request.getContextPath() %>/upload/product/<%=c.getProduct().getpImage1() %>"
 								alt="상품이미지" class="items-img"
 								style="width: 200px; height: 150px"> 
+								</div>
 							<div class="present-items-img-text">
 								<p class=preset-items-title>
 									상품명:<span class="items-payitems"><%=c.getProduct().getpName() %></span>
@@ -107,10 +114,11 @@ IMP.init('imp14973248'); // 'iamport' 대신 부여받은 "가맹점 식별코�
 							</div>
 						</div>
 
-						<div>
+						<div class="totalPrice">
 							<%int total = c.getProduct().getpPrice()*c.getcQty();%>
 							<p>
 								총액 :<%=total %></p>
+						</div>
 						</div>
 						
 						
@@ -120,7 +128,7 @@ IMP.init('imp14973248'); // 'iamport' 대신 부여받은 "가맹점 식별코�
 						
 						/* String oAm = Integer.toString(oAmount); */
 						%>
-						<input type="hidden" name="oAmount" value="<%=oAmount %>">
+						<input type="hidden" name="oAmount" value="<%=oAmount %>" style="border:none" readonly>
 					</div>
 				</div>
 
@@ -147,9 +155,9 @@ IMP.init('imp14973248'); // 'iamport' 대신 부여받은 "가맹점 식별코�
 				</div>
 
 				<div class="orderway">
-					<p>결제수단 선택</p>
-					<!-- 여기서 선택한 결제수단을 속성 pg의 값에 담기 -->
-					<input type="text" name="oPayway" value="">
+					<!-- <p>결제수단 선택</p>
+					여기서 선택한 결제수단을 속성 pg의 값에 담기
+					<input type="text" name="oPayway" value=""> -->
 					<input type="hidden" name="oPayway" value="html5_inicis"> 
 				</div>
 			</div>
@@ -200,7 +208,7 @@ IMP.init('imp14973248'); // 'iamport' 대신 부여받은 "가맹점 식별코�
 								<div class="pay-items">
 									<p class="pay-items-text-left middle">쿠폰할인</p>
 									<p class="pay-items-text-right">
-										2000<span>원</span>
+										0<span>원</span>
 									</p>
 
 								</div>
@@ -225,12 +233,12 @@ IMP.init('imp14973248'); // 'iamport' 대신 부여받은 "가맹점 식별코�
 						</div>
 						<div class="info-agreed">
 							<input type="checkbox" class="info-agreed">
-							<textarea style="width: 300px; height: 50px; overflow: scroll"><p>개인정보및 배송지제출에 동의하시겠습니까?</p></textarea>
+							<textarea style="width: 500px; height: 80px; overflow: scroll"><p>개인정보및 배송지제출에 동의하시겠습니까?</p></textarea>
 						</div>
 						<div class="pay-button">
 							<!-- 결제하기 버튼을 누르면, 1. 걸제 api실행
                     2. 카트에 담긴 데이터와 그와 연결된 product데이터와 위에 입력한 배송정보를 orders와 orderdetail에 insert -->
-							<input type="button" id="pay" value="결제하기" class="pay-deside-button btn" style="width: 550px; height: 50px; justify-content: center; margin: 20px 0;">
+							<input type="button" id="pay" value="결제하기" class="pay-deside-button btn" style="width: 500px; height: 50px; justify-content: center; margin: 20px 0;">
 							<input type="button" id="orderCheak" style="display:none;" onclick="fn_dd();" value="결제완료 확인">
 						</div>
 					</div>
