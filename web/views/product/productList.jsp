@@ -129,23 +129,23 @@
                      </h5>
                   </div>
                   <ul class="head-right">
-                     <li class="head-right-items2">
-                        <%change="new"; %><button class="btnnone"
-                           onclick="location.replace('<%=request.getContextPath()%>/product/productSort?change=<%=change %>')">신메뉴</button>
-                     </li>
-                     <li class="head-right-items2">
-                        <%change="hot"; %><button class="btnnone"
-                           onclick="location.replace('<%=request.getContextPath()%>/product/productSort?change=<%=change %>')">인기메뉴</button>
-                     </li>
-                     <li class="head-right-items2">
-                        <%change="low"; %><button class="btnnone"
-                           onclick="location.replace('<%=request.getContextPath()%>/product/productSort?change=<%=change %>')">높은가격순</button>
-                     </li>
-                     <li class="head-right-items2">
-                        <%change="high"; %><button class="btnnone"
-                           onclick="location.replace('<%=request.getContextPath()%>/product/productSort?change=<%=change %>')">낮은가격순</button>
-                     </li>
-                  </ul>
+							<li class="head-right-items2">
+								<%change="new"; %><button class="btnnone"
+									onclick="location.replace('<%=request.getContextPath()%>/product/productSort?change=<%=change %>')">신메뉴</button>
+							</li>
+							<li class="head-right-items2">
+								<%change="hot"; %><button class="btnnone"
+									onclick="location.replace('<%=request.getContextPath()%>/product/productSort?change=<%=change %>')">인기메뉴</button>
+							</li>
+							<li class="head-right-items2">
+								<%change="low"; %><button class="btnnone"
+									onclick="location.replace('<%=request.getContextPath()%>/product/productSort?change=<%=change %>')">높은가격순</button>
+							</li>
+							<li class="head-right-items2">
+								<%change="high"; %><button class="btnnone"
+									onclick="location.replace('<%=request.getContextPath()%>/product/productSort?change=<%=change %>')">낮은가격순</button>
+							</li>
+						</ul>
                </div>
             </div>
 
@@ -324,4 +324,5 @@
 
 
 
+>>>>>>> branch 'master' of https://github.com/hyunwoo-200924/SemiProject.git
 <%@ include file="/views/common/footer.jsp"%>

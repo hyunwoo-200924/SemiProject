@@ -19,8 +19,8 @@
 		<li onclick="location.href='<%=request.getContextPath() %>/couponList'">쿠폰</li>
 		<li onclick="location.href='<%=request.getContextPath() %>/pointPageView.do'">포인트</li>
 		<li class="mypage_left_title1">나의활동</li>
-		<li onclick="location.href='<%=request.getContextPath() %>/review/reviewList'">리뷰</li>
-		<li onclick="">맛취향</li>
+		<li><a href="<%=request.getContextPath() %>/review/reviewCanList">리뷰</a></li>
+		<li>맛취향</li>
 		<li>쇼핑찜</li>
 		<li onclick="location.href='<%=request.getContextPath() %>/questionList'">1:1문의</li>
 		<li class="mypage_left_title1">나의 정보</li>
