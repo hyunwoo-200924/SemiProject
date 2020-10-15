@@ -17,14 +17,14 @@
    List<WishList> wl = (List)request.getAttribute("wl");
    List pNos = new ArrayList();
    if(loginMember1 != null && wl != null){
-	   for(WishList w : wl){
-		   pNos.add(w.getpNo());
-	   }
+      for(WishList w : wl){
+         pNos.add(w.getpNo());
+      }
    }
    
    int result = 0;
    if(loginMember1 == null){
-	   result = 1;
+      result = 1;
    }
    
    String change = (String)request.getAttribute("change");
@@ -35,7 +35,7 @@
 %>
 <style>
 .hart--img:hover{
-	cursor:pointer;
+   cursor:pointer;
 }
 </style>
 <script>
@@ -225,8 +225,8 @@
                         <ul class="hart">
                            <!-- 찜 페이지 -->
                            <%-- <a href="<%=request.getContextPath()%>/views/cart/jjim.jsp"> --%>
-							<input type="hidden" value="<%=p.getpNo()%>">
-							<%if(loginMember1 != null && pNos!= null && pNos.contains(p.getpNo())){ %>
+                     <input type="hidden" value="<%=p.getpNo()%>">
+                     <%if(loginMember1 != null && pNos!= null && pNos.contains(p.getpNo())){ %>
                               <img src="<%=request.getContextPath() %>/images/jjim.jpg" alt="찜" class="hart--img" style="width:40px; height:36px">
                               <%} else{%>
                               <img src="<%=request.getContextPath() %>/images/product/hart40px.jpg" alt="찜" class="hart--img" style="width:40px; height:36px">
@@ -269,57 +269,57 @@
    </div>
 </div>
 <script>
-	
-	
-	$('.hart--img').click(function(){
-		
-		if(<%=result%> == 1){
-			
-			if(confirm('로그인이 필요한 서비스입니다. 로그인 하시겠습니까?') == true){
-				location.href='<%= request.getContextPath() %>/login.do';
-			}
-			
-		} else {
-			
-			if($(this).attr('src') == '<%=request.getContextPath() %>/images/jjim.jpg'){
-				//찜 취소
-				let pNo = $(this).prev().val();
-			  	console.log(pNo);
-				$(this).attr('src','<%=request.getContextPath() %>/images/product/hart40px.jpg');
-			   
-			   $.ajax({
-				   url:"<%= request.getContextPath() %>/deletetWishList",
-				   data:{pNo:pNo},
-				   success: function(data){
-					   console.log(data)
-						alert('찜 취소!');
-				   }
-			   })
-				
-				
-			} else {
-				//찜하기
-			   let pNo = $(this).prev().val();
-			   console.log(pNo);
-				$(this).attr('src','<%=request.getContextPath() %>/images/jjim.jpg');
-			   
-			   $.ajax({
-				   url:"<%= request.getContextPath() %>/insertWishList",
-				   data:{pNo:pNo},
-				   success: function(data){
-					   console.log(data)
-					   alert('찜목록에 담겼습니다. 마이페이지 > 쇼핑찜에서 확인해주세요!');
-				   }
-			   })
-				
-			}
-			
-			
-		}
-		
    
-	})
-		
+   
+   $('.hart--img').click(function(){
+      
+      if(<%=result%> == 1){
+         
+         if(confirm('로그인이 필요한 서비스입니다. 로그인 하시겠습니까?') == true){
+            location.href='<%= request.getContextPath() %>/login.do';
+         }
+         
+      } else {
+         
+         if($(this).attr('src') == '<%=request.getContextPath() %>/images/jjim.jpg'){
+            //찜 취소
+            let pNo = $(this).prev().val();
+              console.log(pNo);
+            $(this).attr('src','<%=request.getContextPath() %>/images/product/hart40px.jpg');
+            
+            $.ajax({
+               url:"<%= request.getContextPath() %>/deletetWishList",
+               data:{pNo:pNo},
+               success: function(data){
+                  console.log(data)
+                  alert('찜 취소!');
+               }
+            })
+            
+            
+         } else {
+            //찜하기
+            let pNo = $(this).prev().val();
+            console.log(pNo);
+            $(this).attr('src','<%=request.getContextPath() %>/images/jjim.jpg');
+            
+            $.ajax({
+               url:"<%= request.getContextPath() %>/insertWishList",
+               data:{pNo:pNo},
+               success: function(data){
+                  console.log(data)
+                  alert('찜목록에 담겼습니다. 마이페이지 > 쇼핑찜에서 확인해주세요!');
+               }
+            })
+            
+         }
+         
+         
+      }
+      
+   
+   })
+      
 </script>
 
 
