@@ -9,7 +9,7 @@ ul{
 a{
     text-decoration-line: none;
 }
-a:hover{
+a not:hover{
     color:red;
     text-decoration-line: none;
 }

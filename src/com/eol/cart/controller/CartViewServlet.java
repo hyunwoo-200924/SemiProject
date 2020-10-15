@@ -52,6 +52,7 @@ public class CartViewServlet extends HttpServlet {
 		System.out.println(request.getParameter("OderDay"));
 		
 		String oDeliveryEDate = request.getParameter("OderDay");//새벽 3시 날짜 수정.
+		
 		System.out.println("날짜가 있니?"+oDeliveryEDate);
 		if(oDeliveryEDate == null) {
 			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");

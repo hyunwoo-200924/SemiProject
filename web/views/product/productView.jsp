@@ -169,19 +169,19 @@ String today =(String)sf.format(now);
                                  <!-- 갯수를 30개로 가정하고 시작하자! -->
 	                                
 	                                 <div name="oDeliveryEDate1" value="<%=Wednesday%>" class="order_check_day" id="Tuesday" style="display:none;" onclick="mouseClick();"><%=Wednesday%>
-	                                  <input type="radio" name="orderDay" style="displa:none; font-size:25px; bold: 1000;" style="display:none;" value="<%=Wednesday%>"></span>
+	                                  <div type="radio" name="orderDay" style="displa:none; font-size:25px; bold: 1000;" style="display:none;" value="<%=Wednesday%>"></div>
 	                                 </div>
 	                                 <div  name="oDeliveryEDate2" value="<%=today%>" class="order_check_day" id="Wednesday" style="display: none;" onclick="mouseClick1();"><%=today%>    
-	                                     <input type="radio" name="orderDay" style="displa:none; font-size:25px; bold: 1000;" style="display:none;" value="<%=today%>"></span>
+	                                     <div type="radio" name="orderDay" style="displa:none; font-size:25px; bold: 1000;" style="display:none;" value="<%=today%>"></div>
 	                                 </div>
 	                                 <div name="oDeliveryEDate3" value="<%=Thursday%>"class="order_check_day" id="Tursday" style="display: none;" onclick="mouseClick2();"><%=Thursday%>    
-	                                   <input type="radio" name="orderDay" style="displa:none; font-size:25px; bold: 1000;" style="display:none;" value="<%=Thursday%>"></span>
+	                                   <div type="radio" name="orderDay" style="displa:none; font-size:25px; bold: 1000;" style="display:none;" value="<%=Thursday%>"></div>
 	                                 </div>
 	                                 <div name="oDeliveryEDate4" value="<%=Friday%>" class="order_check_day" id="Friday" style="display: none;" onclick="mouseClick3();"><%=Friday%>   
-	                                     <input type="radio" name="orderDay" style="displa:none; font-size:25px; bold: 1000;" style="display:none;" value="<%=Friday%>"></span>
+	                                     <div type="radio" name="orderDay" style="displa:none; font-size:25px; bold: 1000;" style="display:none;" value="<%=Friday%>"></div>
 	                                 </div>
 	                                 <div name="oDeliveryEDate5" value="<%=Saturday%>" class="order_check_day" id="Saturday" style="display: none;" onclick="mouseClick4();"><%=Saturday%>    
-	                                     <input type="radio" name="orderDay" style="displa:none; font-size:25px; bold: 1000;" style="display:none;"value="<%=Saturday%>"></span>
+	                                     <div type="radio" name="orderDay" style="displa:none; font-size:25px; bold: 1000;" style="display:none;"value="<%=Saturday%>"></div>
                                  </div>
                              </div>
                              
@@ -347,9 +347,13 @@ String today =(String)sf.format(now);
                                 		         
                                 	
                                 		 var tdprice1=(parseInt(<%=p.getpPrice()%>));
-                                		 var discount=(parseInt(<%=p.getpDiscount()%>));
+                                		 var discount1=(parseInt(<%=p.getpDiscount()%>));
+                                		 if(discount1===0){
+                                			 var discount=(discount1+1);
+                                		 }
+                                		 console.log(discount);
                                 		var $tdprice= tdprice1-(tdprice1/(discount*100));
-                                		 console.log("#ppPrice");
+                               				console.log("<%=p.getpNo()%>");
 
                                 		//상품수량가격변경하기
                                 		var $input2=$('.producttextinput'),
@@ -453,7 +457,7 @@ String today =(String)sf.format(now);
                          <div class="rating_wrap">
                              <span class="rating_star">
                                  <span class="star">
-                                     <a class="start_group" data-rate=""  src="<%=request.getContextPath()%>">
+                                     <div class="start_group" data-rate="<%=p.getpHit() %>"  src="<%=request.getContextPath()%>">
                                          <span  alt="별모양" id="star1">★</span> 
                                          <span  alt="별모양" id="star1" >★</span>
                                          <span  alt="별모양" id="star1" >★</span>
@@ -465,26 +469,33 @@ String today =(String)sf.format(now);
                                              <span class="num" alt=""></span>
                                          </span>
                                          
-                                     </a>
+                                     </div>
                                      <script>
                                      //별점표시, 점수주기
+                                     console.log("<%=p.getpHit() %>");
+                                    $('.num').text(<%=p.getpHit() %>);
                                     $(function(){
-                                     const rating = $('.num').text();
+                                    
                                      console.log(rating);
-
+                                     $(".start_group").each(function(){
+                                    	
+                                    	$(this).find('div:nth-child(-n+'rating')').css({color:'#f00'});
+                                     	});
+                                     }
+/* 
                                      $(".start_group").each(function(){
                                          const targetScore = (parseInt($(this).prop('data-rate')));//형변환해주고 
                                          console.log(targetScore);//여기서 프리트해서 값확인
-                                         $(".num").text(targetScore);//별점 출력
+                                         $(".num").text(targetScore);//별점 출력text 초기화
                                          //정수인지 아닌지 확인
-                                         if(($(this).attr('data-rate'))!==targetScore){
+                                         if(($(this).prop('data-rate'))===targetScore){
                                         	 console.log("정수:참");
                                          }else console.log("문자열:거짓");
                                          // $(this).find('img:nth-child(-n+'+targetScore+')').css({color:'red'});
                                         $(this).find('a:nth-child(-n+'+targetScore+')').css({color:'#f00'});
                                         	console.log(('a:nth-child(-n+'+targetScore+')'));
 											console.log($(this).find('a:nth-child(-n+'+targetScore+')'));
-										 })
+										 }) */
                                      }); 
                                      
 
@@ -507,14 +518,20 @@ String today =(String)sf.format(now);
                                  
                                      <span class="hide span-text"><a href="">리뷰바로가기</a></span>
                                      
+                                  <script>
+                              		
+                     
+                                  
+                                  
+                                  </script>   
                                      <span class="span-text">리뷰수
-                                         <em>0</em>
+                                         <em></em>
                                      </span>
                   
                                 
                                      <!-- 클릭시 상세탭에 div#recipe_wrap영역으로 이동 -->
                                      <span class="span-text">
-                                         <a href="#">
+                                         <a href=".resipy-menu-detail-text">
                                              레시피
                                          
                                          </a>
