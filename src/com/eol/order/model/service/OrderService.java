@@ -129,13 +129,38 @@ public class OrderService {
 	public int noMemberodinsert(Product p, int oNo) {
 		Connection conn = getConnection();
 		int result = dao.nonodinsert(conn, p, oNo);
-		if(result>0)commit(conn);
+		if(result>0) commit(conn);
 		else rollback(conn);
 		close(conn);
 		return result;
 	}
 	
 	
+	//비회원이 주문한 상품 취소신청버튼 누를 시 oStatus를 취소신청으로 변경하기
+	public int changeoStatus(int oNo) {
+		Connection conn = getConnection();
+		int result = dao.updateoStatus(conn, oNo);
+		if(result>0) commit(conn);
+		else rollback(conn);
+		return result;
+	}
+	
+	//비회원 상태 취소신청으로 변경한거 다시 불러오기
+	public Orders orderSelect(int oNo) {
+		Connection conn = getConnection();
+		Orders o = dao.selectorder(conn, oNo);
+		close(conn);
+		return o;
+	}
+	
+	//비회원이 환불신청 버튼 누를시 oDeliveryStatus를 환불신청으로 변경하기
+	public int changeoDeliveryStatus(int oNo, String st) {
+		Connection conn = getConnection();
+		int result = dao.updateoDeliveryStatus(conn, oNo, st);
+		if(result>0) commit(conn);
+		else rollback(conn);
+		return result;
+	}
 	
 	
 

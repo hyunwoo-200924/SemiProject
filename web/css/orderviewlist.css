@@ -2,8 +2,7 @@
 
 section{
         position: relative;
-        min-width: 100%;
-        min-height: 2000px;
+        
         padding: 5% 40px;
 
     }
@@ -46,6 +45,13 @@ section{
    }
    .deliverybtn{
    margin-left: 380px;
+   cursor: pointer;
+	background-color: black;
+	height: 25px;
+	border: 0px;
+	border-radius: 5px;
+	text-decoration: none;
+	color: white
    }
    .productView{
        float: left;
@@ -72,11 +78,19 @@ section{
        font-size: 10px;
    }
    ul.Button {
-   	    padding: 15px 0 0 0;
+   	        padding-left: 480px;
    }
    .Button button{
-       display: block;
+       cursor: pointer;
+	background-color: black;
+	height: 25px;
+	border: 0px;
+	border-radius: 5px;
+	text-decoration: none;
+	color: white
        align-items: center;
+           margin: 1px;
+    color: white;
    }
    .orderButton button a{
        text-decoration: none;

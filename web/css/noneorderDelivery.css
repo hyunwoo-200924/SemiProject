@@ -1,11 +1,18 @@
 @charset "UTF-8";
 
 section{
+        
         position: relative;
         min-width: 100%;
         min-height: 2000px;
-        top:130px;
+        
 
+    }
+    section h1{
+    	position: absolute;
+    	left: 160px;
+   	 	top: 100px;
+    	font-size: 40px;
     }
  /*비회원 주문조회 aside 왼쪽정렬*/
     section div.aside{
@@ -38,33 +45,35 @@ section{
     }
     div.content2{
         position: absolute;
-        left: 10px;
-        top: 150px;
+        left: 150px;
+    top: 170px;
         padding: 10px;
     }
 
     div.content3{
         position: absolute;
-        left: 10px;
-        top: 250px;
+        left: 149px;
+    top: 280px;
         padding: 10px;
     }
 
-    div.content4{
-        position:absolute;
-        top:400px;
-        left:10px;
+    div.orderproduct{
+        
        border: black 1px solid;
        width : 700px;
        height: 210px;
        padding: 10px;
    }
    .orderNumber{
+   display:inline;
        padding: 10px;
-       font-size: 12px;
+       font-size: 20px;
+    color: #AC251F;
+    font-weight: bolder;
    }
    
    .productView{
+   position: absolute;
        float: left;
        width:70%;
    }
@@ -81,6 +90,7 @@ section{
    }
    .orderButton{
        display: inline;
+       
   
    }
    div.ordernotice p{
@@ -88,6 +98,7 @@ section{
    }
    .arriveDate{
        text-align: center;
+       display: inline;
    }
    .arriveDate p{
        font-size: 10px;
@@ -101,17 +112,37 @@ section{
        font-size: 12px;
        
    }
-   Button{
+   .Button{
      margin: auto;
+     margin-left: 500px;
    }
    .Button li{
        list-style-type: none;
+           margin: 2px;
+   }
+   .Button button{
+   		cursor: pointer;
+	background-color: black;
+	height: 25px;
+	border: 0px;
+	border-radius: 5px;
+	text-decoration: none;
+	color: white
+   }
+   .deliview{
+   cursor: pointer;
+	background-color: black;
+	height: 25px;
+	border: 0px;
+	border-radius: 5px;
+	text-decoration: none;
+	color: white
    }
 
     div.content5{
         position: absolute;
-        left:10px;
-        top: 650px;
+        left: 160px;
+    top: 410px;
     }
 
     .cont_title{
@@ -125,4 +156,10 @@ section{
     }
     .orderDate{
         background-color: lightgray;
+    }
+    
+    .content4{
+    position: absolute;
+    left: 160px;
+    top: 600px;
     }

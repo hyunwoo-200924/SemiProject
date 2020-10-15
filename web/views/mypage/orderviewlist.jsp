@@ -45,9 +45,12 @@ href="<%=request.getContextPath() %>/css/orderviewlist.css">
 		</div>
 		<%}else{ %>
 		<div class="detail">
-		<% for(Orders o : olist){ %>
 			<div class="orderNumber">
-			<span><%=o.getoPayDate() %> (<%=o.getoNo() %>)</span><button class="deliverybtn" onclick="#">배송조회</button>
+			<span><%=o.getoPayDate() %> (<%=o.getoNo() %>)</span><button class="deliverybtn" onclick="">배송조회</button>
+			<ul class="Button">
+					<li><button onclick="">취소신청</button></li>
+					<li><button>환불신청</button></li>
+				</ul>
 			
 			</div>
 			<% for(OrderDetail od : o.getDetails()){ %>
@@ -71,16 +74,16 @@ href="<%=request.getContextPath() %>/css/orderviewlist.css">
 					<%-- <form action="<%=request.getContextPath() %>/cancel.do" name="cancel" id="cancel" method="">
 					<input type="hidden" value="<%=o.getoNo() %>" name="canceloNo">
 					</form> --%>
-					<li><button onclick="">취소신청</button></li>
-					<li><button>환불신청</button></li>
 					<li><button>리뷰쓰기</button></li>
 				</ul>
 			</div>
 			</div>
 			<%} %>
-			<%} %>
+			
 		</div>
 		<%} %>
+		<%}}%>
+		</div>
 </section>
 
 <script>
