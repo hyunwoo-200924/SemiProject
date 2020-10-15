@@ -16,6 +16,7 @@ import com.eol.cart.model.vo.Cart;
 import com.eol.member.model.vo.Member;
 import com.eol.order.model.vo.OrderDetail;
 import com.eol.order.model.vo.Orders;
+import com.eol.order.model.vo.WishList;
 import com.eol.product.model.vo.Product;
 
 public class OrderDao {
@@ -178,6 +179,7 @@ public class OrderDao {
 				o.setoPayDate(rs.getDate("o_paydate"));
 				o.setoAmount(rs.getInt("O_AMOUNT"));
 				o.setoPayment(rs.getInt("O_PAYMENT"));
+				o.setoStatus(rs.getString("o_status"));
 				
 				list.add(o);
 			}
@@ -238,11 +240,11 @@ public class OrderDao {
 		}return orderslist;
 	}
 
-	//각각 주문에 대한 주문디테일로 상품명 가져오기
-	public String selectodList(Connection conn, int oNo) {
+	//각각 주문에 대한 주문디테일로 상품명 가져오기, 상품 사진 추가
+	public String[] selectodList(Connection conn, int oNo) {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		String pName = null;
+		String[] pNamepImage = new String[2];
 		System.out.println(oNo);
 		try {
 			pstmt = conn.prepareStatement(prop.getProperty("selectpName"));
@@ -251,7 +253,8 @@ public class OrderDao {
 			rs = pstmt.executeQuery();
 			
 			if(rs.next()) {
-				pName = rs.getString("P_NAME");
+				pNamepImage[0] = rs.getString("P_NAME");
+				pNamepImage[1] = rs.getString("P_IMAGE1");
 			}
 			
 		} catch (SQLException e) {
@@ -260,8 +263,8 @@ public class OrderDao {
 			close(rs);
 			close(pstmt);
 		}
-		System.out.println(pName);
-		return pName;
+		System.out.println(pNamepImage);
+		return pNamepImage;
 	}
 	
 	
@@ -378,4 +381,117 @@ public class OrderDao {
 		}return result;
 	}
 
+	//찜한 내역 가져오기
+	public List<WishList> selectJjim(Connection conn, int mNo) {
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		List<WishList> list = new ArrayList<WishList>();
+		
+		try {
+			pstmt = conn.prepareStatement(prop.getProperty("selectJjim"));
+			pstmt.setInt(1, mNo);
+			
+			rs = pstmt.executeQuery();
+			
+			while(rs.next()) {
+				WishList w = new WishList();
+				
+				w.setwNo(rs.getInt("W_NO"));
+				w.setmNo(rs.getInt("M_NO"));
+				w.setpNo(rs.getInt("P_NO"));
+				w.setpName(rs.getString("p_name"));
+				w.setpPrice(rs.getInt("p_price"));
+				w.setpImage1(rs.getString("P_IMAGE1"));
+				
+				list.add(w);
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rs);
+			close(pstmt);
+		}
+		
+		return list;
+	}
+
+	public Orders orderdetail(Connection conn, int oNo) {
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		Orders o = new Orders();
+		
+		try {
+			pstmt = conn.prepareStatement(prop.getProperty("orderdetail"));
+			pstmt.setInt(1, oNo);
+			
+			rs = pstmt.executeQuery();
+			
+			List<Product> ps = new ArrayList<Product>();
+			
+			while(rs.next()) {
+				//상품정보
+				Product p = new Product();
+				p.setpImage1(rs.getString("P_IMAGE1"));
+				p.setpName(rs.getString("P_NAME"));
+				p.setpPrice(rs.getInt("P_PRICE"));
+				p.setpCount(rs.getInt("od_qty"));
+				p.setpNo(rs.getInt("p_no"));
+				ps.add(p);
+				
+				o.setoNo(rs.getInt("o_no"));
+				o.setoStatus(rs.getString("o_status"));
+				o.setPs(ps);
+				
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rs);
+			close(pstmt);
+		}
+		
+		return o;
+	}
+
+	//찜하기
+	public int insertWishList(Connection conn, int pNo, int mNo) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		
+		try {
+			pstmt = conn.prepareStatement(prop.getProperty("insertWishList"));
+			pstmt.setInt(1, mNo);
+			pstmt.setInt(2, pNo);
+			
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		return result;
+	}
+
+	//찜 삭제하기
+	public int deletetWishList(Connection conn, int pNo, int mNo) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		
+		try {
+			pstmt = conn.prepareStatement(prop.getProperty("deletetWishList"));
+			pstmt.setInt(1, pNo);
+			pstmt.setInt(2, mNo);
+			
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		return result;
+
+	}
 }

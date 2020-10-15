@@ -297,20 +297,20 @@ $("#pay").click(function () {
 	}
 	
 	
-      IMP.request_pay({
-         pg: 'html5_inicis', // 위에서 선택한 결제수단이 여기 값으로 들어와야함
-         pay_method: 'card', 
-         merchant_uid: 'merchant_' + new Date().getTime(),
-         /* name: $("#").val(), */
-         amount: $("#oPayment").val(),
-         /* buyer_email: 'iamport@siot.do', */
-         buyer_name: $("#oName").val(),
-         buyer_tel: $("#oPhone").val(),
-         /* buyer_addr: $("#buyer_addr").val(),
-         buyer_postcode: '123-456', */
-        
-     }, 
-    	function(rsp) {
+     IMP.request_pay({
+        pg: 'html5_inicis', // 위에서 선택한 결제수단이 여기 값으로 들어와야함
+        pay_method: 'card', 
+        merchant_uid: 'merchant_' + new Date().getTime(),
+        /* name: $("#").val(), */
+        amount: $("#oPayment").val(),
+        /* buyer_email: 'iamport@siot.do', */
+        buyer_name: $("#oName").val(),
+        buyer_tel: $("#oPhone").val(),
+        /* buyer_addr: $("#buyer_addr").val(),
+        buyer_postcode: '123-456', */
+       
+    }, 
+   	function(rsp) {
  		if ( rsp.success ) {
  		//[1] 서버단에서 결제정보 조회를 위해 jQuery ajax로 imp_uid 전달하기
  		jQuery.ajax({
@@ -339,7 +339,7 @@ $("#pay").click(function () {
  				//[3] 아직 제대로 결제가 되지 않았습니다.
  				//[4] 결제된 금액이 요청한 금액과 달라 결제를 자동취소처리하였습니다.
  			}
- 			});
+ 		});
  		} else {
  			var msg = '결제에 실패하였습니다.';
  			msg += '에러내용 : ' + rsp.error_msg;
@@ -347,7 +347,8 @@ $("#pay").click(function () {
  			alert(msg);
 			console.log(msg);
  		}
- 		});
+	});
+     
    $("#pay").css("display","none");
    $("#orderCheak").css("display","block");
 })
