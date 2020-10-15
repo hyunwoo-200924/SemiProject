@@ -11,6 +11,11 @@
 <link rel="stylesheet" type="text/css" 
 href="<%=request.getContextPath() %>/css/orderviewlist.css">
 
+<style>
+nav{
+float: left;
+}
+</style>
 
 <section>
 
@@ -37,7 +42,7 @@ href="<%=request.getContextPath() %>/css/orderviewlist.css">
 				
 				<form id="detailvieworder" action="<%=request.getContextPath() %>/memberOrderDetail" method="post">
 					<input type="hidden" name="oooNo" value="<%=o.getoNo() %>">
-					<input type="submit" value="상세정보">
+					<input type="submit" class="odbtn" value="상세정보">
 				</form>
 							                       
 			<button class="deliverybtn" onclick="delivery();">배송조회</button>

@@ -73,15 +73,29 @@ section{
    ul.Button {
    	        padding-left: 480px;
    }
-   .Button button{
+   
+   .odbtn{
+   float: left;
+       background-color: black;
+    color: white;
+    height: 25px;
+	border: 0px;
+	border-radius: 5px;
+   }
+   
+   #review{
+   margin-top: 100px;
+    margin-left: 50px;
+   }
+   button{
        cursor: pointer;
 	background-color: black;
 	height: 25px;
 	border: 0px;
 	border-radius: 5px;
 	text-decoration: none;
-	color: white
-       align-items: center;
+	color: white;
+      align-items: center;
            margin: 1px;
     color: white;
    }
