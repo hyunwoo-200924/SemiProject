@@ -12,8 +12,9 @@
 Member loginMember2 = (Member)request.getSession().getAttribute("loginMember");
 	Cart c=(Cart)request.getAttribute("Cart");
 Review r=(Review)request.getAttribute("Review");
+
+
 //날짜저장하기위한 초기값
-int pCount=(int)request.getAttribute("pCount");
 String OrderDay=(String)request.getAttribute("OrderDay");
 	
 Date now = new Date();
@@ -226,7 +227,7 @@ String today =(String)sf.format(now);
                                 console.log($(".OderDay").val("<%=Saturday%>"));
                             }
                             ////-----------------------------------------------------------------
-                            function day(){
+                          /*   function day(){
                             	
                             	$(document).ready(function(){
                             		var date= new Date();
@@ -258,7 +259,7 @@ String today =(String)sf.format(now);
                             	var daySun=$('.menu-date-text').val(date.getMonth()+"월"+date.getDate()+4+"일"+week[date.getDay()+4]+"요일");
                             	
                             	});
-                            };
+                            }; */
 
                             
                       
@@ -324,7 +325,7 @@ String today =(String)sf.format(now);
                                      <p class="producttextinput">
                                      </p>
 										<input type="hidden" name="OderDay" class="OderDay">
-                                         <input type="hidden" class="product-nember" name="pCount" value="currentCount" max="<%=p.getpStock()%>" readonly/>
+                                         <input type="hidden" class="product-nember" name="pCount" value="" max="<%=p.getpStock()%>" readonly/>
                                          <input type="hidden" name="pNo" value="<%=p.getpNo() %>" class="pNo">
                                      <p><input type="text" name="price" class="product-pricetag" id="total-price" readonly/><span>원</span></p>
                                  </form>
@@ -347,7 +348,7 @@ String today =(String)sf.format(now);
                                 	
                                 		 var tdprice1=(parseInt(<%=p.getpPrice()%>));
                                 		 var discount=(parseInt(<%=p.getpDiscount()%>));
-                                		var $tdprice= tdprice1-(tdprice1/(discount*100));
+                                		var $tdprice= tdprice1-(tdprice1 * discount/100);
                                 		 console.log("#ppPrice");
 
                                 		//상품수량가격변경하기
@@ -365,6 +366,7 @@ String today =(String)sf.format(now);
 										//aytinput value 기존값에서 1증가 거짓이면 (마이너스를 클릭햇으면 $qyinput value 기존값에서 1차감) 
                                 		countNum=1;
                                 		var currentCount=countNum;
+                                		$('.product-nember').val(currentCount);
                               			 console.log("curren값 :"+currentCount);
                                 				 var total3=(parseInt((parseInt(currentCount)) * $tdprice));
                                 				 console.log("갯수x가격="+total3);
@@ -415,7 +417,7 @@ String today =(String)sf.format(now);
                                  <div class="jjim-btn-container">
                                  
                                  
-                                    <a href=""><img src="<%=request.getContextPath() %>/images/product/hart40px.jpg" alt="찜" class="jjim"></a>
+                                    <a href="<%=request.getContextPath()%>/views/cart/cartViewServlet?pNo=<%=p.getpNo()%>"><img src="<%=request.getContextPath() %>/images/product/hart40px.jpg" alt="찜" class="jjim"></a>
 
                                    
                                     
@@ -451,7 +453,7 @@ String today =(String)sf.format(now);
                          <div class="rating_wrap">
                              <span class="rating_star">
                                  <span class="star">
-                                     <a class="start_group" data-rate="10" >
+                                     <a class="start_group" data-rate=""  src="<%=request.getContextPath()%>">
                                          <span  alt="별모양" id="star1">★</span> 
                                          <span  alt="별모양" id="star1" >★</span>
                                          <span  alt="별모양" id="star1" >★</span>

@@ -29,20 +29,24 @@
 	        <%for(Cart c : memberCart){%>
            		<div class="cart-section-body-group2">
             	<div class="kkk">
-               	<img src="<%=request.getContextPath() %>/upload/product/<%=c.getpImage1() %>" alt="상품이미지" style="width:200px;height:150px;">
+               	<img src="<%=request.getContextPath() %>/upload/product/<%=c.getpImage1() %>" alt="상품이미지" style="width: 217px;height: 216px;">
                 </div>
                 <div>
-                <p style="margin-left: 396px; font-size: 25px;"><%=c.getpName() %></p>
+                <p style="margin-left: 391px; font-size: 25px;"><%=c.getpName() %></p>
                 <p style="margin-left: 396px; font-size: 25px;" class="cart-pricetext"><span>가격 :</span><%=c.getpPrice() %><span>원</span></p>
               	<div style="display: flex" class="count-con">
-              	<span  style="margin-left: 396px; font-size: 25px;" type="button" value="－" class="product-minus" id="plus">-</span>
+              	<p style="margin-left: 396px; font-size: 25px;">수량 :</p>
+              	<!--<span  style="margin-left: 396px; font-size: 25px;" type="button" value="－" class="product-minus" id="plus">-</span>-->
                	<input style="border: none; font-size: 25px;" type="text" value="<%=c.getcQty() %>" class="pCount" readonly>
-                <span  style=" font-size: 25px; margin-left: 78px" type="button" value="＋" class="product-plus" id="minus">+</span><span style="margin-left: 4px; font-size: 25px;">개</span>
+                <!--  <span  style=" font-size: 25px; margin-left: 78px" type="button" value="＋" class="product-plus" id="minus">+</span><span style="margin-left: 4px; font-size: 25px;">-->
+                <span style="font-size: 25px; margin-left: -176px;"> 개</span>
                 </div>
                 <div style=" font-size: 25px; margin-left: 394px;"><P>배송 도착 예상 날짜 :<%=c.getoDeliveryEDate() %> </P></div>
                 </div>
-                <button class="btn" onclick="location.replace('<%=request.getContextPath()%>/cartintopay.do')">상품전체결제</button>
+                <div class="bTnDiv" style="margin-left: -313px;margin-top: 178px;">
+                <button class="btn" onclick="location.replace('<%=request.getContextPath()%>/onecartintopay.do?cNo=<%=c.getcNo()%>')">상품결제</button>
     			<button class="btn" onclick="location.replace('<%=request.getContextPath()%>/cartDelete.do?pNo=<%=c.getpNo()%>')">상품삭제</button>
+            	</div>
             	</div>
             <script>
             $(function(){
@@ -73,6 +77,10 @@
 <%}else{ %>
 	<div class="cart-section-container">
     	<h2 class="cart-head-text"> 장바구니 </h2>
+    </div>
+    <hr>
+    <div style="display: flex; width: 100%; height: 500px;justify-content: center;margin-top: 193px;">
+    	<h1>장바구니에 상품이 없습니다.</h1>
     </div>
 <%} %>
 <%@include file="/views/common/footer.jsp" %>

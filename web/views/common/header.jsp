@@ -39,16 +39,14 @@ href="<%=request.getContextPath() %>/css/hayong.css">
                 <ul>
                     <li><a href="<%=request.getContextPath()%>/memberEnrollCheckedView.do">회원가입</a></li>
                     <li><a href="<%=request.getContextPath()%>/login.do">로그인</a></li>
-                    <li style="padding: 0px 20px 0px 0px;"><a href="#" >고객센터</a></li>
                 </ul>
             </div>
             <%}else{ %>
              <!-- 검은top -->
             <div id="blacktop">
                 <ul>
-                    <li><a href="<%=request.getContextPath()%>/mypageMain.do"><%=loginMember.getmName() %>님</a></li>
+                    <li><a href="<%=request.getContextPath()%>/OrderJjimList"><%=loginMember.getmName() %>님</a></li>
                     <li><a href="<%=request.getContextPath()%>/logOut.do">로그아웃</a></li>
-                    <li style="padding: 0px 20px 0px 0px;"><a href="#" >고객센터</a></li>
                 </ul>
             </div>
             	

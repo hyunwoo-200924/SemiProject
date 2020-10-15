@@ -60,8 +60,8 @@ IMP.init('imp14973248'); // 'iamport' 대신 부여받은 "가맹점 식별코�
 							<!-- 주소창에 입력후에 자동생성되게 자바스크립트 -->
 
 							<div class="persnal-info">
-								이름<input type="text" id="oToName" value="" placeholder="이름을 입력하세요" class="text-inputtag"/> 
-								연락처<input type="text" id="oToPhone" placeholder="예)010-0000-0000" class="text-inputtag"/>
+								이름<input type="text" id="oToName" name="oToName" value="" placeholder="이름을 입력하세요" class="text-inputtag"/> 
+								연락처<input type="text" id="oToPhone" name="oToPhone" placeholder="예)010-0000-0000" class="text-inputtag"/>
 							</div>
 							
 							<div class="persnal-info">
@@ -83,11 +83,15 @@ IMP.init('imp14973248'); // 'iamport' 대신 부여받은 "가맹점 식별코�
 					<div class="present-items-group4-4">
 					<%
 						int oAmount = 0;
-					Date oDeliveryEDate = null;
+					String oDeliveryEDate = null;
+					
+					for(Product p : list){
+						oDeliveryEDate = p.getDelivery();
+					}
 						
 					%>
 					
-						<input class="info-title" id="oDeliveryEDate" name="oDeliveryEDate" value="" style="border:none" readonly>도착예정
+						<input class="info-title" id="oDeliveryEDate" name="oDeliveryEDate" value="<%=oDeliveryEDate %>" style="border:none" readonly>도착예정
 						<%for(Product p : list) { %>
 						<div class="odProduct">
 						<div class="present-items-imggroup">

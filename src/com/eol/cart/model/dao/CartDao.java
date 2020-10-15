@@ -138,12 +138,12 @@ public class CartDao {
 	}
 	
 	//장바구니 부분 삭제
-	public int deleteCart(Connection conn, int mNo, int pNo) {
+	public int deleteCartYs(Connection conn, int mNo, int pNo) {
 		PreparedStatement pstmt = null;
 		int result = 0;
 		
 		try {
-			pstmt = conn.prepareStatement(prop.getProperty("deleteCart"));
+			pstmt = conn.prepareStatement(prop.getProperty("deleteCartYs"));
 			pstmt.setInt(1, mNo);
 			pstmt.setInt(2, pNo);
 			result = pstmt.executeUpdate();
@@ -168,5 +168,35 @@ public class CartDao {
 		}finally {
 			close(pstmt);
 		}return result;
+	}
+	
+	public List<Cart> oneCartIntoPay(Connection conn , int mNo, int cNo) {
+		PreparedStatement pstmt = null;
+		List list = new ArrayList();
+		ResultSet rs = null;
+		try {
+			pstmt = conn.prepareStatement(prop.getProperty("oneCartIntoPay"));
+			//selectCartProduct=SELECT * FROM PRODUCT WHERE P_NO=?
+			pstmt.setInt(1, mNo);
+			pstmt.setInt(2, cNo);
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				Cart c = new Cart();
+				c.setcNo(rs.getInt("c_no"));
+				c.setmNo(rs.getInt("m_no"));
+				c.setpNo(rs.getInt("p_no"));
+				c.setcQty(rs.getInt("c_qty"));
+				c.setoDeliveryEDate(rs.getString("o_deliveryedate"));
+				c.setpName(rs.getString("P_NAME"));
+				c.setpPrice(rs.getInt("P_PRICE"));
+				c.setpImage1(rs.getString("P_IMAGE1"));
+				list.add(c);
+			}
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rs);
+			close(pstmt);
+		}return list;
 	}
 }

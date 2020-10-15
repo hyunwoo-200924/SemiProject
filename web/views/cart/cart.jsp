@@ -28,7 +28,7 @@ href="<%=request.getContextPath() %>/css/cart.css">
    <%if(list.isEmpty()){ %>
    	
    <%}else{ %>
-   <button class="btn" onclick="location.replace('<%=request.getContextPath()%>/cartintopay.do')">상품결제</button>
+   <button class="btn" onclick="location.replace('<%=request.getContextPath()%>/cartintopay.do')">상품전체결제</button>
    <button class="btn" onclick="location.replace('<%=request.getContextPath()%>/cartDeleteAll.do')">상품전체삭제</button>
    <%} %>
    </div>
@@ -37,20 +37,24 @@ href="<%=request.getContextPath() %>/css/cart.css">
 	        <%for(Product p : list){%>
            		<div class="cart-section-body-group2">
             	<div class="kkk">
-               	<img src="<%=request.getContextPath() %>/upload/product/<%=p.getpImage1() %>" alt="상품이미지" style="width:200px;height:150px;">
+               	<img src="<%=request.getContextPath() %>/upload/product/<%=p.getpImage1() %>" alt="상품이미지" style="width: 217px;height: 216px;">
                 </div>
                 <div>
                 <p style="margin-left: 396px; font-size: 25px;"><%=p.getpName() %></p>
                 <p style="margin-left: 396px; font-size: 25px;" class="cart-pricetext"><span>가격 :</span><%=p.getpPrice() %><span>원</span></p>
               	<div style="display: flex" class="count-con">
-              	<span  style="margin-left: 396px; font-size: 25px;" type="button" value="－" class="product-minus" id="plus">-</span>
+              	<p style="margin-left: 396px; font-size: 25px;">수량 :</p>
+              	<!--<span  style="margin-left: 396px; font-size: 25px;" type="button" value="－" class="product-minus" id="plus">-</span>-->
                	<input style="border: none; font-size: 25px;" type="text" value="<%=p.getpCount() %>" class="pCount" readonly>
-                <span  style=" font-size: 25px; margin-left: 78px" type="button" value="＋" class="product-plus" id="minus">+</span><span style="margin-left: 4px; font-size: 25px;">개</span>
+                <span style="font-size: 25px; margin-left: -176px;"> 개</span>
+                <!-- style=" font-size: 25px; margin-left: 78px" type="button" value="＋" class="product-plus" id="minus">+</span><span style="margin-left: 4px; font-size: 25px;">-->
                 </div>
-                <div style=" font-size: 25px; margin-left: 394px;"><P>배송 도착 예상 날짜 :</P>
+                <div style=" font-size: 25px; margin-left: 394px;"><P>배송 도착 예상 날짜 : <%=p.getDelivery() %></P>
                 </div>
-                <button class="btn" onclick="location.replace('<%=request.getContextPath()%>/cartintopay.do')">상품결제</button>
+                <div class="bTnDiv" style="margin-left: 392px;margin-top: 46px;">
+                <button class="btn" onclick="location.replace('<%=request.getContextPath()%>/onecartintopay.do?pNo=<%=p.getpNo()%>')">상품결제</button>
    				<button class="btn" onclick="location.replace('<%=request.getContextPath()%>/cartDelete.do?pNo=<%=p.getpNo()%>')">상품삭제</button>
+                </div>
                 </div>
             	</div>
             <script>
@@ -61,7 +65,6 @@ href="<%=request.getContextPath() %>/css/cart.css">
             	var num = parseInt(stat,10);
             	num--;
             	if(num<=0){
-            	alert('더이상 줄일수 없습니다.');
             	num =1;
             	}
             	$('.pCount').val(num);
