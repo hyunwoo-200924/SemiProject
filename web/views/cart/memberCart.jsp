@@ -21,8 +21,8 @@
 	<div class="cart-section-container">
     <h2 class="cart-head-text"> 장바구니 </h2>
     <div class="btnClass">
-    <button class="btn" onclick="location.replace('<%=request.getContextPath()%>/cartintopay.do')">상품결제</button>
-    <button class="btn">삭제</button>
+    <button class="btn" onclick="location.replace('<%=request.getContextPath()%>/cartintopay.do')">상품전체결제</button>
+    <button class="btn" onclick="location.replace('<%=request.getContextPath()%>/cartDeleteAll.do')">상품전체삭제</button>
    	</div>
    	</div>
     <section class="cart-section-block">
@@ -39,8 +39,10 @@
                	<input style="border: none; font-size: 25px;" type="text" value="<%=c.getcQty() %>" class="pCount" readonly>
                 <span  style=" font-size: 25px; margin-left: 78px" type="button" value="＋" class="product-plus" id="minus">+</span><span style="margin-left: 4px; font-size: 25px;">개</span>
                 </div>
-                <div style=" font-size: 25px; margin-left: 394px;"><P>배송 도착 예상 날짜 : </P></div>
+                <div style=" font-size: 25px; margin-left: 394px;"><P>배송 도착 예상 날짜 :<%=c.getoDeliveryEDate() %> </P></div>
                 </div>
+                <button class="btn" onclick="location.replace('<%=request.getContextPath()%>/cartintopay.do')">상품전체결제</button>
+    			<button class="btn" onclick="location.replace('<%=request.getContextPath()%>/cartDelete.do?pNo=<%=c.getpNo()%>')">상품삭제</button>
             	</div>
             <script>
             $(function(){
