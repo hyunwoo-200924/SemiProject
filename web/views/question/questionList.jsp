@@ -59,6 +59,22 @@
 	    max-width: 200px;
 	    max-height: 200px;
 	}
+	.questionNoNo{
+	    height: 100px;
+	    width: 100px;
+	    margin: auto;
+	    berder: 6px solid black;
+	    border: 6px solid black;
+	    border-radius: 50%;
+	    line-height: 95px;
+	    font-size: 50px;
+	    margin-bottom: 50px;
+	}
+	._no{
+		font-size: 30px;
+	    text-align: center;
+	    margin: 180px;
+	}
 </style>
     
 <%@ include file="/views/common/header.jsp"%>
@@ -77,7 +93,7 @@
 					</div>
 					<%if(list.isEmpty()) {%>
 					<div class="_no">
-						<figure>!</figure>
+						<figure class="questionNoNo">!</figure>
 						<p>등록된 내역이 없습니다.</p>
 					</div>
 					<%} else {%>

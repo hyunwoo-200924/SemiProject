@@ -270,7 +270,7 @@
 </div>
 <script>
    
-   
+   //찜하기 ~~~
    $('.hart--img').click(function(){
       
       if(<%=result%> == 1){

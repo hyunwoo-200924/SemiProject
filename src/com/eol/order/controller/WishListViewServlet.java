@@ -1,4 +1,4 @@
-package com.eol.mypage.controller;
+package com.eol.order.controller;
 
 import java.io.IOException;
 import java.util.List;
@@ -9,21 +9,21 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.eol.member.model.vo.Coupon;
-import com.eol.member.model.service.CouponService;
 import com.eol.member.model.vo.Member;
+import com.eol.order.model.service.OrderService;
+import com.eol.order.model.vo.WishList;
 
 /**
- * Servlet implementation class CouponListServlet
+ * Servlet implementation class WishListViewServlet
  */
-@WebServlet("/couponList.hy")
-public class CouponListServlet extends HttpServlet {
+@WebServlet("/wishListView")
+public class WishListViewServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public CouponListServlet() {
+    public WishListViewServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -32,17 +32,14 @@ public class CouponListServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		int mNo = (int)((Member)request.getSession().getAttribute("loginMember")).getmNo();
 		
-		List<Coupon> list = new CouponService().selectCoupon(mNo);
+		Member m = (Member)request.getSession().getAttribute("loginMember");
+		int mNo = m.getmNo();
 		
-		if(!list.isEmpty()) {
-			System.out.println("성공");
-			System.out.println(list);
-			request.setAttribute("list", list);
-			request.getRequestDispatcher("/views/coupon/couponList.jsp").forward(request, response);
-		}
+		List<WishList> list = new OrderService().selectJjim(mNo);
 		
+		request.setAttribute("WishList", list);
+		request.getRequestDispatcher("/views/order/wishList_hy.jsp").forward(request, response);
 	}
 
 	/**

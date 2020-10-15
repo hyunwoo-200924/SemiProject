@@ -490,6 +490,8 @@ public class OrderDao {
 				w.setpName(rs.getString("p_name"));
 				w.setpPrice(rs.getInt("p_price"));
 				w.setpImage1(rs.getString("P_IMAGE1"));
+				w.setpServing(rs.getInt("P_SERVING"));
+				w.setpCookTime(rs.getInt("P_COOKTIME"));
 				
 				list.add(w);
 			}
