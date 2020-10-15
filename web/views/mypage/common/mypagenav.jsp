@@ -21,7 +21,7 @@
 		<li class="mypage_left_title1">나의활동</li>
 		<li onclick="location.href='<%=request.getContextPath() %>/review/reviewList'">리뷰</li>
 		<li onclick="">맛취향</li>
-		<li>쇼핑찜</li>
+		<li onclick="location.href='<%=request.getContextPath() %>/wishListView'">쇼핑찜</li>
 		<li onclick="location.href='<%=request.getContextPath() %>/questionList'">1:1문의</li>
 		<li class="mypage_left_title1">나의 정보</li>
 		<li onclick="location.href='<%=request.getContextPath() %>/memberUpdatePwViewCheck'">개인정보변경</li>

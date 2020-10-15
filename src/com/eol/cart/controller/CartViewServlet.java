@@ -39,8 +39,6 @@ public class CartViewServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// 1.회원 정보 가져오기(로그인, 비로그인)
 		
-		
-
 		Member m = (Member)request.getSession().getAttribute("loginMember"); //회원 정보 가져오기
 		System.out.println(Integer.parseInt(request.getParameter("pNo")));
 		int pNo=Integer.parseInt(request.getParameter("pNo"));
@@ -51,12 +49,19 @@ public class CartViewServlet extends HttpServlet {
 		System.out.println("날짜가 :");
 		System.out.println(request.getParameter("OderDay"));
 		
-		String oDeliveryEDate = request.getParameter("OderDay");//새벽 3시 날짜 수정.
+		String oDeliveryEDate = request.getParameter("OderDay");//새벽 3시 날짜 수정.(00월 00일 수요일)
+		
 		System.out.println("날짜가 있니?"+oDeliveryEDate);
-		if(oDeliveryEDate == null) {
+		if(oDeliveryEDate != null) {
+			String mm = oDeliveryEDate.substring(0, 2);
+			String dd = oDeliveryEDate.substring(3, 5);
+			oDeliveryEDate = "20-" + mm + "-" + dd;
+			
+		} else {
 			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 			Date today = new Date();
 			oDeliveryEDate = sdf.format(today);
+			
 		}
 		
 		System.out.println(oDeliveryEDate);

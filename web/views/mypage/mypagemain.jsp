@@ -114,7 +114,7 @@ cursor: pointer;
                      <p class="no_list" style="grid-column: 1/4;">찜목록에 담긴 메뉴가 없습니다.</p>
                   <%} else { %>
                   		<%for(int i = 0; i < 3; i++){ 
-			             	if(JjimList.size() > i+1){
+			             	if(JjimList.size() >= i+1){
 			             	WishList w = JjimList.get(i);%>	
 	                 	<div class="recent" style="height:280px">
 	                 	<img src="<%= request.getContextPath() %>/upload/product/<%= w.getpImage1() %>" style="width: 200px; height: 200px; margin-bottom: 10px;">
