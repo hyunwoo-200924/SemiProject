@@ -9,6 +9,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.eol.member.model.vo.Member;
+import com.eol.order.model.service.OrderService;
+import com.eol.order.model.vo.WishList;
 import com.eol.product.model.vo.Product;
 import com.eol.product.service.ProductService;
 
@@ -71,7 +74,13 @@ public class ProductListServlet extends HttpServlet {
 		pageBar+="<a href='"+request.getContextPath()+"/product/productList?cPage="+pageNo+"'>[다음]</a>";
 	}
 	
-	
+	List<WishList> wl = null;
+	if((Member)request.getSession().getAttribute("loginMember") != null) {
+		int mNo = ((Member)request.getSession().getAttribute("loginMember")).getmNo();
+		wl = new OrderService().selectJjim(mNo);
+		System.out.println("ProductList.jsp" + wl);
+	}
+	request.setAttribute("wl", wl);
 	request.setAttribute("list", list);
 	request.setAttribute("pageBar",pageBar);
 	request.getRequestDispatcher("/views/product/productList.jsp").forward(request,response);

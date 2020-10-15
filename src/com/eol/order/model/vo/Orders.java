@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import com.eol.product.model.vo.Product;
+
 public class Orders {
 	
 	private int oNo;//주문번호 1회 주문결제 할 때 부여되는 고유번호
@@ -24,7 +26,8 @@ public class Orders {
 	private String orderContent; //"사과 외 3건" 문구담으려고 만든 변수
 	private String oToName;//받는사람 이름
 	private String oToPhone;//받는사람 연락처
-	
+	private String pImage1;//상품이미지 하나 담으려고 만든 변수
+	private List<Product> ps=new ArrayList();//상품정보 담으려고 만든 변수
 	
 	public Orders() {
 		// TODO Auto-generated constructor stub
@@ -252,6 +255,48 @@ public class Orders {
 	public void setoToPhone(String oToPhone) {
 		this.oToPhone = oToPhone;
 	}
+
+
+
+	public String getpImage1() {
+		return pImage1;
+	}
+
+
+
+	public void setpImage1(String pImage1) {
+		this.pImage1 = pImage1;
+	}
+
+
+
+	public List<Product> getPs() {
+		return ps;
+	}
+
+
+
+	public void setPs(List<Product> ps) {
+		this.ps = ps;
+	}
+
+
+
+	@Override
+	public String toString() {
+		return "Orders [oNo=" + oNo + ", mNo=" + mNo + ", oName=" + oName + ", oPhone=" + oPhone + ", oAddress="
+				+ oAddress + ", oDeliveryDate=" + oDeliveryDate + ", oAmount=" + oAmount + ", oPayment=" + oPayment
+				+ ", oPw=" + oPw + ", oStatus=" + oStatus + ", oPayDate=" + oPayDate + ", oDeliveryStatus="
+				+ oDeliveryStatus + ", oDeliveryEDate=" + oDeliveryEDate + ", oPayWays=" + oPayWays + ", details="
+				+ details + ", orderContent=" + orderContent + ", oToName=" + oToName + ", oToPhone=" + oToPhone
+				+ ", pImage1=" + pImage1 + ", ps=" + ps + "]";
+	}
+	
+	
+
+	
+
+	
 	
 	
 
