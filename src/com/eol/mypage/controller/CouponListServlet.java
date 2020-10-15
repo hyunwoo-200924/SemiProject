@@ -16,7 +16,7 @@ import com.eol.member.model.vo.Member;
 /**
  * Servlet implementation class CouponListServlet
  */
-@WebServlet("/couponList")
+@WebServlet("/couponList.hy")
 public class CouponListServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        

@@ -14,9 +14,8 @@
 		<li class="mypage_left_title1">나의 주문정보</li>
 		<li onclick="location.href='<%=request.getContextPath() %>/orderViewList.do'">주문/배송조회</li>
 		<li onclick="location.href='<%=request.getContextPath() %>/orderCancelReturnViewList.do'">취소/반품조회</li>
-		<li>선물내역</li>
 		<li class="mypage_left_title1">나의혜택</li>
-		<li onclick="location.href='<%=request.getContextPath() %>/couponList'">쿠폰</li>
+		<li onclick="location.href='<%=request.getContextPath() %>/couponList.hy'">쿠폰</li>
 		<li onclick="location.href='<%=request.getContextPath() %>/pointPageView.do'">포인트</li>
 		<li class="mypage_left_title1">나의활동</li>
 		<li onclick="location.href='<%=request.getContextPath() %>/review/reviewList'">리뷰</li>

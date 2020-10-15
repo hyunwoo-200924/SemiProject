@@ -54,6 +54,15 @@ cursor: pointer;
     font-size: 18px;
     font-weight: 900;
 }
+.more{
+    position: relative;
+    bottom: 27px;
+    left: 643px;
+    color: #191717;
+}
+.more:hover{
+	cursor: pointer;
+}
 </style>
 
 <%@ include file="/views/common/header.jsp"%>
@@ -85,6 +94,7 @@ cursor: pointer;
                </div> --%>
                <div>
                   <h2>최근 구매한 메뉴</h2>
+                  <%-- <span class="more" onclick="location.href='<%= request.getContextPath() %>/wishListView'">더보기 ></span> --%>
                   <div class="order_history">
                   <%if(orderList.isEmpty()){ %>
                      <p class="no_list" style="grid-column: 1/4;">최근 구매한 메뉴가 없습니다.</p>
@@ -109,6 +119,7 @@ cursor: pointer;
                </div>
                <div>
                   <h2>쇼핑찜</h2>
+                  <span class="more" onclick="location.href='<%= request.getContextPath() %>/wishListView'">더보기 ></span>
                   <div class="order_basket">
                   <%if(JjimList.isEmpty()){ %>
                      <p class="no_list" style="grid-column: 1/4;">찜목록에 담긴 메뉴가 없습니다.</p>
@@ -117,6 +128,7 @@ cursor: pointer;
 			             	if(JjimList.size() >= i+1){
 			             	WishList w = JjimList.get(i);%>	
 	                 	<div class="recent" style="height:280px">
+	                 	<input type="hidden" name="pNo" value=<%= w.getpNo() %>>
 	                 	<img src="<%= request.getContextPath() %>/upload/product/<%= w.getpImage1() %>" style="width: 200px; height: 200px; margin-bottom: 10px;">
 	                 	<div class="jjim">
 		                 	<span style="margin-top: 3px;"><b><%=w.getpName() %></b></span>
@@ -132,6 +144,10 @@ cursor: pointer;
          </div>
       </section>
       <script>
+      $('.recent').click(function(){
+    	  let pNo = $(this).children().eq(0).val();
+    	  location.href='<%= request.getContextPath() %>/product/productView?pNo='+pNo;
+      })
       function fn_orderDetail(){
     	  let oNo = $("#oNo").val();
     	  location.href="<%= request.getContextPath() %>/orderDetail.hy?oNo="+oNo;
