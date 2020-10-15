@@ -289,7 +289,7 @@ public class OrderDao {
 		try {
 			if(m!=null) {//회원일 때 첫번쨰 ?에 회원번호 컬럼				
 				pstmt = conn.prepareStatement(prop.getProperty("insertOrder"));
-				//insertOrder=INSERT INTO ORDERS VALUES(ORD_SEQ.NEXTVAL,?,NULL,?,?,?,SYSDATE-2,?,?,?,SYSDATE,?,?,?,?,?)
+				//insertOrder=INSERT INTO ORDERS VALUES(ORD_SEQ.NEXTVAL,?,NULL,?,?,?,TO_CHAR(TO_DATE(?,'YYYY-MM-DD')-2, YYYY-MM-DD),?,?,?,SYSDATE,?,?,?,?,?)
 				pstmt.setInt(1, o.getmNo());
 			}else {//비회원일 때 첫번째 ?가 주문비밀번호 컬럼
 				pstmt = conn.prepareStatement(prop.getProperty("noMemberinsertOrder"));

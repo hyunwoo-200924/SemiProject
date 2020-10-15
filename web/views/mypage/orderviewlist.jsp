@@ -13,7 +13,46 @@ href="<%=request.getContextPath() %>/css/orderviewlist.css">
 
 <style>
 nav{
+margin-top: 35px;
 float: left;
+    margin-left: 10px;
+}
+h1#orderdeliverlytitle{
+    margin-top: 160px;
+    font-size: 30px;
+    padding: 20px;
+    border-bottom: 1px solid black;
+
+}
+
+.odview{
+
+    margin-bottom: 20px;
+}
+.Button li{
+	display: inline;
+}
+
+.odbtn{
+   
+	cursor: pointer;
+   text-decoration: none;
+   float: left;
+   background-color: black;
+    color: white;
+    height: 25px;
+	border: 0px;
+	border-radius: 5px;
+ 
+}
+
+.line{
+	border-bottom:2px gray solid; 
+	margin-bottom: 30px; 
+}
+
+.line:last-child{
+ display: none;
 }
 </style>
 
@@ -23,7 +62,7 @@ float: left;
 
 	
 	<div class="content">
-		<h1>주문 / 배송조회</h1>
+		<h1 id="orderdeliverlytitle">주문 / 배송조회</h1>
 		<%if(olist.isEmpty()){ %>
 		<div class="detail">
 			<h1>주문내역이 없습니다!</h1>
@@ -31,23 +70,35 @@ float: left;
 		<%}else{ %>
 		<%for (Orders o : olist){ %>
 		<div class="detail">
-		<p><%=o.getoPayDate() %> (<%=o.getoNo() %>)</p>
-		
-				<div class="arriveDate">
-					<p><%=o.getoDeliveryStatus() %></p>
-					<!-- 배송중 또는 배송완료 -->
-					<p><%=o.getoDeliveryEDate() %> 도착예정</p>
+		<div style="padding-bottom: 20px;">
+		<div class="bigtitle">
+		<p style="float: left; display: inline;"><%=o.getoPayDate() %> (<%=o.getoNo() %>)</p>
+		</div>
+			<div class="totalprice" style="margin-left: 480px;">
+				<h3>총액 <%=o.getoPayment() %>원</h3>
+			</div>
+				<!-- <div class="arriveDate" style="display: inline;"> -->
+					<div class="delinotice">
+					<p><%=o.getoDeliveryStatus() %> / <%=o.getoDeliveryEDate() %> 
+					<%if(o.getoDeliveryStatus().equals("배송준비중") || o.getoDeliveryStatus().equals("배송중")){ %>
+					도착예정
+					<%}else{ %>
+					도착
+					<%} %>
+					</p>
+					</div>
+					<div style="float: left;">
 					<input type="hidden" id="oStatus" value="<%=o.getoStatus()%>">
                        <input type="hidden" id="oDeliveryStatus" value="<%=o.getoDeliveryStatus()%>">
 				
-				<form id="detailvieworder" action="<%=request.getContextPath() %>/memberOrderDetail" method="post">
+				<form id="detailvieworder" action="<%=request.getContextPath() %>/memberOrderDetail" method="post" style="display: inline;">
 					<input type="hidden" name="oooNo" value="<%=o.getoNo() %>">
-					<input type="submit" class="odbtn" value="상세정보">
+					<input type="submit" class="odbtn" value="상세정보" style="height: 25px;">
 				</form>
 							                       
 			<button class="deliverybtn" onclick="delivery();">배송조회</button>
-			
-				</div>
+			</div>
+			<!-- 	</div> -->
 			
 			
 			
@@ -67,6 +118,7 @@ float: left;
 				</ul>
 			
 			</div>
+			</div>
 			<% for(OrderDetail od : o.getDetails()){ %>
 			<div class="odview">
 			<div class="productView">
@@ -85,6 +137,9 @@ float: left;
 			</div>
 			</div>
 			<%} %>
+			<div class="line">
+			
+			</div>
 			<%} %>
 		</div>
 		<%} %>

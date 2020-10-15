@@ -3,6 +3,7 @@
 <%@ page import="com.eol.order.model.vo.*, java.util.List" %>
 
 <%
+	Member m = (Member)request.getSession().getAttribute("loginMember");
 	Orders o=(Orders)request.getAttribute("nMOrder");
 	List<OrderDetail> list = (List)request.getAttribute("odlist");
 %>
@@ -10,11 +11,49 @@
 <%@ include file="/views/common/header.jsp"%>
 <link rel="stylesheet" type="text/css" 
 href="<%=request.getContextPath() %>/css/noneorderDelivery.css">
+<style>
+nav{
+	    float: left;
+}
+section h1{
+	left: 200px;
+    top: 250px;
+}
+div.content2{
+left: 220px;
+    top: 350px;
+}
+div.content3 {
+    position: absolute;
+    left: 220px;
+    top: 450px;
+    padding: 10px;
+}
+div.content5 {
+    position: absolute;
+    left: 230px;
+    top: 560px;
+}
+.content4 {
+    position: absolute;
+    left: 230px;
+    top: 700px;
+}
+.arriveDate p {
+    font-size: 16px;
+}
+ul.Button{
+padding-bottom: 40px;
+}
+.Button li{
+float: left;
 
+}
+</style>
 <%@ include file="/views/mypage/common/mypagenav.jsp" %>
 
 <section>
- <h1>비회원 주문 / 배송조회</h1>
+ <h1>주문 / 배송 상세내역 조회</h1>
                 <div class="content2">
                     <h2 class="cont_title">주문자 정보</h2>
                     <div class=cont_content>
@@ -68,6 +107,12 @@ href="<%=request.getContextPath() %>/css/noneorderDelivery.css">
 			                    </div>
                     <div class="productView">
                     <%for(OrderDetail od : list) {%>
+                    <form action="<%=request.getContextPath() %>/review/reviewWrite" method="post" id="submitReview">
+                    <input type="hidden" name="odNo" id="odNo" value="<%=od.getOdNo()%>">
+                    <input type="hidden" name="odpNo" id="odpNo" value="<%=od.getpNo()%>">
+                    <input type="hidden" name="pName" id="pName" value="<%=od.getOdproduct().getpName()%>">
+                    <input type="hidden" name="mName" id="mName" value="<%=m.getmName()%>">
+                    </form>
                         <div class="orderproduct">
                             <div class="order_pro_img">
                                 <img src="<%=request.getContextPath() %>/upload/product/<%=od.getOdproduct().getpImage1() %>" alt="" width="150" height="150">
@@ -77,7 +122,18 @@ href="<%=request.getContextPath() %>/css/noneorderDelivery.css">
                                 <p><%=od.getOdproduct().getpPrice() %>원 / 수량 : <%=od.getOdQty() %></p>
                             </div>
 			                            <%if(o.getoDeliveryStatus().equals("구매확정")){ %>
-			                            <button id="review">리뷰쓰기</button>
+			                            <button id="toReview"  
+			                            			style="
+														    margin-left: 400px;
+														    margin-top: 100px;
+														    cursor: pointer;
+															background-color: black;
+															height: 25px;
+															border: 0px;
+															border-radius: 5px;
+															text-decoration: none;
+															color: white
+														">리뷰쓰기</button>
 			                            <%} %>
                         </div>
                         <%} %>
@@ -108,6 +164,15 @@ href="<%=request.getContextPath() %>/css/noneorderDelivery.css">
         </section>
         
         <script>
+       $("#toReview").click(function(){
+    	   
+        	$("#submitReview").submit();
+        	console.log($("#odNo").val());
+        	console.log($('#odpNo').val());
+        	console.log($('#pName').val());
+        	console.log($('#mName').val());
+       });
+        
         
         function delivery(){
         	console.log(document.getElementById("oStatus").value);
