@@ -2,27 +2,26 @@ package com.eol.order.controller;
 
 import java.io.IOException;
 
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.eol.member.model.vo.Member;
 import com.eol.order.model.service.OrderService;
-import com.eol.order.model.vo.Orders;
 
 /**
- * Servlet implementation class OrderDetailServlet
+ * Servlet implementation class InsertWishListServlet
  */
-@WebServlet("/orderDetail.hy")
-public class OrderDetailServlet extends HttpServlet {
+@WebServlet("/insertWishList")
+public class InsertWishListServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public OrderDetailServlet() {
+    public InsertWishListServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -31,17 +30,15 @@ public class OrderDetailServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		int oNo = Integer.parseInt(request.getParameter("oNo"));
-		//System.out.println(oNo);
-		
-		Orders o = new OrderService().orderdetail(oNo);
-		System.out.println(o);
-		
-		request.setAttribute("orderDetail", o);
-		request.getRequestDispatcher("views/order/orderDetail.jsp").forward(request, response);
-		
-	
+		System.out.println("ajax 여기 ");
+		int pNo = Integer.parseInt(request.getParameter("pNo"));
+		int mNo = ((Member)request.getSession().getAttribute("loginMember")).getmNo();
+		//System.out.println(pNo);
 
+		int result = new OrderService().insertWishList(pNo, mNo);
+		
+		System.out.println("ajax 여기는");
+		response.getWriter().print(result);
 	}
 
 	/**

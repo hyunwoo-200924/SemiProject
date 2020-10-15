@@ -38,8 +38,8 @@ public class OrderListAjaxServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		int mNo = 1; //확인용 아래줄 대신
-		//int mNo = ((Member)request.getSession().getAttribute("loginMember")).getmNo();
+		//int mNo = 1; //확인용 아래줄 대신
+		int mNo = ((Member)request.getSession().getAttribute("loginMember")).getmNo();
 		
 		List<Orders> list = new OrderService().selectOrder(mNo);
 		
@@ -58,11 +58,11 @@ public class OrderListAjaxServlet extends HttpServlet {
 					
 					int oNo = o.getoNo();
 					//System.out.println(oNo);
-					String pName = new OrderService().orderdetailList(oNo);
+					String[] pNamepImage = new OrderService().orderdetailList(oNo);
 					//System.out.println(pName);
 					int oAmount = o.getoAmount()-1;
 					
-					order.put("orderContent", pName + " 외" + " " + oAmount + "건");
+					order.put("orderContent", pNamepImage[0] + " 외" + " " + oAmount + "건");
 					order.put("oAmount", o.getoAmount());
 					order.put("oPayment", o.getoPayment());
 					

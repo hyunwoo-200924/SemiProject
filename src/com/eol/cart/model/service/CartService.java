@@ -85,4 +85,13 @@ public class CartService {
 		return result;
 	}
 	
+	//상품 선택 결제
+	
+	public List<Cart> oneCartIntoPay(int mNo, int cNo) {
+		Connection conn = getConnection();
+		List<Cart> list =dao.oneCartIntoPay(conn,mNo,cNo);
+		close(conn);
+		return list;
+	}
+	
 }

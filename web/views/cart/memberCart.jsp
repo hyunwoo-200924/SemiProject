@@ -41,7 +41,7 @@
                 </div>
                 <div style=" font-size: 25px; margin-left: 394px;"><P>배송 도착 예상 날짜 :<%=c.getoDeliveryEDate() %> </P></div>
                 </div>
-                <button class="btn" onclick="location.replace('<%=request.getContextPath()%>/cartintopay.do')">상품전체결제</button>
+                <button class="btn" onclick="location.replace('<%=request.getContextPath()%>/onecartintopay.do?cNo=<%=c.getcNo()%>')">상품결제</button>
     			<button class="btn" onclick="location.replace('<%=request.getContextPath()%>/cartDelete.do?pNo=<%=c.getpNo()%>')">상품삭제</button>
             	</div>
             <script>

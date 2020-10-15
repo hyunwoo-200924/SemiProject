@@ -377,7 +377,7 @@ public class Product {
 
 	@Override
 	public String toString() {
-		return "Product [pNo=" + pNo + ", pCount=" + pCount + "]";
+		return "Product [pNo=" + pNo + ", pCount=" + pCount + ", pImage1=" + pImage1 + "]";
 	}
 	
 	
