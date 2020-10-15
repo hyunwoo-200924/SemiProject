@@ -86,30 +86,6 @@ public class CartDao {
 		}return p;
 	}
 
-//	//
-//	public int insertCart11(Connection conn,Cart c) {
-//		PreparedStatement pstmt=null;
-//		int result= 0;
-//		
-//		
-//		try {
-//			pstmt=conn.prepareStatement(prop.getProperty("insertCart"));
-//			pstmt.setInt(1, c.getpNo());
-//			pstmt.setInt(2, c.getcQty());
-//			
-//			
-//			result=pstmt.executeUpdate();
-//			
-//		}catch(SQLException e) {
-//			e.printStackTrace();
-//		}finally {
-//			close(pstmt);
-//		}
-//		System.out.println("dao :값이 잇냐"+result);
-//		return result;
-//	}
-
-	
 	public int insertCart(Connection conn, Cart c) {
 		PreparedStatement pstmt = null;
 		int result = 0;
@@ -131,14 +107,45 @@ public class CartDao {
 	public int updateCartNum(Connection conn , int mNo, int pNo, String oDeliveryEDate) {
 		PreparedStatement pstmt = null;
 		int result = 0;
-		System.out.println("6666666");
 		
 		try {
 			pstmt = conn.prepareStatement(prop.getProperty("updateCartNum"));
-			//System.out.println("돌아가나??" + pCount);
 			pstmt.setString(1, oDeliveryEDate);
 			pstmt.setInt(2, mNo);
 			pstmt.setInt(3, pNo);
+			result = pstmt.executeUpdate();
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}return result;
+	}
+	
+	//장바구니 전체 삭제
+	public int deleteCartAll(Connection conn, int mNo) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		
+		try {
+			pstmt = conn.prepareStatement(prop.getProperty("deleteCartAll"));
+			pstmt.setInt(1, mNo);
+			result = pstmt.executeUpdate();
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}return result;
+	}
+	
+	//장바구니 부분 삭제
+	public int deleteCart(Connection conn, int mNo, int pNo) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		
+		try {
+			pstmt = conn.prepareStatement(prop.getProperty("deleteCart"));
+			pstmt.setInt(1, mNo);
+			pstmt.setInt(2, pNo);
 			result = pstmt.executeUpdate();
 		}catch(SQLException e) {
 			e.printStackTrace();
@@ -162,6 +169,4 @@ public class CartDao {
 			close(pstmt);
 		}return result;
 	}
-	
-
 }
