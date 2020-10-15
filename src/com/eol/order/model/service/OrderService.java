@@ -162,6 +162,13 @@ public class OrderService {
 		return result;
 	}
 	
+	public Orders MemorderDetail(int oNo) {
+		Connection conn = getConnection();
+		Orders o = dao.selectorder(conn, oNo);
+		close(conn);
+		return o;
+	}
+	
 	
 
 }
