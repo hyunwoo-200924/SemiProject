@@ -42,45 +42,54 @@ public class ReviewListServlet extends HttpServlet {
 		}catch(NumberFormatException e) {
 			cPage=1;
 		}
+		int cPage2;
+		try {
+			cPage2=Integer.parseInt(request.getParameter("cPage2"));
+		}catch(NumberFormatException e) {
+			cPage2=1;
+		}
 		int numPerPage=5;
+		int numPerPage2=5;
 		
 		Member m = (Member)request.getSession().getAttribute("loginMember");
 		int mNo = m.getmNo();
 		
 		List<Review> list=new ReviewService().reviewPullList(cPage,numPerPage,mNo);
-		List<Review> list2=new ReviewService().reviewList(cPage,numPerPage, mNo);
-		int totalData=new ReviewService().reviewCount();
+		List<Review> list2=new ReviewService().reviewList(cPage2,numPerPage2, mNo);
+		int totalData2=new ReviewService().reviewCount();
 		
-		int totalPage=(int)Math.ceil((double)totalData/numPerPage);
+		int totalPage2=(int)Math.ceil((double)totalData2/numPerPage2);
 		int pageBarSize=5;
-		int pageNo=((cPage-1)/pageBarSize)*pageBarSize+1;
+		int pageNo=((cPage2-1)/pageBarSize)*pageBarSize+1;
 		int pageEnd=pageNo+pageBarSize-1;
 		
-		String pageBar="";
+		String pageBar2="";
 		if(pageNo==1) {
-			pageBar+="<span>[이전]</span>";
+			pageBar2+="<span>[이전]</span>";
 			
 		}else {
-			pageBar+="<a href='"+request.getContextPath()+"/review/reviewList?cPage="+(pageNo-1)+"'>[이전]</a>";
+			pageBar2+="<a href='"+request.getContextPath()+"/review/reviewList?cPage2="+(pageNo-1)+"'>[이전]</a>";
 		}
 		
-		while(!(pageNo>pageEnd||pageNo>totalPage)) {
-			if(pageNo==cPage) {
-				pageBar+="<span>"+pageNo+"</span>";
+		while(!(pageNo>pageEnd||pageNo>totalPage2)) {
+			if(pageNo==cPage2) {
+				pageBar2+="<span>"+pageNo+"</span>";
 			}else {
-				pageBar+="<a href='"+request.getContextPath()+"/review/reviewList?cPage="+pageNo+"'>"+pageNo+"</a>";
+				pageBar2+="<a href='"+request.getContextPath()+"/review/reviewList?cPage2="+pageNo+"'>"+pageNo+"</a>";
 			}
 			pageNo++;
 			
 		}
-		if(pageNo>totalPage) {
-			pageBar+="<span>[다음]</span>";
+		if(pageNo>totalPage2) {
+			pageBar2+="<span>[다음]</span>";
 		}else {
-			pageBar+="<a href='"+request.getContextPath()+"/review/reviewList?cPage="+pageNo+"'>[다음]</a>";
+			pageBar2+="<a href='"+request.getContextPath()+"/review/reviewList?cPage2="+pageNo+"'>[다음]</a>";
 		}
+		
+		Review r = new Review();
 		request.setAttribute("list",list);
 		request.setAttribute("list2",list2);
-		request.setAttribute("pageBar", pageBar);
+		request.setAttribute("pageBar2", pageBar2);
 		
 		request.getRequestDispatcher("/views/review/reviewList.jsp").forward(request,response);
 	
