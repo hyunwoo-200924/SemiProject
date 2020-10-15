@@ -74,10 +74,10 @@ public class CartService {
 	}
 	
 	//장바구니 부분 삭제
-	public int deleteCart(int mNo, int pNo) {
+	public int deleteCartYs(int mNo, int pNo) {
 		Connection conn = getConnection();
 		
-		int result  = dao.deleteCart(conn, mNo, pNo);
+		int result  = dao.deleteCartYs(conn, mNo, pNo);
 		System.out.println("선택삭제 2");
 		if(result > 0) commit(conn);
 		else rollback(conn);

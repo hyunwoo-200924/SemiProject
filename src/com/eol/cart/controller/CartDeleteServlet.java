@@ -1,6 +1,7 @@
 package com.eol.cart.controller;
 
 import java.io.IOException;
+import java.util.Iterator;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -10,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.eol.cart.model.service.CartService;
+import com.eol.cart.model.vo.Cart;
 import com.eol.member.model.vo.Member;
 import com.eol.product.model.vo.Product;
 
@@ -56,13 +58,21 @@ public class CartDeleteServlet extends HttpServlet {
 				int pNo=Integer.parseInt(request.getParameter("pNo"));
 				System.out.println(pNo);
 				
-				int result = new CartService().deleteCart(mNo,pNo);
-				System.out.println( "리절트값 : "+result);
+				int result = new CartService().deleteCartYs(mNo,pNo);
 				String msg = "선택한 상품이 삭제 되었습니다.";
-				String loc = "/";
+				String loc = "/views/cart/memberCart.jsp";
 				
 				if(result > 0) {
-					request.getSession().invalidate();
+					List<Cart> memberCart = (List)request.getSession().getAttribute("memberCart");	
+					
+					for(Cart c : memberCart) {
+						if(c.getpNo() == pNo) {
+							memberCart.remove(c);
+							break;
+						}
+					}
+					request.getSession().setAttribute("memberCart", memberCart);
+					
 					request.setAttribute("msg", msg);
 					request.setAttribute("loc", loc);
 					request.getRequestDispatcher("/views/common/msg.jsp").forward(request,response);

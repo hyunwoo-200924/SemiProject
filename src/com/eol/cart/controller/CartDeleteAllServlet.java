@@ -1,8 +1,8 @@
 package com.eol.cart.controller;
 
 import java.io.IOException;
+import java.util.List;
 
-import javax.mail.Session;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -10,7 +10,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.eol.cart.model.service.CartService;
+import com.eol.cart.model.vo.Cart;
 import com.eol.member.model.vo.Member;
+import com.eol.product.model.vo.Product;
 
 /**
  * Servlet implementation class CartDeleteAllServlet
@@ -38,7 +40,7 @@ public class CartDeleteAllServlet extends HttpServlet {
 			//비 회원 일때
 			request.getSession().invalidate();
 			
-			String msg = "삭제 되었습니다.";
+			String msg = "장바구니가 전부삭제 되었습니다.";
 			request.setAttribute("msg",msg);
 			request.setAttribute("loc", "/");
 			request.getRequestDispatcher("/views/common/msg.jsp").forward(request, response);
@@ -48,14 +50,23 @@ public class CartDeleteAllServlet extends HttpServlet {
 			int mNo = m.getmNo();
 			int result = new CartService().deleteCartAll(mNo);
 			System.out.println("리절트 값" + result);
-//			String msg = "장바구니가 전부 삭제 되었습니다.";
-//			String loc = "/";
+			String msg = "장바구니가 전부 삭제 되었습니다.";
+			String loc = "/views/cart/memberCart.jsp";
 			
 			if(result > 0) {
-				request.getSession().invalidate();
-//				request.setAttribute("msg", msg);
-//				request.setAttribute("loc", loc);
-//				request.getRequestDispatcher("/views/common/msg.jsp").forward(request,response);
+				
+				List<Cart> memberCart = (List)request.getSession().getAttribute("memberCart");	
+				
+				for(Cart c : memberCart) {
+						memberCart.remove(c);
+						break;
+				}
+//				request.getSession().invalidate();
+				List<Cart> list1 = new CartService().cartintopay(m.getmNo());
+				request.getSession().setAttribute("memberCart", list1);
+				request.setAttribute("msg", msg);
+				request.setAttribute("loc", loc);
+				request.getRequestDispatcher("/views/common/msg.jsp").forward(request,response);
 			}
 			
 		}
