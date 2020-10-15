@@ -49,7 +49,7 @@ href="<%=request.getContextPath() %>/css/cart.css">
                 </div>
                 <div style=" font-size: 25px; margin-left: 394px;"><P>배송 도착 예상 날짜 :</P>
                 </div>
-                <button class="btn" onclick="location.replace('<%=request.getContextPath()%>/cartintopay.do')">상품결제</button>
+                <button class="btn" onclick="location.replace('<%=request.getContextPath()%>/onecartintopay.do?pNo=<%=p.getpNo()%>')">상품결제</button>
    				<button class="btn" onclick="location.replace('<%=request.getContextPath()%>/cartDelete.do?pNo=<%=p.getpNo()%>')">상품삭제</button>
                 </div>
             	</div>
