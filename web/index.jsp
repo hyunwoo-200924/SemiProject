@@ -24,7 +24,7 @@ href="<%=request.getContextPath() %>/css/index.css">
         <ul id="slider">
         <% for( Product p : slidePlist ) {
         	System.out.println(p.getpImage1());%>
-            <li>
+            <li id="slider-click" onclick="location.href='<%=request.getContextPath()%>/mainToProductView?pNo=<%=p.getpNo()%>'">
                 <div class="slider-title">
                     <h3><%=p.getpName() %></h3>
                     <span><%=p.getpPrice() %>원 / <%=p.getpServing() %>인분</span>
@@ -155,7 +155,7 @@ href="<%=request.getContextPath() %>/css/index.css">
 
 
 	<!-- 추천메뉴 -->
-	<div class="recommend-container" >
+	<div class="recommend-container" onclick="location.href='<%=request.getContextPath()%>/mainToProductView?pNo=<%=pro.getpNo()%>'" >
 	<h1>오늘의 추천메뉴</h1>
 		<!-- <div class="taste-select">
 			<form action="">
@@ -200,17 +200,23 @@ href="<%=request.getContextPath() %>/css/index.css">
 			<table class="main-best">
 				<tr>
 				<% for(Product p : bestPlist){%>
-					<td><img src="<%=request.getContextPath()%>/upload/product/<%=p.getpImage1() %>" alt="" width="" height="" ></td>
+					<td onclick="location.href='<%=request.getContextPath()%>/mainToProductView?pNo=<%=p.getpNo()%>'">
+						<img src="<%=request.getContextPath()%>/upload/product/<%=p.getpImage1() %>" alt="" width="" height="" >
+					</td>
 				<%} %>
 				</tr>
 				<tr class="name">
 				<%for(Product p : bestPlist) {%>
-					<td><a href=""><%=p.getpName() %></a></td>
+					<td onclick="location.href='<%=request.getContextPath()%>/mainToProductView?pNo=<%=p.getpNo()%>'">
+						<%=p.getpName() %>
+					</td>
 				<%} %>
 				</tr>
 				<tr>
 				<%for(Product p : bestPlist) {%>
-					<td><a href=""><%=p.getpPrice() %>원 / <%=p.getpServing() %>인분</a></td>
+					<td onclick="location.href='<%=request.getContextPath()%>/mainToProductView?pNo=<%=p.getpNo()%>'">
+						<%=p.getpPrice() %>원 / <%=p.getpServing() %>인분
+					</td>
 				<%} %>
 				</tr>
 			</table>
@@ -225,7 +231,7 @@ href="<%=request.getContextPath() %>/css/index.css">
 			<table class="main-hot">
 			<%for(Product p : hotdealPlist){ 
 				if(p.getpDiscount()!=0){%>
-				<tr>
+				<tr onclick="location.href='<%=request.getContextPath()%>/mainToProductView?pNo=<%=p.getpNo()%>'">
 					<td><img src="<%=request.getContextPath()%>/upload/product/<%=p.getpImage1() %>" alt="" width="" height="" ></td>
 					<td class="name"><%=p.getpDetailMain()%><br><%=p.getpName() %></td>
 					<td><%=p.getpPrice() %>원 / <%=p.getpServing() %>인분</td>	

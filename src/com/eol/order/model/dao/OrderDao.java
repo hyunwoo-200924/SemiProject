@@ -293,20 +293,21 @@ public class OrderDao {
 				pstmt.setInt(1, o.getmNo());
 			}else {//비회원일 때 첫번째 ?가 주문비밀번호 컬럼
 				pstmt = conn.prepareStatement(prop.getProperty("noMemberinsertOrder"));
-				//noMemberinsertOrder=INSERT INTO ORDERS VALUES(ORD_SEQ.NEXTVAL, NULL,?,?,?,?,SYSDATE-2,?,?,?,SYSDATE,?,?,?,?,?)
+				//noMemberinsertOrder=INSERT INTO ORDERS VALUES(ORD_SEQ.NEXTVAL, NULL,?,?,?,?,(TO_DATE(?, 'YYYY-MM-DD'), 'YYYY-MM-DD'),?,?,?,SYSDATE,?,?,?,?,?)
 				pstmt.setString(1, o.getoPw());
 			}
 			pstmt.setString(2,o.getoName());
 			pstmt.setString(3, o.getoPhone());
 			pstmt.setString(4, o.getoAddress());
-			pstmt.setInt(5, o.getoAmount());
-			pstmt.setInt(6, o.getoPayment());
-			pstmt.setString(7, o.getoStatus());
-			pstmt.setString(8, ods);
-			pstmt.setString(9, o.getoDeliveryEDate());
-			pstmt.setString(10, o.getoPayWays());
-			pstmt.setString(11, o.getoToName());
-			pstmt.setString(12,o.getoToPhone());
+			pstmt.setString(5, o.getoDeliveryEDate());
+			pstmt.setInt(6, o.getoAmount());
+			pstmt.setInt(7, o.getoPayment());
+			pstmt.setString(8, o.getoStatus());
+			pstmt.setString(9, ods);
+			pstmt.setString(10, o.getoDeliveryEDate());
+			pstmt.setString(11, o.getoPayWays());
+			pstmt.setString(12, o.getoToName());
+			pstmt.setString(13,o.getoToPhone());
 			
 			result = pstmt.executeUpdate();
 			
