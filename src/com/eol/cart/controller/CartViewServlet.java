@@ -40,15 +40,19 @@ public class CartViewServlet extends HttpServlet {
 		// 1.회원 정보 가져오기(로그인, 비로그인)
 		
 		
-		System.out.println(request.getParameter("pCount"));
-		System.out.println(request.getParameter("pNo"));
-		System.out.println(request.getParameter("날짜가 널이냐?"+"OderDay"));
 
 		Member m = (Member)request.getSession().getAttribute("loginMember"); //회원 정보 가져오기
+		System.out.println(Integer.parseInt(request.getParameter("pNo")));
 		int pNo=Integer.parseInt(request.getParameter("pNo"));
+		System.out.println("갯수가 ");
+		System.out.println(request.getParameter("pCount"));
+		System.out.println("넘버가");
+		System.out.println(request.getParameter("pNo"));
+		System.out.println("날짜가 :");
+		System.out.println(request.getParameter("OderDay"));
 		
-		String oDeliveryEDate = request.getParameter("OderDay");
-		
+		String oDeliveryEDate = request.getParameter("OderDay");//새벽 3시 날짜 수정.
+		System.out.println("날짜가 있니?"+oDeliveryEDate);
 		if(oDeliveryEDate == null) {
 			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 			Date today = new Date();
