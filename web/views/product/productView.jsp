@@ -5,13 +5,40 @@
 <%@ page import ="com.eol.cart.model.vo.Cart" %>
 <%@ page import="com.eol.member.model.vo.Member"%>
 <%@ page import="com.eol.review.model.vo.Review" %>
+<%@ page import="java.util.Date" %>
+<%@ page import="java.text.SimpleDateFormat" %>
 <%
 	Product p=(Product)request.getAttribute("Product");
 Member loginMember2 = (Member)request.getSession().getAttribute("loginMember");
 	Cart c=(Cart)request.getAttribute("Cart");
 Review r=(Review)request.getAttribute("Review");
+
+
+//날짜저장하기위한 초기값
+String OrderDay=(String)request.getAttribute("OrderDay");
 	
+Date now = new Date();
+Date day1=new Date(now.getTime()+(1000*60*60*24*-1));//어제 
+Date day2 = new Date(now.getTime()+(1000*60*60*24*+1));//내일
+Date day3= new Date(now.getTime()+1000*60*60*24*+2);//내일모레
+Date day4= new Date(now.getTime()+1000*60*60*24*+3);//3일후
+SimpleDateFormat sf = new SimpleDateFormat("MM월dd일 E요일");
+
+String today =(String)sf.format(now);
+ String Wednesday=sf.format(day1);
+ String Thursday=sf.format(day2);
+ String Friday=sf.format(day3);
+ String Saturday=sf.format(day4);
+ String choice="";
+ 
+ if(choice.equals(today)){
+	 
+ }
 %>
+<script>
+
+</script>
+
 <%@ include file="/views/common/header.jsp"%>
 <link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/css/menu.css">  
 	
@@ -20,14 +47,31 @@ Review r=(Review)request.getAttribute("Review");
         <div class="menu-section">
       
             <div class="menu-container">
-                
+            <script>
+            $(function(){
+            	$('.img-img-small0').click(function(){
+            		$(".big_img").attr('src','<%=request.getContextPath()%>/upload/product/<%=p.getpVideo() %>')
+            	})
+            	$('.img-img-small1').click(function(){
+            		$(".big_img").attr('src','<%=request.getContextPath()%>/upload/product/<%=p.getpImage1() %>')
+            	})
+            	$('.img-img-small2').click(function(){
+            		$(".big_img").attr('src','<%=request.getContextPath()%>/upload/product/<%=p.getpImage2() %>')
+            	})
+            	$('.img-img-small3').click(function(){
+            		$(".big_img").attr('src','<%=request.getContextPath()%>/upload/product/<%=p.getpImage3() %>')
+            	})
+            });
+            
+            </script>
                 <div class="img">
-                   <iframe class="big_img" width="600" height="500" src="<%=request.getContextPath() %>/upload/product/<%=p.getpVideo() %>" frameborder="0" allow="accelerometer; autoplay;  picture-in-picture" allowfullscreen></iframe>
+                   <img  class="big_img" width="600" height="500" src="<%=request.getContextPath() %>/upload/product/<%=p.getpImage2() %>" frameborder="0" allow=" autoplay;  picture-in-picture" allowfullscreen></img>
+                   			<source class="#big_img" src="">
                    <div class="img-parents">
                      <div class="img-container">
                          <ul class="slideshow-container">
                              <li class="myslides1 fade">
-                                 <iframe  data-target="" width="50" height="50" src="<%=request.getContextPath() %>/upload/product/<%=p.getpVideo() %>" frameborder="0" allow="accelerometer; gyroscope; picture-in-picture" allowfullscreen class="img-img-small0" alt="동영상"></iframe>
+                                 <video  data-target="" width="50" height="50" src="<%=request.getContextPath() %>/upload/product/<%=p.getpVideo() %>" frameborder="0" allow="accelerometer; gyroscope; picture-in-picture" allowfullscreen class="img-img-small0" alt="이미지"></video>
                                
                              </li>
                              <li class="active myslides1 fade">
@@ -52,7 +96,7 @@ Review r=(Review)request.getAttribute("Review");
                  </div>
             </div>
         </div>
-
+ 
         <div class="text-container" >
 
 
@@ -89,7 +133,7 @@ Review r=(Review)request.getAttribute("Review");
                              <dt class="price text-right" name="pDiscount" id="ppDiscount"><%=p.getpDiscount() %>%</dt>
                          <dl class=".menuview-text-items">
                          		포인트적립
-                             <dt  class="text-right" name="" id="pPoint" value="<%=p.getpDiscount() %>"><%=p.getpDiscount() %>%</dt>
+                             <dt  class="text-right" name="" id="pPoint">10%</dt>
                          </dl>
                          <dl class=".menuview-text-items">
                         		 배송방법 :
@@ -111,35 +155,119 @@ Review r=(Review)request.getAttribute("Review");
                              <div class="etc_txt" id="cart_txt" style="display:block;">
                                  <span>주문 마감시간 오전 7시</span>
                               </div>
-                  
+                  				<script>
+                  					
+                  				</script>
                                 
                              </div>
-                             
+
                              <!-- 제이쿼리 사용시 nextAll()로 이용하여 클릭하세요hidden을 static으로 -->
-                             <a  name="order-date" id="order-date">
+                             <div  name="order-date" id="order-date">
                                  
                                  <div value="order-date01" class="order_check_day" id="selected_stock">    배송을  원하는 날짜를 고르세요. <span  style="display:hidden; font-size:25px;"></span></div>
                                  
                                  <!-- 갯수를 30개로 가정하고 시작하자! -->
 	                                
-	                                 <div name="pOderday1" value="order-date01" class="order_check_day" id="order_check_day1" style="display:none;" onclick="mouseClick();">      9월 22일(화)
-	                                     <span></span><span alt="체크" style="displa:none; font-size:25px; bold: 1000;" style="display:none;"></span>
+	                                 <div name="oDeliveryEDate1" value="<%=Wednesday%>" class="order_check_day" id="Tuesday" style="display:none;" onclick="mouseClick();"><%=Wednesday%>
+	                                  <input type="radio" name="orderDay" style="displa:none; font-size:25px; bold: 1000;" style="display:none;" value="<%=Wednesday%>"></span>
 	                                 </div>
-	                                 <div  name="pOderday1" value="order-date02" class="order_check_day" id="order_check_day2" style="display: none;" onclick="mouseClick1();">      9월 23일(수)
-	                                     <span>개</span><span alt="체크" style="displa:none; font-size:25px; bold: 1000;" style="display:none;"></span>
+	                                 <div  name="oDeliveryEDate2" value="<%=today%>" class="order_check_day" id="Wednesday" style="display: none;" onclick="mouseClick1();"><%=today%>    
+	                                     <input type="radio" name="orderDay" style="displa:none; font-size:25px; bold: 1000;" style="display:none;" value="<%=today%>"></span>
 	                                 </div>
-	                                 <div name="pOderday1" value="order-date03"class="order_check_day" id="order_check_day3" style="display: none;" onclick="mouseClick2();">       9월 24일(목)
-	                                     <span>개</span><span alt="체크" style="displa:none; font-size:25px; bold: 1000;" style="display:none;"></span>
+	                                 <div name="oDeliveryEDate3" value="<%=Thursday%>"class="order_check_day" id="Tursday" style="display: none;" onclick="mouseClick2();"><%=Thursday%>    
+	                                   <input type="radio" name="orderDay" style="displa:none; font-size:25px; bold: 1000;" style="display:none;" value="<%=Thursday%>"></span>
 	                                 </div>
-	                                 <div name="pOderday1" value="order-date04" class="order_check_day" id="order_check_day4" style="display: none;" onclick="mouseClick3();">      9월 25일(금)
-	                                     <span>개</span><span alt="체크" style="displa:none; font-size:25px; bold: 1000;" style="display:none;"></span>
+	                                 <div name="oDeliveryEDate4" value="<%=Friday%>" class="order_check_day" id="Friday" style="display: none;" onclick="mouseClick3();"><%=Friday%>   
+	                                     <input type="radio" name="orderDay" style="displa:none; font-size:25px; bold: 1000;" style="display:none;" value="<%=Friday%>"></span>
 	                                 </div>
-	                                 <div name="pOderday1" value="order-date05" class="order_check_day" id="order_check_day5" style="display: none;" onclick="mouseClick4();">      9월 26일(토)
-	                                     <span>개</span ><span alt="체크" style="displa:none; font-size:25px; bold: 1000;" style="display:none;"></span>
+	                                 <div name="oDeliveryEDate5" value="<%=Saturday%>" class="order_check_day" id="Saturday" style="display: none;" onclick="mouseClick4();"><%=Saturday%>    
+	                                     <input type="radio" name="orderDay" style="displa:none; font-size:25px; bold: 1000;" style="display:none;"value="<%=Saturday%>"></span>
                                  </div>
-                             </a>
+                             </div>
                              
                              <script>
+                   			const day11=$("#Tuesday").prop("checked",true);
+                   			const day22=$("#Wednesday").prop("checked",true);
+                   			const day33=$("#Tursday").prop("checked",true);
+                   			const day44=$("#Friday").prop("checked",true);
+                   			const day55=$("#Saturday").prop("checked",true);
+                   			
+                            // 목록 복사하는 자바스크립트
+                            function mouseClick(){
+                             
+                                $(".menu-title-choice-wrap").show().clone().insertAfter();
+                                $(".menu-date-text").val("<%=Wednesday%>");
+                                $(".OderDay").val("<%=Wednesday%>");
+                                $(".OderDay").val("<%=Wednesday%>");
+                            }
+                            function mouseClick1(){
+                                $(".menu-title-choice-wrap").show().clone().insertAfter();
+                               	$(".menu-date-text").val("<%=today%>");
+                                $(".OderDay").val("<%=today%>");
+                                $(".OderDay").val("<%=today%>");
+                            }
+                            function mouseClick2(){
+                                $(".menu-title-choice-wrap").show().clone().insertAfter();
+                                $(".menu-date-text").val("<%=Thursday%>");
+                                $(".OderDay").val("<%=Thursday%>");
+                            }
+                            function mouseClick3(){
+                                $(".menu-title-choice-wrap").show().clone().insertAfter();
+                                $(".menu-date-text").val("<%=Friday%>");
+                                $(".OderDay").val("<%=Friday%>");
+                               console.log(($(".OderDay").val("<%=Friday%>")));
+                            }
+                            function mouseClick4(){
+                                $(".menu-title-choice-wrap").show().clone().insertAfter();
+                                $(".menu-date-text").val("<%=Saturday%>");
+                                $(".OderDay").val("<%=Saturday%>");
+                                
+                                $(".menu-date-text").val(daySun);
+                                $(".OderDay").val(daySun);
+                                console.log($(".OderDay").val("<%=Saturday%>"));
+                            }
+                            ////-----------------------------------------------------------------
+                          /*   function day(){
+                            	
+                            	$(document).ready(function(){
+                            		var date= new Date();
+                            		
+                            		var year= date.getFullYear();
+                            		var month = date.getMonth()+1;
+                            		var day= date.getDate();
+                            		
+                            		var dayoftheweek= date.getDay();
+                            		var week=new Array('일','월','화','수','목','금','토');
+                            		document.write(week[day])
+                            		
+                            		if(month<10){
+                            			month="0"+month;
+                            		}
+                            		
+                            		if(day<10){
+                            			day="0"+day;
+                            		}
+                            	console.log($('#Wednesday').append(date.getMonth()+"월"+(date.getDate()-1)+"일"));
+                            	console.log(date.getMonth()+"요일");
+                            	//화요일 TuesDay 수요일 WednesDay 목요일 TursDay 금요일 FriDay 토요일 Saturday
+                            	var dayM=$('').val(date.getMonth()+"월"+date.getDate()-2+"일"+week[date.getDay()-2]+"요일");//
+                            	var dayTu=$('').val(date.getMonth()+"월"+date.getDate()-1+"일"+week[date.getDay()-1]+"요일");
+                            	var dayWen=$('').val(date.getMonth()+"월"+date.getDate()+"일"+week[date.getDay()]+"요일");
+                            	var dayThur=$('').val(date.getMonth()+"월"+date.getDate()+1+"일"+week[date.getDay()+1]+"요일");
+                            	var dayFri=$('').val(date.getMonth()+"월"+date.getDate()+21+"일"+week[date.getDay()+2]+"요일");
+                            	var daySat=$('').val(date.getMonth()+"월"+date.getDate()+3+"일"+week[date.getDay()+3]+"요일");
+                            	var daySun=$('.menu-date-text').val(date.getMonth()+"월"+date.getDate()+4+"일"+week[date.getDay()+4]+"요일");
+                            	
+                            	});
+                            }; */
+
+                            
+                      
+                          //클릭시 창이 사라짐
+                            function removeblock(e){
+                                $(e.target).parent().parent().remove();
+                            }		
+
                             //클릭시 슬라이드바 
                              $(function(){
                             	 $("#selected_stock").click(function(){
@@ -149,38 +277,7 @@ Review r=(Review)request.getAttribute("Review");
                              });
                             	 
                              });
-                            	 
-                             // 목록 복사하는 자바스크립트
-                             function mouseClick(){
-                              
-                                 $(".menu-title-choice-wrap").show().clone().insertAfter();
-                             }
-                             function mouseClick1(){
-                                 $(".menu-title-choice-wrap").show().clone().insertAfter();
-                             }
-                             function mouseClick2(){
-                                 $(".menu-title-choice-wrap").show().clone().insertAfter();
-                             }
-                             function mouseClick3(){
-                                 $(".menu-title-choice-wrap").show().clone().insertAfter();
-                             }
-                             function mouseClick4(){
-                                 $(".menu-title-choice-wrap").show().clone().insertAfter();
-                             }
-                           //클릭시 창이 사라짐
-                             function removeblock(e){
-                                 $(e.target).parent().parent().remove();
-                             }		
-
-
-
-                            
-                              
-             
                              </script>
-                             
-                             
-                             
                              <!-- 날짜선택시 박스생성  
                                  display:none;을 주게되면 화면에 자리잡고있던 영역이 없어지면서 화면상에서 사라짐
                                  visibility:hidden은  확실히 요소는 보이지 않지만, 
@@ -188,9 +285,9 @@ Review r=(Review)request.getAttribute("Review");
  
                              <div class="menu-title-choice-wrap" style="display:none;">
                                  <div class="menu-date-container-box1">
-                                     <div class="menu-date-text">
-                                         날짜 출력
-                                     </div>
+                                     <input class="menu-date-text" type="text" name="ordersDay" value="" style="border:none;" readonly>
+                                   <!--       날짜 출력 -->
+                                     </input>
                                      <button type="button" class="menu-delivery-delete-btn" onclick="removeblock(event);">x</button>
                                  </div>
                                  <div class="menu-date-container-box2">
@@ -211,15 +308,26 @@ Review r=(Review)request.getAttribute("Review");
 
                                      </div>
                                 </div>
+                                <script>
+                   <%--           	$(doucment).ready(function()){
+                                		var pNo=$('.pNo').val();
+                                		var pCount=$('.product-nember').val();
+                                		var pNo=$('.pNo').val();
+                                		$('.cart-botton-items').on('click',function(){
+                                			location.replace= '<%=request.getContextPath()%>/views/cart/cartViewServlet?pNo='+pNo+'&pCount'+pCount+'&OderDay'+OderDay;
+                                		});
+                                		}); --%>
+                                
+                                </script>
                                 
                                  <!-- 날짜선택시 박스생성끝 -->
-                                 <form class="product-price-number-group" name="form" method="post" action="<%=request.getContextPath()%>/views/cart/cartViewServlet?pNo=<%=p.getpNo()%>">
-                                     <p class="producttextinput" name="">수량
-
-                                         <input type="hidden" class="product-nember" name="pCount" value="currentCount" max="<%=p.getpStock()%>"readonly/>개
-                                         <input type="hidden" name="pNo" value="<%=p.getpNo() %>">
+                                  <form class="product-price-number-group" name="form" method="post" action="<%=request.getContextPath()%>/views/cart/cartViewServlet">                   
+                                     <p class="producttextinput">
                                      </p>
-                                     <p><input type="text" class="product-pricetag" id="total-price" readonly><span>원</span></input></p>
+										<input type="hidden" name="OderDay" class="OderDay">
+                                         <input type="hidden" class="product-nember" name="pCount" value="" max="<%=p.getpStock()%>" readonly/>
+                                         <input type="hidden" name="pNo" value="<%=p.getpNo() %>" class="pNo">
+                                     <p><input type="text" name="price" class="product-pricetag" id="total-price" readonly/><span>원</span></p>
                                  </form>
                                 		<script>
 										///슬라이드바 효과
@@ -241,7 +349,6 @@ Review r=(Review)request.getAttribute("Review");
                                 		 var tdprice1=(parseInt(<%=p.getpPrice()%>));
                                 		 var discount=(parseInt(<%=p.getpDiscount()%>));
                                 		var $tdprice= tdprice1-(tdprice1 * discount/100);
-                                		
                                 		 console.log("#ppPrice");
 
                                 		//상품수량가격변경하기
@@ -257,19 +364,38 @@ Review r=(Review)request.getAttribute("Review");
                                 		
                                 		//$atybtn클릭하면 그요소가 class명 prev있다면 참이고 (플러스를 클릭햇으면)
 										//aytinput value 기존값에서 1증가 거짓이면 (마이너스를 클릭햇으면 $qyinput value 기존값에서 1차감) 
-                                		
+                                		countNum=1;
+                                		var currentCount=countNum;
+                                		$('.product-nember').val(currentCount);
+                              			 console.log("curren값 :"+currentCount);
+                                				 var total3=(parseInt((parseInt(currentCount)) * $tdprice));
+                                				 console.log("갯수x가격="+total3);
+                                				 console.log(currentCount);
+                                				$tagetTotal.val(""+total3); 
+                                				console.log($tagetTotal.val(total3));
+                                				$tagetTotal2.text(total3+"원");
+                                				$(".producttextinput").text("수량"+currentCount+"개");
+                                				
                                 		$qtyBtn.click(function(){
-                                				var currentCount=$qytInput.val();//input의 값을 가져와서
+                                			
+                                			console.log($qytInput.val());
+                                				 currentCount=$qytInput.val();//input의 값을 가져와서
+                                				console.log(currentCount);
                                 			if($(this).hasClass('product-plus')){
                                 				currentCount++;
+                                				$(".producttextinput").text("수량"+currentCount+"개");
                                 				$qytInput.val(currentCount);
                                 				$qytInput2.val(currentCount);
+                                				$('.product-nember').text(currentCount);
+                                				$('.product-nember').val(currentCount);
                                 			}else{
                                 				if(currentCount > 1){//최소한개는 사게 만들어준다.
                                 					
         										currentCount--;//값이 true면 마이너스해라
+        										$(".producttextinput").text("수량"+currentCount+"개");
         										$qytInput.val(currentCount);//다시 input에 값을 집어넣는다.
         										$qytInput2.val(currentCount);
+        										$('.product-nember').val(currentCount);
                                 				}
                                 			}
                                 				 //수량단가 변수 total에 저정하고 그걸 .price값으로 변경
@@ -291,7 +417,7 @@ Review r=(Review)request.getAttribute("Review");
                                  <div class="jjim-btn-container">
                                  
                                  
-                                    <a href=""><img src="<%=request.getContextPath() %>/images/product/hart40px.jpg" alt="찜" class="jjim"></a>
+                                    <a href="<%=request.getContextPath()%>/views/cart/cartViewServlet?pNo=<%=p.getpNo()%>"><img src="<%=request.getContextPath() %>/images/product/hart40px.jpg" alt="찜" class="jjim"></a>
 
                                    
                                     
@@ -311,15 +437,15 @@ Review r=(Review)request.getAttribute("Review");
                              		}
                              	</script>
                              	
-
+									<%-- <%if( currentCount!=0) {%> --%>
                                     <button type="button" class="cart-botton-items" id="buybtn" onclick="document.form.submit();">장바구니</buttton>
-
+							
                                  </div>
 
                          </div>
                      </div>
              </div>
-           
+           </form>
              <div class="etc_info_wrap">
                  <div class="review_btn_wrap">
                      <a href="#tab03" class="review_btn" id="review_btn" role="button">
@@ -327,7 +453,7 @@ Review r=(Review)request.getAttribute("Review");
                          <div class="rating_wrap">
                              <span class="rating_star">
                                  <span class="star">
-                                     <a class="start_group" data-rate="10" >
+                                     <a class="start_group" data-rate=""  src="<%=request.getContextPath()%>">
                                          <span  alt="별모양" id="star1">★</span> 
                                          <span  alt="별모양" id="star1" >★</span>
                                          <span  alt="별모양" id="star1" >★</span>
@@ -347,7 +473,7 @@ Review r=(Review)request.getAttribute("Review");
                                      console.log(rating);
 
                                      $(".start_group").each(function(){
-                                         const targetScore = (parseInt($(this).attr('data-rate')));//형변환해주고 
+                                         const targetScore = (parseInt($(this).prop('data-rate')));//형변환해주고 
                                          console.log(targetScore);//여기서 프리트해서 값확인
                                          $(".num").text(targetScore);//별점 출력
                                          //정수인지 아닌지 확인

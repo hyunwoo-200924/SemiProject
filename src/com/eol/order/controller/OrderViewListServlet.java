@@ -37,7 +37,8 @@ public class OrderViewListServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		Member m = (Member)request.getSession().getAttribute("loginMember");
 		int mNo = m.getmNo();
-		List<Orders> orderslist = new OrderService().orderList(mNo);
+		System.out.println("로그인한 회원번호 "+mNo);
+		List<Orders> orderslist = new OrderService().orderList(mNo);//결제상태가 결제완료 이고, 배송상태가 배송중, 배송준비중, 배송완료, 구매확정인 것들만 담아옴
 		
 		
 		

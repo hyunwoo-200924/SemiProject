@@ -16,44 +16,28 @@
 <%@ include file="/views/mypage/common/mypagenav.jsp" %>
 
 
-        <section>
-         <h2>포인트</h2>
-         <%if(pointlist.isEmpty()){ %>
-         	<h1>포인트가 없습니다.</h1>
-         <%} else{%>
-         	<%for(Point p : pointlist){ %>
-		         <div class="userPoint" style="border: 1px red solid;">
-		             <p> 사용 가능 포인트</p><br>
-		             <p>총 포인트 보여주기</p>
-		         </div>
-		        </section>
-		        <section>
-		            <div class="get_use_Point">
-		                <h2>적립/사용내역</h2>
-		                <hr>
-		            </div>
-		        </section>
-		        <section>
-		                <table id="tbl-board">
-		                    <tr>
-		                        <th>번호</th>
-		                        <td><%=p.getPoNo() %></td>
-		                    </tr>
-		                    <tr>
-		                        <th>상태</th>
-		                        <td><%=p.getPoStatus() %></td>
-		                    </tr>
-		                    <tr>
-		                        <th>날짜</th>
-		                        <td><%=p.getPoDate() %></td>
-		                    </tr>
-		                    <tr>
-		                        <th>포인트</th>
-		                        <td><%=p.getPoPoint() %></td>
-		                    </tr>
-		        </section>
-         	<%} %>
-         <%} %>
-     </form>
-</section>
 <%@ include file="/views/common/footer.jsp"%>
+	<div>
+		<h1 style="margin-left: 745px; display: block; width: 100%;margin-top: -245px;">나의 포인트</h1>
+	</div>
+	<%if(pointlist.isEmpty()){ %>
+	<div>
+		<h2 style="margin-left: 728px; margin-top: 167px;"> 포인트가 없습니다.</h2>
+	</div>
+	<%} else{%>
+	<%for(Point p : pointlist){ %>
+				<div class="cart-section-body-group2">
+                <div style="margin-left: 484px;margin-top: 63px;">
+                <p style="margin-left: 5px; font-size: 20px;">번호 :<%=p.getPoNo() %></p>
+              	<div style="display: flex" class="count-con">
+               	<input style="border: none; font-size: 20px;" type="text" value="<%=p.getPoStatus() %>" class="pCount" readonly>
+                </div>
+                <div style=" font-size: 20px; margin-left: 394px;"><P style="margin-left: -391px;"><%=p.getPoDate() %></P>
+                </div>
+                <div style=" font-size: 20px; margin-left: 394px;"><P style="margin-left: -389px;">포인트 :<%=p.getPoPoint() %></P>
+                </div>
+                </div>
+            	</div>
+		
+		<%} %>
+    <%} %>

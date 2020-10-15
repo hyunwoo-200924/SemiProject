@@ -9,46 +9,10 @@
 
 <%@ include file="/views/common/header.jsp"%>
 <link rel="stylesheet" type="text/css" 
-href="<%=request.getContextPath() %>/css/noneoderDelivery.css">
+href="<%=request.getContextPath() %>/css/noneorderDelivery.css">
 
 <section>
-   			<nav class="mypage_left">
-                 <h2>마이페이지</h2>
-                <ul>
-                    <li class="mypage_left_title1">나의 주문정보</li>
-                    <li>주문/배송조회</li>
-                    <li>취소/반품조회</li>
-                    <li>선물내역</li>    
-                    <li class="mypage_left_title1">나의혜택</li>
-                    <li>쿠폰</li>
-                    <li>포인트</li>
-                    <li class="mypage_left_title1">나의활동</li>
-                    <li>리뷰</li>
-                    <li>맛취향</li>
-                    <li>쇼핑찜</li>
-                    <li>1:1문의</li>
-                    <li class="mypage_left_title1">나의 정보</li>
-                    <li>개인정보변경</li>
-                    <li>회원탈퇴</li>
-                </ul>
-              </nav>
-            <div class="content">
-            
-                <div class="content1">
-                    <h1 class="cont_title">주문 / 배송조회</h1>
-                    <div class=cont_content>
-                    <table class="orderDate">
-                        <tr>
-                            <td>주문일시<br>
-                            <%= o.getoPayDate() %></td>
-                            <td>주문번호<br>
-                            <%= o.getoNo() %></td>
-                        </tr>
-                    </table>
-                    </div>
-                </div>
-
-
+ <h1>비회원 주문 / 배송조회</h1>
                 <div class="content2">
                     <h2 class="cont_title">주문자 정보</h2>
                     <div class=cont_content>
@@ -61,9 +25,7 @@ href="<%=request.getContextPath() %>/css/noneoderDelivery.css">
                     <h2 class="cont_title">배송정보</h2>
                     <div class="cont_content">
                         <p>배송지 : <%=o.getoAddress() %></p>
-                        <p><%=o.getoStatus() %> : <%if(o.getoPayDate()!= null){ %>
-                        	<%=o.getoPayDate() %>
-                        <%} %></p>
+                        <p><%=o.getoStatus() %> : <%=o.getoPayDate() %></p>
                     </div>
                 </div>
                 
@@ -71,16 +33,50 @@ href="<%=request.getContextPath() %>/css/noneoderDelivery.css">
                    <div class="orderNumber">
                         <p><%=o.getoPayDate() %> (<%=o.getoNo() %>)</p>
                     </div>
+                       <%if(o.getoStatus().equals("결제완료")) {%>
+                       <div id="delivery">
+                        <div class="arriveDate">
+                            <p><%=o.getoDeliveryStatus() %></p><!-- 배송중 또는 배송완료 -->
+                            <p><%=o.getoDeliveryEDate() %> 도착예정</p>
+                        </div>
+                       
+                       
+                       <input type="hidden" id="oStatus" value="<%=o.getoStatus()%>">
+                       <input type="hidden" id="oDeliveryStatus" value="<%=o.getoDeliveryStatus()%>">
+                       
+                     <button class="deliview"  onclick="delivery();">배송조회</button>
+                     </div>
+                     <%} %>
+                     
+			                    <div class="orderButton">
+			                      
+			                      <input type="hidden" name="oNo" value="<%=o.getoNo()%>"/>
+			                       
+			                        <ul class="Button">
+			                        
+			                      
+			                        <%if(o.getoStatus().equals("결제완료") && o.getoDeliveryStatus().equals("배송준비중")){ %>
+			                            <li><button id="cancel">취소신청</button></li>
+			                            <%}%>
+			                          <%if(o.getoDeliveryStatus().equals("배송완료")){ %>
+			                            <li><button id="returnask">환불신청</button></li>
+			                            <li><button id="orderdone">구매확정</button></li>
+			                            <%} %>
+			                        </ul>
+			                    </div>
                     <div class="productView">
                     <%for(OrderDetail od : list) {%>
                         <div class="orderproduct">
                             <div class="order_pro_img">
-                                <img src="<%=request.getContextPath() %>/upload/product/<%=od.getOdproduct().getpImage1() %>" alt="" width="100" height="100">
+                                <img src="<%=request.getContextPath() %>/upload/product/<%=od.getOdproduct().getpImage1() %>" alt="" width="150" height="150">
                             </div>
                             <div class="order_pro_name">
                                 <h3><%=od.getOdproduct().getpName() %></h3>
-                                <p><%=od.getOdproduct().getpPrice() %> / <%=od.getOdproduct().getpServing() %></p>
+                                <p><%=od.getOdproduct().getpPrice() %>원 / 수량 : <%=od.getOdQty() %></p>
                             </div>
+			                            <%if(o.getoDeliveryStatus().equals("구매확정")){ %>
+			                            <button id="review">리뷰쓰기</button>
+			                            <%} %>
                         </div>
                         <%} %>
                         <div class="ordernotice">
@@ -88,21 +84,9 @@ href="<%=request.getContextPath() %>/css/noneoderDelivery.css">
                                 주문마감기한인 <%=o.getoDeliveryDate() %> 07:00 까지 가능합니다.</p>
                         </div>
                     </div>
-                    <div class="orderButton">
-                        <div class="arriveDate">
-                            <p>배송준비중</p><!-- 배송중 또는 배송완료 -->
-                            <p><%=o.getoDeliveryEDate() %> 도착예정</p>
-                        </div>
-                        <ul class="Button">
-                     <!--        <li><button><a href="">배송조회</a></button></li> -->
-                            <li><button><a href="">교환신청</a></button></li>
-                            <li><button><a href="">반품신청</a></button></li>
-                            <li><button><a href="">리뷰쓰기</a></button></li>
-                        </ul>
-                    </div>
                 </div>
                 <div class="content5">
-                    <h1 class="cont_title">결제정보</h1>
+                    <h2 class="cont_title">결제정보</h2>
                     <table class="cont_content">
                         <tr>
                             <td>결제수단 : <%=o.getoPayWays() %></td>
@@ -120,4 +104,83 @@ href="<%=request.getContextPath() %>/css/noneoderDelivery.css">
                 </div>
             </div>
         </section>
+        
+        <script>
+        
+        function delivery(){
+        	console.log(document.getElementById("oStatus").value);
+        	var st = "결제완료";
+        	var dst = "베송준비중";
+        	if(document.getElementById("oStatus").value == st && document.getElementById("oDeliveryStatus").value == dst){
+        		console.log(document.getElementById("oStatus").value);
+        		alert("배송이 시작되면 조회가능합니다.");
+        		
+        		return false;
+        	}
+        	
+        		//배송조회 api 
+        	
+        }
+        
+       $('#cancel').click(function(){
+    	   var identity = $("input[name='oNo']").val();
+    	   $.ajax({
+    	        type:"POST",
+    	        url:"<%=request.getContextPath()%>/cancelask",
+    	        data : {"oNo" : identity },
+    	        dataType : "text",
+    	        success: function(text){
+    	            console.log(text);
+    	           	alert("요청사항 전송 성공!");
+    	            $("#cancel").css("display","none");
+    	            $("#delivery").css("display","none");
+    	        },
+    	        error: function() {
+    	            alert("요청사항 전송 실패!");
+    	        }  
+    	    });
+
+       });
+       
+       $('#returnask').click(function(){
+    	   var identity = $("input[name='oNo']").val();
+    	   console.log(identity);
+    	   $.ajax({
+   	        type:"POST",
+   	        url:"<%=request.getContextPath()%>/returnask",
+   	        data : {"oNo" : identity },
+   	        dataType : "text",
+   	        success: function(text){
+   	            console.log(text);
+   	           	alert("요청사항 전송 성공!");
+   	            $("#returnask").css("display","none");
+   	            $("#orderdone").css("display","none");
+   	        },
+   	        error: function() {
+   	            alert("요청사항 전송 실패!");
+   	        }  
+   	    });
+       })
+       
+       $('#orderdone').click(function(){
+    	   var identity = $("input[name='oNo']").val();
+    	   console.log(identity);
+    	   $.ajax({
+   	        type:"POST",
+   	        url:"<%=request.getContextPath()%>/orderdone",
+   	        data : {"oNo" : identity },
+   	        dataType : "text",
+   	        success: function(text){
+   	            console.log(text);
+   	           	alert("요청사항 전송 성공!");
+   	            $("#returnask").css("display","none");
+   	            $("#orderdone").css("display","none");
+   	         	$("#review").css("display","block");
+   	        },
+   	        error: function() {
+   	            alert("요청사항 전송 실패!");
+   	        }  
+   	    });
+       })
+        </script>
 <%@ include file="/views/common/footer.jsp"%>

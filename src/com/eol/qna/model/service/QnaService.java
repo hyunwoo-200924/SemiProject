@@ -51,18 +51,18 @@ public class QnaService {
 			
 			 if(q.getqStatus().equals("Y")) {//답변이 달렸다면
 			  
-				 String answer = qDao.selectAnswer(conn, q.getqNo()); 
+				 String[] answer_date = qDao.selectAnswer(conn, q.getqNo()); 
 				 
 				 //대답 엔터처리
 				 String answerResult = "";
-				 if(answer != null && answer.contains("\r\n")) {
-					 answerResult = answer.replace("\r\n", "<br>"); 
+				 if(answer_date != null && answer_date[0].contains("\r\n")) {
+					 answerResult = answer_date[0].replace("\r\n", "<br>"); 
 					 
 				 } else {
-					 answerResult = answer;
+					 answerResult = answer_date[0];
 				 }
 				 q.setAnswerResult(answerResult);
-			 
+				 q.setAnswerDate(answer_date[1]);
 			 }
 		 
 		}

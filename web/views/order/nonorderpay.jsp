@@ -60,8 +60,8 @@ IMP.init('imp14973248'); // 'iamport' 대신 부여받은 "가맹점 식별코�
 							<!-- 주소창에 입력후에 자동생성되게 자바스크립트 -->
 
 							<div class="persnal-info">
-								이름<input type="text" id="oToName" value="" placeholder="이름을 입력하세요" class="text-inputtag"/> 
-								연락처<input type="text" id="oToPhone" placeholder="예)010-0000-0000" class="text-inputtag"/>
+								이름<input type="text" id="oToName" name="oToName" value="" placeholder="이름을 입력하세요" class="text-inputtag"/> 
+								연락처<input type="text" id="oToPhone" name="oToPhone" placeholder="예)010-0000-0000" class="text-inputtag"/>
 							</div>
 							
 							<div class="persnal-info">
@@ -83,11 +83,15 @@ IMP.init('imp14973248'); // 'iamport' 대신 부여받은 "가맹점 식별코�
 					<div class="present-items-group4-4">
 					<%
 						int oAmount = 0;
-					Date oDeliveryEDate = null;
+					String oDeliveryEDate = null;
+					
+					for(Product p : list){
+						oDeliveryEDate = p.getDelivery();
+					}
 						
 					%>
 					
-						<input class="info-title" id="oDeliveryEDate" name="oDeliveryEDate" value="" style="border:none" readonly>도착예정
+						<input class="info-title" id="oDeliveryEDate" name="oDeliveryEDate" value="<%=oDeliveryEDate %>" style="border:none" readonly>도착예정
 						<%for(Product p : list) { %>
 						<div class="odProduct">
 						<div class="present-items-imggroup">
@@ -233,7 +237,7 @@ IMP.init('imp14973248'); // 'iamport' 대신 부여받은 "가맹점 식별코�
 							<!-- 결제하기 버튼을 누르면, 1. 걸제 api실행
                     2. 카트에 담긴 데이터와 그와 연결된 product데이터와 위에 입력한 배송정보를 orders와 orderdetail에 insert -->
 							<input type="button" id="pay" value="결제하기" class="pay-deside-button" style="width: 500px; height: 50px; justify-content: center; margin: 20px 0;">
-							<input type="button" id="orderCheak" style="display:none;" onclick="fn_dd();" value="결제완료 확인">
+							<input type="button" id="orderCheak" class="pay-deside-button" style="display:none; width: 500px; height: 50px; justify-content: center; margin: 20px 0;" onclick="fn_dd();" value="결제완료 확인">
 						</div>
 					</div>
 				</div>
@@ -305,7 +309,7 @@ function fn_address(){
 			alert('받는사람의 연락처를 입력해주세요.')
 			return false;
 		}
-		if ($('#oAddress').val() === '') {
+		if ($('#address').val() === '') {
 			alert('받는사람의 주소를 입력해주세요.')
 			return false;
 		}

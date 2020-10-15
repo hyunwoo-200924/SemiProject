@@ -33,7 +33,7 @@
                     <%if(m!=null){ %>
                     <button><a href="<%=request.getContextPath()%>/orderViewList.do">주문/결제 조회하기</a></button>
                     <%}else{ %>
-                    <button><a href="<%=request.getContextPath()%>/loginpage.do">주문/결제 조회하기</a></button>
+                    <button><a href="<%=request.getContextPath()%>/login.do">주문/결제 조회하기</a></button>
                     <%} %>
                 </div>
             </div>

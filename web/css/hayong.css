@@ -3,11 +3,23 @@
 	*{
 	  	box-sizing: border-box;
 	  }
-	a:active {
-		color:inherit;	
-	}
+	/* a:active {color:inherit;} */
+	a:link { color: black; text-decoration: none; !important}
+	a:visited { color: black; text-decoration: none; !important}
+	a:hover { color: black; text-decoration: none; !important}
 	li{
 		list-style:none;
+	}
+	.buttonStyle{
+		height: 40px;
+	    width: 176px;
+	    background-color: #333;
+	    border: none;
+	    color: white;
+	}
+	.buttonStyle:hover{
+		cursor:pointer;
+		background-color: black;
 	}
 	.linkArrow:after {
 	    content: '';
@@ -28,13 +40,14 @@
 	.mypage_left_title1 {
 	    font-weight: 600;
 	    margin: 20px 0 5px 0 !important;
-	    font-size: 18px;
+	    font-size: 25px;
 	    cursor: default !important;
 	}
 	.container{
 	    display: grid;
 	    grid-template-columns: 250px 700px;
 	    padding: 5% 40px;
+	        grid-gap: 100px;
 	}
 	.user_content_form_wrap .title {
 	    border-bottom: 1px solid black;
@@ -106,6 +119,9 @@
 	}
 	.user_delete_form .button.col2{
 	    width: calc(100% - 500px);
+	}
+	.mypage_left{
+	   font-size: 22px;
 	}
 	.mypage_left .active {
 		color: #9C27B0;
@@ -460,8 +476,8 @@
    }
    .mypage_body .order {
       display: grid;
-       grid-template-columns: 90px 50px 90px 50px 90px 50px 90px 50px 90px;
-          padding: 12px 0 40px 12px;
+       grid-template-columns: 90px 50px 90px 50px 90px 50px 90px;
+          padding: 24px 0 40px 80px;
    }
    .mypage_body .order div:nth-child(even) {
       width: 16px;
@@ -489,11 +505,16 @@
       display: inline-block;
       width: 80px;
        height: 80px;
+           border-radius: 50%;
+     
    }
    .order_image span:nth-child(2) {
       font-size:12px;
       display:block;
       font-weight:bold;
+       position: relative;
+    bottom: 50px;
+        font-size: 15px;
    }
    .mypage_body .no_list {
       text-align: center;

@@ -5,6 +5,7 @@ import static com.eol.common.JDBCTemplate.close;
 import java.io.FileReader;
 import java.io.IOException;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -190,10 +191,10 @@ public class QnaDao {
 	}
 
 	//1:1문의 답변 가져오기
-	public String selectAnswer(Connection conn, int qNo) {
+	public String[] selectAnswer(Connection conn, int qNo) {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		String answer = null;
+		String[] answer_date = new String[2];
 		
 		try {
 			pstmt = conn.prepareStatement(prop.getProperty("selectAnswer"));
@@ -202,7 +203,9 @@ public class QnaDao {
 			rs = pstmt.executeQuery();
 			
 			if(rs.next()) {
-				answer = rs.getString(1);
+				answer_date[0] = rs.getString(1);
+				answer_date[1] = rs.getString(2);
+				
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -211,7 +214,7 @@ public class QnaDao {
 			close(pstmt);
 		}
 		
-		return answer;
+		return answer_date;
 	}
 
 	//1:1 문의 수정할 때  수정정보 가져오기

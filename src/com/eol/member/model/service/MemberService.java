@@ -6,7 +6,6 @@ import static com.eol.common.JDBCTemplate.getConnection;
 import static com.eol.common.JDBCTemplate.rollback;
 
 import java.sql.Connection;
-import java.sql.Date;
 
 import com.eol.member.model.dao.MemberDao;
 import com.eol.member.model.vo.Member;
@@ -117,5 +116,17 @@ public class MemberService {
 		Member m = mDao.checkedMemberEnroll(conn,joinName,joinEmail);
 		close(conn);
 		return m;
+	}
+	
+	//결제 시 포인트 적립
+	public int updatePoint(Member m) {
+		Connection conn = getConnection();
+		int result = mDao.updatePoint(conn, m);
+		if(result > 0)commit(conn);
+		else rollback(conn);
+		close(conn);
+		return result;
+		
+		
 	}
 }

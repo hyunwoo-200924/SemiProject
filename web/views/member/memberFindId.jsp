@@ -8,7 +8,7 @@ href="<%=request.getContextPath() %>/css//member/memberFindId.css">
     <div class="findIdText">
       	<h2>이름 &nbsp <input type="text" name="findName" id="findName" placeholder="이름을 입력하세요"></h2><br><br>
       	<h2 style="margin-left: 14px;">이메일 &nbsp<input type="text" name="findEmail" id="findEmail" placeholder="이메일을 입력 하세요"></h2><br><br>
-      	<input class ="bTn"type="submit" name="check" id="check" value="확인">
+      	<input style="background: black;color: white;border: none;width: 218px;" type="submit" name="check" id="check" value="확인">
 	</div>
 </form>
 <%@ include file="/views/common/footer.jsp"%>
