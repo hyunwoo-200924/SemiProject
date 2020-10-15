@@ -69,15 +69,26 @@ public class OrderDao {
 		}return o;
 	}
 	
+	
+	//회원이 그동안 주문한 내역 가져오기 (취소, 환불 빼고)
 	public List<Orders> selectorderList(Connection conn, int mNo) {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		List<Orders> orderslist = new ArrayList();
-		
+		String st = "결제완료";
+		String ods = "배송준비중";
+		String ods1 = "배송중";
+		String ods2 = "배송완료";
+		String ods3 = "구매확정";
 		try {
 			pstmt = conn.prepareStatement(prop.getProperty("selectorderList"));
-			//selectorderList=SELECT * FROM ORDERS WHERE ORDERS.M_NO=?
+			//selectorderList=SELECT * FROM (SELECT * FROM ORDERS WHERE M_NO=? AND O_STATUS=?) WHERE O_DELIVERYSTATUS=? or O_DELIVERYSTATUS=? or o_deliverystatus=? or o_deliverystatus=?
 			pstmt.setInt(1, mNo);
+			pstmt.setString(2, st);
+			pstmt.setString(3, ods);
+			pstmt.setString(4, ods1);
+			pstmt.setString(5, ods2);
+			pstmt.setString(6, ods3);
 			rs=pstmt.executeQuery();
 			while(rs.next()) {
 				Orders o = new Orders();
@@ -95,8 +106,10 @@ public class OrderDao {
 				o.setoDeliveryStatus(rs.getString("o_deliverystatus"));
 				o.setoDeliveryEDate(rs.getString("o_deliveryedate"));
 				o.setoPayWays(rs.getString("o_payways"));
+				System.out.println(o);
 				orderslist.add(o);
 			}
+			
 		}catch(SQLException e) {
 			e.printStackTrace();
 		}finally {
@@ -276,7 +289,7 @@ public class OrderDao {
 		try {
 			if(m!=null) {//회원일 때 첫번쨰 ?에 회원번호 컬럼				
 				pstmt = conn.prepareStatement(prop.getProperty("insertOrder"));
-				//insertOrder=INSERT INTO ORDERS VALUES(ORD_SEQ.NEXTVAL,?,NULL,?,?,?,SYSDATE-2,?,?,?,SYSDATE,NULL,?,?,?,?)
+				//insertOrder=INSERT INTO ORDERS VALUES(ORD_SEQ.NEXTVAL,?,NULL,?,?,?,SYSDATE-2,?,?,?,SYSDATE,?,?,?,?,?)
 				pstmt.setInt(1, o.getmNo());
 			}else {//비회원일 때 첫번째 ?가 주문비밀번호 컬럼
 				pstmt = conn.prepareStatement(prop.getProperty("noMemberinsertOrder"));

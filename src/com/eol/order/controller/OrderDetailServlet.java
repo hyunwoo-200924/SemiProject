@@ -2,6 +2,7 @@ package com.eol.order.controller;
 
 import java.io.IOException;
 
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -40,6 +41,7 @@ public class OrderDetailServlet extends HttpServlet {
 		request.getRequestDispatcher("views/order/orderDetail.jsp").forward(request, response);
 		
 	
+
 	}
 
 	/**
