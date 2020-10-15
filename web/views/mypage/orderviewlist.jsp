@@ -82,7 +82,7 @@ href="<%=request.getContextPath() %>/css/orderviewlist.css">
 			
 		</div>
 		<%} %>
-		<%}}%>
+	<%} %>
 		</div>
 </section>
 
