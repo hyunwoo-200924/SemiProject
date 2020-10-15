@@ -305,7 +305,7 @@ function fn_address(){
 			alert('받는사람의 연락처를 입력해주세요.')
 			return false;
 		}
-		if ($('#oAddress').val() === '') {
+		if ($('#address').val() === '') {
 			alert('받는사람의 주소를 입력해주세요.')
 			return false;
 		}

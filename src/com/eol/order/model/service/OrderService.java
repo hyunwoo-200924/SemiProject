@@ -13,6 +13,7 @@ import com.eol.member.model.vo.Member;
 import com.eol.order.model.dao.OrderDao;
 import com.eol.order.model.vo.OrderDetail;
 import com.eol.order.model.vo.Orders;
+import com.eol.order.model.vo.WishList;
 import com.eol.product.model.vo.Product;
 
 public class OrderService {
@@ -29,6 +30,7 @@ public class OrderService {
 		return o;
 	}
 
+	//주문내역 가져오기
 	public List<Orders> selectOrder(int mNo) {
 		Connection conn = getConnection();
 		
@@ -75,15 +77,15 @@ public class OrderService {
 		return list;
 	}
 
-	//각각 주문에 대한 주문디테일로 상품명 가져오기
-	public String orderdetailList(int oNo) {
+	//각각 주문에 대한 주문디테일로 상품명 가져오기, 상품사진 추가
+	public String[] orderdetailList(int oNo) {
 		Connection conn = getConnection();
 		
-		String pName = dao.selectodList(conn, oNo);
+		String[] pNamepImage = dao.selectodList(conn, oNo);
 		
 		close(conn);
 		
-		return pName;
+		return pNamepImage;
 	}
 	
 	
@@ -134,9 +136,81 @@ public class OrderService {
 		close(conn);
 		return result;
 	}
+
+	//찜한 목록 가져오기
+	public List<WishList> selectJjim(int mNo) {
+		Connection conn = getConnection();
+		
+		List<WishList> list = dao.selectJjim(conn, mNo);
+		
+		close(conn);
+		
+		return list;
+	}
+
+	//주문 상세내역 가져오기
+	public Orders orderdetail(int oNo) {
+		Connection conn = getConnection();
+		
+		Orders o = dao.orderdetail(conn, oNo);
+		
+		close(conn);
+		
+		return o;
+	}
+
+	//찜하기
+	public int insertWishList(int pNo, int mNo) {
+		Connection conn = getConnection();
+		
+		int result = dao.insertWishList(conn, pNo, mNo);
+		
+		if(result > 0) commit(conn);
+		else rollback(conn);
+		
+		close(conn);
+		
+		return result;
+	}
+
+	//찜 삭제하기
+	public int deletetWishList(int pNo, int mNo) {
+		Connection conn = getConnection();
+		
+		int result = dao.deletetWishList(conn, pNo, mNo);
+		
+		if(result > 0) commit(conn);
+		else rollback(conn);
+		
+		close(conn);
+		
+		return result;
+	}
 	
+	//비회원이 주문한 상품 취소신청버튼 누를 시 oStatus를 취소신청으로 변경하기
+	public int changeoStatus(int oNo) {
+		Connection conn = getConnection();
+		int result = dao.updateoStatus(conn, oNo);
+		if(result>0) commit(conn);
+		else rollback(conn);
+		return result;
+	}
 	
+	//비회원 상태 취소신청으로 변경한거 다시 불러오기
+	public Orders orderSelect(int oNo) {
+		Connection conn = getConnection();
+		Orders o = dao.selectorder(conn, oNo);
+		close(conn);
+		return o;
+	}
 	
-	
+	//비회원이 환불신청 버튼 누를시 oDeliveryStatus를 환불신청으로 변경하기
+	public int changeoDeliveryStatus(int oNo, String st) {
+		Connection conn = getConnection();
+		int result = dao.updateoDeliveryStatus(conn, oNo, st);
+		if(result>0) commit(conn);
+		else rollback(conn);
+		return result;
+	}
 
 }

@@ -8,18 +8,36 @@
 
 <%@ include file="/views/common/header.jsp"%>
 <%@ page
-   import="java.util.List,com.eol.product.model.vo.Product, com.eol.member.model.vo.Member"%>
+   import="java.util.List,com.eol.product.model.vo.Product, com.eol.member.model.vo.Member, com.eol.order.model.vo.WishList"%>
 <%
    List<Product> list=(List)request.getAttribute("list");
    String pageBar=(String)request.getAttribute("pageBar");
    Member loginMember1 = (Member)request.getSession().getAttribute("loginMember");
+   
+   List<WishList> wl = (List)request.getAttribute("wl");
+   List pNos = new ArrayList();
+   if(loginMember1 != null && wl != null){
+	   for(WishList w : wl){
+		   pNos.add(w.getpNo());
+	   }
+   }
+   
+   int result = 0;
+   if(loginMember1 == null){
+	   result = 1;
+   }
+   
    String change = (String)request.getAttribute("change");
    
    Date now = new Date();
    SimpleDateFormat sf = new SimpleDateFormat("MM월dd일 E요일");
    String today =(String)sf.format(now);
 %>
-
+<style>
+.hart--img:hover{
+	cursor:pointer;
+}
+</style>
 <script>
    $(document).ready(function(){
          //생성자에 문자열을 넣어 특정 날짜 생성
@@ -46,7 +64,11 @@
       $('#Thursday').append(date.getDate()+1);
       $('#Friday').append(date.getDate()+2);
       $('#Saturday').append(date.getDate()+3);
+   
+      
    });
+   
+   
 </script>
 
 <!-- section -->
@@ -150,7 +172,7 @@
                         <div class="menu--img-items-group">
                            <div class="menu--img-items">
 
-                              <div name="pNo" style="display: none;"><%=p.getpNo()%></div>
+                              <div id="wishListPno" name="pNo" style="display: none;"><%=p.getpNo()%></div>
                               <!-- 메뉴상세페이지로이동 -->
                               <a
                                  href="<%=request.getContextPath()%>/product/productView?pNo=<%=p.getpNo()%>"
@@ -202,14 +224,16 @@
                      <div class="cart-hart">
                         <ul class="hart">
                            <!-- 찜 페이지 -->
-                           <a href="<%=request.getContextPath()%>/views/cart/jjim.jsp">
-
-                              <img
-                              src="<%=request.getContextPath() %>/images/product/hart40px.jpg"
-                              alt="찜" class="hart--img" onclick="hart();">
-                           </a>
+                           <%-- <a href="<%=request.getContextPath()%>/views/cart/jjim.jsp"> --%>
+							<input type="hidden" value="<%=p.getpNo()%>">
+							<%if(loginMember1 != null && pNos!= null && pNos.contains(p.getpNo())){ %>
+                              <img src="<%=request.getContextPath() %>/images/jjim.jpg" alt="찜" class="hart--img" style="width:40px; height:36px">
+                              <%} else{%>
+                              <img src="<%=request.getContextPath() %>/images/product/hart40px.jpg" alt="찜" class="hart--img" style="width:40px; height:36px">
+                              <%} %>
+                           <!-- </a> -->
                            <!-- 장바구니페이지 -->
-                           <a href="<%=request.getContextPath() %>/cartView.do"> <a
+                           <%-- <a href="<%=request.getContextPath() %>/cartView.do"> --%> <a
                               href="<%=request.getContextPath() %>/views/cart/cartViewServlet?pNo=<%=p.getpNo() %>"
                               id="cartBtn" name="cartBtn"> <img
                                  src="<%=request.getContextPath() %>/images/product/cart40px.jpg"
@@ -244,6 +268,59 @@
       </div>
    </div>
 </div>
+<script>
+	
+	
+	$('.hart--img').click(function(){
+		
+		if(<%=result%> == 1){
+			
+			if(confirm('로그인이 필요한 서비스입니다. 로그인 하시겠습니까?') == true){
+				location.href='<%= request.getContextPath() %>/login.do';
+			}
+			
+		} else {
+			
+			if($(this).attr('src') == '<%=request.getContextPath() %>/images/jjim.jpg'){
+				//찜 취소
+				let pNo = $(this).prev().val();
+			  	console.log(pNo);
+				$(this).attr('src','<%=request.getContextPath() %>/images/product/hart40px.jpg');
+			   
+			   $.ajax({
+				   url:"<%= request.getContextPath() %>/deletetWishList",
+				   data:{pNo:pNo},
+				   success: function(data){
+					   console.log(data)
+						alert('찜 취소!');
+				   }
+			   })
+				
+				
+			} else {
+				//찜하기
+			   let pNo = $(this).prev().val();
+			   console.log(pNo);
+				$(this).attr('src','<%=request.getContextPath() %>/images/jjim.jpg');
+			   
+			   $.ajax({
+				   url:"<%= request.getContextPath() %>/insertWishList",
+				   data:{pNo:pNo},
+				   success: function(data){
+					   console.log(data)
+					   alert('찜목록에 담겼습니다. 마이페이지 > 쇼핑찜에서 확인해주세요!');
+				   }
+			   })
+				
+			}
+			
+			
+		}
+		
+   
+	})
+		
+</script>
 
 
 

@@ -87,6 +87,25 @@
 	    margin-bottom: 50px;
     	padding-bottom: 5px;
 	}
+	#no{
+	font-size: 12px;
+       height: 22px;
+       line-height: 22px;
+       background: #f2f2f2;
+       display: inline-block; /* height값 주려고 함 */
+       margin-right: 15px;
+       padding: 0 6px;
+	}
+	#yes{
+	font-size: 12px;
+       height: 22px;
+       line-height: 22px;
+       background: #000000;
+       color: white;
+       display: inline-block; /* height값 주려고 함 */
+       margin-right: 15px;
+       padding: 0 6px;
+	}
 </style>
    
     
@@ -132,9 +151,9 @@
 							<div class="answerContentBox">
 								<input type="hidden" id="d" name="d" value="<%= q.getqNo()%>">
 								<%if(q.getqStatus().equals("N")){ %>
-									<span id="no">대기</span>
+									<span id="no">답변대기</span>
 								<%} else { %>
-									<span id="yes">완료</span>
+									<span id="yes">답변완료</span>
 								<%} %>
 								<span><%=q.getqCategory() %></span>
 								<span><%=q.getqTitle() %></span>
