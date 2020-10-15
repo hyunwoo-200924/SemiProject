@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ page import="com.eol.order.model.vo.*, java.util.List" %>
+<%@ page import="com.eol.order.model.vo.*, java.util.List,com.eol.member.model.vo.Member" %>
 
 <%
 	Member m = (Member)request.getSession().getAttribute("loginMember");
@@ -113,6 +113,7 @@ float: left;
                     <input type="hidden" name="pName" id="pName" value="<%=od.getOdproduct().getpName()%>">
                     <input type="hidden" name="mName" id="mName" value="<%=m.getmName()%>">
                     </form>
+                    <%System.out.println("리뷰"+od.getOdNo()+od.getpNo()+od.getOdproduct().getpName()+m.getmName()); %>
                         <div class="orderproduct">
                             <div class="order_pro_img">
                                 <img src="<%=request.getContextPath() %>/upload/product/<%=od.getOdproduct().getpImage1() %>" alt="" width="150" height="150">
@@ -132,7 +133,7 @@ float: left;
 															border: 0px;
 															border-radius: 5px;
 															text-decoration: none;
-															color: white
+															color: white;
 														">리뷰쓰기</button>
 			                            <%} %>
                         </div>
@@ -171,6 +172,7 @@ float: left;
         	console.log($('#odpNo').val());
         	console.log($('#pName').val());
         	console.log($('#mName').val());
+        	
        });
         
         

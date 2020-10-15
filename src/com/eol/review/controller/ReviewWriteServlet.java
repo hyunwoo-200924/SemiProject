@@ -32,7 +32,7 @@ public class ReviewWriteServlet extends HttpServlet {
 		int odpNo = Integer.parseInt(request.getParameter("odpNo").trim());
 		String pName = request.getParameter("pName");
 		String mName = request.getParameter("mName");
-		
+		System.out.println("리뷰쓸거"+odoNo);
 		request.setAttribute("odoNo",odoNo);
 		request.setAttribute("odpNo",odpNo);
 		request.setAttribute("pName", pName);
