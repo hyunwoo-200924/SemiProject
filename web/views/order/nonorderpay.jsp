@@ -233,7 +233,7 @@ IMP.init('imp14973248'); // 'iamport' 대신 부여받은 "가맹점 식별코�
 							<!-- 결제하기 버튼을 누르면, 1. 걸제 api실행
                     2. 카트에 담긴 데이터와 그와 연결된 product데이터와 위에 입력한 배송정보를 orders와 orderdetail에 insert -->
 							<input type="button" id="pay" value="결제하기" class="pay-deside-button" style="width: 500px; height: 50px; justify-content: center; margin: 20px 0;">
-							<input type="button" id="orderCheak" style="display:none;" onclick="fn_dd();" value="결제완료 확인">
+							<input type="button" id="orderCheak" class="pay-deside-button" style="display:none; width: 500px; height: 50px; justify-content: center; margin: 20px 0;" onclick="fn_dd();" value="결제완료 확인">
 						</div>
 					</div>
 				</div>
@@ -305,7 +305,7 @@ function fn_address(){
 			alert('받는사람의 연락처를 입력해주세요.')
 			return false;
 		}
-		if ($('#oAddress').val() === '') {
+		if ($('#address').val() === '') {
 			alert('받는사람의 주소를 입력해주세요.')
 			return false;
 		}

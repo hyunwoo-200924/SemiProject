@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.eol.cart.model.service.CartService;
 import com.eol.cart.model.vo.Cart;
+import com.eol.member.model.service.MemberService;
 import com.eol.member.model.vo.Member;
 import com.eol.order.model.service.OrderService;
 import com.eol.order.model.vo.Orders;
@@ -43,11 +44,23 @@ public class OrderPayServlet extends HttpServlet {
 		Orders o = new Orders();
 		int result = 0;
 		int odresult = 0;
+		int getPoint = 0;
+		int gpresult = 0;
+		int usePoint = 0;
 		
 		if(m!=null) {		//회원이 주문결제 했을 경우	
 			o.setmNo(m.getmNo());
 			o.setoName(m.getmName());
 			o.setoPhone(m.getmPhone());
+			getPoint=m.getmPonint()+Integer.parseInt(request.getParameter("oPayment"))/10;
+			m.setmPonint(getPoint);
+			gpresult = new MemberService().updatePoint(m);//포인트 적립 멤버포인트에 업데이트
+			System.out.println("적립 후 포인트 : "+m.getmPonint());
+			usePoint = m.getmPonint()-Integer.parseInt(request.getParameter("usePoint"));//사용한 포인트
+			m.setmPonint(usePoint);
+			new MemberService().updatePoint(m);//포인트 사용 업데이트
+			System.out.println("사용 후 포인트(디비에 최종 남는 포인트) : "+m.getmPonint());
+			
 		}else {//비회원이 주문했을경우
 			o.setoPw(request.getParameter("oPw"));
 			o.setoName(request.getParameter("oName"));
@@ -60,9 +73,9 @@ public class OrderPayServlet extends HttpServlet {
 		o.setoAmount(Integer.parseInt(request.getParameter("oAmount")));
 		o.setoPayment(Integer.parseInt(request.getParameter("oPayment")));
 		o.setoPayWays(request.getParameter("oPayway"));
-		String date = request.getParameter("oDeliveryEDate");
+		o.setoDeliveryEDate(request.getParameter("oDate"));
 		
-		System.out.println(date);
+	
 
 		result = new OrderService().orderinsert(m, o);//회원이 주문을 했을경우 Member m에 회원정보가 들어간 상태로 가고, 비회원이 주문을 했을경우 Member m이 null이다. 이것을 가지고 dao에서 if문으로 실행될 쿼리문을 결정함!!
 		
@@ -75,6 +88,7 @@ public class OrderPayServlet extends HttpServlet {
 					odresult = new OrderService().odinsert(c, o.getoNo());
 					
 				}
+				new CartService().deleteCart(m.getmNo());
 				request.setAttribute("order",o);
 			}else {//비회원일 때 
 				o.setoNo(new OrderService().noMemberselectoNo(o.getoPw(), o.getoName(), o.getoPhone()));//비회원일 때 지금 바로 주문 완료한 주문번호 들고오기
@@ -86,6 +100,8 @@ public class OrderPayServlet extends HttpServlet {
 					odresult = new OrderService().noMemberodinsert(p, o.getoNo());
 			
 					}
+				request.getSession().removeAttribute("nonCartList");
+
 				request.setAttribute("order", o);
 				}
 			

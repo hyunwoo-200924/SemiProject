@@ -29,7 +29,7 @@ href="<%=request.getContextPath() %>/css/cart.css">
    	
    <%}else{ %>
    <button class="btn" onclick="location.replace('<%=request.getContextPath()%>/cartintopay.do')">상품결제</button>
-   <button class="btn">삭제</button>
+   <button class="btn" onclick="location.replace('<%=request.getContextPath()%>/cartDeleteAll.do')">상품전체삭제</button>
    <%} %>
    </div>
    </div>
@@ -47,7 +47,10 @@ href="<%=request.getContextPath() %>/css/cart.css">
                	<input style="border: none; font-size: 25px;" type="text" value="<%=p.getpCount() %>" class="pCount" readonly>
                 <span  style=" font-size: 25px; margin-left: 78px" type="button" value="＋" class="product-plus" id="minus">+</span><span style="margin-left: 4px; font-size: 25px;">개</span>
                 </div>
-                <div style=" font-size: 25px; margin-left: 394px;"><P>배송 도착 예상 날짜 :</P></div>
+                <div style=" font-size: 25px; margin-left: 394px;"><P>배송 도착 예상 날짜 :</P>
+                </div>
+                <button class="btn" onclick="location.replace('<%=request.getContextPath()%>/cartintopay.do')">상품결제</button>
+   				<button class="btn" onclick="location.replace('<%=request.getContextPath()%>/cartDelete.do?pNo=<%=p.getpNo()%>')">상품삭제</button>
                 </div>
             	</div>
             <script>

@@ -57,7 +57,7 @@ public class OrderDao {
 				o.setoStatus(rs.getString("o_status"));
 				o.setoPayDate(rs.getDate("o_paydate"));
 				o.setoDeliveryStatus(rs.getString("o_deliverystatus"));
-				o.setoDeliveryEDate(rs.getDate("o_deliveryedate"));
+				o.setoDeliveryEDate(rs.getString("o_deliveryedate"));
 				o.setoPayWays(rs.getString("o_payways"));
 				
 			}
@@ -93,7 +93,7 @@ public class OrderDao {
 				o.setoStatus(rs.getString("o_status"));
 				o.setoPayDate(rs.getDate("o_paydate"));
 				o.setoDeliveryStatus(rs.getString("o_deliverystatus"));
-				o.setoDeliveryEDate(rs.getDate("o_deliveryedate"));
+				o.setoDeliveryEDate(rs.getString("o_deliveryedate"));
 				o.setoPayWays(rs.getString("o_payways"));
 				orderslist.add(o);
 			}
@@ -228,7 +228,7 @@ public class OrderDao {
 				o.setoStatus(rs.getString("o_status"));
 				o.setoPayDate(rs.getDate("o_paydate"));
 				o.setoDeliveryStatus(rs.getString("o_deliverystatus"));
-				o.setoDeliveryEDate(rs.getDate("o_deliveryedate"));
+				o.setoDeliveryEDate(rs.getString("o_deliveryedate"));
 				o.setoPayWays(rs.getString("o_payways"));
 				orderslist.add(o);
 			}
@@ -272,14 +272,15 @@ public class OrderDao {
 	public int orderinsert(Connection conn, Member m, Orders o) {
 		PreparedStatement pstmt = null;
 		int result = 0;
+		String ods = "배송준비중";
 		try {
 			if(m!=null) {//회원일 때 첫번쨰 ?에 회원번호 컬럼				
 				pstmt = conn.prepareStatement(prop.getProperty("insertOrder"));
-				//insertOrder=INSERT INTO ORDERS VALUES(ORD_SEQ.NEXTVAL,?,NULL,?,?,?,SYSDATE-2,?,?,?,SYSDATE,NULL,NULL,?,?,?)
+				//insertOrder=INSERT INTO ORDERS VALUES(ORD_SEQ.NEXTVAL,?,NULL,?,?,?,SYSDATE-2,?,?,?,SYSDATE,NULL,?,?,?,?)
 				pstmt.setInt(1, o.getmNo());
 			}else {//비회원일 때 첫번째 ?가 주문비밀번호 컬럼
 				pstmt = conn.prepareStatement(prop.getProperty("noMemberinsertOrder"));
-				//noMemberinsertOrder=INSERT INTO ORDERS VALUES(ORD_SEQ.NEXTVAL, NULL,?,?,?,?,SYSDATE-2,?,?,?,SYSDATE,NULL,NULL,?,?,?)
+				//noMemberinsertOrder=INSERT INTO ORDERS VALUES(ORD_SEQ.NEXTVAL, NULL,?,?,?,?,SYSDATE-2,?,?,?,SYSDATE,?,?,?,?,?)
 				pstmt.setString(1, o.getoPw());
 			}
 			pstmt.setString(2,o.getoName());
@@ -288,9 +289,12 @@ public class OrderDao {
 			pstmt.setInt(5, o.getoAmount());
 			pstmt.setInt(6, o.getoPayment());
 			pstmt.setString(7, o.getoStatus());
-			pstmt.setString(8, o.getoPayWays());
-			pstmt.setString(9, o.getoToName());
-			pstmt.setString(10,o.getoToPhone());
+			pstmt.setString(8, ods);
+			pstmt.setString(9, o.getoDeliveryEDate());
+			pstmt.setString(10, o.getoPayWays());
+			pstmt.setString(11, o.getoToName());
+			pstmt.setString(12,o.getoToPhone());
+			
 			result = pstmt.executeUpdate();
 			
 		}catch(SQLException e) {
@@ -373,6 +377,76 @@ public class OrderDao {
 			pstmt.setInt(1, oNo);
 			pstmt.setInt(2, p.getpNo());
 			pstmt.setInt(3, p.getpCount());
+			result = pstmt.executeUpdate();
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}return result;
+	}
+	
+	
+	//비회원이 취소신청 하는거 !!!!!
+	public int updateoStatus(Connection conn, int oNo) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		String status = "취소신청";
+		try{
+			pstmt = conn.prepareStatement(prop.getProperty("updateoStatus"));
+			//updateoStatus=UPDATE ORDERS SET O_STATUS=? WHERE O_NO=?
+			pstmt.setString(1, status);
+			pstmt.setInt(2, oNo);
+			result = pstmt.executeUpdate();
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}return result;
+	}
+	
+	public Orders selectorder(Connection conn, int oNo) {
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		Orders o = null;
+		try {
+			pstmt = conn.prepareStatement(prop.getProperty("selectorder"));
+			//selectorder=SELECT * FROM ORDERS WHERE O_NO=?
+			pstmt.setInt(1, oNo);
+			rs=pstmt.executeQuery();
+			if(rs.next()) {
+				o = new Orders();
+				o.setoNo(rs.getInt("o_no"));
+				o.setmNo(rs.getInt("m_no"));
+				o.setoName(rs.getString("o_name"));
+				o.setoPhone(rs.getString("o_phone"));
+				o.setoAddress(rs.getString("o_address"));
+				o.setoDeliveryDate(rs.getDate("o_deliverydate"));
+				o.setoAmount(rs.getInt("o_amount"));
+				o.setoPayment(rs.getInt("o_payment"));
+				o.setoPw(rs.getString("o_pw"));
+				o.setoStatus(rs.getString("o_status"));
+				o.setoPayDate(rs.getDate("o_paydate"));
+				o.setoDeliveryStatus(rs.getString("o_deliverystatus"));
+				o.setoDeliveryEDate(rs.getString("o_deliveryedate"));
+				o.setoPayWays(rs.getString("o_payways"));
+				
+			}
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rs);
+			close(pstmt);
+		}return o;
+	}
+	
+	public int updateoDeliveryStatus(Connection conn,int oNo,String st) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		try{
+			pstmt = conn.prepareStatement(prop.getProperty("updateoDeliveryStatus"));
+			//updateoDeliveryStatus=UPDATE ORDERS SET O_DELIVERYSTATUS=? WHERE O_NO=?
+			pstmt.setString(1, st);
+			pstmt.setInt(2, oNo);
 			result = pstmt.executeUpdate();
 		}catch(SQLException e) {
 			e.printStackTrace();

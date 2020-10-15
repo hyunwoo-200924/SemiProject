@@ -11,6 +11,7 @@ a{
 }
 a:hover{
     color:red;
+    text-decoration-line: none;
 }
 
 /* button */
@@ -247,7 +248,7 @@ margin: 50px;
        grid-template-columns: auto auto;
     grid-template-rows: auto auto;
     justify-content: space-around;
-    gap: 80px;
+    gap: 70px;
     margin: 30px;
  
     
@@ -588,3 +589,12 @@ th, td{
   border: none;
   }
  
+#menu--text--container{
+	width: auto;
+	height: auto;
+}
+input[type=radio]{
+	border:none;
+	
+	
+}

@@ -45,6 +45,8 @@ public class ProductViewServlet extends HttpServlet {
 		String loc="";
 		String path="";
 		System.out.println("조건문 전입니다.");
+		int pCount=0;
+		String OrderDay="";
 		if(p==null) {
 			//선택한 공지사항이 삭제됨.
 			msg="선택한 공지사항이 존재하지 않습니다.";
@@ -55,6 +57,8 @@ public class ProductViewServlet extends HttpServlet {
 		}else {
 			System.out.println("거의다왓어요");
 			request.setAttribute("Product",p);//object, 변수명
+			request.setAttribute("pCount", pCount);
+			request.setAttribute("OrderDay", OrderDay);
 			path="/views/product/productView.jsp";
 		}
 		request.getRequestDispatcher(path).forward(request, response);
