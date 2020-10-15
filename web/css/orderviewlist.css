@@ -1,22 +1,15 @@
 @charset "UTF-8";
 
 section{
-        position: relative;
-        
-        padding: 5% 40px;
-
-    }
-    section div.aside{
-        border: 1px red solid;
-        position: absolute;
-        top:0px;
-        width: 200px;
-        height: 100%;
+        /* position: relative; */
+       padding-top: 40px;
+	padding-bottom: 40px;
+       
 
     }
 
     section div.content{
-        position: absolute;
+        position: relative;
         top:0px;
         left: 200px;
         width: 800px;

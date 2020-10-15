@@ -19,26 +19,6 @@ href="<%=request.getContextPath() %>/css/orderviewlist.css">
 	
 	<div class="content">
 		<h1>주문 / 배송조회</h1>
-		<!-- <form action="" name="orderView" id="orderView" method="post">
-			<select name="year" id="year">
-				<option value="2019">2019년</option>
-				<option value="2020">2020년</option>
-			</select> <select name="month" id="month">
-				<option value="1">1월</option>
-				<option value="2">2월</option>
-				<option value="3">3월</option>
-				<option value="4">4월</option>
-				<option value="5">5월</option>
-				<option value="6">6월</option>
-				<option value="7">7월</option>
-				<option value="8">8월</option>
-				<option value="9">9월</option>
-				<option value="10">10월</option>
-				<option value="11">11월</option>
-				<option value="12">12월</option>
-			</select> <input type="button" id="orderdate" value="조회">
-		</form> -->
-		
 		<%if(olist.isEmpty()){ %>
 		<div class="detail">
 			<h1>주문내역이 없습니다!</h1>
