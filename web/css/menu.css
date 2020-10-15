@@ -80,7 +80,10 @@ a not:hover{
    
 }
 
-
+section img{
+	bold: 500;
+	box-shadow: 3px 3px 3px #000; 
+}
 
 /* section && detail--menu */
 .menu-container-group{
@@ -592,9 +595,4 @@ th, td{
 #menu--text--container{
 	width: auto;
 	height: auto;
-}
-input[type=radio]{
-	border:none;
-	
-	
 }

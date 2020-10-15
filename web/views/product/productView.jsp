@@ -148,9 +148,9 @@ String today =(String)sf.format(now);
                              <div class="button-container">
                                  <!-- 날짜선택시 품목명 갯수 선택할 박스  생성. -->
 
-                                 <label ><input type="radio" class="botton-group" name="choice-radio" id="cartPut();"checked>장바구니</input></label>
+                   <!--               <label ><input type="radio" class="botton-group" name="choice-radio" id="cartPut();"checked>장바구니</input></label>
                                  <label ><input type="radio" class="botton-group" name="choice-radio" id="presentbtn();">선물하기</input></label>
-
+ -->
                              </div>
                              <div class="etc_txt" id="cart_txt" style="display:block;">
                                  <span>주문 마감시간 오전 7시</span>
@@ -452,7 +452,7 @@ String today =(String)sf.format(now);
            </form>
              <div class="etc_info_wrap">
                  <div class="review_btn_wrap">
-                     <a href="#tab03" class="review_btn" id="review_btn" role="button">
+                     <div href="#tab03" class="review_btn" id="review_btn" role="button">
                          <!-- 스크립트 요청사항: 클릭시 리뷰탭.on클래스 추가하고 #tab03으로 이동 -->
                          <div class="rating_wrap">
                              <span class="rating_star">
@@ -466,22 +466,17 @@ String today =(String)sf.format(now);
                                      
                                          <span style="width:95.39999%;">
                                              <span class="hide">별점</span>
-                                             <span class="num" alt=""></span>
+                                             <span id="num" alt=""></span>
                                          </span>
                                          
                                      </div>
                                      <script>
                                      //별점표시, 점수주기
-                                     console.log("<%=p.getpHit() %>");
-                                    $('.num').text(<%=p.getpHit() %>);
-                                    $(function(){
-                                    
-                                     console.log(rating);
-                                     $(".start_group").each(function(){
-                                    	
-                                    	$(this).find('div:nth-child(-n+'rating')').css({color:'#f00'});
-                                     	});
-                                     }
+                                     console.log("숫자냐"+"<%=p.getpHit() %>");
+                                   var phit=parseInt(<%=p.getpHit() %>);
+                                    $('#num').text(<%=p.getpHit() %>);
+                                   var star= $('#num').text(<%=p.getpHit() %>);
+                         				$('#star1').next(star).attr("color","blue");
 /* 
                                      $(".start_group").each(function(){
                                          const targetScore = (parseInt($(this).prop('data-rate')));//형변환해주고 
@@ -496,7 +491,7 @@ String today =(String)sf.format(now);
                                         	console.log(('a:nth-child(-n+'+targetScore+')'));
 											console.log($(this).find('a:nth-child(-n+'+targetScore+')'));
 										 }) */
-                                     }); 
+                          
                                      
 
                                      </script>
@@ -507,7 +502,7 @@ String today =(String)sf.format(now);
                                  </span>
                              </span>
                          </div>
-                     </a>
+                     </div>
                  </div>
                  <div class="sns_btn_wrap">
                      <!-- 자바스크립트 영역 a태그에 기능추가 -->
@@ -516,7 +511,7 @@ String today =(String)sf.format(now);
                          <div class="sns-btn-wrap-items" style="top:0px;background-color: white;width:1270px;height: 50px; border-bottom: 2px solid #333;">
                              
                                  
-                                     <span class="hide span-text"><a href="">리뷰바로가기</a></span>
+                                     <span class="hide span-text"><a href="<%=request.getContextPath()%>/review/reviewList">리뷰바로가기</a></span>
                                      
                                   <script>
                               		
