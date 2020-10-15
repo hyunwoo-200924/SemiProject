@@ -13,6 +13,12 @@ Member loginMember2 = (Member)request.getSession().getAttribute("loginMember");
 	Cart c=(Cart)request.getAttribute("Cart");
 Review r=(Review)request.getAttribute("Review");
 
+//비회원이 찜 눌렀을 때 처리
+int result = 0;
+   if(loginMember2 == null){
+      result = 1;
+   }
+   
 
 //날짜저장하기위한 초기값
 String OrderDay=(String)request.getAttribute("OrderDay");
@@ -417,13 +423,54 @@ String today =(String)sf.format(now);
                                  <div class="jjim-btn-container">
                                  
                                  
-                                    <a href="<%=request.getContextPath()%>/views/cart/cartViewServlet?pNo=<%=p.getpNo()%>"><img src="<%=request.getContextPath() %>/images/product/hart40px.jpg" alt="찜" class="jjim"></a>
+                                    <a onclick="fn_wishList();">
+                                    	<img src="<%=request.getContextPath() %>/images/product/hart40px.jpg" alt="찜" class="jjim">
+                                    </a>
 
                                    
                                     
                                     
                                     
                              	<script>
+                             		//찜하기 ajax
+                             		function fn_wishList(){
+                             			if(<%=result%> == 1){
+                             		         if(confirm('로그인이 필요한 서비스입니다. 로그인 하시겠습니까?') == true){
+                             		            location.href='<%= request.getContextPath() %>/login.do';
+                             		         }
+                             		         
+                             		      } else {
+                             		         
+                             		         if($('.jjim').attr('src') == '<%=request.getContextPath() %>/images/jjim.jpg'){
+                             		            //찜 취소
+                             		            $('.jjim').attr('src','<%=request.getContextPath() %>/images/product/hart40px.jpg');
+                             		            
+                             		            $.ajax({
+                             		               url:"<%= request.getContextPath() %>/deletetWishList",
+                             		               data:{pNo:"<%= p.getpNo() %>"},
+                             		               success: function(data){
+                             		                  console.log(data)
+                             		                  alert('찜 취소!');
+                             		               }
+                             		            })
+                             		            
+                             		            
+                             		         } else {
+                             		            //찜하기
+                             		            $('.jjim').attr('src','<%=request.getContextPath() %>/images/jjim.jpg');
+                             		            
+                             		            $.ajax({
+                             		               url:"<%= request.getContextPath() %>/insertWishList",
+                             		               data:{pNo:"<%= p.getpNo() %>"},
+                             		               success: function(data){
+                             		                  console.log(data)
+                             		                  alert('찜목록에 담겼습니다. 마이페이지 > 쇼핑찜에서 확인해주세요!');
+                             		               }
+                             		            })
+                             		         }
+                             		      } //if문 닫기
+                             		}//wishList함수 닫기
+                             		
                              		const basket1=(function cartPut(){
                              			$("input:radio[name='choice-radio']").attr("checked",true);
                              			 location.replace('<%=p.getpName()%><%=request.getContextPath()%>/views/cart/cartViewServlet');
