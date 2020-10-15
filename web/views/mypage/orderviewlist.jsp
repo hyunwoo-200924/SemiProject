@@ -68,10 +68,10 @@ href="<%=request.getContextPath() %>/css/orderviewlist.css">
 					<p><%=o.getoDeliveryEDate() %> 도착예정</p>
 				</div>
 				<ul class="Button">
-					<form action="<%=request.getContextPath() %>/cancel.do" name="cancel" id="cancel" method="">
+					<%-- <form action="<%=request.getContextPath() %>/cancel.do" name="cancel" id="cancel" method="">
 					<input type="hidden" value="<%=o.getoNo() %>" name="canceloNo">
-					</form>
-					<li><button onclick="cancel();">취소신청</button></li>
+					</form> --%>
+					<li><button onclick="">취소신청</button></li>
 					<li><button>환불신청</button></li>
 					<li><button>리뷰쓰기</button></li>
 				</ul>

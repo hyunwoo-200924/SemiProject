@@ -86,30 +86,6 @@ public class CartDao {
 		}return p;
 	}
 
-//	//
-//	public int insertCart11(Connection conn,Cart c) {
-//		PreparedStatement pstmt=null;
-//		int result= 0;
-//		
-//		
-//		try {
-//			pstmt=conn.prepareStatement(prop.getProperty("insertCart"));
-//			pstmt.setInt(1, c.getpNo());
-//			pstmt.setInt(2, c.getcQty());
-//			
-//			
-//			result=pstmt.executeUpdate();
-//			
-//		}catch(SQLException e) {
-//			e.printStackTrace();
-//		}finally {
-//			close(pstmt);
-//		}
-//		System.out.println("dao :값이 잇냐"+result);
-//		return result;
-//	}
-
-	
 	public int insertCart(Connection conn, Cart c) {
 		PreparedStatement pstmt = null;
 		int result = 0;
@@ -178,4 +154,19 @@ public class CartDao {
 		}return result;
 	}
 	
+	//회원이 결제하고 나서 장바구니 자동으로 비우는거
+	public int deleteCart(Connection conn, int mNo) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		try {
+			pstmt=conn.prepareStatement(prop.getProperty("deleteCart"));
+			//deleteCart=DELETE FROM CART WHERE M_NO=?;
+			pstmt.setInt(1, mNo);
+			result = pstmt.executeUpdate();
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}return result;
+	}
 }
