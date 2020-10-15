@@ -8,6 +8,7 @@ import static com.eol.common.JDBCTemplate.rollback;
 import java.sql.Connection;
 import java.util.List;
 
+import com.eol.product.model.vo.Product;
 import com.eol.review.model.dao.ReviewDao;
 import com.eol.review.model.vo.Review;
 
@@ -32,10 +33,18 @@ public class ReviewService {
 		return result;	
 	}
 
-	public List<Review> reviewList(int cPage, int numPerPage, int mNo) {
+	public List<Review> reviewList(int cPage2, int numPerPage2, int mNo) {
 		// TODO Auto-generated method stub
 		Connection conn=getConnection();
-		List<Review> list=dao.reviewList(conn,cPage,numPerPage, mNo);
+		List<Review> list=dao.reviewList(conn,cPage2,numPerPage2, mNo);
+		close(conn);
+		return list;
+	}
+	
+	public List<Review> reviewList2(int mNo) {
+		// TODO Auto-generated method stub
+		Connection conn=getConnection();
+		List<Review> list=dao.reviewList2(conn, mNo);
 		close(conn);
 		return list;
 	}
@@ -43,6 +52,13 @@ public class ReviewService {
 	public int reviewCount() {
 		Connection conn=getConnection();
 		int count=dao.reviewCount(conn);
+		close(conn);
+		return count;
+	}
+	
+	public int reviewPullCount(int mNo) {
+		Connection conn=getConnection();
+		int count=dao.reviewPullCount(conn, mNo);
 		close(conn);
 		return count;
 	}
@@ -65,7 +81,29 @@ public class ReviewService {
 			rollback(conn);
 		close(conn);
 		return result;
-	} 
+	}
+	
+	public int updatePoint(int mPoint, int mNo) {
+		Connection conn = getConnection();
+		int result = dao.updatePoint(conn, mPoint, mNo);
+		if(result>0)
+			commit(conn);
+		else
+			rollback(conn);
+		close(conn);
+		return result;
+	}
+	
+	public int updateReview(int rNo, String rTitle, String rContent, String mImage) {
+		Connection conn = getConnection();
+		int result = dao.updateReview(conn, rNo, rTitle, rContent, mImage);
+		if(result>0)
+			commit(conn);
+		else
+			rollback(conn);
+		close(conn);
+		return result;
+	}
 	
 	
 }

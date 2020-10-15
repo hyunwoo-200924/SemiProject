@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
 
+import com.eol.product.model.vo.Product;
 import com.eol.review.model.vo.Review;
 
 public class ReviewDao {
@@ -68,10 +69,11 @@ public class ReviewDao {
 			r.setmNo(mNo);
 			pstmt.setString(1, r.getrTitle());
 			pstmt.setString(2, r.getrContent());
-			pstmt.setInt(3, r.getodpNo());
-			pstmt.setInt(4, r.getodoNo());
-			pstmt.setString(5, r.getpName());
-			pstmt.setInt(6, r.getmNo());
+			pstmt.setString(3, r.getmImage());
+			pstmt.setInt(4, r.getodpNo());
+			pstmt.setInt(5, r.getodoNo());
+			pstmt.setString(6, r.getpName());
+			pstmt.setInt(7, r.getmNo());
 			result=pstmt.executeUpdate();
 		}catch(Exception e) {
 			e.printStackTrace();
@@ -81,16 +83,51 @@ public class ReviewDao {
 		return result;
 	}
 	
-	public List<Review> reviewList(Connection conn, int cPage, int numPerPage, int mNo) {
+	public List<Review> reviewList(Connection conn, int cPage2, int numPerPage2, int mNo) {
 		PreparedStatement pstmt=null;
 		ResultSet rs=null;
-		List<Review> list=new ArrayList();
-		
+		List<Review> list2=new ArrayList();
 		
 		try {
 			pstmt=conn.prepareStatement(prop.getProperty("reviewList"));
-//			pstmt.setInt(1,(cPage-1)*numPerPage+1);
-//			pstmt.setInt(2, cPage*numPerPage);
+			pstmt.setInt(1, mNo);
+			pstmt.setInt(2,(cPage2 -1)*numPerPage2+1);
+			pstmt.setInt(3, cPage2 *numPerPage2);
+			
+			rs=pstmt.executeQuery();
+			while(rs.next()) {
+				Review r=new Review();
+				r.setrNo(rs.getInt("R_NO"));
+				r.setpNo(rs.getInt("P_NO"));
+				r.setoNo(rs.getInt("O_NO"));
+				r.setrWriter(rs.getString("R_WRITER"));
+				r.setrTitle(rs.getString("R_TITLE"));
+				r.setrContent(rs.getString("R_CONTENT"));
+				r.setrPhoto1(rs.getString("R_PHOTO1"));
+				r.setrPhoto2(rs.getString("R_PHOTO2"));
+				r.setrPhoto3(rs.getString("R_PHOTO3"));
+				r.setrRdate(rs.getDate("R_RDATE"));
+				r.setrStarScore(rs.getInt("R_STARSCORE"));
+				r.setpName(rs.getString("P_NAME"));
+				r.setmImage(rs.getString("R_PHOTO1"));
+				list2.add(r);
+			}
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rs);
+			close(pstmt);
+		}
+		return list2;
+	}
+	
+	public List<Review> reviewList2(Connection conn, int mNo) {
+		PreparedStatement pstmt=null;
+		ResultSet rs=null;
+		List<Review> list2=new ArrayList();
+		
+		try {
+			pstmt=conn.prepareStatement(prop.getProperty("reviewList2"));
 			pstmt.setInt(1, mNo);
 			
 			rs=pstmt.executeQuery();
@@ -108,7 +145,8 @@ public class ReviewDao {
 				r.setrRdate(rs.getDate("R_RDATE"));
 				r.setrStarScore(rs.getInt("R_STARSCORE"));
 				r.setpName(rs.getString("P_NAME"));
-				list.add(r);
+				r.setmImage(rs.getString("R_PHOTO1"));
+				list2.add(r);
 			}
 		}catch(SQLException e) {
 			e.printStackTrace();
@@ -116,7 +154,7 @@ public class ReviewDao {
 			close(rs);
 			close(pstmt);
 		}
-		return list;
+		return list2;
 	}
 	
 	public List<Review> reviewPullList(Connection conn, int cPage, int numPerPage, int mNo) {
@@ -127,6 +165,8 @@ public class ReviewDao {
 		try {
 			pstmt = conn.prepareStatement(prop.getProperty("pullReview"));
 			pstmt.setInt(1, mNo);
+			pstmt.setInt(2,(cPage-1)*numPerPage+1);
+			pstmt.setInt(3, cPage*numPerPage);
 			
 			rs=pstmt.executeQuery();
 			while(rs.next()) {
@@ -136,6 +176,9 @@ public class ReviewDao {
 				r.setpNo(rs.getInt("P_NO"));
 				r.setpName(rs.getString("P_NAME"));
 				r.setodpNo(rs.getInt("P_NO"));
+				r.setoPaydate(rs.getDate("O_PAYDATE"));
+				r.setodQTY(rs.getInt("OD_QTY"));
+				r.setpImage(rs.getString("P_IMAGE1"));
 				list.add(r);
 			}
 		}catch(SQLException e) {
@@ -166,6 +209,25 @@ public class ReviewDao {
 		}
 		return result;
 	}
+	public int reviewPullCount(Connection conn, int mNo) {
+		PreparedStatement pstmt=null;
+		ResultSet rs=null;
+		int result=0;
+		try {
+			pstmt=conn.prepareStatement(prop.getProperty("reviewPullCount"));
+			pstmt.setInt(1, mNo);
+			rs=pstmt.executeQuery();
+			if(rs.next()) {
+				result=rs.getInt("cnt");
+			}
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rs);
+			close(pstmt);
+		}
+		return result;
+	}
 	
 	
 	public int reviewDelete(Connection conn, Review r, int oNo, int pNo) {
@@ -184,5 +246,44 @@ public class ReviewDao {
 		}
 		return result;
 	}
-
+	
+	public int updatePoint(Connection conn, int mPoint, int mNo) {
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		int result = 0;
+		try {
+			pstmt = conn.prepareStatement(prop.getProperty("updatePoint"));
+			pstmt.setInt(1, mPoint);
+			pstmt.setInt(2, mNo);
+			
+			result = pstmt.executeUpdate();
+		}catch(Exception e) {
+			e.printStackTrace();
+		}finally {
+			close(rs);
+			close(pstmt);
+		}
+		return result;
+	}
+	
+	public int updateReview(Connection conn, int rNo, String rTitle, String rContent, String mImage) {
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		int result = 0;
+		try {
+			pstmt = conn.prepareStatement(prop.getProperty("updateReview"));
+			pstmt.setString(1, rTitle);
+			pstmt.setString(2, rContent);
+			pstmt.setString(3, mImage);
+			pstmt.setInt(4, rNo);
+			
+			result = pstmt.executeUpdate();
+		}catch(Exception e) {
+			e.printStackTrace();
+		}finally {
+			close(rs);
+			close(pstmt);
+		}
+		return result;
+	}
 }

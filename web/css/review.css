@@ -11,38 +11,11 @@
     margin-bottom: 20px;
 }
 .written-reviews-button{
-    border-start-start-radius:5px ;
-    border-bottom: none;
+    border:none;
+	background-color: white;
+	font-size: 23px;
 }
-.reviews-sort{
-    display: grid;
-    grid-template-columns: 800px;
-}
-.search-radio{
-    width:70px;
-    height: 30px;
-    align-content: center;
-    border: 1px solid #000;
-    text-align: start;
-  
-}
-.search-month{
-    display: flex;
-    justify-content: flex-start;
-  
-}
-.search-month input:hover{
-    background:rgba(192,192,192, 0.3);
-    
-}
-.search-month input{
-    text-align: center;
-}
-.search-year{
-    padding-left: 30px;
 
-
-}
 table{
     height: auto;
 }
@@ -52,12 +25,6 @@ table{
     border-bottom: 1px solid #000;
 }
 
-.reviews-table{
-    height: 300px;
-    display: block;
-    margin: 10px 0;
-    border-bottom: 1px solid #000;
-}
 .reviews-guide{
     margin: 10px 0;
     background:rgba(192,192,192, 0.5);
@@ -66,11 +33,7 @@ table{
 td.reviews-talbe-group>th,td.reviews-talbe-group>tr{
     display: block;
 }
-th,td{
-    width: auto;
-    height: 30px;
-    text-align: center;
-}
+
 /* reviews table */
 .reviews-container-group{
     margin: 10px 0;
@@ -81,17 +44,55 @@ th,td{
     width:auto;
     height: 350px;
 }
-.reviews-table-group1{
-    padding:0  20px;
+
+#reviewTable{
+	margin:auto;
+	text-align:center;
+	width:50%;
+	margin-bottom: 100px;
+}
+
+th,td{
+    width: auto;
+    height: 30px;
     text-align: center;
-    border-bottom: 1px solid #000;
+}
+
+#pageBar{
+	display:flex;
+	width:auto;
+	justify-content: center;
+}
+
+/* 라디오 버튼 css */
+.box-radio-input input[type="radio"]{
+    display:none;
     
 }
-.reviews-button-group{
-    width: auto;
-    height: auto;
-    margin: 20px 0;
-    display: block;
-   position: relative;
-   margin-left : 20px;
+
+.box-radio-input input[type="radio"] + span{
+    display:inline-block;
+    background:none;
+    border:1px solid #dfdfdf;    
+    padding:0px 10px;
+    text-align:center;
+    height:35px;
+    line-height:33px;
+    font-weight:500;
+    cursor:pointer;
+    width:100px;
+}
+
+.box-radio-input input[type="radio"]:checked + span{
+    border:1px solid #23a3a7;
+    background:#23a3a7;
+    color:#fff;
+}
+
+.search-date{
+	width:100px;
+}
+
+.writer-container-items input{
+	margin-bottom: 15px;
 }

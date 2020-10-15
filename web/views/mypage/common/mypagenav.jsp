@@ -20,7 +20,7 @@
 		<li><a href="<%=request.getContextPath() %>/couponList">쿠폰</a></li>
 		<li><a href="<%=request.getContextPath() %>/pointPageView.do">포인트</a></li>
 		<li class="mypage_left_title1">나의활동</li>
-		<li><a href="<%=request.getContextPath() %>/review/reviewList">리뷰</a></li>
+		<li><a href="<%=request.getContextPath() %>/review/reviewCanList">리뷰</a></li>
 		<li>맛취향</li>
 		<li>쇼핑찜</li>
 		<li><a href="<%=request.getContextPath() %>/questionList">1:1문의</a></li>
