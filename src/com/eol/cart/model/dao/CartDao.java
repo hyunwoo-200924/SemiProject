@@ -138,12 +138,12 @@ public class CartDao {
 	}
 	
 	//장바구니 부분 삭제
-	public int deleteCart(Connection conn, int mNo, int pNo) {
+	public int deleteCartYs(Connection conn, int mNo, int pNo) {
 		PreparedStatement pstmt = null;
 		int result = 0;
 		
 		try {
-			pstmt = conn.prepareStatement(prop.getProperty("deleteCart"));
+			pstmt = conn.prepareStatement(prop.getProperty("deleteCartYs"));
 			pstmt.setInt(1, mNo);
 			pstmt.setInt(2, pNo);
 			result = pstmt.executeUpdate();

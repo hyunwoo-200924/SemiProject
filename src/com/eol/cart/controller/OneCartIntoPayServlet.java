@@ -36,7 +36,6 @@ public class OneCartIntoPayServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		Member m = (Member)request.getSession().getAttribute("loginMember");
-		int pNo=Integer.parseInt(request.getParameter("pNo"));
 		if(m !=null) {
 			//회원 일때
 			
@@ -54,7 +53,7 @@ public class OneCartIntoPayServlet extends HttpServlet {
 		}else {
 			//비회원 일때
 			List<Product> list = (List)request.getSession().getAttribute("nonCartList");
-			
+			int pNo=Integer.parseInt(request.getParameter("pNo"));
 			for(Product p : list) {
 				if(pNo == p.getpNo()) {
 					List c = new ArrayList();
