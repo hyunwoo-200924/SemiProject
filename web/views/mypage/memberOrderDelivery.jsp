@@ -246,7 +246,7 @@ float: left;
    	           	alert("요청사항 전송 성공!");
    	            $("#returnask").css("display","none");
    	            $("#orderdone").css("display","none");
-   	         	$("#review").css("display","block");
+   	         	$(".toReview").css("display","block");
    	        },
    	        error: function() {
    	            alert("요청사항 전송 실패!");
