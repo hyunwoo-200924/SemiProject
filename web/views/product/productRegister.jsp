@@ -3,7 +3,48 @@
 <link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/css/menu.css">
 <%@ include file="/views/common/header.jsp" %>
 
+<style>
 
+.List_Register_h1{
+	text-aligin:center;
+}
+ol.file-items1 {
+   width: auto;
+   height: auto;
+    display: block;
+    border-bottom: 1px solid #eee;
+    text-aligin: start;
+
+}
+ol.file-items2 {
+    display: list-item;
+    border:none ;
+}
+ol {
+    display: table-caption;
+}
+ul.file-items11 {
+    display: grid;
+    justify-content: start;
+    align-items: center;
+    border:none;
+
+}
+.Register-container {
+    display: grid;
+    grid-template-columns: auto auto;
+    justify-content: initial;
+    align-content: center;
+    border: none;
+}
+ul.file-items1 {
+    display: inline-block;
+}
+.recipe-img-container-group {
+    display: grid;
+    grid-template-columns: auto auto;
+}
+</style>
 	<script>
     $(".uploadImg").change(function(){
         if(this.files && this.files[0]){
@@ -204,18 +245,27 @@
         <div><img src="" frameborder="0"></img></div>
     </li>
     </ol>
-       <ol class="file-items">
+    <div class="recipe-img-container-group">
+       <ol class="file-items11">
            <li>
 
         </li>
         
         <li>
-            상세설명 타이틀1:<input type="text" name="pDetailTitle1" id="pDetailTitle1">상세설명1
-               <textarea value="" name="pDetailContent1" id="pDetailContent1" cols="20" rows="5"></textarea>
-            </li>
+        	<li>
+            상세설명 타이틀1:<input type="text" name="pDetailTitle1" id="pDetailTitle1">
+        	</li>
+        	<li>
             상세설명 타이틀2:<input type="text" name="pDetailTitle2" id="pDetailTitle2">
-           <li>상세설명2
-               <textarea value="" name="pDetailContent2" id="pDetailContent2" cols="20" rows="5"></textarea>
+        	</li>
+        	<li>
+               상세설명1:<textarea value="" name="pDetailContent1" id="pDetailContent1" cols="20" rows="3"></textarea>
+        	</li>
+        	<li>
+               상세설명2:<textarea value="" name="pDetailContent2" id="pDetailContent2" cols="20" rows="3"></textarea>
+        	</li>
+            </li>
+           <li>
             </li>
         </ol>
       
@@ -257,7 +307,7 @@
                 <label for="uploadImg">
                    레시피 이미지4 
                 </label>
-                <input type="file" name="pRecipeImage4" id="pRecipeImage4">
+                <input type="file" name="pRecipeImage4" id="pRecipeImage4"/>
                 <div><img src="" frameborder="0"></img></div>
                 <p>레시피설명4
                     <textarea value="" name="pRecipeContent4" id="pRecipeContent4" cols="20" rows="3"></textarea>
@@ -267,6 +317,7 @@
           <li>
           	HIT~다 !Hit !!<input type="text" name="pHit" id="pHit">
           </li>
+    </div>
         
 
        </ul>

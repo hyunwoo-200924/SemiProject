@@ -607,14 +607,3 @@ element.style {
 
 /* ---------List --- */
 
-.List_Register_h1{
-	text-aligin:center;
-}
-ol.file-items1 {
-   
-    display: block;
-
-}
-ol.file-items2 {
-    display: list-item;
-}

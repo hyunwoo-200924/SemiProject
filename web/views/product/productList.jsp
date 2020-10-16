@@ -236,8 +236,8 @@
                            <%-- <a href="<%=request.getContextPath() %>/cartView.do"> --%> <a
                               href="<%=request.getContextPath() %>/views/cart/cartViewServlet?pNo=<%=p.getpNo() %>"
                               id="cartBtn" name="cartBtn"> <img
-                                 src="<%=request.getContextPath() %>/images/product/cart40px.jpg"
-                                 alt="장바구니" class="cart--img" onclick="cartInsert()">
+                                 src="<%=request.getContextPath() %>/images/mainImages/shopping-cart-solid.svg"
+                                 alt="장바구니" class="cart--img" onclick="cartInsert()" style="width: 35px;height: 35px;">
                            </a>
                         </ul>
                      </div>
