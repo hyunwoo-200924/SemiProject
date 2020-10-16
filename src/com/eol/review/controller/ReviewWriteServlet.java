@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.eol.review.model.vo.Review;
+import com.eol.member.model.vo.Member;
 
  
 @WebServlet("/review/reviewWrite")
@@ -32,7 +32,7 @@ public class ReviewWriteServlet extends HttpServlet {
 		System.out.println("리뷰쓸거"+odoNo);
 		int odpNo = Integer.parseInt(request.getParameter("odpNo").trim());
 		String pName = request.getParameter("pName");
-		String mName = request.getParameter("mName");
+		String mName = ((Member)request.getSession().getAttribute("loginMember")).getmName();
 		request.setAttribute("odoNo",odoNo);
 		request.setAttribute("odpNo",odpNo);
 		request.setAttribute("pName", pName);

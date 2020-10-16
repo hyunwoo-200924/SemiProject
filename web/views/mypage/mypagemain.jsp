@@ -26,7 +26,7 @@
     display: grid;
     grid-template-columns: auto auto auto;
 }
-.recent{
+.recent,.jjim_box{
       border: 1px solid #ccc;
     margin: 10px 5px;
     height: 345px;
@@ -45,7 +45,7 @@
 display:grid;
     text-align: center;
 }
-.recent:hover{
+.recent, .jjim_box:hover{
 cursor: pointer;
 }
 .recent .orderContent{
@@ -103,7 +103,7 @@ cursor: pointer;
                   			if(orderList.size() >= i+1){
                   				Orders o = orderList.get(i);%>	
                   		<input id="oNo" type="hidden" value="<%= o.getoNo() %>">
-	                 	<div class="recent" onclick="fn_orderDetail();">
+	                 	<div class="recent">
                   		<div class="orderContent"><<%= o.getOrderContent() %>></div>
 	                 	<img src="<%= request.getContextPath() %>/upload/product/<%= o.getpImage1() %>" style="width: 200px; height: 200px; margin-bottom: 10px;">
 	                 	<div class="recent_detail">
@@ -127,7 +127,7 @@ cursor: pointer;
                   		<%for(int i = 0; i < 3; i++){ 
 			             	if(JjimList.size() >= i+1){
 			             	WishList w = JjimList.get(i);%>	
-	                 	<div class="recent" style="height:280px">
+	                 	<div class="jjim_box" style="height:280px">
 	                 	<input type="hidden" name="pNo" value=<%= w.getpNo() %>>
 	                 	<img src="<%= request.getContextPath() %>/upload/product/<%= w.getpImage1() %>" style="width: 200px; height: 200px; margin-bottom: 10px;">
 	                 	<div class="jjim">
@@ -144,14 +144,19 @@ cursor: pointer;
          </div>
       </section>
       <script>
-      $('.recent').click(function(){
+      $('.jjim_box').click(function(){
     	  let pNo = $(this).children().eq(0).val();
+    	  console.log(pNo);
     	  location.href='<%= request.getContextPath() %>/product/productView?pNo='+pNo;
+    	  
       })
-      function fn_orderDetail(){
-    	  let oNo = $("#oNo").val();
+    	  
+      $('.recent').click(function(){
+    	  let oNo = $(this).prev().val();
     	  location.href="<%= request.getContextPath() %>/orderDetail.hy?oNo="+oNo;
     	  
-      }
+      })
+    	  
+     
       </script>
 <%@ include file="/views/common/footer.jsp"%>
