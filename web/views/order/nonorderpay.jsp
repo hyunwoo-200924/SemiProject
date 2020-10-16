@@ -373,6 +373,7 @@ function fn_address(){
 					} else {
 						var msg = '결제가 취소처리 되었습니다.';
 						alert(msg);
+						url:"/mainview.do"
 						//[3] 아직 제대로 결제가 되지 않았습니다.
 						//[4] 결제된 금액이 요청한 금액과 달라 결제를 자동취소처리하였습니다.
 					}
