@@ -111,7 +111,7 @@ IMP.init('imp14973248'); // 'iamport' 대신 부여받은 "가맹점 식별코�
 									가격:<span class="items-payitems"><%=p.getpPrice() %><span>원</span>
 								</p>
 								<p class="present-items-title">
-									수량:<input type="text" class="items-payitems" id="odQty" name="odQty" value="<%=p.getpCount() %>" style="border:none" readonly>개
+									수량:<input type="text" class="items-payitems" id="odQty" name="odQty" value="<%=p.getpCount() %>" style="border:none; background: none;" readonly>개
 								</p>
 							</div>
 						</div>
