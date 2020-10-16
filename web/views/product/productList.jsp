@@ -60,11 +60,11 @@
          day="0"+day;
       }
       
-      $('#Tuesday').append(date.getDate()-1);
-      $('#Wednesday').append(day);
-      $('#Thursday').append(date.getDate()+1);
-      $('#Friday').append(date.getDate()+2);
-      $('#Saturday').append(date.getDate()+3);
+      $('#Tuesday').append(date.getDate()+4);
+      $('#Wednesday').append(date.getDate()+5);
+      $('#Thursday').append(date.getDate()+6);
+      $('#Friday').append(day);
+      $('#Saturday').append(date.getDate()+1);
    
       
    });

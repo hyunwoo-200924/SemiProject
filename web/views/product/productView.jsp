@@ -19,17 +19,17 @@ Review r=(Review)request.getAttribute("Review");
 String OrderDay=(String)request.getAttribute("OrderDay");
 	
 Date now = new Date();
-Date day1=new Date(now.getTime()+(1000*60*60*24*-1));//어제 
-Date day2 = new Date(now.getTime()+(1000*60*60*24*+1));//내일
-Date day3= new Date(now.getTime()+1000*60*60*24*+2);//내일모레
-Date day4= new Date(now.getTime()+1000*60*60*24*+3);//3일후
+Date day1 = new Date(now.getTime()+(1000*60*60*24*+1));//내일
+Date day3= new Date(now.getTime()+1000*60*60*24*+4);//내일모레
+Date day5= new Date(now.getTime()+1000*60*60*24*+5);//3일후
+Date day6=new Date(now.getTime()+(1000*60*60*24*+6));//어제 
 SimpleDateFormat sf = new SimpleDateFormat("MM월dd일 E요일");
 
 String today =(String)sf.format(now);
  String Wednesday=sf.format(day1);
- String Thursday=sf.format(day2);
- String Friday=sf.format(day3);
- String Saturday=sf.format(day4);
+ String Thursday=sf.format(day3);
+ String Friday=sf.format(day5);
+ String Saturday=sf.format(day6);
  String choice="";
  
  if(choice.equals(today)){
@@ -197,20 +197,20 @@ String today =(String)sf.format(now);
                             function mouseClick(){
                              
                                 $(".menu-title-choice-wrap").show().clone().insertAfter();
-                                $(".menu-date-text").val("<%=Wednesday%>");
-                                $(".OderDay").val("<%=Wednesday%>");
-                                $(".OderDay").val("<%=Wednesday%>");
+                                $(".menu-date-text").val("<%=today%>");
+                                $(".OderDay").val("<%=today%>");
+                                $(".OderDay").val("<%=today%>");
                             }
                             function mouseClick1(){
                                 $(".menu-title-choice-wrap").show().clone().insertAfter();
-                               	$(".menu-date-text").val("<%=today%>");
-                                $(".OderDay").val("<%=today%>");
-                                $(".OderDay").val("<%=today%>");
+                               	$(".menu-date-text").val("<%=Wednesday%>");
+                                $(".OderDay").val("<%=Wednesday%>");
+                                $(".OderDay").val("<%=Wednesday%>");
                             }
                             function mouseClick2(){
                                 $(".menu-title-choice-wrap").show().clone().insertAfter();
-                                $(".menu-date-text").val("<%=Thursday%>");
-                                $(".OderDay").val("<%=Thursday%>");
+                                $(".menu-date-text").val("<%=Friday%>");
+                                $(".OderDay").val("<%=Friday%>");
                             }
                             function mouseClick3(){
                                 $(".menu-title-choice-wrap").show().clone().insertAfter();
