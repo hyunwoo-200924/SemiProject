@@ -42,7 +42,9 @@ $(".uploadImg").change(function(){
 
 <link rel="stylesheet" type="text/css" 
 href="<%=request.getContextPath() %>/css/review.css">
-    <section class="section-writer-container">
+    <section id="reviewSection">
+<%@ include file="/views/mypage/common/mypagenav.jsp" %>
+	<div>
     <div id="reviewtitle">
     <h1 class="write-title">리뷰 수정하기</h1>
     </div>
@@ -74,6 +76,6 @@ href="<%=request.getContextPath() %>/css/review.css">
             </div>
         </form>
 	            <button  style="border : none; height:30px"  onclick="location.assign('<%=request.getContextPath()%>/review/reviewCanList')">뒤로가기</button>  
-
+	</div>
     </section>
 <%@ include file="/views/common/footer.jsp"%>

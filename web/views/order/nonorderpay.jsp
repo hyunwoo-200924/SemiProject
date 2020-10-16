@@ -223,9 +223,10 @@ IMP.init('imp14973248'); // 'iamport' 대신 부여받은 "가맹점 식별코�
 
 
 						<div class="pay-items">
-							<p class="pay-items-text-left middle">결제 금액</p>
+							<p class="pay-items-text-left middle" style="width: 66px;">결제 금액</p>
 							<%int oPayment = alltotal+3000; %>
-							<input class="pay-items-text-right" id="oPayment" name="oPayment" value="<%=oPayment %>" style="border:none" readonly/><span>원</span>
+							<input class="pay-items-text-right" id="oPayment" name="oPayment" value="<%=oPayment %>" style="border:none; background: none; margin-left: 25px;text-align: center;" readonly/>
+							<span style="margin-left: -15px;margin-top: 5px;">원</span>
 							
 
 						</div>
@@ -233,7 +234,7 @@ IMP.init('imp14973248'); // 'iamport' 대신 부여받은 "가맹점 식별코�
 							<label><input type="checkbox" class="info-agreed" id="agree" value="동의">이용약관에 동의합니다.</label>
 							<textarea style="width: 500px; height: 250px; overflow: scroll">
 							
-							<p>개인정보및 배송지제출에 동의하시겠습니까?</p>
+							개인정보및 배송지제출에 동의하시겠습니까?
 							개인정보의 보유 및 이용기간:
 							 &nbsp;￭ 동의서 제출 후 5년까지 개인정보를 보유하고 이용합니다. 
 							￭ 개인정보는 (재)강원랜드희망재단 폐광지역 사회적경제 지원사업에 한하여 사용됩니다.

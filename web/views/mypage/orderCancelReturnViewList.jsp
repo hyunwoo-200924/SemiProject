@@ -41,7 +41,7 @@
 					<%} %>
 				</div>
 			<%for(OrderDetail od : o.getDetails()){ %>
-			<div class="productView" >
+			<div class="productView" onclick="location.href='<%=request.getContextPath()%>/product/productView?pNo=<%=od.getpNo()%>'" style="cursor: pointer;">
 				<div class="order_pro_img">
 					<img src="<%=request.getContextPath() %>/upload/product/<%=od.getOdproduct().getpImage1() %>" alt="" width="100" height="100">
 				</div>

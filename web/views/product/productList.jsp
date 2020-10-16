@@ -321,8 +321,4 @@
    })
       
 </script>
-
-
-
->>>>>>> branch 'master' of https://github.com/hyunwoo-200924/SemiProject.git
 <%@ include file="/views/common/footer.jsp"%>
