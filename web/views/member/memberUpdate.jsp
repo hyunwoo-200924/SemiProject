@@ -12,6 +12,8 @@
 			case "N": gender[2] = "checked"; break;
 		}
 	}
+	
+	
 %>
 
 <style>
