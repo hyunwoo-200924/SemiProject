@@ -45,6 +45,7 @@
       console.log(today);//10월 오늘날짜로 출력 --%>
       var date=new Date();
       console.log(date);
+   
       var year= date.getFullYear();
       var month=date.getMonth()+1;
       var day = date.getDate();

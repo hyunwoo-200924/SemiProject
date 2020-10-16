@@ -29,7 +29,7 @@
 	</style>
 <section>
         <div class="mainDiv">
-           <div id="joinhead" style="border: red 1px solid;">
+           <div id="joinhead" >
                 <div id="join" style="text-align: center; font-size: 50px; border:none;">주 문 완 료</div>
                 <!-- <div>
                     <table>
