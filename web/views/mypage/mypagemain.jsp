@@ -71,7 +71,7 @@ cursor: pointer;
 <%@ include file="/views/mypage/common/mypagenav.jsp" %>
          <div class="mypage">
             <div class="mypage_top">
-               <div class="mypage_info">
+               <div class="mypage_info" style="background: #0382a4;">
                   <p><%=m.getmName() %></p><span><%=m.getmAddress() %></span>
                </div>
                <div class="mypage_point">
