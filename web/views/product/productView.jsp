@@ -456,17 +456,17 @@ String today =(String)sf.format(now);
                          <div class="rating_wrap">
                              <span class="rating_star">
                                  <span class="star">
-                                     <div class="start_group" data-rate="<%=p.getpHit() %>"  src="<%=request.getContextPath()%>">
+                                     <div class="start_group" data-rate="<%=p.getpHit() %>">
                                          <span  alt="별모양" id="star1">★</span> 
                                          <span  alt="별모양" id="star1" >★</span>
                                          <span  alt="별모양" id="star1" >★</span>
                                          <span  alt="별모양" id="star1" >★</span>
                                          <span  alt="별모양" id="star1" >★</span>
                                      
-                                         <span style="width:95.39999%;">
+                                         <p style="width:95.39999%;">
                                              <span class="hide">별점</span>
                                              <span id="num" alt=""></span>
-                                         </span>
+                                         </p>
                                      
                                      
                                          
@@ -479,12 +479,19 @@ String today =(String)sf.format(now);
                                 	   phit+=1;
                                     $('#num').text(<%=p.getpHit() %>);
                                    }else  $('#num').text(<%=p.getpHit() %>);
+                         				
                                    
                               
                                    var star= $('#num').text(<%=p.getpHit() %>);
-                         				$('.start_group').find('div:nth-child(-n+star)').attr("color","blue");
-                                  
-                                
+                         				var rating=$('#star1');
+                         				rating.each(function(){
+                         					var starNum=phit;
+                         					console.log(starNum);
+                         					$(this).find('div span:nth-child(-n'+starNum+')').css({color:'#F0522'});
+                         					
+                         					});
+						
+                         			
 /* 
                                      $(".start_group").each(function(){
                                          const targetScore = (parseInt($(this).prop('data-rate')));//형변환해주고 
