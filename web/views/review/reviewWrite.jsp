@@ -1,15 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+   pageEncoding="UTF-8"%>
 <%@ include file="/views/common/header.jsp"%>
 <%@ page
-	import="java.util.List,com.eol.review.model.vo.Review,com.eol.member.model.vo.Member"%>
-	
-<%@ include file="/views/mypage/common/mypagenav.jsp" %>
+   import="java.util.List,com.eol.review.model.vo.Review,com.eol.member.model.vo.Member"%>
+   
+<%-- <%@ include file="/views/mypage/common/mypagenav.jsp" %> --%>
 <%
-	int odoNo = (int)request.getAttribute("odoNo");
-	int odpNo = (int)request.getAttribute("odpNo");
-	String pName = (String)request.getAttribute("pName");
-	Member m= (Member)session.getAttribute("loginMember");
+   int odoNo = (int)request.getAttribute("odoNo");
+   int odpNo = (int)request.getAttribute("odpNo");
+   String pName = (String)request.getAttribute("pName");
+   Member m= (Member)session.getAttribute("loginMember");
 %>
 <script>
 
@@ -26,7 +26,9 @@ $(".uploadImg").change(function(){
 
 <link rel="stylesheet" type="text/css" 
 href="<%=request.getContextPath() %>/css/review.css">
-    <section class="section-writer-container">
+    <section id="reviewSection">
+<%@ include file="/views/mypage/common/mypagenav.jsp" %>
+	<div>
     <div id="reviewtitle">
     <h1 class="write-title">리뷰 작성하기</h1>
     </div>
@@ -49,11 +51,11 @@ href="<%=request.getContextPath() %>/css/review.css">
                     <dd>
                         <textarea resize="none" name="content" id="reviewContent" cols="90" rows="6" placeholder="내용을 작성하세요." required></textarea>
                     </dd>
-	            	<input type="submit" value="등록하기" style="border : none">  
+                  <input type="submit" value="등록하기" style="border : none">  
                 </dl>
             </div>
         </form>
 	            <button  style="border : none; height:30px"  onclick="location.assign('<%=request.getContextPath()%>/review/reviewCanList')">뒤로가기</button>  
-
+	</div>
     </section>
 <%@ include file="/views/common/footer.jsp"%>

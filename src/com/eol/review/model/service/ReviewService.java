@@ -105,5 +105,11 @@ public class ReviewService {
 		return result;
 	}
 	
-	
+	public List<Review> selectDate(int cPage, int numPerPage, String ydate, int mNo) {
+		Connection conn=getConnection();
+		List<Review> list=dao.selectDate(conn,cPage,numPerPage, ydate, mNo);
+		close(conn);
+		
+		return list;
+	}
 }
