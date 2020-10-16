@@ -41,7 +41,7 @@ public class ProductListServlet extends HttpServlet {
 		}catch(NumberFormatException e) {
 			cPage=1;
 		}
-	int numPerPage=5;
+	int numPerPage=6;
 	
 	List<Product> list=new ProductService().productList(cPage,numPerPage);
 	int totalData=new ProductService().productCount();

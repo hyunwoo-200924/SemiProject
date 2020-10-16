@@ -31,7 +31,10 @@ IMP.init('imp14973248'); // 'iamport' 대신 부여받은 "가맹점 식별코�
 		<form id="order" action="<%=request.getContextPath() %>/orderpay.do" method="post" >
 		<div class="present-section-container">
 			<!-- 배송지블록 개인정보 -->
+			<div class="ddivv">
+			<div class="ddivv1">
 			<div class="present-section-container-group1">
+			<div class="present--group">
 				<div class="present-section-group1">
 					<div class="present-items-group1-1">
 						<div class="present-order-person">
@@ -47,7 +50,7 @@ IMP.init('imp14973248'); // 'iamport' 대신 부여받은 "가맹점 식별코�
 						</div>
 					</div>
 				</div>
-
+			</div>
 				<!-- 배송지 주소 입력 블록 -->
 				<div class="present-section-group2">
 					<div class="present-items-group2-2">
@@ -76,6 +79,7 @@ IMP.init('imp14973248'); // 'iamport' 대신 부여받은 "가맹점 식별코�
 
 					</div>
 				</div>
+		</div>
 				<!-- 배송 도착날짜 확인및 상품 확인 블록 -->
 
 				<div class="present-section-group4">
@@ -125,7 +129,7 @@ IMP.init('imp14973248'); // 'iamport' 대신 부여받은 "가맹점 식별코�
 						<input type="hidden" name="oAmount" value="<%=oAmount %>" style="border:none" readonly>
 					</div>
 				</div>
-
+			</div>  <!-- presentgroup그리드 나누는rj -->
 				<!-- 할인및 포인트 적용 블록 -->
 				<!-- <div class="present-section-group5">
 					<div class="present-items-group5-5">
@@ -226,13 +230,24 @@ IMP.init('imp14973248'); // 'iamport' 대신 부여받은 "가맹점 식별코�
 						</div>
 						<div class="info-agreed">
 							<label><input type="checkbox" class="info-agreed" id="agree" value="동의">이용약관에 동의합니다.</label>
-							<textarea style="width: 500px; height: 250px; overflow: scroll"><p>개인정보및 배송지제출에 동의하시겠습니까?</p></textarea>
+							<textarea style="width: 500px; height: 250px; overflow: scroll">
+							<p>개인정보및 배송지제출에 동의하시겠습니까?</p>
+							개인정보의 보유 및 이용기간:
+							 &nbsp;￭ 동의서 제출 후 5년까지 개인정보를 보유하고 이용합니다. 
+							￭ 개인정보는 (재)강원랜드희망재단 폐광지역 사회적경제 지원사업에 한하여 사용됩니다.
+							 &nbsp;개인정보 제공 동의 거부 및 제한사항
+							  &nbsp;￭ 개인정보 제공 동의를 거부할 권리가 있습니다. 단, 개인정보 
+									제공 동의 거부 시 사실확인 조회 어려움 발생 등으로 지원 
+									대상자 선정 시 불이익을 받을 수 있습니다.
+							 &nbsp;※ 제공된 개인정보의 이용을 거부하고자 할 경우에는 정정·삭제·
+									파기를 요구할 수 있습니다.
+							</textarea>
 						</div>
 						<div class="pay-button">
 							<!-- 결제하기 버튼을 누르면, 1. 걸제 api실행
                     2. 카트에 담긴 데이터와 그와 연결된 product데이터와 위에 입력한 배송정보를 orders와 orderdetail에 insert -->
-							<input type="button" id="pay" value="결제하기" class="pay-deside-button" style="width: 500px; height: 50px; justify-content: center; margin: 20px 0;">
-							<input type="button" id="orderCheak" class="pay-deside-button" style="display:none; width: 500px; height: 50px; justify-content: center; margin: 20px 0;" onclick="fn_dd();" value="결제완료 확인">
+							<input type="button" id="pay" value="결제하기" class="pay-deside-button" style="width: 500px; height: 50px; justify-content: center; margin: 20px 0;background-color:#191970; color: #eee;">
+							<input type="button" id="orderCheak" class="pay-deside-button" style="display:none; width: 500px; height: 50px; justify-content: center; margin: 20px 0;background-color:#191970; color: #eee;" onclick="fn_dd();" value="결제완료 확인">
 						</div>
 					</div>
 				</div>

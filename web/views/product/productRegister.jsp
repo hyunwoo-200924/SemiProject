@@ -130,8 +130,12 @@
 </script>
 <body>
 <section class="product-resiter">
-    <h1>상품등록</h1>
+    <h1 class="List_Register_h1">상품등록</h1>
     <form id="form" name="form" action="<%=request.getContextPath() %>/product/productWriteEnd" method="post" class="product-resiter-container" enctype="multipart/form-data">
+      <div class="Register-container">
+      
+      
+      
        <ol>
            <li>상품이름:<input type="text"required name="pName" value="" id="pName"></li>
            <li>상품가격:<input type="text" name="pPrice" value="" id="pPrice">원</li>
@@ -143,7 +147,8 @@
            <li>맛:<input type="text" name="pTaste" value="" id="pTaste" placeholder="예)1:보통 2: 약간 3:중간 4:매우 숫자로표기"></li>
            <li>상품타이틀:<input type="text" name="pDetailMain" value="" id="pDetailMain" placeholer="예)부채살스테이크"></li>
        </ol>
-       <ol class="file-items">
+      <div class="Register-mdi-container">
+       <ol class="file-items1">
                                
                     <li class="file--container">
                     <label for="uploadImg">
@@ -175,7 +180,7 @@
             </li>
          </ol>
 
-    <ol class="file-items">
+    <ol class="file-items2">
 
         <li class="file--container">
             <label for="uploadImg">
@@ -213,6 +218,7 @@
                <textarea value="" name="pDetailContent2" id="pDetailContent2" cols="20" rows="5"></textarea>
             </li>
         </ol>
+      
         <ul class="file-items1">
             
          
@@ -264,12 +270,14 @@
         
 
        </ul>
+      </div>
        <div class="product-btn-box">
            <button type="submit" class="product-register" id="addProduct" onclick="location.replace<%=request.getContextPath()%>/product/productWriteEnd">등록</button>
         
 
        </div>
 
+      </div>
 
     </form>
     

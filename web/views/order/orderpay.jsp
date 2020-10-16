@@ -42,13 +42,13 @@ IMP.init('imp14973248'); // 'iamport' 대신 부여받은 "가맹점 식별코�
 						<div class="present-order-person">
 							<h3 class="info-title">주문자</h3>
 							
-							이름 <input class="order-person-group" id="oName" name="oName" type="text" value="<%= m.getmName() %>" style="border:none" readonly/>
+							이름 <input class="order-person-group" id="oName" name="oName" type="text" value="<%= m.getmName() %>" style="" readonly/>
 							연락처 <input class="order-person-group" id="oPhone" name="oPhone" type="text" value="<%=m.getmPhone() %>" style="border:none" readonly/>
 							
 						</div>
 					</div>
 				</div>
-
+			<div id="divv"><!--블록 시험구간  -->
 				<!-- 배송지 주소 입력 블록 -->
 				<div class="present-section-group2">
 					<div class="present-items-group2-2">
@@ -131,6 +131,8 @@ IMP.init('imp14973248'); // 'iamport' 대신 부여받은 "가맹점 식별코�
 						<input type="hidden" name="oAmount" value="<%=oAmount %>">
 					</div>
 				</div>
+			
+			</div>	<!--블록 시험구간  -->
 
 				<!-- 할인및 포인트 적용 블록 -->
 				<div class="present-section-group5">

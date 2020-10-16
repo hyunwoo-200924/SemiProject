@@ -347,11 +347,9 @@ String today =(String)sf.format(now);
                                 		         
                                 	
                                 		 var tdprice1=(parseInt(<%=p.getpPrice()%>));
-                                		 var discount1=(parseInt(<%=p.getpDiscount()%>));
-                                		 if(discount1===0){
-                                			 var discount=(discount1+1);
-                                		 }
-                                		 console.log(discount);
+                                		 const discount1=(parseInt(<%=p.getpDiscount()%>));
+                                			 var discount=discount1+1;
+                                	
                                 		var $tdprice= tdprice1-(tdprice1/(discount*100));
                                				console.log("<%=p.getpNo()%>");
 
@@ -468,15 +466,24 @@ String today =(String)sf.format(now);
                                              <span class="hide">별점</span>
                                              <span id="num" alt=""></span>
                                          </span>
+                                     
+                                     
                                          
                                      </div>
                                      <script>
                                      //별점표시, 점수주기
                                      console.log("숫자냐"+"<%=p.getpHit() %>");
-                                   var phit=parseInt(<%=p.getpHit() %>);
+                                   var phit=(<%=p.getpHit() %>);
+                                   if(phit===null){
+                                	   phit+=1;
                                     $('#num').text(<%=p.getpHit() %>);
+                                   }else  $('#num').text(<%=p.getpHit() %>);
+                                   
+                              
                                    var star= $('#num').text(<%=p.getpHit() %>);
-                         				$('#star1').next(star).attr("color","blue");
+                         				$('.start_group').find('div:nth-child(-n+star)').attr("color","blue");
+                                  
+                                
 /* 
                                      $(".start_group").each(function(){
                                          const targetScore = (parseInt($(this).prop('data-rate')));//형변환해주고 
@@ -517,12 +524,10 @@ String today =(String)sf.format(now);
                               		
                      
                                   
-                                  
                                   </script>   
                                      <span class="span-text">리뷰수
-                                         <em></em>
+                                         <p type="text" class="reviewsNUm"></p>
                                      </span>
-                  
                                 
                                      <!-- 클릭시 상세탭에 div#recipe_wrap영역으로 이동 -->
                                      <span class="span-text">
