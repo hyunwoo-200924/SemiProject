@@ -82,7 +82,7 @@ IMP.init('imp14973248'); // 'iamport' 대신 부여받은 "가맹점 식별코�
 				<div class="present-section-group4">
 					<div class="present-items-group4-4">
 					<%
-						int oAmount = 1;
+						int oAmount = 0;
 						String oDate = "";
 						
 						for(Cart c : clist){
