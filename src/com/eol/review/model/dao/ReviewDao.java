@@ -44,10 +44,7 @@ public class ReviewDao {
 				r.setrTitle(rs.getString("R_TITLE"));
 				r.setrContent(rs.getString("R_CONTENT"));
 				r.setrPhoto1(rs.getString("R_PHOTO1"));
-				r.setrPhoto2(rs.getString("R_PHOTO2"));
-				r.setrPhoto3(rs.getString("R_PHOTO3"));
 				r.setrRdate(rs.getDate("R_RDATE"));
-				r.setrStarScore(rs.getInt("R_STARSCORE"));
 			}
 		}catch(SQLException e) {
 			e.printStackTrace();
@@ -104,10 +101,7 @@ public class ReviewDao {
 				r.setrTitle(rs.getString("R_TITLE"));
 				r.setrContent(rs.getString("R_CONTENT"));
 				r.setrPhoto1(rs.getString("R_PHOTO1"));
-				r.setrPhoto2(rs.getString("R_PHOTO2"));
-				r.setrPhoto3(rs.getString("R_PHOTO3"));
 				r.setrRdate(rs.getDate("R_RDATE"));
-				r.setrStarScore(rs.getInt("R_STARSCORE"));
 				r.setpName(rs.getString("P_NAME"));
 				r.setmImage(rs.getString("R_PHOTO1"));
 				list2.add(r);
@@ -140,10 +134,7 @@ public class ReviewDao {
 				r.setrTitle(rs.getString("R_TITLE"));
 				r.setrContent(rs.getString("R_CONTENT"));
 				r.setrPhoto1(rs.getString("R_PHOTO1"));
-				r.setrPhoto2(rs.getString("R_PHOTO2"));
-				r.setrPhoto3(rs.getString("R_PHOTO3"));
 				r.setrRdate(rs.getDate("R_RDATE"));
-				r.setrStarScore(rs.getInt("R_STARSCORE"));
 				r.setpName(rs.getString("P_NAME"));
 				r.setmImage(rs.getString("R_PHOTO1"));
 				list2.add(r);
@@ -309,10 +300,7 @@ public class ReviewDao {
 				r.setrTitle(rs.getString("R_TITLE"));
 				r.setrContent(rs.getString("R_CONTENT"));
 				r.setrPhoto1(rs.getString("R_PHOTO1"));
-				r.setrPhoto2(rs.getString("R_PHOTO2"));
-				r.setrPhoto3(rs.getString("R_PHOTO3"));
 				r.setrRdate(rs.getDate("R_RDATE"));
-				r.setrStarScore(rs.getInt("R_STARSCORE"));
 				r.setmNo(rs.getInt("M_NO"));
 				r.setmImage(rs.getString("R_PHOTO1"));
 				r.setpName(rs.getString("P_NAME"));

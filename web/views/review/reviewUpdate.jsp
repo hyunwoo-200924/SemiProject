@@ -5,7 +5,6 @@
 <%@ page
 	import="java.util.List,com.eol.review.model.vo.Review,com.eol.member.model.vo.Member"%>
 	
-<%@ include file="/views/mypage/common/mypagenav.jsp" %>
 <%
 	int rNo = (int)request.getAttribute("rNo");
 	int odoNo = (int)request.getAttribute("odoNo");
