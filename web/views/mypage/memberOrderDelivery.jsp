@@ -112,7 +112,6 @@ float: left;
                     <input type="hidden" name="odpNo" id="odpNo" value="<%=od.getpNo()%>">
                     <input type="hidden" name="pName" id="pName" value="<%=od.getOdproduct().getpName()%>">
                     <input type="hidden" name="mName" id="mName" value="<%=m.getmName()%>">
-                    </form>
                     <%System.out.println("리뷰"+od.getOdNo()+od.getpNo()+od.getOdproduct().getpName()+m.getmName()); %>
                         <div class="orderproduct">
                             <div class="order_pro_img">
@@ -123,7 +122,7 @@ float: left;
                                 <p><%=od.getOdproduct().getpPrice() %>원 / 수량 : <%=od.getOdQty() %></p>
                             </div>
 			                            <%if(o.getoDeliveryStatus().equals("구매확정")){ %>
-			                            <button id="toReview"  
+			                            <input type="button" id="toReview"  
 			                            			style="
 														    margin-left: 400px;
 														    margin-top: 100px;
@@ -134,7 +133,8 @@ float: left;
 															border-radius: 5px;
 															text-decoration: none;
 															color: white;
-														">리뷰쓰기</button>
+														" value="리뷰쓰기">
+                    </form>
 			                            <%} %>
                         </div>
                         <%} %>
