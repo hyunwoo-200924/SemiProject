@@ -114,10 +114,10 @@ float: left;
                     <input type="hidden" name="mName" id="mName" value="<%=m.getmName()%>">
                     <%System.out.println("리뷰"+od.getOdNo()+od.getpNo()+od.getOdproduct().getpName()+m.getmName()); %>
                         <div class="orderproduct">
-                            <div class="order_pro_img">
+                            <div class="order_pro_img" onclick="location.href='<%=request.getContextPath()%>/product/productView?pNo=<%=od.getpNo()%>'" style="cursor: pointer;">
                                 <img src="<%=request.getContextPath() %>/upload/product/<%=od.getOdproduct().getpImage1() %>" alt="" width="150" height="150">
                             </div>
-                            <div class="order_pro_name">
+                            <div class="order_pro_name" onclick="location.href='<%=request.getContextPath()%>/product/productView?pNo=<%=od.getpNo()%>'" style="cursor: pointer;">
                                 <h3><%=od.getOdproduct().getpName() %></h3>
                                 <p><%=od.getOdproduct().getpPrice() %>원 / 수량 : <%=od.getOdQty() %></p>
                             </div>

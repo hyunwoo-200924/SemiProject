@@ -61,3 +61,22 @@
        
 
    }
+  /* jh--수정  */
+  /*  */
+  /*  */
+  /*  */
+  /*  */
+  /*  */
+  /* 상품 이미지 정보 칸수량 숫자 개랑 붙여놓음  */
+input#odQty {
+    text-align: right;
+}
+.pay-deside-button{
+	background:#191970;
+}
+
+
+  /* 결제창안에 인풋태그 하얀색에서 바탕색으로 변신 */
+input#oPayment {
+    background: #0382a4;
+}
