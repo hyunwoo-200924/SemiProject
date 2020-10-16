@@ -69,7 +69,7 @@ public class ReviewWriteEndServlet extends HttpServlet {
 		r.setrTitle(mr.getParameter("title"));
 		r.setrContent(mr.getParameter("content"));
 		r.setmImage(mr.getFilesystemName("upload"));//리네임된 파일명을 가져옴
-		r.setrNo(Integer.parseInt(mr.getParameter("rNo")));
+		//r.setrNo(Integer.parseInt(mr.getParameter("rNo")));
 		//파일이름은 rename,되어있는 파일이름을 가져와야하기때문에W
 		//mr.getFilesystemName("name")메소드를이용
 		//n.setFilePath(request.getParameter("upload")

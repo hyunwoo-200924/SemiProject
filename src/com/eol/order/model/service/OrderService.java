@@ -15,6 +15,7 @@ import com.eol.order.model.vo.OrderDetail;
 import com.eol.order.model.vo.Orders;
 import com.eol.order.model.vo.WishList;
 import com.eol.product.model.vo.Product;
+import com.eol.qna.model.vo.Paging;
 
 public class OrderService {
 	
@@ -137,7 +138,18 @@ public class OrderService {
 		return result;
 	}
 
-	//찜한 목록 가져오기
+	//찜한 목록 가져오기 페이징ㅇㅇ
+	public List<WishList> selectJjim(Paging pg, int mNo) {
+		Connection conn = getConnection();
+		
+		List<WishList> list = dao.selectJjim(conn, pg, mNo);
+		
+		close(conn);
+		
+		return list;
+	}
+	
+	//찜한 목록 가져오기 페이징 ㄴㄴ
 	public List<WishList> selectJjim(int mNo) {
 		Connection conn = getConnection();
 		
@@ -219,6 +231,17 @@ public class OrderService {
 		Orders o = dao.selectorder(conn, oNo);
 		close(conn);
 		return o;
+	}
+	
+	//위시리스트 총 개수
+	public int getListCount(int mNo) {
+		Connection conn = getConnection();
+
+		int result = dao.getListCount(conn, mNo);
+
+		close(conn);
+
+		return result;
 	}
 	
 	

@@ -1,15 +1,42 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 
-<%@ page import="java.util.List, com.eol.member.model.vo.Member, com.eol.order.model.vo.Orders, com.eol.order.model.vo.WishList" %>
+<%@ page import="java.util.List, com.eol.member.model.vo.Member, com.eol.order.model.vo.Orders, com.eol.order.model.vo.WishList, com.eol.qna.model.vo.Paging" %>
 
 <%
 	Member m = (Member) request.getSession().getAttribute("loginMember");
 	List<WishList> list = (List)request.getAttribute("WishList");
 	
+	Paging pg = (Paging)request.getAttribute("pg");
+	int listCount = pg.getListCount();
+	int currentPage = pg.getCurrentPage();
+	int maxPage = pg.getMaxPage();
+	int startPage = pg.getStartPage();
+	int endPage = pg.getEndPage();
+	
+	
 	
 %>
 <style>
+.paging{
+		width: 300px;
+	    grid-column-start: 2;
+	    margin-left: 200px;
+	    margin-top: -45px;
+	}
+	.paging span{
+		display: inline-block;
+		width: 40px;
+		height: 40px;
+		line-height: 40px;
+	    margin: 0 -3px;
+	}
+	
+	.paging > span:hover{
+		cursor:pointer;
+		background: black;
+		color: white;
+	}
 .ono{
     padding-top: 25px;
     font-size: 25px;
@@ -58,7 +85,7 @@ content='';
 				
 				<div class="user_request">
 				
-					<div class="ono"><b>총  <%= list.size() %>개</b></div>
+					<div class="ono"><b>총  <%= listCount %>개</b></div>
 					<%for(WishList w : list){ %>
 					<div class="orderDetailContent">
 						<img src = '<%= request.getContextPath()%>/upload/product/<%= w.getpImage1() %>' style="width: 200px; height: 200px;">
@@ -74,8 +101,36 @@ content='';
 				
 				</div>
 			</div>
+			
+			<!-- 페이징처리  -->
+			<div class="paging" align="center">
+				<span onclick="location.href='<%= request.getContextPath()%>/wishListView?currentPage=1'">&lt;&lt;</span>
+				<span id="before" onclick="fn_before();">&lt;</span>
+				<%for(int p = startPage; p <= endPage; p++) { %>
+					<%if(p == currentPage) { %>
+					<span id="choosen" style="background: black; color: white; cursor: none;"><%= p %></span>
+					<%} else { %>
+						<span class="numBtn" onclick="location.href='<%= request.getContextPath()%>/wishListView?currentPage=<%= p %>'"><%= p %></span>
+					<%} %>
+				<%} %>
+				<span id="after" onclick="fn_after();">&gt;</span>
+				<span onclick="location.href='<%= request.getContextPath()%>/wishListView?currentPage=<%= endPage %>'">&gt;&gt;</span>
+			</div>
 		</section>
 		<script>
+		//페이징
+		function fn_before(){
+			if(<%= currentPage %> <= 1) {
+				return false;
+			}
+			location.href='<%= request.getContextPath()%>/wishListView?currentPage=<%= currentPage - 1 %>';
+		}
+		function fn_after(){
+			if(<%= currentPage == endPage %>){
+				return false;
+			}
+			location.href='<%= request.getContextPath()%>/wishListView?currentPage=<%= currentPage + 1 %>';
+		}
 		$('.baguny').mouseenter(function(){
 			$(this).css('width',"40px").css('height',"40px");
 		}).mouseleave(function(){

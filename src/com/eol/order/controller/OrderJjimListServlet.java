@@ -14,6 +14,7 @@ import com.eol.member.model.vo.Member;
 import com.eol.order.model.service.OrderService;
 import com.eol.order.model.vo.Orders;
 import com.eol.order.model.vo.WishList;
+import com.eol.qna.model.vo.Paging;
 
 /**
  * Servlet implementation class OrderJjimListServlet

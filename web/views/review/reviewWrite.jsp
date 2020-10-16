@@ -22,7 +22,7 @@ $(".uploadImg").change(function(){
         reader.readAsDataURL(this.files[0]);
     }
 });
-</script>
+</script>`
 
 <link rel="stylesheet" type="text/css" 
 href="<%=request.getContextPath() %>/css/review.css">

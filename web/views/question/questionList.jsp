@@ -24,6 +24,11 @@
 		line-height: 40px;
 	    margin: 0 -3px;
 }
+	
+	.paging > span:hover{
+		cursor:pointer;
+		background: black;
+		color: white;
 	}
 /* 	#choosen{ */
 /* 		background: black; */
@@ -38,11 +43,6 @@
 	}
 	.list:hover{
 		cursor:pointer;
-	}
-	.paging > span:hover{
-		cursor:pointer;
-		background: black;
-		color: white;
 	}
 	.list_form .contentBox2{
 	    margin-top: 10px;
