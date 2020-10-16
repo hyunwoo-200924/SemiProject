@@ -107,7 +107,7 @@ float: left;
 			                    </div>
                     <div class="productView">
                     <%for(OrderDetail od : list) {%>
-                    <form action="<%=request.getContextPath() %>/review/reviewWrite" method="post" id="submitReview">
+                    <form method="post" id="submitReview">
                     <input type="hidden" name="odNo" id="odNo" value="<%=od.getOdNo()%>">
                     <input type="hidden" name="odpNo" id="odpNo" value="<%=od.getpNo()%>">
                     <input type="hidden" name="pName" id="pName" value="<%=od.getOdproduct().getpName()%>">
@@ -122,7 +122,7 @@ float: left;
                                 <p><%=od.getOdproduct().getpPrice() %>원 / 수량 : <%=od.getOdQty() %></p>
                             </div>
 			                            <%if(o.getoDeliveryStatus().equals("구매확정")){ %>
-			                            <input type="button" id="toReview"  
+			                            <input type="button" class="toReview" 
 			                            			style="
 														    margin-left: 400px;
 														    margin-top: 100px;
@@ -134,10 +134,10 @@ float: left;
 															text-decoration: none;
 															color: white;
 														" value="리뷰쓰기">
-                    </form>
 			                            <%} %>
                         </div>
                         <%} %>
+                    </form>
                         <div class="ordernotice">
                             <p>도착일, 배송지변경 및 주문취소는<br>
                                 주문마감기한인 <%=o.getoDeliveryDate() %> 07:00 까지 가능합니다.</p>
@@ -165,15 +165,17 @@ float: left;
         </section>
         
         <script>
-       $("#toReview").click(function(){
+        
+        
+       $(".toReview").click(function(){
     	   
-        	$("#submitReview").submit();
-        	console.log($("#odNo").val());
-        	console.log($('#odpNo').val());
-        	console.log($('#pName').val());
-        	console.log($('#mName').val());
+    	   let odoNo = $(this).parent().prev().prev().prev().prev().val();
+    	   let odpNo = $(this).parent().prev().prev().prev().val();
+    	   let pName = $(this).parent().prev().prev().val();
+    		
+    	   location.href="<%=request.getContextPath() %>/review/reviewWrite?odoNo="+odoNo+"&odpNo="+odpNo+"&pName="+pName
         	
-       });
+       }); 
         
         
         function delivery(){
