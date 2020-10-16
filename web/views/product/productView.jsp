@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ page import="com.eol.product.model.vo.Product" %>
@@ -148,9 +149,9 @@ String today =(String)sf.format(now);
                              <div class="button-container">
                                  <!-- 날짜선택시 품목명 갯수 선택할 박스  생성. -->
 
-                                 <label ><input type="radio" class="botton-group" name="choice-radio" id="cartPut();"checked>장바구니</input></label>
+                   <!--               <label ><input type="radio" class="botton-group" name="choice-radio" id="cartPut();"checked>장바구니</input></label>
                                  <label ><input type="radio" class="botton-group" name="choice-radio" id="presentbtn();">선물하기</input></label>
-
+ -->
                              </div>
                              <div class="etc_txt" id="cart_txt" style="display:block;">
                                  <span>주문 마감시간 오전 7시</span>
@@ -169,19 +170,19 @@ String today =(String)sf.format(now);
                                  <!-- 갯수를 30개로 가정하고 시작하자! -->
 	                                
 	                                 <div name="oDeliveryEDate1" value="<%=Wednesday%>" class="order_check_day" id="Tuesday" style="display:none;" onclick="mouseClick();"><%=Wednesday%>
-	                                  <input type="radio" name="orderDay" style="displa:none; font-size:25px; bold: 1000;" style="display:none;" value="<%=Wednesday%>"></span>
+	                                  <div type="radio" name="orderDay" style="displa:none; font-size:25px; bold: 1000;" style="display:none;" value="<%=Wednesday%>"></div>
 	                                 </div>
 	                                 <div  name="oDeliveryEDate2" value="<%=today%>" class="order_check_day" id="Wednesday" style="display: none;" onclick="mouseClick1();"><%=today%>    
-	                                     <input type="radio" name="orderDay" style="displa:none; font-size:25px; bold: 1000;" style="display:none;" value="<%=today%>"></span>
+	                                     <div type="radio" name="orderDay" style="displa:none; font-size:25px; bold: 1000;" style="display:none;" value="<%=today%>"></div>
 	                                 </div>
 	                                 <div name="oDeliveryEDate3" value="<%=Thursday%>"class="order_check_day" id="Tursday" style="display: none;" onclick="mouseClick2();"><%=Thursday%>    
-	                                   <input type="radio" name="orderDay" style="displa:none; font-size:25px; bold: 1000;" style="display:none;" value="<%=Thursday%>"></span>
+	                                   <div type="radio" name="orderDay" style="displa:none; font-size:25px; bold: 1000;" style="display:none;" value="<%=Thursday%>"></div>
 	                                 </div>
 	                                 <div name="oDeliveryEDate4" value="<%=Friday%>" class="order_check_day" id="Friday" style="display: none;" onclick="mouseClick3();"><%=Friday%>   
-	                                     <input type="radio" name="orderDay" style="displa:none; font-size:25px; bold: 1000;" style="display:none;" value="<%=Friday%>"></span>
+	                                     <div type="radio" name="orderDay" style="displa:none; font-size:25px; bold: 1000;" style="display:none;" value="<%=Friday%>"></div>
 	                                 </div>
 	                                 <div name="oDeliveryEDate5" value="<%=Saturday%>" class="order_check_day" id="Saturday" style="display: none;" onclick="mouseClick4();"><%=Saturday%>    
-	                                     <input type="radio" name="orderDay" style="displa:none; font-size:25px; bold: 1000;" style="display:none;"value="<%=Saturday%>"></span>
+	                                     <div type="radio" name="orderDay" style="displa:none; font-size:25px; bold: 1000;" style="display:none;"value="<%=Saturday%>"></div>
                                  </div>
                              </div>
                              
@@ -347,9 +348,11 @@ String today =(String)sf.format(now);
                                 		         
                                 	
                                 		 var tdprice1=(parseInt(<%=p.getpPrice()%>));
-                                		 var discount=(parseInt(<%=p.getpDiscount()%>));
-                                		var $tdprice= tdprice1-(tdprice1 * discount/100);
-                                		 console.log("#ppPrice");
+                                		 const discount1=(parseInt(<%=p.getpDiscount()%>));
+                                			 var discount=discount1+1;
+                                	
+                                		var $tdprice= tdprice1-(tdprice1/(discount*100));
+                               				console.log("<%=p.getpNo()%>");
 
                                 		//상품수량가격변경하기
                                 		var $input2=$('.producttextinput'),
@@ -448,12 +451,12 @@ String today =(String)sf.format(now);
            </form>
              <div class="etc_info_wrap">
                  <div class="review_btn_wrap">
-                     <a href="#tab03" class="review_btn" id="review_btn" role="button">
+                     <div href="#tab03" class="review_btn" id="review_btn" role="button">
                          <!-- 스크립트 요청사항: 클릭시 리뷰탭.on클래스 추가하고 #tab03으로 이동 -->
                          <div class="rating_wrap">
                              <span class="rating_star">
                                  <span class="star">
-                                     <a class="start_group" data-rate=""  src="<%=request.getContextPath()%>">
+                                     <div class="start_group" data-rate="<%=p.getpHit() %>"  src="<%=request.getContextPath()%>">
                                          <span  alt="별모양" id="star1">★</span> 
                                          <span  alt="별모양" id="star1" >★</span>
                                          <span  alt="별모양" id="star1" >★</span>
@@ -462,30 +465,41 @@ String today =(String)sf.format(now);
                                      
                                          <span style="width:95.39999%;">
                                              <span class="hide">별점</span>
-                                             <span class="num" alt=""></span>
+                                             <span id="num" alt=""></span>
                                          </span>
+                                     
+                                     
                                          
-                                     </a>
+                                     </div>
                                      <script>
                                      //별점표시, 점수주기
-                                    $(function(){
-                                     const rating = $('.num').text();
-                                     console.log(rating);
-
+                                     console.log("숫자냐"+"<%=p.getpHit() %>");
+                                   var phit=(<%=p.getpHit() %>);
+                                   if(phit===null){
+                                	   phit+=1;
+                                    $('#num').text(<%=p.getpHit() %>);
+                                   }else  $('#num').text(<%=p.getpHit() %>);
+                                   
+                              
+                                   var star= $('#num').text(<%=p.getpHit() %>);
+                         				$('.start_group').find('div:nth-child(-n+star)').attr("color","blue");
+                                  
+                                
+/* 
                                      $(".start_group").each(function(){
                                          const targetScore = (parseInt($(this).prop('data-rate')));//형변환해주고 
                                          console.log(targetScore);//여기서 프리트해서 값확인
-                                         $(".num").text(targetScore);//별점 출력
+                                         $(".num").text(targetScore);//별점 출력text 초기화
                                          //정수인지 아닌지 확인
-                                         if(($(this).attr('data-rate'))!==targetScore){
+                                         if(($(this).prop('data-rate'))===targetScore){
                                         	 console.log("정수:참");
                                          }else console.log("문자열:거짓");
                                          // $(this).find('img:nth-child(-n+'+targetScore+')').css({color:'red'});
                                         $(this).find('a:nth-child(-n+'+targetScore+')').css({color:'#f00'});
                                         	console.log(('a:nth-child(-n+'+targetScore+')'));
 											console.log($(this).find('a:nth-child(-n+'+targetScore+')'));
-										 })
-                                     }); 
+										 }) */
+                          
                                      
 
                                      </script>
@@ -496,7 +510,7 @@ String today =(String)sf.format(now);
                                  </span>
                              </span>
                          </div>
-                     </a>
+                     </div>
                  </div>
                  <div class="sns_btn_wrap">
                      <!-- 자바스크립트 영역 a태그에 기능추가 -->
@@ -505,16 +519,20 @@ String today =(String)sf.format(now);
                          <div class="sns-btn-wrap-items" style="top:0px;background-color: white;width:1270px;height: 50px; border-bottom: 2px solid #333;">
                              
                                  
-                                     <span class="hide span-text"><a href="">리뷰바로가기</a></span>
+                                     <span class="hide span-text"><a href="<%=request.getContextPath()%>/review/reviewList">리뷰바로가기</a></span>
                                      
+                                  <script>
+                              		
+                     
+                                  
+                                  </script>   
                                      <span class="span-text">리뷰수
-                                         <em>0</em>
+                                         <p type="text" class="reviewsNUm"></p>
                                      </span>
-                  
                                 
                                      <!-- 클릭시 상세탭에 div#recipe_wrap영역으로 이동 -->
                                      <span class="span-text">
-                                         <a href="#">
+                                         <a href=".resipy-menu-detail-text">
                                              레시피
                                          
                                          </a>
@@ -611,5 +629,6 @@ String today =(String)sf.format(now);
           </div>
     </div>
 	
+
 
 <%@ include file="/views/common/footer.jsp"%>

@@ -18,6 +18,7 @@ import com.eol.order.model.vo.OrderDetail;
 import com.eol.order.model.vo.Orders;
 import com.eol.order.model.vo.WishList;
 import com.eol.product.model.vo.Product;
+import com.eol.qna.model.vo.Paging;
 
 public class OrderDao {
 	
@@ -289,7 +290,7 @@ public class OrderDao {
 		try {
 			if(m!=null) {//회원일 때 첫번쨰 ?에 회원번호 컬럼				
 				pstmt = conn.prepareStatement(prop.getProperty("insertOrder"));
-				//insertOrder=INSERT INTO ORDERS VALUES(ORD_SEQ.NEXTVAL,?,NULL,?,?,?,SYSDATE-2,?,?,?,SYSDATE,?,?,?,?,?)
+				//insertOrder=INSERT INTO ORDERS VALUES(ORD_SEQ.NEXTVAL,?,NULL,?,?,?,TO_CHAR(TO_DATE(?,'YYYY-MM-DD')-2, YYYY-MM-DD),?,?,?,SYSDATE,?,?,?,?,?)
 				pstmt.setInt(1, o.getmNo());
 			}else {//비회원일 때 첫번째 ?가 주문비밀번호 컬럼
 				pstmt = conn.prepareStatement(prop.getProperty("noMemberinsertOrder"));
@@ -469,7 +470,49 @@ public class OrderDao {
 		}return result;
 	}
 
-	//찜한 내역 가져오기
+	//찜한 내역 가져오기 페이징 처리
+	public List<WishList> selectJjim(Connection conn, Paging pg, int mNo) {
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		List<WishList> list = new ArrayList<WishList>();
+		
+		try {
+			pstmt = conn.prepareStatement(prop.getProperty("selectJjimPg"));
+			
+			int startRow = (pg.getCurrentPage() - 1) * pg.getNumPerPage() + 1;
+			int endRow = pg.getCurrentPage() * pg.getNumPerPage();
+			
+			pstmt.setInt(1, mNo);
+			pstmt.setInt(2, startRow);
+			pstmt.setInt(3, endRow);
+			
+			rs = pstmt.executeQuery();
+			
+			while(rs.next()) {
+				WishList w = new WishList();
+				
+				w.setwNo(rs.getInt("W_NO"));
+				w.setmNo(rs.getInt("M_NO"));
+				w.setpNo(rs.getInt("P_NO"));
+				w.setpName(rs.getString("p_name"));
+				w.setpPrice(rs.getInt("p_price"));
+				w.setpImage1(rs.getString("P_IMAGE1"));
+				w.setpServing(rs.getInt("P_SERVING"));
+				w.setpCookTime(rs.getInt("P_COOKTIME"));
+				
+				list.add(w);
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rs);
+			close(pstmt);
+		}
+		
+		return list;
+	}
+	//찜한 내역 가져오기 페이징 ㄴㄴ
 	public List<WishList> selectJjim(Connection conn, int mNo) {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -477,6 +520,7 @@ public class OrderDao {
 		
 		try {
 			pstmt = conn.prepareStatement(prop.getProperty("selectJjim"));
+			
 			pstmt.setInt(1, mNo);
 			
 			rs = pstmt.executeQuery();
@@ -490,6 +534,8 @@ public class OrderDao {
 				w.setpName(rs.getString("p_name"));
 				w.setpPrice(rs.getInt("p_price"));
 				w.setpImage1(rs.getString("P_IMAGE1"));
+				w.setpServing(rs.getInt("P_SERVING"));
+				w.setpCookTime(rs.getInt("P_COOKTIME"));
 				
 				list.add(w);
 			}
@@ -581,5 +627,29 @@ public class OrderDao {
 		}
 		return result;
 
+	}
+
+	//위시리스트 갯수
+	public int getListCount(Connection conn, int mNo) {
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		int result = 0;
+		
+		try {
+			pstmt = conn.prepareStatement(prop.getProperty("getListCount"));
+			pstmt.setInt(1, mNo);
+			
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				result = rs.getInt(1);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rs);
+			close(pstmt);
+		}
+		return result;
 	}
 }

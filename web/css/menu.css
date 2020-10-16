@@ -9,7 +9,7 @@ ul{
 a{
     text-decoration-line: none;
 }
-a:hover{
+a not:hover{
     color:red;
     text-decoration-line: none;
 }
@@ -80,7 +80,10 @@ a:hover{
    
 }
 
-
+section img{
+	bold: 500;
+	box-shadow: 3px 3px 3px #000; 
+}
 
 /* section && detail--menu */
 .menu-container-group{
@@ -337,7 +340,7 @@ margin: 50px;
     margin: 20px 0;
     border: 2px solid ;
 }
-.file-items{
+/* .file-items1{
     display: flex;
     width: auto;
     height: 150px;
@@ -345,15 +348,8 @@ margin: 50px;
     border-bottom: 1px solid #6E6E6E;
     margin: 10px 0;
   
-}
-.file-items1{
-    display: flex;
-    margin:20px 0;
-    width: auto;
-    justify-content: center;
-    align-content: center;
+} */
 
-}
 .product-btn-box{
     width: auto;
     justify-content: center;
@@ -591,4 +587,34 @@ th, td{
 #menu--text--container{
 	width: auto;
 	height: auto;
+}
+
+img.menu-click1 {
+    margin: 5px 0;
+}
+div#star {
+    margin-left: 40px;
+}
+div#pageBar {
+    text-align: center;
+}
+
+element.style {
+}
+#pagebar>span,#pagebar>span>a {
+    margin: 0 10px;
+}
+
+/* ---------List --- */
+
+.List_Register_h1{
+	text-aligin:center;
+}
+ol.file-items1 {
+   
+    display: block;
+
+}
+ol.file-items2 {
+    display: list-item;
 }

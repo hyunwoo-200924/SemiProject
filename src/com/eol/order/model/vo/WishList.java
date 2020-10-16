@@ -8,6 +8,8 @@ public class WishList {
 	private String pName;
 	private int pPrice;
 	private String pImage1;
+	private int pServing;
+	private int pCookTime;
 	
 	public WishList() {
 		// TODO Auto-generated constructor stub
@@ -66,6 +68,22 @@ public class WishList {
 
 	public void setpImage1(String pImage1) {
 		this.pImage1 = pImage1;
+	}
+
+	public int getpServing() {
+		return pServing;
+	}
+
+	public void setpServing(int pServing) {
+		this.pServing = pServing;
+	}
+
+	public int getpCookTime() {
+		return pCookTime;
+	}
+
+	public void setpCookTime(int pCookTime) {
+		this.pCookTime = pCookTime;
 	}
 
 	@Override

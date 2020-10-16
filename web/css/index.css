@@ -294,6 +294,8 @@ td.name{
 
 .discount{
 	color: #FD2B00;
-	font-size: 20px;
-	background: #FCDE02;
+    font-size: 20px;
+    background: #FCDE02;
+    border: 10px solid;
+    width: 150px;
 }

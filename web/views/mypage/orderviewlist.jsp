@@ -11,6 +11,50 @@
 <link rel="stylesheet" type="text/css" 
 href="<%=request.getContextPath() %>/css/orderviewlist.css">
 
+<style>
+nav{
+margin-top: 35px;
+float: left;
+    margin-left: 10px;
+}
+h1#orderdeliverlytitle{
+    margin-top: 160px;
+    font-size: 30px;
+    padding: 20px;
+    border-bottom: 1px solid black;
+
+}
+
+.odview{
+
+    margin-bottom: 20px;
+}
+.Button li{
+	display: inline;
+}
+
+.odbtn{
+   
+	cursor: pointer;
+   text-decoration: none;
+   float: left;
+   background-color: black;
+    color: white;
+    height: 25px;
+	border: 0px;
+	border-radius: 5px;
+ 
+}
+
+.line{
+	border-bottom:2px gray solid; 
+	margin-bottom: 30px; 
+}
+
+.line:last-child{
+ display: none;
+}
+</style>
 
 <section>
 
@@ -18,27 +62,7 @@ href="<%=request.getContextPath() %>/css/orderviewlist.css">
 
 	
 	<div class="content">
-		<h1>주문 / 배송조회</h1>
-		<!-- <form action="" name="orderView" id="orderView" method="post">
-			<select name="year" id="year">
-				<option value="2019">2019년</option>
-				<option value="2020">2020년</option>
-			</select> <select name="month" id="month">
-				<option value="1">1월</option>
-				<option value="2">2월</option>
-				<option value="3">3월</option>
-				<option value="4">4월</option>
-				<option value="5">5월</option>
-				<option value="6">6월</option>
-				<option value="7">7월</option>
-				<option value="8">8월</option>
-				<option value="9">9월</option>
-				<option value="10">10월</option>
-				<option value="11">11월</option>
-				<option value="12">12월</option>
-			</select> <input type="button" id="orderdate" value="조회">
-		</form> -->
-		
+		<h1 id="orderdeliverlytitle">주문 / 배송조회</h1>
 		<%if(olist.isEmpty()){ %>
 		<div class="detail">
 			<h1>주문내역이 없습니다!</h1>
@@ -46,23 +70,35 @@ href="<%=request.getContextPath() %>/css/orderviewlist.css">
 		<%}else{ %>
 		<%for (Orders o : olist){ %>
 		<div class="detail">
-		<p><%=o.getoPayDate() %> (<%=o.getoNo() %>)</p>
-		
-				<div class="arriveDate">
-					<p><%=o.getoDeliveryStatus() %></p>
-					<!-- 배송중 또는 배송완료 -->
-					<p><%=o.getoDeliveryEDate() %> 도착예정</p>
+		<div style="padding-bottom: 20px;">
+		<div class="bigtitle">
+		<p style="float: left; display: inline;"><%=o.getoPayDate() %> (<%=o.getoNo() %>)</p>
+		</div>
+			<div class="totalprice" style="margin-left: 480px;">
+				<h3>총액 <%=o.getoPayment() %>원</h3>
+			</div>
+				<!-- <div class="arriveDate" style="display: inline;"> -->
+					<div class="delinotice">
+					<p><%=o.getoDeliveryStatus() %> / <%=o.getoDeliveryEDate() %> 
+					<%if(o.getoDeliveryStatus().equals("배송준비중") || o.getoDeliveryStatus().equals("배송중")){ %>
+					도착예정
+					<%}else{ %>
+					도착
+					<%} %>
+					</p>
+					</div>
+					<div style="float: left;">
 					<input type="hidden" id="oStatus" value="<%=o.getoStatus()%>">
                        <input type="hidden" id="oDeliveryStatus" value="<%=o.getoDeliveryStatus()%>">
 				
-				<form id="detailvieworder" action="<%=request.getContextPath() %>/memberOrderDetail" method="post">
+				<form id="detailvieworder" action="<%=request.getContextPath() %>/memberOrderDetail" method="post" style="display: inline;">
 					<input type="hidden" name="oooNo" value="<%=o.getoNo() %>">
-					<input type="submit" value="상세정보">
+					<input type="submit" class="odbtn" value="상세정보" style="height: 25px;">
 				</form>
 							                       
 			<button class="deliverybtn" onclick="delivery();">배송조회</button>
-			
-				</div>
+			</div>
+			<!-- 	</div> -->
 			
 			
 			
@@ -82,6 +118,7 @@ href="<%=request.getContextPath() %>/css/orderviewlist.css">
 				</ul>
 			
 			</div>
+			</div>
 			<% for(OrderDetail od : o.getDetails()){ %>
 			<div class="odview">
 			<div class="productView">
@@ -100,6 +137,9 @@ href="<%=request.getContextPath() %>/css/orderviewlist.css">
 			</div>
 			</div>
 			<%} %>
+			<div class="line">
+			
+			</div>
 			<%} %>
 		</div>
 		<%} %>
