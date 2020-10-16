@@ -1,9 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 
-<link rel="stylesheet" type="text/css"
+<%-- <link rel="stylesheet" type="text/css"
 	href="<%=request.getContextPath() %>/css/hayong.css">
-<script src="<%=request.getContextPath() %>/js/jquery-3.5.1.min.js"></script>
+<script src="<%=request.getContextPath() %>/js/jquery-3.5.1.min.js"></script> --%>
 <style>
 
 

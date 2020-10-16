@@ -9,11 +9,12 @@ section{
     }
 
     section div.content{
-        position: relative;
+        /* position: relative; */
         top:0px;
         left: 200px;
         width: 800px;
         padding: 60px;
+        margin-left: 100px;
     }
     h1{
         margin: 5px;
@@ -29,7 +30,7 @@ section{
        margin:auto;
    }
    .orderNumber{
-       padding: 10px;
+           padding-bottom: 10px;
        font-size: 12px;
    }
    .odview{
@@ -37,14 +38,14 @@ section{
        height: 140px;
    }
    .deliverybtn{
-   margin-left: 380px;
+       margin-left: 10px;
    cursor: pointer;
 	background-color: black;
 	height: 25px;
 	border: 0px;
 	border-radius: 5px;
 	text-decoration: none;
-	color: white
+	color: white;
    }
    .productView{
        float: left;
@@ -75,8 +76,9 @@ section{
    }
    
    .odbtn{
+   text-decoration: none;
    float: left;
-       background-color: black;
+   background-color: black;
     color: white;
     height: 25px;
 	border: 0px;

@@ -17,7 +17,7 @@ section{
 
     section div.content{
         position: absolute;
-        top:0px;
+        top:90px;
         left: 200px;
         width: 800px;
         padding: 20px;
@@ -30,12 +30,13 @@ section{
         padding: 10px;
     }
    div.detail{
-       border: black 1px solid;
+     
        width : 700px;
        height: 170px;
        margin:auto;
    }
    .orderNumber{
+       margin-left: 10px;
        padding: 10px;
        font-size: 12px;
    }
@@ -55,10 +56,10 @@ section{
 
    
    .arriveDate{
-       text-align: center;
+           margin-left: 500px;
    }
    .arriveDate p{
-       font-size: 10px;
+       font-size: 20px;
    }
    .Button button{
        display: block;
@@ -74,4 +75,11 @@ section{
    }
    .Button li{
        list-style-type: none;
+   }
+   
+   .productView{
+   height: 140px;
+       width: 600px;
+    border: 1px black solid;
+    margin-left: 20px;
    }
