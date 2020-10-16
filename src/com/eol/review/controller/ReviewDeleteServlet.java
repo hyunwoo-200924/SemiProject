@@ -90,8 +90,12 @@ public class ReviewDeleteServlet extends HttpServlet {
 		
 		if (result > 0) {
 			System.out.println("삭제 성공");
-
+			
+			if(r.getmImage()==null) {
+				m.setmPonint(m.getmPonint() - 200);	
+			}else {
 			m.setmPonint(m.getmPonint() - 500);
+			}
 			
 			int mPoint = m.getmPonint();
 			int rp = new ReviewService().updatePoint(mPoint, mNo);

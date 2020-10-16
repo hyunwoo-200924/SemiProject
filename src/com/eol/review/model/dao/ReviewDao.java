@@ -286,4 +286,45 @@ public class ReviewDao {
 		}
 		return result;
 	}
+	
+	public List<Review> selectDate(Connection conn, int cPage, int numPerPage, String ydate, int mNo) {
+		PreparedStatement pstmt=null;
+		ResultSet rs=null;
+		Review r = null;
+		List<Review> list = new ArrayList();
+		try {
+			pstmt=conn.prepareStatement(prop.getProperty("selectDate"));
+			pstmt.setString(1,ydate);
+			pstmt.setInt(2,mNo);
+			pstmt.setInt(3,(cPage-1)*numPerPage+1);
+			pstmt.setInt(4, cPage*numPerPage);
+			
+			rs=pstmt.executeQuery();
+			while(rs.next()) {
+				r = new Review();
+				r.setrNo(rs.getInt("R_NO"));
+				r.setpNo(rs.getInt("P_NO"));
+				r.setoNo(rs.getInt("O_NO"));
+				r.setrWriter(rs.getString("R_WRITER"));
+				r.setrTitle(rs.getString("R_TITLE"));
+				r.setrContent(rs.getString("R_CONTENT"));
+				r.setrPhoto1(rs.getString("R_PHOTO1"));
+				r.setrPhoto2(rs.getString("R_PHOTO2"));
+				r.setrPhoto3(rs.getString("R_PHOTO3"));
+				r.setrRdate(rs.getDate("R_RDATE"));
+				r.setrStarScore(rs.getInt("R_STARSCORE"));
+				r.setmNo(rs.getInt("M_NO"));
+				r.setmImage(rs.getString("R_PHOTO1"));
+				r.setpName(rs.getString("P_NAME"));
+				list.add(r);
+				System.out.println("list 확인 : " + list.get(0).getpName());
+			}
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rs);
+			close(pstmt);
+		}
+		return list;
+	}
 }
