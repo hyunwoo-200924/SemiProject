@@ -219,19 +219,20 @@ IMP.init('imp14973248'); // 'iamport' 대신 부여받은 "가맹점 식별코�
 							</div>
 						</div>
 						<div class="pay-items">
-							<p class="pay-items-text-left middle">포인트사용</p>
-							<div class="pay-items-text-right" id="checkPoint">
+							<p class="pay-items-text-left middle" style="width: 66px;">포인트사용</p>
+							<div class="pay-items-text-right" id="checkPoint" style="margin-left: 5px; text-align: center;">
 								
-							</div><span class="middle">Point</span>
+							</div><span class="middle" style="margin-left: -31px;">Point</span>
 
 						</div>
 
 
 						<div class="pay-items">
-							<p class="pay-items-text-left middle">결제 금액</p>
+							<p class="pay-items-text-left middle" style="width: 66px;">결제 금액</p>
 							<%int oPayment = alltotal+3000; %>
 							<input type="hidden" value="<%=oPayment %>" id="beforpay">
-							<input type="text" class="pay-items-text-right" id="oPayment" name="oPayment" value="<%=oPayment%>" style="border:none; background: none;" readonly/><span>원</span>
+							<input type="text" class="pay-items-text-right" id="oPayment" name="oPayment" value="<%=oPayment%>" style="border:none; background: none; margin-left: -26px;text-align: center;" readonly/>
+							<span style="margin-left: -15px;margin-top: 5px;">원</span>
 							
 
 						</div>
