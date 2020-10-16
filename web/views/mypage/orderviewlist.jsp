@@ -1,9 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     
-<%@ page import="java.util.List, com.eol.order.model.vo.*, com.eol.product.model.vo.Product" %>
+<%@ page import="java.util.List, com.eol.order.model.vo.*, com.eol.product.model.vo.Product, com.eol.member.model.vo.Member" %>
 
 <%
+	Member m = (Member)request.getSession().getAttribute("loginMember");
 	List<Orders> olist = (List)request.getAttribute("orderlist");////결제상태가 결제완료 이고, 배송상태가 배송중, 배송준비중, 배송완료, 구매확정인 것들만 담긴 오더리스트
 %>
 
@@ -132,7 +133,14 @@ h1#orderdeliverlytitle{
 			</div>
 			<div class="orderButton">
 				<%if(o.getoDeliveryStatus().equals("구매확정")){ %>
-			                            <button id="review">리뷰쓰기</button>
+				<input type="hidden" name="odNo" id="odNo" value="<%=od.getOdNo()%>">
+                    <input type="hidden" name="odpNo" id="odpNo" value="<%=od.getpNo()%>">
+                    <input type="hidden" name="pName" id="pName" value="<%=od.getOdproduct().getpName()%>">
+                    <input type="hidden" name="mName" id="mName" value="<%=m.getmName()%>">
+			                            <button class="toReview" id="reivew" style="
+    margin-top: 100px;
+    margin-left: 80px;
+">리뷰쓰기</button>
 			                            <%} %>
 			</div>
 			</div>
@@ -148,6 +156,16 @@ h1#orderdeliverlytitle{
 </section>
 
 <script>
+$(".toReview").click(function(){
+	   
+	   let odoNo = $('#odNo').val();
+	   let odpNo = $('#odpNo').val();
+	   let pName = $('#pName').val();
+		
+	   location.href="<%=request.getContextPath() %>/review/reviewWrite?odoNo="+odoNo+"&odpNo="+odpNo+"&pName="+pName
+ 	
+});
+
 function delivery(){
 	console.log(document.getElementById("oStatus").value);
 	var st = "결제완료";

@@ -75,7 +75,20 @@ href="<%=request.getContextPath() %>/css/noneorderDelivery.css">
                                 <p><%=od.getOdproduct().getpPrice() %>원 / 수량 : <%=od.getOdQty() %></p>
                             </div>
 			                            <%if(o.getoDeliveryStatus().equals("구매확정")){ %>
-			                            <button id="review">리뷰쓰기</button>
+			                            <input type="hidden" name="odNo" id="odNo" value="<%=od.getOdNo()%>">
+                    					<input type="hidden" name="odpNo" id="odpNo" value="<%=od.getpNo()%>">
+                   					 	<input type="hidden" name="pName" id="pName" value="<%=od.getOdproduct().getpName()%>">
+			                            <button id="review" class="toReview" style="
+														    margin-left: 400px;
+														    margin-top: 100px;
+														    cursor: pointer;
+															background-color: black;
+															height: 25px;
+															border: 0px;
+															border-radius: 5px;
+															text-decoration: none;
+															color: white;
+														">리뷰쓰기</button>
 			                            <%} %>
                         </div>
                         <%} %>
@@ -102,10 +115,20 @@ href="<%=request.getContextPath() %>/css/noneorderDelivery.css">
                         </tr>
                     </table>
                 </div>
-            </div>
+        
         </section>
         
         <script>
+        
+        $(".toReview").click(function(){
+     	   
+     	   let odoNo = $('#odNo').val();
+     	   let odpNo = $('#odpNo').val();
+     	   let pName = $('#pName').val();
+     		
+     	   location.href="<%=request.getContextPath() %>/review/reviewWrite?odoNo="+odoNo+"&odpNo="+odpNo+"&pName="+pName
+      	
+     });
         
         function delivery(){
         	console.log(document.getElementById("oStatus").value);
