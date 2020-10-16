@@ -83,11 +83,15 @@ IMP.init('imp14973248'); // 'iamport' 대신 부여받은 "가맹점 식별코�
 					<div class="present-items-group4-4">
 					<%
 						int oAmount = 0;
-					Date oDeliveryEDate = null;
+					String oDeliveryEDate = null;
+					
+					for(Product p : list){
+						oDeliveryEDate = p.getDelivery();
+					}
 						
 					%>
 					
-						<input class="info-title" id="oDeliveryEDate" name="oDeliveryEDate" value="" style="border:none" readonly>도착예정
+						<input class="info-title" id="oDeliveryEDate" name="oDeliveryEDate" value="<%=oDeliveryEDate %>" style="border:none" readonly>도착예정
 						<%for(Product p : list) { %>
 						<div class="odProduct">
 						<div class="present-items-imggroup">

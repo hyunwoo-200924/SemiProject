@@ -360,7 +360,7 @@ $("#pay").click(function () {
 		
  		        alert(msg);
 		        
- 		        console.log();
+ 		     
  			} else {
  				var msg = '결제가 취소처리 되었습니다.';
  				alert(msg);

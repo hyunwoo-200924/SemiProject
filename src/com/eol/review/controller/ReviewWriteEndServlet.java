@@ -41,7 +41,7 @@ public class ReviewWriteEndServlet extends HttpServlet {
 	//.쿨라이언트가 보낸 파일저장하기
 		//1.클라이언트가 보낸요청이 multipart으로 요청한건지 확인하기
 		if(!ServletFileUpload.isMultipartContent(request)) {
-			request.setAttribute("msg", "공지사항작성오류![form:enctype에러관리자에게 문의하세요");
+			request.setAttribute("msg", "리뷰작성오류![form:enctype에러관리자에게 문의하세요");
 			request.setAttribute("loc", "/");
 			request.getRequestDispatcher("/views/common/msg.jsp").forward(request, response);
 			return;
@@ -68,10 +68,13 @@ public class ReviewWriteEndServlet extends HttpServlet {
 		Review r=new Review();
 		r.setrTitle(mr.getParameter("title"));
 		r.setrContent(mr.getParameter("content"));
-		//파일이름은 rename,되어있는 파일이름을 가져와야하기때문에
+		r.setmImage(mr.getFilesystemName("upload"));//리네임된 파일명을 가져옴
+		//r.setrNo(Integer.parseInt(mr.getParameter("rNo")));
+		//파일이름은 rename,되어있는 파일이름을 가져와야하기때문에W
 		//mr.getFilesystemName("name")메소드를이용
 		//n.setFilePath(request.getParameter("upload")
 //		r.setFilePath(mr.getFilesystemName("upload"));//리네임된 파일명을 가져옴
+		
 		
 		int odoNo = Integer.parseInt(request.getParameter("odoNo").trim());
 		int odpNo = Integer.parseInt(request.getParameter("odpNo").trim());
@@ -83,8 +86,14 @@ public class ReviewWriteEndServlet extends HttpServlet {
 		int result=new ReviewService().insertReview(r, odoNo, odpNo, pName, mNo);
 		
 		String msg="";
-		String loc="/review/reviewList";
-		msg=result>0?"리뷰등록성공":"리뷰등록실패";
+		String loc="/review/reviewCanList";
+		msg=result>0?"리뷰가 등록되었습니다. 500포인트가 지급됩니다.":"리뷰등록실패";
+		if(result>0) {
+			m.setmPonint(m.getmPonint() + 500);
+			
+			int mPoint = m.getmPonint();
+			int rp = new ReviewService().updatePoint(mPoint, mNo);
+		}
 		request.setAttribute("msg", msg);
 		request.setAttribute("loc",loc);
 		request.getRequestDispatcher("/views/common/msg.jsp").forward(request, response);

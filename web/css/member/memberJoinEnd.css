@@ -39,14 +39,20 @@
 
    }
    div#button button{
-       background-color: black;
+       
         width: 200px;
-        height: 20px;
+      
         margin-left: 50px;
         margin-right: 50px;
         font-weight: bolder;
         border: 0px;
         border-radius: 5px;
+        cursor: pointer;
+		background-color: black;
+		height: 30px;
+		border: 0px;
+		border-radius: 5px;
+		text-decoration: none;
    }
    div#button button a{
        text-decoration: none;

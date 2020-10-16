@@ -73,7 +73,8 @@ public class OrderPayServlet extends HttpServlet {
 		o.setoAmount(Integer.parseInt(request.getParameter("oAmount")));
 		o.setoPayment(Integer.parseInt(request.getParameter("oPayment")));
 		o.setoPayWays(request.getParameter("oPayway"));
-		o.setoDeliveryEDate(request.getParameter("oDate"));
+		o.setoDeliveryEDate(request.getParameter("oDeliveryEDate"));
+		System.out.println("받아서 저장할 날짜 "+o.getoDeliveryEDate());
 		
 	
 

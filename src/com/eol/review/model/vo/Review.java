@@ -22,6 +22,10 @@ public class Review {
 	private int odoNo;
 	private int odpNo;
 	private String mName;
+	private Date oPaydate;
+	private int odQTY;
+	private String pImage;
+	private String mImage;
 	
 	public Review() {
 		// TODO Auto-generated constructor stub
@@ -29,7 +33,7 @@ public class Review {
 
 	public Review(int rNo, int pNo, int oNo, String rWriter, String rTitle, String rContent, String rPhoto1,
 			String rPhoto2, String rPhoto3, Date rRdate, int rStarScore, String filePath, int odNo, int mNo,
-			String pName, int odoNo, int odpNo, String odpName, String mName) {
+			String pName, int odoNo, int odpNo, String odpName, String mName, Date oPaydate, int odQTY, String pImage, String mImage) {
 		super();
 		this.rNo = rNo;
 		this.pNo = pNo;
@@ -50,6 +54,10 @@ public class Review {
 		this.odpNo = odpNo;
 		this.odpName = odpName;
 		this.mName = mName;
+		this.oPaydate = oPaydate;
+		this.odQTY = odQTY;
+		this.pImage = pImage;
+		this.mImage = mImage;
 	}
 
 	public int getrNo() {
@@ -202,4 +210,36 @@ public class Review {
 	public void setmName(String mName) {
 		this.mName = mName;
 	}
+	
+	public Date getoPaydate() {
+		return oPaydate;
+	}
+	
+	public void setoPaydate(Date oPaydate) {
+		this.oPaydate = oPaydate;
+	}
+	
+	public int getodQTY() {
+		return odQTY;
+	}
+	
+	public void setodQTY(int odQTY) {
+		this.odQTY = odQTY;
+	}
+	
+	public String getpImage() {
+		return pImage;
+	}
+	
+	public void setpImage(String pImage) {
+		this.pImage = pImage;
+	}
+	public String getmImage() {
+		return mImage;
+	}
+	
+	public void setmImage(String mImage) {
+		this.mImage = mImage;
+	}
+	
 }

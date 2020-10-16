@@ -349,14 +349,7 @@ margin: 50px;
     margin: 10px 0;
   
 } */
-/* .file-items2{
-    display: flex;
-    margin:20px 0;
-    width: auto;
-    justify-content: center;
-    align-content: center;
 
-} */
 .product-btn-box{
     width: auto;
     justify-content: center;
@@ -591,11 +584,11 @@ th, td{
   #total-price{
   border: none;
   }
- 
 #menu--text--container{
 	width: auto;
 	height: auto;
 }
+
 img.menu-click1 {
     margin: 5px 0;
 }

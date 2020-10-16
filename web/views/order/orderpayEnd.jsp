@@ -10,10 +10,27 @@
 		Member m = (Member)request.getSession().getAttribute("loginMember");
 		Orders o = (Orders)request.getAttribute("order");
 	%>
+	<style>
+	#button{
+		
+	    margin-left: 500px;
+    margin-top: 40px;
+	}
+	#button button{
+		cursor: pointer;
+		background-color: black;
+		height: 25px;
+		border: 0px;
+		border-radius: 5px;
+		text-decoration: none;
+		font-color: white;	
+	}
+	
+	</style>
 <section>
         <div class="mainDiv">
            <div id="joinhead" style="border: red 1px solid;">
-                <div id="join">주 문 완 료</div>
+                <div id="join" style="text-align: center; font-size: 50px; border:none;">주 문 완 료</div>
                 <!-- <div>
                     <table>
                         <tr id="joinMsg">
@@ -29,11 +46,11 @@
             <div id="content">
                 <h2 align="center" style="margin-top:100px">주문번호(<%=o.getoNo() %>)<br>주문이 정상처리가 되었습니다.</h2>
                 <div id="button">
-                    <button><a href="<%=request.getContextPath() %>/mainview.do">메인화면으로 이동</a></button>
+                    <button><a href="<%=request.getContextPath() %>/mainview.do" style="color: white;">메인화면으로 이동</a></button>
                     <%if(m!=null){ %>
-                    <button><a href="<%=request.getContextPath()%>/orderViewList.do">주문/결제 조회하기</a></button>
+                    <button><a href="<%=request.getContextPath()%>/orderViewList.do" style="color: white;">주문/결제 조회하기</a></button>
                     <%}else{ %>
-                    <button><a href="<%=request.getContextPath()%>/login.do">주문/결제 조회하기</a></button>
+                    <button><a href="<%=request.getContextPath()%>/login.do" style="color: white;">주문/결제 조회하기</a></button>
                     <%} %>
                 </div>
             </div>
